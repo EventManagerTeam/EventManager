@@ -2,7 +2,7 @@ language: python
 
 install:
   - pip install pycodestyle
-  - pip3 install wheel -r requirements.txt
+  - pip install wheel -r requirements.txt
 
 script:
   - cd eventmanager
