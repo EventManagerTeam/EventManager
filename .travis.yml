@@ -6,3 +6,4 @@ install:
 script:
   - cd eventmanager
   - pycodestyle . --exclude settings.py
+  - python manage.py test
