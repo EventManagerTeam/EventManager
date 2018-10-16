@@ -5,6 +5,18 @@ language: python
 services:
 - docker
 
+env:
+  global:
+    - USER_ID=1000
+    - USER_NAME=karina
+    - GROUP_ID=1000
+    - GROUP_NAME=karina
+    - SECRET_KEY=65h_n86*1!=ae_pxqaxcgkc3pc(fd+hi0sih+-^%3$u_yprihc
+    - MYSQL_DATABASE=eventmanager
+    - MYSQL_USER=eventmanager
+    - MYSQL_PASSWORD=eventmanager
+    - MYSQL_ROOT_PASSWORD=eventmanager
+
 install:
   - docker-compose pull
   - docker-compose build
