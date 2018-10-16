@@ -1,50 +1,10 @@
 language: python
-
-.job_template: &git_strategy
-  variables:
-    GIT_STRATEGY: none
-
-.job_template: &dev_image
-  image: python:alpine3.7
-
-
-.job_template: &code_style_check_template
-  stage: code_style_check
-  script:
-    - pycodestyle .
-
-
-.code_style_check_before_script: &code_style_check_before_script |
-  pip install pycodestyle==2.4.0
-
-image: docker:latest
-
-services:
-- docker:dind
-
-stages:
-  - download_dependencies
-  - build
-  - code_style_check
-
-download_dependencies:
-  <<: *dev_image
-  stage: download_dependencies
-  script:
-    - apk update
-    - apk add mariadb-dev g++ bash
-    - pip3 install wheel -r requirements.txt
-
-code style check dev:
-  <<: *code_style_check_template
-  <<: *dev_image
-  before_script:
-    - *code_style_check_before_script
-  except:
-    - master
-
-unit tests dev:
-  <<: *unit_tests_template
-  <<: *dev_image
-  except:
-    - master
+python:
+  - "3.7"
+# command to install dependencies
+install:
+  - pip install pycodestyle
+# command to run tests
+script:
+  - cd eventmanager
+  - pycodestyle . 
