@@ -1,0 +1,8 @@
+language: python
+
+install:
+  - pip install pycodestyle python
+
+script:
+  - cd eventmanager
+  - pycodestyle . --exclude settings.py
