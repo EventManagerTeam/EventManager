@@ -13,11 +13,6 @@ language: python
   script:
     - pycodestyle .
 
-.job_template: &unit_tests_template
-  stage: test
-  script:
-    - apk update
-    - apk add g++ bash libxml2-dev libxslt-dev zlib-dev libffi-dev libressl-dev
 
 .code_style_check_before_script: &code_style_check_before_script |
   pip install pycodestyle==2.4.0
@@ -31,7 +26,6 @@ stages:
   - download_dependencies
   - build
   - code_style_check
-  - test
 
 download_dependencies:
   <<: *dev_image
@@ -39,7 +33,7 @@ download_dependencies:
   script:
     - apk update
     - apk add mariadb-dev g++ bash
-    - pip3 install -r requirements.txt
+    - pip3 install wheel -r requirements.txt
 
 code style check dev:
   <<: *code_style_check_template
