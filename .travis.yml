@@ -5,4 +5,4 @@ install:
 # command to run tests
 script:
   - cd eventmanager
-  - pycodestyle . 
+  - pycodestyle . --exclude settings.py
