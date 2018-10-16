@@ -1,7 +1,7 @@
 language: python
 
 install:
-  - pip install pycodestyle
+  - pip install pycodestyle python
 
 script:
   - cd eventmanager
