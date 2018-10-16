@@ -105,3 +105,6 @@ venv.bak/
 
 # db 
 mysql_data/
+
+# envs
+docker/startup/envs/*
