@@ -102,3 +102,10 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# db 
+mysql_data/
+
+# envs
+docker/startup/envs/.env
+docker/startup/envs/.env.mysql
