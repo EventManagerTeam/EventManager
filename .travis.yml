@@ -1,8 +1,19 @@
+sudo: required
+
 language: python
 
+services:
+- docker
+
 install:
+  - docker-compose pull
+  - docker-compose build
   - pip install pycodestyle python
 
 script:
   - cd eventmanager
   - pycodestyle . --exclude settings.py
+  - docker-compose up
+  - docker exec -it event-manager.container /bin/bash
+  - python eventmanager/manage.py test
+  
