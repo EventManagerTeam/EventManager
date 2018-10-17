@@ -6,6 +6,7 @@ services:
 - docker
 
 env:
+  -DJANGO=2.1 DB=mysql
   global:
     - USER_ID=1000
     - USER_NAME=karina
@@ -16,11 +17,14 @@ env:
     - MYSQL_USER=eventmanager
     - MYSQL_PASSWORD=eventmanager
     - MYSQL_ROOT_PASSWORD=eventmanager
-
+      
 install:
   - docker-compose pull
   - docker-compose build
   - pip install pycodestyle python
+
+before_script:
+  - mysql -e 'create database test;' -u root
 
 script:
   - cd eventmanager
@@ -28,4 +32,7 @@ script:
   - docker-compose up
   - docker exec -it event-manager.container /bin/bash
   - python eventmanager/manage.py test
+ 
+
   
+
