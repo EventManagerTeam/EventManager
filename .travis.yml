@@ -1,6 +1,8 @@
 sudo: required
 
 language: python
+python:
+  - "3.7"
 
 services:
 - docker
@@ -16,5 +18,5 @@ install:
 
 script:
   - cd eventmanager
-  - pycodestyle . --exclude settings.py
+  - pycodestyle .
   - docker run event-manager.container /bin/sh  eventmanager/manage.py test
