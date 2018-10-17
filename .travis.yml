@@ -19,4 +19,4 @@ install:
 script:
   - cd eventmanager
   - pycodestyle .
-  - docker run event-manager /bin/sh -c "eventmanager/manage.py test"
+  - docker run event-manager /bin/sh -c "eventmanager/manage.py test eventmanager/"
