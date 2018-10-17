@@ -1,8 +1,22 @@
+sudo: required
+
 language: python
+python:
+  - "3.6"
+
+services:
+- docker
+
+env:
+  global:
+    - DJANGO=2.1
+    - SECRET_KEY=65h_n86*1!=ae_pxqaxcgkc3pc(fd+hi0sih+-^%3$u_yprihc
 
 install:
-  - pip install pycodestyle python
+  - docker-compose build
+  - pip install pycodestyle
 
 script:
   - cd eventmanager
-  - pycodestyle . --exclude settings.py
+  - pycodestyle .
+  - docker run event-manager /bin/sh -c "eventmanager/manage.py test eventmanager/"
