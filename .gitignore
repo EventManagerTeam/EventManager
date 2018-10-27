@@ -109,3 +109,6 @@ mysql_data/
 # envs
 docker/startup/envs/.env
 docker/startup/envs/.env.mysql
+
+# Collected static files via Django's staticfiles app
+eventmanager/eventmanager/static/
