@@ -1,0 +1,21 @@
+.container-fluid {
+    background-color: #2f2f2f; 
+    color: #fff;
+    position:fixed;
+    bottom:0;
+    width: 100%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+.container {
+    position: relative;
+    margin: 0 auto;
+}
+.container .content {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); 
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+}
