@@ -111,4 +111,5 @@ docker/startup/envs/.env
 docker/startup/envs/.env.mysql
 
 # Collected static files via Django's staticfiles app
-eventmanager/eventmanager/static/
+eventmanager/eventmanager/static/*
+eventmanager/eventmanager/media/*

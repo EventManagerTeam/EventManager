@@ -1,0 +1,57 @@
+{% load static %}
+<DOCTYPE html>
+<html>
+   <head>
+      <title> EventManager </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <style>
+         .container-fluid {
+             background-color: #2f2f2f; /* Black Gray */
+             color: #fff;
+             position:fixed;
+             bottom:0;
+             width: 100%;
+             padding-top: 1%;
+             padding-bottom: 1%;
+         }
+         .container {
+             position: relative;
+             margin: 0 auto;
+         }
+         .container .content {
+             position: absolute;
+             bottom: 0;
+             background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+             color: #f1f1f1;
+             width: 100%;
+             padding: 20px;
+         }
+      </style>
+   </head>
+   <body>
+      <nav class="navbar navbar-default navbar-fixed-top">
+         <div class="container">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> </button>
+               <a class="navbar-brand" href="https://www.plovediv.bg">EVENTMANAGER</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+               <ul class="nav navbar-nav navbar-right">
+                  <li><a href="">1111111111111</a></li>
+                  <li><a href="">2222222222222</a></li>
+                  <li><a href="">3333333333333</a></li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+      {% block content %}
+      {% endblock %}
+      <footer class="container-fluid text-center">
+         <p> All rights reserved.</p>
+      </footer>
+   </body>
+</html>
+
