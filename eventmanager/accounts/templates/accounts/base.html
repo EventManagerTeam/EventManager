@@ -7,29 +7,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <style>
-         .container-fluid {
-             background-color: #2f2f2f; /* Black Gray */
-             color: #fff;
-             position:fixed;
-             bottom:0;
-             width: 100%;
-             padding-top: 1%;
-             padding-bottom: 1%;
-         }
-         .container {
-             position: relative;
-             margin: 0 auto;
-         }
-         .container .content {
-             position: absolute;
-             bottom: 0;
-             background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
-             color: #f1f1f1;
-             width: 100%;
-             padding: 20px;
-         }
-      </style>
+      <link href="{% static "accounts/base.css" %}" rel="stylesheet">
    </head>
    <body>
       <nav class="navbar navbar-default navbar-fixed-top">
