@@ -3,6 +3,8 @@ from django.shortcuts import redirect
 
 from django.http import HttpResponse
 
+from django.urls import reverse
+
 from accounts.forms import SignUpForm
 from accounts.forms import LoginForm
 
@@ -21,7 +23,6 @@ def index(request):
 
 def login(request):
     if request.method == 'POST':
-        return home(request)
         form = LoginForm(request.POST)
         if form.is_valid():
             form.save()
@@ -29,7 +30,7 @@ def login(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return home(request)
+            return reverse("accounts.index")
     else:
         form = LoginForm()
     return render(request, 'accounts/login.html', {'form': form})
