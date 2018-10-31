@@ -7,8 +7,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 
+
 def index(request):
     return render(request, 'accounts/index.html')
+
 
 def signup(request):
     if request.method == 'POST':
