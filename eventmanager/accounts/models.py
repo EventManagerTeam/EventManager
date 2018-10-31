@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+class Accounts(object):
+	"""docstring for Accounts"""
+	def __init__(self, arg):
+		super(Accounts, self).__init__()
+		self.arg = arg
+		

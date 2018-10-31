@@ -1,0 +1,27 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<br> <br>
+  <h2>Sign up</h2>
+  <div style="display: table;width: 100%;">
+  <form method="post" style="display: table-cell;
+   text-align: center;
+   vertical-align: middle;">
+    {% csrf_token %}
+    <div class="form-group">
+      {% for field in form %}
+          {% for error in field.errors %}
+          <div class="alert alert-danger alert-dismissible">
+            {{ error }}
+          </div>
+          {% endfor %}
+          <p>
+          {{ field.label_tag }}<br>
+          {{ field }}
+        </p>
+      {% endfor %}
+    </div>
+    <button class="btn btn-primary" type="submit">Sign up</button>
+  </form>
+
+{% endblock %}
