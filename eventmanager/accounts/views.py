@@ -17,6 +17,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import login as auth_login
 
+
 def index(request):
     return render(request, 'accounts/index.html')
 
@@ -25,12 +26,22 @@ def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            auth_login(request, user)
-            return HttpResponse(User.objects.all())
-            return reverse("accounts.index")
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                if user.is_active:
+                    auth_login(request, user)
+                    return render(request, 'accounts/index.html')
+            else:
+                context = {'form': form, 'wrong_credentials': True}
+                return render(
+                    request,
+                    'accounts/login.html',
+                    context
+                )
     else:
         form = LoginForm()
     return render(request, 'accounts/login.html', {'form': form})
