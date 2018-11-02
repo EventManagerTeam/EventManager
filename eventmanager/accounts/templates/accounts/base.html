@@ -22,22 +22,23 @@
                   <li><a href="">1111111111111</a></li>
                   <li><a href="">2222222222222</a></li>
                   <li><a href="">3333333333333</a></li>
+
                   {% if request.user.is_authenticated %}
                       <li>
                          <a href="">
-                            <div style="color:rgb(51, 122, 183)"> Welcome, </div>
-                            {{request.user}}
+                            <div class = "blue"> Welcome, {{request.user}}</div>
+                            
                          </a>
                       </li>
                       <li>
                          <a href="/signout">
-                            <div style="color:rgb(51, 122, 183)"> Sign out </div>
+                            <div class = "blue"> Sign out </div>
                          </a>
                       </li>
                   {% else %}
                       <li>
-                         <a href="{% url 'accounts.login' %}">
-                            <div style="color:rgb(51, 122, 183)"> Log in </div>
+                         <a href="/login">
+                            <div class = "blue"> Log in </div>
                          </a>
                       </li>
                   {% endif %}
@@ -51,6 +52,8 @@
       </nav>
       {% block content %}
       {% endblock %}
+
+      
       <footer class="container-fluid text-center">
          <p> All rights reserved.</p>
       </footer>
