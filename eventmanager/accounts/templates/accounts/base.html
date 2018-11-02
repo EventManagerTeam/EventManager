@@ -1,8 +1,9 @@
 {% load static %}
+
 <DOCTYPE html>
 <html>
    <head>
-      <title> EventManager </title>
+      <title> {% block title %} {% endblock %} </title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
@@ -18,15 +19,41 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="">1111111111111</a></li>
-                  <li><a href="">2222222222222</a></li>
-                  <li><a href="">3333333333333</a></li>
+                  <li><a href="">Sample List Item </a></li>
+                  <li><a href="">Sample List Item </a></li>
+                  <li><a href="">Sample List Item </a></li>
+
+                  {% if request.user.is_authenticated %}
+                      <li>
+                         <a href="">
+                            <div class = "blue"> Welcome, {{request.user}}</div>
+                            
+                         </a>
+                      </li>
+                      <li>
+                         <a href="/signout">
+                            <div class = "blue"> Sign out </div>
+                         </a>
+                      </li>
+                  {% else %}
+                      <li>
+                         <a href="/login">
+                            <div class = "blue"> Log in </div>
+                         </a>
+                      </li>
+                  {% endif %}
+
+                  {% block navbar %}
+                  {% endblock %}
+
                </ul>
             </div>
          </div>
       </nav>
       {% block content %}
       {% endblock %}
+
+
       <footer class="container-fluid text-center">
          <p> All rights reserved.</p>
       </footer>
