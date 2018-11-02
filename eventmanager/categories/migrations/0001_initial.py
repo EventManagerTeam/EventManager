@@ -15,50 +15,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                (
-                    'id',
-                    models.AutoField(
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        verbose_name='ID'
-                    )
-                ),
-                (
-                    'name',
-                    models.CharField(
-                        max_length=254,
-                        unique=True,
-                        verbose_name='Name'
-                    )
-
-                ),
-                (
-                    'is_active',
-                    models.BooleanField(
-                        default=True,
-                        verbose_name='Is active'
-                    )
-                ),
-                (
-                    'created_at',
-                    models.DateTimeField(
-                        auto_now_add=True,
-                        verbose_name='Created at'
-                    )
-                ),
-                (
-                    'updated_at',
-                    models.DateTimeField(
-                        auto_now=True,
-                        verbose_name='Updated at'
-                    )
-                ),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.CharField(max_length=254, unique=True, verbose_name='Name')),
+                ('is_active', models.BooleanField(default=True, verbose_name='Is active')),
+                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Created at')),
+                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Updated at')),
+                ('description', models.TextField(blank=True, help_text='Plain text, any formatting or links will be removed', null=True, verbose_name='Description')),
             ],
             options={
-                'verbose_name': 'Category',
                 'ordering': ['name'],
                 'verbose_name_plural': 'Categories',
+                'verbose_name': 'Category',
             },
         ),
     ]
