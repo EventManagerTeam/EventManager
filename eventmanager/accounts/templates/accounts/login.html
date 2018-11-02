@@ -2,28 +2,32 @@
 
 {% block title %} Login {% endblock %} 
 
-
 {% block content %}
 <br> <br>
-  <div style="display: table;width: 100%;">
-  <form method="post" style="display: table-cell;
-   text-align: center;
-   vertical-align: middle;">
-    {% csrf_token %}
-    <div class="form-group">
+<div style="display: table;width: 100%;">
+<form method="post" style="display: table-cell;text-align: center;vertical-align: middle;">
+   {% csrf_token %}
+   <div class="form-group">
       {% for field in form %}
-          {% for error in field.errors %}
-          <div class="alert alert-danger alert-dismissible">
-            {{ error }}
-          </div>
-          {% endfor %}
-          <p>
-          {{ field.label_tag }}<br>
-          {{ field }}
-        </p>
+      {% for error in field.errors %}
+      <div class="alert alert-danger alert-dismissible">
+         {{ error }}
+      </div>
       {% endfor %}
-    </div>
-    <button class="btn btn-primary" type="submit">Sign up</button>
-  </form>
+      <p>
+         {{ field.label_tag }}<br>
+         {{ field }}
+      </p>
+      {% endfor %}
+   </div>
 
+   <a href="{% url 'accounts.signup' %}">
+      <div> Don't have account? Register here. <br> </div>
+   </a>
+
+   <button class="btn btn-primary" type="submit">Log in</button>
+  
+</form>
+ 
 {% endblock %}
+
