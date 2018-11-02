@@ -5,10 +5,6 @@ from django.db import models
 from django.utils.translation import ugettext as _
 
 
-def get_image_path(instance, filename):
-    return os.path.join('eventmanager/static/photos', str(instance.id), filename)
-
-
 class Event(models.Model):
     title = models.CharField(
         verbose_name=_("Title"),
@@ -36,7 +32,7 @@ class Event(models.Model):
     )
 
     cover_image = models.ImageField(
-        upload_to=get_image_path,
+        upload_to='eventmanager/media/events_covers/',
         blank=True,
         null=True
     )
