@@ -1,21 +1,18 @@
-from django.shortcuts import render
 from django.shortcuts import redirect
+from django.shortcuts import render
 
 from django.http import HttpResponse
 
 from django.urls import reverse
 
-from accounts.forms import SignUpForm
 from accounts.forms import LoginForm
+from accounts.forms import SignUpForm
 
 from django.contrib.auth import authenticate
-from django.contrib.auth import login
-from django.contrib.auth import logout
-
-from django.contrib.auth.decorators import login_required
-
-from django.contrib.auth.models import User
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 def index(request):

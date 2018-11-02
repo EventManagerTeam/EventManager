@@ -1,7 +1,8 @@
-from django.test import TestCase
 import unittest
-from django.urls import reverse
+
 from django.test import Client
+from django.test import TestCase
+from django.urls import reverse
 
 from .forms import *   # import all forms
 

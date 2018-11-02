@@ -29,14 +29,6 @@ class SignUpForm(UserCreationForm):
         )
 
 
-# class LoginForm(UserCreationForm):
-#     class Meta:
-#         model = User
-#         fields = (
-#             'username',
-#             'password1',
-#         )
-
 class LoginForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
