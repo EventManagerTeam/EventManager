@@ -3,39 +3,42 @@
 {% block title %} Login {% endblock %} 
 
 {% block content %}
+
 <br> <br>
-<div style="display: table;width: 100%;">
-   <div class="col-md-4 col-md-offset-4 centered">
-<form method="post">
-   {% csrf_token %}
-
-   {% if wrong_credentials == True %}
-   <div class="alert alert-danger alert-dismissible">
-      You entered wrong credentials.
-   </div>
-   {% endif%}
-
-   <div class="form-group ">
-      {% for field in form %}
-      {% for error in field.errors %}
+<div style="display: table;width: 100%;" class="col-md-4 col-md-offset-4 centered">
+   <form method="post">
+      {% csrf_token %}
+      {% if wrong_credentials == True %}
       <div class="alert alert-danger alert-dismissible">
-         {{ error }}
+         You entered wrong credentials.
       </div>
-      {% endfor %}
-         <br>
-        <h1>  {{ field.label_tag }} </h1> <br>
-        <h1>   {{ field }} </h1> <br>
-      {% endfor %}
-   </div>
+      {% endif%}
+      <div class="form-group ">
+         {% for field in form %}
+            {% for error in field.errors %}
+               <div class="alert alert-danger alert-dismissible">
+                  {{ error }}
+               </div>
+            {% endfor %}
+            <br>
+            <h1>  {{ field.label_tag }} </h1>
+            <br>
+            <h1>   {{ field }} </h1>
+            <br>
+         {% endfor %}
+      </div>
 
+      <h1>   
+         <a href="/signup">
+            Don't have account? Register here. <br> 
+         </a>
+      </h1>
 
-<h1>   <a href="/signup">
-       Don't have account? Register here. <br> 
-   </a>
-</h1>
+      <button class="btn btn-primary btn-lg btn-block" type="submit">
+         <h1> Log in </h1>
+      </button>
 
-   <button class="btn btn-primary btn-lg btn-block" type="submit"> <h1> Log in </h1> </button>
-</form>
+   </form>
 </div>
 {% endblock %}
 

@@ -17,6 +17,7 @@ class SignUpForm(UserCreationForm):
     )
     email = forms.EmailField(max_length=254, help_text='Required.')
 
+
     class Meta:
         model = User
         fields = (
@@ -40,6 +41,6 @@ class LoginForm(forms.Form):
             attrs={'placeholder': 'Password'})
     )
     fields = ['username', 'password']
-    
+
     username.widget.attrs['class'] = 'formfield'
     password.widget.attrs['class'] = 'formfield'
