@@ -9,9 +9,9 @@
    <form method="post">
       {% csrf_token %}
       {% if wrong_credentials == True %}
-      <div class="alert alert-danger alert-dismissible">
-         You entered wrong credentials.
-      </div>
+          <div class="alert alert-danger alert-dismissible">
+             You entered wrong credentials.
+          </div>
       {% endif%}
       <div class="form-group ">
          {% for field in form %}
@@ -38,6 +38,7 @@
             <br>
          {% endfor %}
       </div>
+
 
       <h1>
          <a href="/signup">
