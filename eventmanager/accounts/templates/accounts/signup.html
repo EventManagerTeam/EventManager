@@ -11,13 +11,35 @@
         {% for field in form %}
         {% for error in field.errors %}
           <div class="alert alert-danger alert-dismissible">
-             {{ error }}
+             {{ error }} 
           </div>
         {% endfor %}
-        <h1>  {{ field.label_tag }} </h1>
+        <h1>  
+          {% if "_name" in field.name %}
+             <i class="fa fa-user-circle" aria-hidden="true"></i>
+          {% endif %}
+
+          {% if "username" in field.name %}
+             <i class="fa fa-user" aria-hidden="true"></i>
+          {% endif %}
+
+
+          {% if "password" in field.name %}
+             <i class="fa fa-key" aria-hidden="true"></i>
+          {% endif %}
+
+          {% if "mail" in field.name %}
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          {% endif %}
+
+          
+          {{ field.label_tag }} 
+
+        </h1>
         <h1 style="padding-bottom: 1%">   {{ field }} </h1>
         {% endfor %}
      </div>
+
      <button class="btn btn-primary btn-lg" style="width: 50%" type="submit">
         <h1> Sign up </h1>
      </button>

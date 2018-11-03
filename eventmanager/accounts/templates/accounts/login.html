@@ -15,13 +15,23 @@
       {% endif%}
       <div class="form-group ">
          {% for field in form %}
+
             {% for error in field.errors %}
                <div class="alert alert-danger alert-dismissible">
                   {{ error }}
                </div>
             {% endfor %}
             <br>
-            <h1>  {{ field.label_tag }} </h1>
+            <h1>   
+               {% if field.name in "username" %}
+                  <i class="fa fa-user-circle" aria-hidden="true"></i>
+               {% endif %}
+
+               {% if field.name in "password" %}
+                  <i class="fa fa-key" aria-hidden="true"></i>
+               {% endif %}
+
+               {{ field.label_tag }} </h1>
             <br>
             <h1>   {{ field }} </h1>
             <br>
