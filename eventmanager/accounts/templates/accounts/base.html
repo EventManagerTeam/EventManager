@@ -37,7 +37,7 @@
 
             </ul>
             <ul class="navbar-nav  navbar-right">
-               {% if request.user.is_authenticated %} 
+               {% if request.user.is_authenticated %}
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <h3> Welcome, {{request.user}} </h3>
@@ -49,8 +49,7 @@
 
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/signout">
-                  <div class = "blue"> <h3>  Sign out </h3> </div>
-
+                  <div class = "blue"> <h3> Sign out </h3> </div>
                   </a>
                   </div>
                </li>
@@ -66,7 +65,6 @@
       {% endblock %}
       <br>
       <footer class="container-fluid text-center"> <h5> All rights reserved. </h5> </footer>
-
    </body>
 </html>
 

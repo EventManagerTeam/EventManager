@@ -11,10 +11,11 @@
         {% for field in form %}
         {% for error in field.errors %}
           <div class="alert alert-danger alert-dismissible">
-             {{ error }} 
+             {{ error }}
           </div>
         {% endfor %}
-        <h1>  
+        <h1>
+
           {% if "_name" in field.name %}
              <i class="fa fa-user-circle" aria-hidden="true"></i>
           {% endif %}
@@ -32,8 +33,7 @@
             <i class="fa fa-envelope" aria-hidden="true"></i>
           {% endif %}
 
-          
-          {{ field.label_tag }} 
+          {{ field.label_tag }}
 
         </h1>
         <h1 style="padding-bottom: 1%">   {{ field }} </h1>
