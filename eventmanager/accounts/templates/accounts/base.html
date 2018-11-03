@@ -1,58 +1,67 @@
-{% load static %}
 
+
+{% load static %}
 <DOCTYPE html>
 <html>
    <head>
       <title> {% block title %} {% endblock %} </title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <link href="{% static "accounts/base.css" %}" rel="stylesheet">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
    </head>
    <body>
-      <nav class="navbar navbar-default navbar-fixed-top">
-         <div class="container">
-            <div class="navbar-header">
-               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> </button>
-               <a class="navbar-brand">EVENTMANAGER</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-               <ul class="nav navbar-nav navbar-right">
-                  <li><a href="">Sample List Item </a></li>
-                  <li><a href="">Sample List Item </a></li>
-                  <li><a href="">Sample List Item </a></li>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <span class="navbar-text lg lead" >
+            <h1> EventManager </h1>
+         </span>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+         </button>
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto navbar-right">
+               <li class="nav-item active">
+                  <a class="nav-link" href="#"> <h3> Sample List Item </h3></a>
+               </li>
+               <li class="nav-item active">
+                  <a class="nav-link" href="#"><h3> Sample List Item </h3></a>
+               </li>
+               {% block navbar-left %}
+               {% endblock %}
 
-                  {% if request.user.is_authenticated %}
-                      <li>
-                         <a href="">
-                            <div class = "blue"> Welcome, {{request.user}}</div>
-                            
-                         </a>
-                      </li>
-                      <li>
-                         <a href="/signout">
-                            <div class = "blue"> Sign out </div>
-                         </a>
-                      </li>
-                  {% else %}
-                      <li>
-                         <a href="/login">
-                            <div class = "blue"> Log in </div>
-                         </a>
-                      </li>
-                  {% endif %}
-
-                  {% block navbar %}
+            </ul>
+            <ul class="navbar-nav  navbar-right">
+               {% if request.user.is_authenticated %} 
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <h3> Welcome, {{request.user}} </h3>
+                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#"> <h3> Action </h3> </a>
+                  <a class="dropdown-item" href="#"> <h3> Another action </h3> </a>
+                  {% block navbar-right %}
                   {% endblock %}
 
-               </ul>
-            </div>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/signout">
+                  <div class = "blue"> <h3> Sign out </h3> </div>
+                  </a>
+                  </div>
+               </li>
+               {% else %}
+               <a href="/login"> <h3> Log in </h3> </a>
+               {% endif %}
+               </a>
+            </ul>
          </div>
       </nav>
+
       {% block content %}
       {% endblock %}
-
 
       <footer class="container-fluid text-center">
          <p> All rights reserved.</p>
