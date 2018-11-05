@@ -40,3 +40,6 @@ class LoginForm(forms.Form):
             attrs={'placeholder': 'Password'})
     )
     fields = ['username', 'password']
+
+    username.widget.attrs['class'] = 'formfield'
+    password.widget.attrs['class'] = 'formfield'
