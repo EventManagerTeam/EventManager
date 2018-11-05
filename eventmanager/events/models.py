@@ -2,6 +2,25 @@ import os
 from categories.models import Category
 from django.db import models
 from django.utils.translation import ugettext as _
+from mptt.querysets import TreeQuerySet
+
+class EventQuerySet(TreeQuerySet):
+    def active(self):
+        return self.filter(is_active=True)
+
+    def sort(self):
+        return self.order_by('name')
+
+
+class EventManager(models.Manager):
+    def get_queryset(self):
+        return EventQuerySet(self.model, using=self._db)
+
+    def active(self):
+        return self.get_queryset().active()
+
+    def sort(self):
+        return self.get_queryset().sort()
 
 
 class Event(models.Model):
@@ -55,6 +74,8 @@ class Event(models.Model):
         null=True
     )
 
+    objects = EventManager()
+    
     class Meta(object):
         verbose_name = _("Event")
         verbose_name_plural = _("Events")
