@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(help_text='250 character limit', max_length=250, verbose_name='Title')),
                 ('description', models.TextField(help_text='Plain text, any formatting or links will be removed', verbose_name='Description')),
-                ('cover_image', models.ImageField(blank=True, null=True, upload_to=events.models.get_image_path)),
+                ('cover_image', models.ImageField(blank=True, null=True, upload_to="test")),
                 ('is_active', models.BooleanField(default=True, verbose_name='Is active')),
                 ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Created at')),
                 ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Updated at')),
