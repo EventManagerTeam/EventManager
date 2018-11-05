@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+from events.models import Event 
 
 def index(request):
-    return render(request, 'events/list_events.html')
+    events = Event.objects.active()
+    return render(request, 'events/list_events.html', {'events':events})
