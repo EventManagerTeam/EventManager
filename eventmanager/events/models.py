@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.translation import ugettext as _
 from mptt.querysets import TreeQuerySet
 
+
 class EventQuerySet(TreeQuerySet):
     def active(self):
         return self.filter(is_active=True)
@@ -75,7 +76,7 @@ class Event(models.Model):
     )
 
     objects = EventManager()
-    
+
     class Meta(object):
         verbose_name = _("Event")
         verbose_name_plural = _("Events")
