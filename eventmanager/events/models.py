@@ -2,6 +2,8 @@ import os
 from categories.models import Category
 from django.db import models
 from django.utils.translation import ugettext as _
+
+
 class Event(models.Model):
     title = models.CharField(
         verbose_name=_("Title"),
@@ -52,9 +54,11 @@ class Event(models.Model):
         blank=True,
         null=True
     )
+
     class Meta(object):
         verbose_name = _("Event")
         verbose_name_plural = _("Events")
         ordering = ['title']
+
     def __str__(self):
         return self.title
