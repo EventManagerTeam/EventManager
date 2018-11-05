@@ -2,19 +2,20 @@
 
 {% block content %}
 
-  	{% for event in events%}
-  	<div class="card text-center" style="margin: 5%">
-  	  <div class="card-header">
-  	    <h3>  Date: {{ event.created_at }} </h3>
-  	  </div>
-  	  <div class="card-body">
-  	  	<img src="https://scontent-sof1-1.xx.fbcdn.net/v/t31.0-8/28701122_1627659657324551_2545470356542131116_o.jpg?_nc_cat=100&_nc_ht=scontent-sof1-1.xx&oh=fd68616852a129935c5afef07baf0bcd&oe=5C7F916F" style="width: 100%;object-fit: cover;margin-bottom: 3%" >
-  	    <h1 class="card-title"> <b> <i> {{ event.title }} </i> </b> </h1>
-  	    <h3 class="card-text" style="margin: 3%"> {{ event.description }} </h3> 
-  	    <a href="#" class="btn btn-primary btn-block btn-lg"> <h3> Full news link TBD </h3> </a>
-  	  </div>
-  	</div> <br> <br>
-  	{% endfor %}
+
+	{% for event in events%}
+	<div class="card text-center" style="margin: 5%">
+	  <div class="card-header">
+	    <h3>  Date: {{ event.created_at }} </h3>
+	  </div>
+	  <div class="card-body">
+		<img src="https://scontent-sof1-1.xx.fbcdn.net/v/t31.0-8/28701122_1627659657324551_2545470356542131116_o.jpg?_nc_cat=100&_nc_ht=scontent-sof1-1.xx&oh=fd68616852a129935c5afef07baf0bcd&oe=5C7F916F" style="width: 100%;object-fit: cover;margin-bottom: 3%" >
+	    <h1 class="card-title"> <b> <i> {{ event.title }} </i> </b> </h1>
+	    <h3 class="card-text" style="margin: 3%"> {{ event.description }} </h3>
+	    <a href="#" class="btn btn-primary btn-block btn-lg"> <h3> Full news link TBD </h3> </a>
+	  </div>
+	</div> <br> <br>
+	{% endfor %}
   </div>
 
 
