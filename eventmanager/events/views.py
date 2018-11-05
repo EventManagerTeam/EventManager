@@ -17,4 +17,5 @@ def index(request):
     except EmptyPage:
         events = paginator.page(paginator.num_pages)
 
+
     return render(request, 'events/list_events.html', {'events': events})
