@@ -64,7 +64,6 @@ def signup(request):
             user = authenticate(username=username, password=raw_password)
             auth_login(request, user)
             return render(request, 'accounts/index.html')
-
     else:
         form = SignUpForm()
     return render(request, 'accounts/signup.html', {'form': form})
