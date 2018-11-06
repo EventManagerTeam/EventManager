@@ -15,8 +15,15 @@ env:
 install:
   - docker-compose build
   - pip install pycodestyle
+  - pip install pytest
+  - pip install pytest-cov
+  - pip install coveralls
 
 script:
   - cd eventmanager
   - pycodestyle .
   - docker run event-manager /bin/sh -c "eventmanager/manage.py test eventmanager/"
+  - pytest --cov=eventmanager/
+
+after_success:
+  - coveralls
