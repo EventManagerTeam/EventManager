@@ -2,7 +2,6 @@
 
 {% block content %}
 
-
 	{% for event in events%}
 	<div class="card text-center" style="margin: 5%">
 	  <div class="card-header">
@@ -18,5 +17,27 @@
 	{% endfor %}
   </div>
 
+  {% if events.has_other_pages %}
+    <ul class="pagination text-center justify-content-center">
+      {% if events.has_previous %}
+        <li class="page-item"><a href="?page={{ events.previous_page_number }}"> <h1> &laquo;</h1></a></li>
+      {% else %}
+        <li class="disabled"><span> <h1> &laquo; </h1> </span></li>
+      {% endif %}
+      {% for i in events.paginator.page_range %}
+        {% if events.number == i %}
+          <li class="active page-item"><span> <h1> {{ i }} </h1><span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li class="page-item"><a href="?page={{ i }}"> <h1>{{ i }} </h1> </a></li>
+        {% endif %}
+      {% endfor %}
+      {% if events.has_next %}
+        <li class="page-item"><a href="?page={{ events.next_page_number }}"> <h1>&raquo;  </h1> </a></li>
+      {% else %}
+        <li class="disabled page-item"><span> <h1> &raquo;  </h1>  </span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
 
+  <br> <br>
 {% endblock %}
