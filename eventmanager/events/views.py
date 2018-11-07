@@ -8,6 +8,7 @@ def index(request):
     events_list = Event.objects.active()
     number_of_items_per_page = 5
     paginator = Paginator(events_list, number_of_items_per_page)
+
     page = request.GET.get('page', 1)
 
     try:
