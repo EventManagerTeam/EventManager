@@ -48,7 +48,7 @@ class Event(models.Model):
         related_name="categories"
     )
     cover_image = models.ImageField(
-        upload_to='eventmanager/media/events_covers/',
+        upload_to='events',
         blank=True,
         null=True
     )
