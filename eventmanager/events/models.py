@@ -3,7 +3,7 @@ from categories.models import Category
 from django.db import models
 from django.utils.translation import ugettext as _
 from mptt.querysets import TreeQuerySet
-
+from location_field.models.plain import PlainLocationField
 
 class EventQuerySet(TreeQuerySet):
     def active(self):
@@ -71,6 +71,14 @@ class Event(models.Model):
     )
     ends_at = models.DateTimeField(
         verbose_name=_("Event ends at"),
+        blank=True,
+        null=True
+    )
+
+    location = PlainLocationField(
+        based_fields=['city'],
+        zoom=7,
+        verbose_name=_("Location"),
         blank=True,
         null=True
     )
