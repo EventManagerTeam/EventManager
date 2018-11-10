@@ -1,4 +1,3 @@
-import os
 from categories.models import Category
 from django.db import models
 from django.utils.translation import ugettext as _
@@ -76,7 +75,6 @@ class Event(models.Model):
     )
 
     objects = EventManager()
-
 
     class Meta(object):
         verbose_name = _("Event")
