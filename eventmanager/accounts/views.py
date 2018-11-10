@@ -1,5 +1,6 @@
 from accounts.forms import LoginForm
 from accounts.forms import SignUpForm
+from accounts.forms import ChangeEmailForm
 
 from django.contrib import messages
 
@@ -10,16 +11,13 @@ from django.contrib.auth import update_session_auth_hash
 
 from django.contrib.auth.decorators import login_required
 
-from django.contrib.auth.forms import PasswordChangeForm
-
 from django.contrib.auth.models import User
 
-from django.http import HttpResponse
+from django.contrib.auth.forms import PasswordChangeForm
+
 
 from django.shortcuts import redirect
 from django.shortcuts import render
-
-from django.urls import reverse
 
 
 def index(request):
@@ -103,3 +101,25 @@ def change_password(request):
             'form': form
         }
     )
+
+
+@login_required
+def change_email(request):
+    form = ChangeEmailForm(request.user)
+
+    if request.method == 'POST':
+
+        form = ChangeEmailForm(request.POST)
+
+        if form.is_valid():
+            User.objects.filter(
+                email=form.cleaned_data.get('original_email')
+            ).update(email=form.cleaned_data.get('new_email'))
+            success_message = 'Your email was successfully updated!'
+            messages.success(request, success_message)
+        else:
+            messages.error(request, 'Please correct the errors below.')
+    else:
+        form = ChangeEmailForm()
+
+    return render(request, 'accounts/change_email.html', {'form': form})
