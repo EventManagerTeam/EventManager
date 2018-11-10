@@ -76,7 +76,6 @@ class Event(models.Model):
 
     objects = EventManager()
 
-
     class Meta(object):
         verbose_name = _("Event")
         verbose_name_plural = _("Events")
