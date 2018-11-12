@@ -5,19 +5,21 @@
 
 {% block content %}
 
+
 	{% for event in events%}
-	<div class="card text-center" style="margin: 5%">
+	<div class="card text-center" style="margin: 3%">
 	  <div class="card-header">
 	    <h3>  Date: {{ event.created_at }} </h3>
 	  </div>
 	  <div class="card-body">
-
+        {% if event.cover_image%} <img src="{{ event.cover_image.url }}" style="width: 100%;object-fit: cover;margin-bottom: 3%">  {% endif%}
 	    <h1 class="card-title"> <b> <i> {{ event.title }} </i> </b> </h1>
 	    <h3 class="card-text" style="margin: 3%"> {{ event.description }} </h3>
 	    <a href="#" class="btn btn-primary btn-block btn-lg"> <h3> Full news link TBD </h3> </a>
 	  </div>
-	</div> <br> <br>
+	</div>
 	{% endfor %}
+
   </div>
 
   {% if events.has_other_pages %}
