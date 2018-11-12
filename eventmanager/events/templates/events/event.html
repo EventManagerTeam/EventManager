@@ -3,4 +3,7 @@
 {% block content %}
 
 <p> {{event.title}}</p>
+{% if event.cover_image %}
+    <img src="{{ event.cover_image.url }}" style="width: 100%;object-fit: cover;margin-bottom: 3%">
+{% endif %}
 {% endblock %}
