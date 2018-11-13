@@ -19,3 +19,8 @@ def index(request):
         events = paginator.page(paginator.num_pages)
 
     return render(request, 'events/list_events.html', {'events': events})
+
+
+def show_events_by_slug(request, slug):
+    event = Event.objects.active().get(slug=slug)
+    return render(request, 'events/event.html', {'event': event})

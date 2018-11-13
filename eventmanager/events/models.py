@@ -2,6 +2,7 @@ from categories.models import Category
 from django.db import models
 from django.utils.translation import ugettext as _
 from mptt.querysets import TreeQuerySet
+from django.utils.text import slugify
 
 
 class EventQuerySet(TreeQuerySet):
@@ -32,6 +33,9 @@ class Event(models.Model):
         null=False,
         blank=False
     )
+
+    slug = models.SlugField(unique=True, blank=True, null=True)
+
     description = models.TextField(
         verbose_name=_("Description"),
         help_text=_("Plain text, any formatting or links will be removed"),
@@ -75,6 +79,23 @@ class Event(models.Model):
     )
 
     objects = EventManager()
+
+    def is_slug_used(slug):
+        return Event.objects.filter(slug=slug).exists()
+
+    def get_unique_slug(self):
+        slug = slugify(self.title)
+        unique_slug = slug
+        unique_num = 1
+        while Event.is_slug_used(unique_slug):
+            unique_slug = '{}-{}'.format(slug, unique_num)
+            unique_num += 1
+        return unique_slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self.get_unique_slug()
+        super(Event, self).save(*args, **kwargs)
 
     class Meta(object):
         verbose_name = _("Event")

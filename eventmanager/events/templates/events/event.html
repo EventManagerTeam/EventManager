@@ -1,0 +1,35 @@
+{% extends 'accounts/base.html' %}
+{% block head %}
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    /* The image used */
+    background-image: url({% if event.cover_image %} "{{ event.cover_image.url }}" {% endif %});
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>
+{% endblock %}
+{% block content %}
+<div class="bg">
+    <p class="display-1" style="background-color: rgba(0,0,0,0.5);color: white;">
+        {{event.title}}
+    </p>
+</div>
+
+<p style="padding: 5%">
+    {{event.description}}
+</p>
+
+
+{% endblock %}
