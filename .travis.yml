@@ -25,7 +25,7 @@ script:
   - cd eventmanager
   - pycodestyle .
   - docker run event-manager /bin/sh -c "eventmanager/manage.py test eventmanager/"
-  - pwd && cd eventmanager && pytest --cov=eventmanager/
+  - pwd  && pytest --cov=eventmanager/
 
 
 after_success:
