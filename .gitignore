@@ -114,6 +114,5 @@ docker/startup/envs/.env.mysql
 eventmanager/eventmanager/static/*
 eventmanager/eventmanager/media/*
 
-
 #IDE
 .idea/*
