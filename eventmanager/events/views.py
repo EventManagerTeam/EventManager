@@ -23,13 +23,8 @@ def index(request):
 
 
 def create_event(request):
-    if request.method == 'POST':
-
-        form = EventForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-    else:
-        form = EventForm()
-
+    form = EventForm(request.POST or None)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.save()
     return render(request, 'events/create_event.html', {'form': form})
