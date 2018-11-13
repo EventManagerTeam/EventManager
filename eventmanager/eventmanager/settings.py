@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['0.0.0.0']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_nose',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,3 +132,12 @@ STORAGE_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'storage'))
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'media'))
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+
+    '--cover-erase',
+
+    '--cover-package=eventmanager', # Change `MY_APP` to your `app` name
+]

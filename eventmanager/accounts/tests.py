@@ -78,8 +78,5 @@ class AccountsUrlsTestClass(unittest.TestCase):
     def test_signout_url(self):
         self.url_testing(reverse("accounts.signout"))
 
-    def test_home_url(self):
-        self.url_testing(reverse("accounts.home"))
-
-    def test_home_url(self):
+    def test_login_url(self):
         self.url_testing(reverse("accounts.login"))
