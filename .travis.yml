@@ -11,6 +11,7 @@ env:
   global:
     - DJANGO=2.1
     - SECRET_KEY=65h_n86*1!=ae_pxqaxcgkc3pc(fd+hi0sih+-^%3$u_yprihc
+    - DJANGO_SETTINGS_MODULE=eventmanager.settings
 
 install:
   - docker-compose build
