@@ -127,4 +127,3 @@ def change_email(request):
         form = ChangeEmailForm()
 
     return render(request, 'accounts/change_email.html', {'form': form})
-
