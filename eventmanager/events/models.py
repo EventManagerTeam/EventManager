@@ -34,7 +34,7 @@ class Event(models.Model):
         null=False,
         blank=False
     )
-    
+
     slug = models.SlugField(unique=True, blank=True, null=True)
 
     description = models.TextField(
@@ -65,7 +65,12 @@ class Event(models.Model):
         auto_now_add=True
     )
 
-    added_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE,)
+    added_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
 
     updated_at = models.DateTimeField(
         verbose_name=_("Updated at"),

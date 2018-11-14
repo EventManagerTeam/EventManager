@@ -44,7 +44,7 @@ class LoginForm(forms.Form):
     username.widget.attrs['class'] = 'formfield'
     password.widget.attrs['class'] = 'formfield'
 
-    
+
 class ChangeEmailForm(forms.Form):
     original_email = forms.EmailField(max_length=254, help_text='Required.')
     new_email = forms.EmailField(max_length=254, help_text='Required.')
