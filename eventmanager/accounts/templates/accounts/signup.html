@@ -15,6 +15,7 @@
           </div>
         {% endfor %}
         <h1>  
+
           {% if "_name" in field.name %}
              <i class="fa fa-user-circle" aria-hidden="true"></i>
           {% endif %}
@@ -31,9 +32,9 @@
           {% if "mail" in field.name %}
             <i class="fa fa-envelope" aria-hidden="true"></i>
           {% endif %}
-
           
           {{ field.label_tag }} 
+
 
         </h1>
         <h1 style="padding-bottom: 1%">   {{ field }} </h1>

@@ -1,9 +1,9 @@
-import os
 from categories.models import Category
 from django.db import models
 from django.utils.translation import ugettext as _
 from mptt.querysets import TreeQuerySet
 from django.contrib.auth.models import User
+from django.utils.text import slugify
 
 
 class EventQuerySet(TreeQuerySet):
@@ -34,6 +34,9 @@ class Event(models.Model):
         null=False,
         blank=False
     )
+    
+    slug = models.SlugField(unique=True, blank=True, null=True)
+
     description = models.TextField(
         verbose_name=_("Description"),
         help_text=_("Plain text, any formatting or links will be removed"),
@@ -61,6 +64,7 @@ class Event(models.Model):
         verbose_name=_("Created at"),
         auto_now_add=True
     )
+
     added_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE,)
 
     updated_at = models.DateTimeField(
@@ -83,6 +87,23 @@ class Event(models.Model):
     def save_model(self, request, obj, form, change):
         obj.added_by = request.user
         super().save_model(request, obj, form, change)
+
+    def is_slug_used(slug):
+        return Event.objects.filter(slug=slug).exists()
+
+    def get_unique_slug(self):
+        slug = slugify(self.title)
+        unique_slug = slug
+        unique_num = 1
+        while Event.is_slug_used(unique_slug):
+            unique_slug = '{}-{}'.format(slug, unique_num)
+            unique_num += 1
+        return unique_slug
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = self.get_unique_slug()
+        super(Event, self).save(*args, **kwargs)
 
     class Meta(object):
         verbose_name = _("Event")

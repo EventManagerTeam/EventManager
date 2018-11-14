@@ -28,6 +28,3 @@ def show_events_by_slug(request, slug):
     event = Event.objects.active().get(slug=slug)
     return render(request, 'events/event.html', {'event': event})
 
-
-
-
