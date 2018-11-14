@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import EventForm
 
+
 def index(request):
     events_list = Event.objects.active()
     number_of_items_per_page = 5
@@ -21,6 +22,7 @@ def index(request):
 
     context = {'events': events, 'categories': categories}
     return render(request, 'events/list_events.html', context)
+
 
 def create_event(request):
 
