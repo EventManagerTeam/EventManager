@@ -117,3 +117,4 @@ eventmanager/eventmanager/media/*
 
 #IDE
 .idea/*
+.idea/

@@ -35,7 +35,11 @@ class Event(models.Model):
         blank=False
     )
 
-    slug = models.SlugField(unique=True, blank=True, null=True)
+    slug = models.SlugField(
+        unique=True,
+        blank=True,
+        null=True
+    )
 
     description = models.TextField(
         verbose_name=_("Description"),
