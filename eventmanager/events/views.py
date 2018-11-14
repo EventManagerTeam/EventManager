@@ -4,7 +4,7 @@ from categories.models import Category
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import EventForm
-
+from django.http import HttpResponse
 
 def index(request):
     events_list = Event.objects.active()
@@ -27,16 +27,30 @@ def index(request):
 def create_event(request):
 
     if request.method == 'POST':
-
         form = EventForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.added_by = request.userг
+            post.added_by = request.user
+
+            if request.POST.get('starts_at') and request.POST.get('starts_at_time'):
+                starts_at = request.POST.get('starts_at') +  " " +  request.POST.get('starts_at_time')
+                post.starts_at = starts_at
+
+
+            if request.POST.get('ends_at') and request.POST.get('ends_at_time'):
+                 ends_at = request.POST.get('ends_at') +  " " +  request.POST.get('ends_at_time')
+                 post.ends_at = ends_at
+
             post.save()
+            category = Category.objects.filter(name=request.POST["category_select"])
+            category = list(category)
+            post.category.add(*category)
+            post.save()
+
     else:
         form = EventForm()
 
-    return render(request, 'events/create_event.html', {'form': form})
+    return render(request, 'events/create_event.html', {'form': form,'categories': Category.objects.active()})
 
 
 def show_events_by_slug(request, slug):

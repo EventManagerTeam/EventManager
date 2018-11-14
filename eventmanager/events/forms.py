@@ -8,8 +8,6 @@ class EventForm(ModelForm):
         fields = [
             'title',
             'description',
-            'category',
-            'cover_image',
-            'starts_at',
-            'ends_at'
+            'cover_image'
         ]
+
