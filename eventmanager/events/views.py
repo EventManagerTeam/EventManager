@@ -1,13 +1,16 @@
 from django.shortcuts import render
 from events.models import Event
+from categories.models import Category
+
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import EventForm
+
 
 def index(request):
     events_list = Event.objects.active()
-    number_of_items_per_page = 5
+    number_of_items_per_page = 3
     paginator = Paginator(events_list, number_of_items_per_page)
+    categories = Category.objects.active()
     page = request.GET.get('page', 1)
 
     try:
@@ -17,19 +20,14 @@ def index(request):
     except EmptyPage:
         events = paginator.page(paginator.num_pages)
 
-    return render(request, 'events/list_events.html', {'events': events})
+    context = {'events': events, 'categories': categories}
+    return render(request, 'events/list_events.html', context)
 
 
-def create_event(request):
+def show_events_by_slug(request, slug):
+    event = Event.objects.active().get(slug=slug)
+    return render(request, 'events/event.html', {'event': event})
 
-    if request.method == 'POST':
 
-        form = EventForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.added_by = request.userг
-            post.save()
-    else:
-        form = EventForm()
 
-    return render(request, 'events/create_event.html', {'form': form})
+
