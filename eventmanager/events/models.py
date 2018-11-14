@@ -3,6 +3,7 @@ from categories.models import Category
 from django.db import models
 from django.utils.translation import ugettext as _
 from mptt.querysets import TreeQuerySet
+from django.contrib.auth.models import User
 
 
 class EventQuerySet(TreeQuerySet):
@@ -60,6 +61,8 @@ class Event(models.Model):
         verbose_name=_("Created at"),
         auto_now_add=True
     )
+    added_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE,)
+
     updated_at = models.DateTimeField(
         verbose_name=_("Updated at"),
         auto_now=True
@@ -76,6 +79,10 @@ class Event(models.Model):
     )
 
     objects = EventManager()
+
+    def save_model(self, request, obj, form, change):
+        obj.added_by = request.user
+        super().save_model(request, obj, form, change)
 
     class Meta(object):
         verbose_name = _("Event")

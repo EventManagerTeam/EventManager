@@ -6,4 +6,4 @@ class EventForm(ModelForm):
 	    model = Event
 	    fields = ['title', 'description', 'category', 'cover_image', 'starts_at', 'ends_at']
 	    
-	    
+

@@ -21,11 +21,13 @@ def index(request):
 
 
 def create_event(request):
+
     if request.method == 'POST':
 
         form = EventForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
+            post.added_by = request.userг
             post.save()
     else:
         form = EventForm()

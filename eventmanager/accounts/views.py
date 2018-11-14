@@ -38,7 +38,7 @@ def login(request):
                 'accounts/login.html',
                 context
             )
-1
+
     return render(request, 'accounts/login.html', {'form': form})
 
 
