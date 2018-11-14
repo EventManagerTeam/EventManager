@@ -11,7 +11,7 @@ def listing(request):
     return render(request, 'categories/all_categories.html', context)
 
 
-def all_from_category(request,slug):
+def all_from_category(request, slug):
     category = Category.objects.get(slug=slug)
     events_list = Event.objects.filter(category=category)
     number_of_items_per_page = 3
@@ -27,4 +27,5 @@ def all_from_category(request,slug):
         events = paginator.page(paginator.num_pages)
 
     categories = Category.objects.active()
-    return render(request, 'events/list_events.html', {'events': events,'categories':categories})
+    context = {'events': events, 'categories': categories}
+    return render(request, 'events/list_events.html', context)

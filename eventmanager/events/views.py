@@ -20,7 +20,8 @@ def index(request):
     except EmptyPage:
         events = paginator.page(paginator.num_pages)
 
-    return render(request, 'events/list_events.html', {'events': events,'categories':categories})
+    context = {'events': events, 'categories': categories}
+    return render(request, 'events/list_events.html', context)
 
 
 def show_events_by_slug(request, slug):
