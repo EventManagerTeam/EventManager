@@ -14,7 +14,7 @@ def listing(request):
 def all_from_category(request,slug):
     category = Category.objects.get(slug=slug)
     events_list = Event.objects.filter(category=category)
-    number_of_items_per_page = 5
+    number_of_items_per_page = 3
     paginator = Paginator(events_list, number_of_items_per_page)
 
     page = request.GET.get('page', 1)
@@ -26,4 +26,5 @@ def all_from_category(request,slug):
     except EmptyPage:
         events = paginator.page(paginator.num_pages)
 
-    return render(request, 'events/list_events.html', {'events': events})
+    categories = Category.objects.active()
+    return render(request, 'events/list_events.html', {'events': events,'categories':categories})
