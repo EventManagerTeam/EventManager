@@ -2,6 +2,7 @@ from categories.models import Category
 from django.db import models
 from django.utils.translation import ugettext as _
 from mptt.querysets import TreeQuerySet
+from django.contrib.auth.models import User
 from django.utils.text import slugify
 
 
@@ -34,7 +35,11 @@ class Event(models.Model):
         blank=False
     )
 
-    slug = models.SlugField(unique=True, blank=True, null=True)
+    slug = models.SlugField(
+        unique=True,
+        blank=True,
+        null=True
+    )
 
     description = models.TextField(
         verbose_name=_("Description"),
@@ -63,6 +68,14 @@ class Event(models.Model):
         verbose_name=_("Created at"),
         auto_now_add=True
     )
+
+    added_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+
     updated_at = models.DateTimeField(
         verbose_name=_("Updated at"),
         auto_now=True
@@ -79,6 +92,10 @@ class Event(models.Model):
     )
 
     objects = EventManager()
+
+    def save_model(self, request, obj, form, change):
+        obj.added_by = request.user
+        super().save_model(request, obj, form, change)
 
     def is_slug_used(slug):
         return Event.objects.filter(slug=slug).exists()

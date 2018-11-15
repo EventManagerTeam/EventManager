@@ -31,6 +31,7 @@ class Category(models.Model):
         null=False,
         blank=False
     )
+
     slug = models.SlugField(unique=True, blank=True, null=True)
 
     is_active = models.BooleanField(

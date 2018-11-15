@@ -29,27 +29,25 @@ def index(request):
 
 
 def login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+    form = LoginForm(request.POST or None)
+    if form.is_valid():
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password']
 
-            user = authenticate(username=username, password=password)
+        user = authenticate(username=username, password=password)
 
-            if user is not None:
-                if user.is_active:
-                    auth_login(request, user)
-                    return render(request, 'accounts/index.html')
-            else:
-                context = {'form': form, 'wrong_credentials': True}
-                return render(
-                    request,
-                    'accounts/login.html',
-                    context
-                )
-    else:
-        form = LoginForm()
+        if user is not None:
+            if user.is_active:
+                auth_login(request, user)
+                return render(request, 'accounts/index.html')
+        else:
+            context = {'form': form, 'wrong_credentials': True}
+            return render(
+                request,
+                'accounts/login.html',
+                context
+            )
+
     return render(request, 'accounts/login.html', {'form': form})
 
 
@@ -58,26 +56,22 @@ def home(request):
     return render(request, 'accounts/index.html')
 
 
+@login_required
 def signout(request):
     logout(request)
     return render(request, 'accounts/index.html')
 
 
 def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
+    form = SignUpForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        username = form.cleaned_data.get('username')
+        raw_password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=raw_password)
+        auth_login(request, user)
+        return render(request, 'accounts/index.html')
 
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-
-            user = authenticate(username=username, password=raw_password)
-            auth_login(request, user)
-
-            return render(request, 'accounts/index.html')
-    else:
-        form = SignUpForm()
     return render(request, 'accounts/signup.html', {'form': form})
 
 
