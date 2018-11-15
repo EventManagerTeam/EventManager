@@ -4,8 +4,8 @@ from categories.models import Category
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import EventForm
-from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 
 
 def index(request):
@@ -56,6 +56,8 @@ def create_event(request):
             )
             post.category.add(*list(category))
             post.save()
+            context = {'success_message': "added new event"}
+            return render(request, 'CRUDops/successfully.html', context)
 
     else:
         form = EventForm()
@@ -70,3 +72,14 @@ def create_event(request):
 def show_events_by_slug(request, slug):
     event = Event.objects.active().get(slug=slug)
     return render(request, 'events/event.html', {'event': event})
+
+
+@login_required
+def delete_event_by_slug(request, slug):
+    event = Event.objects.get(slug=slug)
+    if request.user == event.added_by:
+        event.delete()
+    else:
+        raise PermissionDenied
+    context = {'success_message': "deleted event"}
+    return render(request, 'CRUDops/successfully.html', context)
