@@ -5,6 +5,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from .forms import *   # import all forms
+from django.contrib.auth.models import User
 
 
 class SignUpFormTest(TestCase):
@@ -62,6 +63,21 @@ class SignUpFormTest(TestCase):
         self.assertFalse(form.is_valid())
 
 
+class LoginTestCase(unittest.TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(
+            'john',
+            'lennon@thebeatles.com',
+            'johnpassword'
+        )
+
+    def testLogin(self):
+        self.client.login(username='john', password='johnpassword')
+        response = self.client.get(reverse('accounts.index'))
+        self.assertEqual(response.status_code, 200)
+
+
 class AccountsUrlsTestClass(unittest.TestCase):
     client = Client()
 
@@ -76,6 +92,11 @@ class AccountsUrlsTestClass(unittest.TestCase):
         self.url_testing(reverse("accounts.signup"))
 
     def test_signout_url(self):
+        self.user = User.objects.create_user(
+            username='testuser',
+            password='12345'
+        )
+        self.client.login(username='testuser', password='12345')
         self.url_testing(reverse("accounts.signout"))
 
     def test_home_url(self):
