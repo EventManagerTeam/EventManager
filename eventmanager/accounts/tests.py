@@ -104,3 +104,18 @@ class AccountsUrlsTestClass(unittest.TestCase):
 
     def test_home_url(self):
         self.url_testing(reverse("accounts.login"))
+
+    def test_change_email(self):
+        pass
+
+    def test_change_password(self):
+        pass
+
+    def test_login(self):
+        pass
+
+    def test_signup(self):
+        pass
+
+
+

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'categories',
     'events',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
