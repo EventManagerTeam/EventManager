@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import EventForm
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -25,6 +26,7 @@ def index(request):
     return render(request, 'events/list_events.html', context)
 
 
+@login_required
 def create_event(request):
 
     if request.method == 'POST':

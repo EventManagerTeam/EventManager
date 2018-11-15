@@ -56,6 +56,7 @@ def home(request):
     return render(request, 'accounts/index.html')
 
 
+@login_required
 def signout(request):
     logout(request)
     return render(request, 'accounts/index.html')
