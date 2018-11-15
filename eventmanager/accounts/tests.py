@@ -116,6 +116,3 @@ class AccountsUrlsTestClass(unittest.TestCase):
 
     def test_signup(self):
         pass
-
-
-

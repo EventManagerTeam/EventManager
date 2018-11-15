@@ -1,11 +1,7 @@
 import unittest
 
 from django.test import Client
-from django.test import TestCase
 from django.urls import reverse
-
-from django.contrib.auth.models import User
-
 
 
 class EventsTestCase(unittest.TestCase):
@@ -51,8 +47,3 @@ class EventsUrlsTestClass(unittest.TestCase):
 
     def test_view_event_url(self):
         pass
-
-
-    # path('<slug:slug>', views.show_events_by_slug, name='events.event'),
-    # path('<slug:slug>/delete', views.delete_event_by_slug, name='events.del'),
-

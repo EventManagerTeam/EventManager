@@ -4,9 +4,6 @@ from django.test import Client
 from django.test import TestCase
 from django.urls import reverse
 
-from django.contrib.auth.models import User
-
-
 
 class CategoriesTestCase(unittest.TestCase):
     def test_list_categories(self):
@@ -14,6 +11,7 @@ class CategoriesTestCase(unittest.TestCase):
 
     def test_list_events_from_one_category(self):
         pass
+
 
 class CategoriessUrlsTestClass(unittest.TestCase):
     client = Client()
@@ -27,5 +25,3 @@ class CategoriessUrlsTestClass(unittest.TestCase):
 
     def test_list_events_from_one_category_url(self):
         self.url_testing(reverse("accounts.login"))
-
-
