@@ -3,7 +3,12 @@
 
 {% block content %}
 
-<h1 class="display-3" style="text-align: center;">  Create event:  </h1> <br> 	<br><br><br>
+<h1 class="display-3" style="text-align: center;">
+    {% if editing %}
+            Edit {{ starts }}
+        {% else %}
+            Create
+        {% endif%}  event:  </h1> <br> 	<br><br><br>
 <div style="display: table;width: 100%;">
   <form method="post" style="text-align: center;">
       {% csrf_token %}
@@ -39,7 +44,12 @@ margin: 0 auto;width: 50%">
 
  <br> <br>  <br> <br>
 	<button class="btn btn-primary btn-lg" style="width: 50%" type="submit">
-	   <h1> Create event </h1>
+        {% if editing %}
+            <h1> Edit event </h1>
+        {% else %}
+            <h1> Create event </h1>
+        {% endif%}
+
 	</button>
 
 	</form>

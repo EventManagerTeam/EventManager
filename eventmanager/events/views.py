@@ -26,28 +26,31 @@ def index(request):
     return render(request, 'events/list_events.html', context)
 
 
+def get_datetime(date, time):
+    return date + " " + time
+
+
 @login_required
 def create_event(request):
-
+    form = EventForm(request.POST or None)
     if request.method == 'POST':
-        form = EventForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.added_by = request.user
 
             if request.POST.get('starts_at') \
                     and request.POST.get('starts_at_time'):
-                starts_at = request.POST.get('starts_at') \
-                            + " " \
-                            + request.POST.get('starts_at_time')
-                post.starts_at = starts_at
+                post.starts_at = get_datetime(
+                    request.POST.get('starts_at'),
+                    request.POST.get('starts_at_time')
+                )
 
             if request.POST.get('ends_at') \
                     and request.POST.get('ends_at_time'):
-                ends_at = request.POST.get('ends_at') \
-                           + " " \
-                           + request.POST.get('ends_at_time')
-                post.ends_at = ends_at
+                post.ends_at = get_datetime(
+                    request.POST.get('ends_at'),
+                    request.POST.get('ends_at_time')
+                )
 
             post.cover_image = request.POST.get('image')
             post.save()
@@ -59,13 +62,58 @@ def create_event(request):
             context = {'success_message': "added new event"}
             return render(request, 'CRUDops/successfully.html', context)
 
-    else:
-        form = EventForm()
-
+    context = {'form': form, 'categories': Category.objects.active()}
     return render(
         request,
         'events/create_event.html',
-        {'form': form, 'categories': Category.objects.active()}
+        context
+    )
+
+
+def edit_event(request, slug):
+    instance = Event.objects.all().get(slug=slug)
+    form = EventForm(request.POST or None, instance=instance)
+    if request.method == 'POST':
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.added_by = request.user
+
+            if request.POST.get('starts_at') \
+                    and request.POST.get('starts_at_time'):
+                post.starts_at = get_datetime(
+                    request.POST.get('starts_at'),
+                    request.POST.get('starts_at_time')
+                )
+
+            if request.POST.get('ends_at') \
+                    and request.POST.get('ends_at_time'):
+                post.ends_at = get_datetime(
+                    request.POST.get('ends_at'),
+                    request.POST.get('ends_at_time')
+                )
+
+            post.cover_image = request.POST.get('image')
+            post.save()
+            category = Category.objects.filter(
+                name=request.POST["category_select"]
+            )
+            post.category.add(*list(category))
+            post.save()
+            context = {
+                'success_message': "edited event",
+                'starts': instance.starts_at
+            }
+            return render(request, 'CRUDops/successfully.html', context)
+
+    context = {
+        'form': form,
+        'categories': Category.objects.active(),
+        'editing': True
+    }
+    return render(
+        request,
+        'events/create_event.html',
+        context
     )
 
 
