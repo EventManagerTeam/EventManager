@@ -17,8 +17,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 
 from django.contrib.auth.models import User
 
-from django.shortcuts import redirect
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 from accounts.models import AccountDetails
 
@@ -69,6 +69,7 @@ def signup(request):
         raw_password = form.cleaned_data.get('password1')
         user = authenticate(username=username, password=raw_password)
         auth_login(request, user)
+        return redirect('accounts.account')
         return render(request, 'accounts/index.html')
 
     return render(request, 'accounts/signup.html', {'form': form})
@@ -120,9 +121,11 @@ def change_email(request):
 def has_already_added_account_info(username):
     try:
         user = User.objects.all().get(username=username)
-        AccountDetails.objects.get(user=user)
+        details = AccountDetails.objects.get(user=user)
         return True
-    except User.DoesNotExist or AccountDetails.DoesNotExist:
+    except User.DoesNotExist:
+        return False
+    except AccountDetails.DoesNotExist:
         return False
 
 
@@ -130,11 +133,11 @@ def has_already_added_account_info(username):
 def account_details(request):
     form = AccountDetailsForm(request.POST or None)
 
-    if has_already_added_account_info(request.user) != 0:
-        context = {'error_message': "Details were already added."}
-        return render(request, 'CRUDops/error.html', context)
-
     if request.method == 'POST':
+        if has_already_added_account_info(request.user) != 0:
+            context = {'error_message': "Details were already added."}
+            return render(request, 'CRUDops/error.html', context)
+
         if form.is_valid():
             details = form.save(commit=False)
             details.user = request.user
