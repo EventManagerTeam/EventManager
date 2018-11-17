@@ -1,10 +1,10 @@
 from accounts.forms import LoginForm
 from accounts.forms import SignUpForm
 from accounts.forms import ChangeEmailForm
+from accounts.forms import AccountDetailsForm
 
 from django.contrib import messages
 
-from django.contrib import messages
 
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
@@ -13,15 +13,14 @@ from django.contrib.auth import update_session_auth_hash
 
 from django.contrib.auth.decorators import login_required
 
-
 from django.contrib.auth.forms import PasswordChangeForm
 
 from django.contrib.auth.models import User
 
-from django.http import HttpResponse
-
 from django.shortcuts import redirect
 from django.shortcuts import render
+
+from accounts.models import AccountDetails
 
 
 def index(request):
@@ -103,12 +102,9 @@ def change_password(request):
 
 @login_required
 def change_email(request):
-    form = ChangeEmailForm(request.user)
+    form = ChangeEmailForm(request.POST or None)
 
     if request.method == 'POST':
-
-        form = ChangeEmailForm(request.POST)
-
         if form.is_valid():
             User.objects.filter(
                 email=form.cleaned_data.get('original_email')
@@ -117,7 +113,38 @@ def change_email(request):
             messages.success(request, success_message)
         else:
             messages.error(request, 'Please correct the errors below.')
-    else:
-        form = ChangeEmailForm()
 
     return render(request, 'accounts/change_email.html', {'form': form})
+
+
+def has_already_added_account_info(username):
+    try:
+        user = User.objects.all().get(username=username)
+        AccountDetails.objects.get(user=user)
+        return True
+    except User.DoesNotExist or AccountDetails.DoesNotExist:
+        return False
+
+
+@login_required
+def account_details(request):
+    form = AccountDetailsForm(request.POST or None)
+
+    if has_already_added_account_info(request.user) != 0:
+        context = {'error_message': "Details were already added."}
+        return render(request, 'CRUDops/error.html', context)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            details = form.save(commit=False)
+            details.user = request.user
+            if request.POST.get('birthdate'):
+                details.birth_date = request.POST.get('birthdate')
+            details.save()
+
+    context = {'form': form}
+    return render(
+        request,
+        'accounts/additonal_account_information.html',
+        context
+    )

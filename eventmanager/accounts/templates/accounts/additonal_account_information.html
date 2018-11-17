@@ -1,0 +1,32 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %} Additional account info {% endblock %}
+
+{% block content %}
+
+<br> <br>
+<div style="display: table;width: 100%;" class="col-md-4 col-md-offset-4 centered">
+   <form method="post">
+      {% csrf_token %}
+
+      <div class="form-group ">
+         {% for field in form %}
+            <h1>   {{ field }} </h1>
+            <br>
+         {% endfor %}
+      </div>
+
+
+      <h1>
+        <input type="date" id="birthdate" class="birthdate" name="birthdate" value="">
+    </h1>
+
+
+      <button class="btn btn-primary btn-lg btn-block" type="submit">
+         <h1> Log in </h1>
+      </button>
+
+   </form>
+</div>
+{% endblock %}
+
