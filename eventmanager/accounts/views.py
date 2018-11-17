@@ -70,8 +70,6 @@ def signup(request):
         user = authenticate(username=username, password=raw_password)
         auth_login(request, user)
         return redirect('accounts.account')
-        return render(request, 'accounts/index.html')
-
     return render(request, 'accounts/signup.html', {'form': form})
 
 
@@ -121,7 +119,7 @@ def change_email(request):
 def has_already_added_account_info(username):
     try:
         user = User.objects.all().get(username=username)
-        details = AccountDetails.objects.get(user=user)
+        AccountDetails.objects.get(user=user)
         return True
     except User.DoesNotExist:
         return False
@@ -144,6 +142,8 @@ def account_details(request):
             if request.POST.get('birthdate'):
                 details.birth_date = request.POST.get('birthdate')
             details.save()
+            context = {'success_message': "added account details."}
+            return render(request, 'CRUDops/successfully.html', context)
 
     context = {'form': form}
     return render(
@@ -151,3 +151,26 @@ def account_details(request):
         'accounts/additonal_account_information.html',
         context
     )
+
+
+@login_required
+def show_account_details(request):
+    if has_already_added_account_info(request.user.username):
+        user = User.objects.all().get(username=request.user.username)
+        details = AccountDetails.objects.get(user=user)
+        return render(
+            request,
+            'accounts/show_account_details.html',
+            {
+                'details': details,
+                'name': request.user.first_name + request.user.last_name,
+                'username': request.user.username,
+                'email': request.user.email
+            }
+        )
+    else:
+        message = "Details were'nt added yet."
+        context = {
+            'error_message': message
+        }
+        return render(request, 'CRUDops/error.html', context)
