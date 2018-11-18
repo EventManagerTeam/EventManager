@@ -28,7 +28,8 @@ class LatestEventFeed(Feed):
     description = 'Our latest events!'
 
     def items(self):
-        return Event.objects.active().order_by('-created_at')[:settings.EVENTS_IN_FEED]
+        count = settings.EVENTS_IN_FEED
+        return Event.objects.active().order_by('-created_at')[:count]
 
     def item_title(self, item):
         return item.title
