@@ -174,4 +174,3 @@ def show_account_details(request):
             'error_message': message
         }
         return render(request, 'CRUDops/error.html', context)
-
