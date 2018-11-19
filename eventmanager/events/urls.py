@@ -13,7 +13,7 @@ urlpatterns = [
     path('list/', views.index, name='events.list'),
     path('<slug:slug>', views.show_events_by_slug, name='events.event'),
     path('<slug:slug>/delete', views.delete_event_by_slug, name='events.del'),
+    path('<slug:slug>/edit', views.edit_event, name='events.edit'),
     url(r'^feed/$', EventFeed(), name='event_feed'),
     url(r'^latest_feed/$', LatestEventFeed(), name='latest_event_feed'),
-
 ]
