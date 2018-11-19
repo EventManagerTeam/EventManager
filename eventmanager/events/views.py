@@ -109,14 +109,14 @@ def edit_event(request, slug):
 
     if instance.starts_at:
         starts_date = str(instance.starts_at.date())
-        starts_time =  str(instance.starts_at.time())
+        starts_time = str(instance.starts_at.time())
 
     ends_date = None
     ends_time = None
 
     if instance.ends_at:
         ends_date = str(instance.ends_at.date())
-        ends_time =  str(instance.ends_at.time()),
+        ends_time = str(instance.ends_at.time()),
 
     context = {
         'form': form,
