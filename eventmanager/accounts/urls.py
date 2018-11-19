@@ -15,5 +15,6 @@ urlpatterns = [
         views.show_account_details,
         name='accounts.details'
     ),
+
     url(r'^change_email/$', views.change_email, name='change_email'),
 ]

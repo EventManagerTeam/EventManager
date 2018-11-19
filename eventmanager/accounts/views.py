@@ -13,6 +13,7 @@ from django.contrib.auth import update_session_auth_hash
 
 from django.contrib.auth.decorators import login_required
 
+
 from django.contrib.auth.forms import PasswordChangeForm
 
 from django.contrib.auth.models import User
@@ -112,7 +113,6 @@ def change_email(request):
             messages.success(request, success_message)
         else:
             messages.error(request, 'Please correct the errors below.')
-
     return render(request, 'accounts/change_email.html', {'form': form})
 
 
@@ -174,3 +174,4 @@ def show_account_details(request):
             'error_message': message
         }
         return render(request, 'CRUDops/error.html', context)
+

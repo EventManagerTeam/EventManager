@@ -54,7 +54,7 @@ class ChangeEmailForm(forms.Form):
 
     fields = ['original_email', 'new_email']
 
-
+    
 class AccountDetailsForm(ModelForm):
     class Meta:
         model = AccountDetails

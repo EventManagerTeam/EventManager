@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.translation import ugettext as _
 from mptt.querysets import TreeQuerySet
 from django.contrib.auth.models import User
+
 from django.utils.text import slugify
 
 
@@ -96,6 +97,7 @@ class Event(models.Model):
     def save_model(self, request, obj, form, change):
         obj.added_by = request.user
         super().save_model(request, obj, form, change)
+
 
     def is_slug_used(slug):
         return Event.objects.filter(slug=slug).exists()

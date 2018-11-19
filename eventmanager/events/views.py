@@ -12,6 +12,7 @@ def index(request):
     events_list = Event.objects.active()
     number_of_items_per_page = 5
     paginator = Paginator(events_list, number_of_items_per_page)
+
     page = request.GET.get('page', 1)
 
     categories = Category.objects.active()
@@ -134,10 +135,10 @@ def edit_event(request, slug):
     )
 
 
+
 def show_events_by_slug(request, slug):
     event = Event.objects.active().get(slug=slug)
     return render(request, 'events/event.html', {'event': event})
-
 
 @login_required
 def delete_event_by_slug(request, slug):
