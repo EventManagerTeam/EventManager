@@ -100,15 +100,32 @@ def edit_event(request, slug):
             post.category.add(*list(category))
             post.save()
             context = {
-                'success_message': "edited event",
-                'starts': instance.starts_at
+                'success_message': "edited event"
             }
             return render(request, 'CRUDops/successfully.html', context)
+
+    starts_date = None
+    starts_time = None
+
+    if instance.starts_at:
+        starts_date = str(instance.starts_at.date())
+        starts_time =  str(instance.starts_at.time())
+
+    ends_date = None
+    ends_time = None
+
+    if instance.ends_at:
+        ends_date = str(instance.ends_at.date())
+        ends_time =  str(instance.ends_at.time()),
 
     context = {
         'form': form,
         'categories': Category.objects.active(),
-        'editing': True
+        'editing': True,
+        'starts_date': starts_date,
+        'ends_date': ends_date,
+        'starts_time': starts_time,
+        'ends_time': ends_time
     }
     return render(
         request,
