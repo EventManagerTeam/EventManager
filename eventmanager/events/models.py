@@ -98,7 +98,6 @@ class Event(models.Model):
         obj.added_by = request.user
         super().save_model(request, obj, form, change)
 
-
     def is_slug_used(slug):
         return Event.objects.filter(slug=slug).exists()
 
