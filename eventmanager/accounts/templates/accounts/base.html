@@ -3,80 +3,84 @@
 {% load static %}
 <DOCTYPE html>
 <html>
-   <head>
-      <title> {% block title %} {% endblock %} </title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <link href="{% static "accounts/base.css" %}" rel="stylesheet">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <head>
+        <title> {% block title %} {% endblock %} </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link href="{% static "accounts/base.css" %}" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
+        {% block head %} {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <span class="navbar-text lg lead" >
+                <h1> EventManager </h1>
+            </span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto navbar-right">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/events/all/">
+                            <h3> Events </h3>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/categories/all">
+                            <h3> Categories </h3>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">
+                            <h3> Sample List Item </h3>
+                        </a>
+                    </li>
 
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
-      {% block head %} {% endblock %}
+                    {% block navbar-left %}
+                    {% endblock %}
 
-   </head>
-   <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-         <span class="navbar-text lg lead" >
-            <h1> EventManager </h1>
-         </span>
-         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-         </button>
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto navbar-right">
-               <li class="nav-item active">
+                </ul>
+                <ul class="navbar-nav  navbar-right">
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <h3> Welcome, {{request.user}} </h3>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/account_details"> <h3> Account details </h3> </a>
+                        <a class="dropdown-item" href="/change_password"> <h3> Change password </h3> </a>
+                        <a class="dropdown-item" href="/change_email"> <h3> Change email </h3> </a>
 
-                  <a class="nav-link" href="/events/all/"> <h3> Events </h3></a>
-               </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="/categories/all"> <h3> Categories </h3></a>
-               </li>
-               <li class="nav-item active">
-                  <a class="nav-link" href="#"><h3> Sample List Item </h3></a>
-               </li>
-               {% block navbar-left %}
-               {% endblock %}
+                        {% block navbar-right %}
+                        {% endblock %}
 
-            </ul>
-            <ul class="navbar-nav  navbar-right">
-               {% if request.user.is_authenticated %} 
-
-               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <h3> Welcome, {{request.user}} </h3>
-                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                  <a class="dropdown-item" href="/change_password"> <h3> Change password </h3> </a>
-                  <a class="dropdown-item" href="/change_email"> <h3> Change email </h3> </a>
-
-                  {% block navbar-right %}
-                  {% endblock %}
-
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="/signout">
-                  <div class = "blue"> <h3>  Sign out </h3> </div>
-
-                  </a>
-                  </div>
-               </li>
-               {% else %}
-               <a href="/login"> <h3> Log in </h3> </a>
-               {% endif %}
-               </a>
-            </ul>
-         </div>
-      </nav>
-
-      {% block content %}
-      {% endblock %}
-      <br>
-      <footer class="container-fluid text-center"> <h5> All rights reserved. </h5> </footer>
-
-   </body>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/signout">
+                                <div class = "blue"> <h3>  Sign out </h3> </div>
+                            </a>
+                        </div>
+                    </li>
+                    {% else %}
+                        <a href="/login">
+                            <h3> Log in </h3>
+                        </a>
+                        {% endif %}
+                    </a>
+                </ul>
+            </div>
+        </nav>
+        {% block content %}
+        {% endblock %}
+        <br>
+        <footer class="container-fluid text-center">
+            <h5> All rights reserved. </h5>
+        </footer>
+    </body>
 </html>
 

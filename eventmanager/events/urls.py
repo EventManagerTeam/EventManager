@@ -1,6 +1,11 @@
 from . import views
 from django.contrib.auth import views as auth_views
 from django.urls import path
+from django.conf.urls import url
+
+from .feeds import EventFeed
+from .feeds import LatestEventFeed
+
 
 urlpatterns = [
     path('all/', views.index, name='events.list'),
@@ -9,4 +14,6 @@ urlpatterns = [
     path('<slug:slug>', views.show_events_by_slug, name='events.event'),
     path('<slug:slug>/delete', views.delete_event_by_slug, name='events.del'),
     path('<slug:slug>/edit', views.edit_event, name='events.edit'),
+    url(r'^feed/$', EventFeed(), name='event_feed'),
+    url(r'^latest_feed/$', LatestEventFeed(), name='latest_event_feed'),
 ]

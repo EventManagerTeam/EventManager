@@ -131,3 +131,6 @@ STORAGE_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'storage'))
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'media'))
+
+# RSS Feed
+EVENTS_IN_FEED = 20

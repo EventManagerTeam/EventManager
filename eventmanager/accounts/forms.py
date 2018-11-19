@@ -1,6 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from accounts.models import *
+
+from django.forms import ModelForm
 
 
 class SignUpForm(UserCreationForm):
@@ -50,3 +53,12 @@ class ChangeEmailForm(forms.Form):
     new_email = forms.EmailField(max_length=254, help_text='Required.')
 
     fields = ['original_email', 'new_email']
+
+
+class AccountDetailsForm(ModelForm):
+    class Meta:
+        model = AccountDetails
+        fields = [
+            'profile_picture',
+            'description',
+        ]
