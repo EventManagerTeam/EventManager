@@ -6,6 +6,7 @@ from django.urls import reverse
 from categories.models import Category
 from django.contrib.auth.models import User
 
+
 class CategoriesTestCase(TestCase):
     def setUp(self):
         self.client = Client()
@@ -36,14 +37,15 @@ class CategoriesTestCase(TestCase):
         self.assertContains(response, 'test event')
         self.assertContains(response, 'fsdklfdklmfdskmfdkmlfksdmlfdms')
 
-
     def test_list_events_from_one_category(self):
-        response = self.client.get(reverse('categories.all_from_category',  kwargs={'slug':"test"}))
+        url = reverse('categories.all_from_category', kwargs={'slug': "test"})
+        response = self.client.get(url)
         self.assertContains(response, 'test event')
 
 
 class CategoriessUrlsTestClass(TestCase):
     client = Client()
+
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(
@@ -66,4 +68,5 @@ class CategoriessUrlsTestClass(TestCase):
         self.url_testing(reverse("categories.listing"))
 
     def test_list_events_from_one_category_url(self):
-        self.url_testing(reverse("categories.all_from_category", kwargs={'slug':"test"}))
+        url = reverse("categories.all_from_category", kwargs={'slug': "test"})
+        self.url_testing(url)

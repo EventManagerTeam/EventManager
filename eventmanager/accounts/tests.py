@@ -72,7 +72,7 @@ class LoginTestCase(TestCase):
             'johnpassword'
         )
 
-    def url_testing(self, url, status_code = 200):
+    def url_testing(self, url, status_code=200):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status_code)
 
@@ -95,7 +95,7 @@ class LoginTestCase(TestCase):
 class AccountsUrlsTestClass(TestCase):
     client = Client()
 
-    def url_testing(self, url, status_code = 200):
+    def url_testing(self, url, status_code=200):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status_code)
 
@@ -120,10 +120,10 @@ class AccountsUrlsTestClass(TestCase):
         self.url_testing(reverse("accounts.login"))
 
     def test_change_email(self):
-        self.url_testing(reverse("change_email"),302)
+        self.url_testing(reverse("change_email"), 302)
 
     def test_change_password(self):
-        self.url_testing(reverse("change_password"),302)
+        self.url_testing(reverse("change_password"), 302)
 
     def test_login(self):
         self.url_testing(reverse("accounts.login"))
@@ -132,10 +132,10 @@ class AccountsUrlsTestClass(TestCase):
         self.url_testing(reverse("accounts.signup"))
 
     def test_account_details_create(self):
-        self.url_testing(reverse("accounts.details"),302)
+        self.url_testing(reverse("accounts.details"), 302)
 
     def test_account_details_edit(self):
-        self.url_testing(reverse("accounts.account"),302)
+        self.url_testing(reverse("accounts.account"), 302)
 
     def test_account_details_update(self):
-        self.url_testing(reverse("accounts.edit_account_details"),302)
+        self.url_testing(reverse("accounts.edit_account_details"), 302)

@@ -37,7 +37,6 @@ class EventsFeedsTestCase(TestCase):
             slug="test",
         )
 
-
         for event_id in range(self.total_number_of_events):
             eventstring = "test" + str(event_id)
             self.event = Event.objects.create(
@@ -99,7 +98,7 @@ class EventsUrlsTestClass(TestCase):
         self.url_returns_200(reverse("events.create_event"))
 
     def test_update_event_url(self):
-        self.url_returns_200(reverse("events.edit",kwargs={'slug':"event"}))
+        self.url_returns_200(reverse("events.edit", kwargs={'slug': "event"}))
 
     def test_delete_event_url(self):
         category = Category.objects.create(
@@ -115,14 +114,13 @@ class EventsUrlsTestClass(TestCase):
             )
         self.event.save()
         self.event.category.add(category)
-        self.url_returns_200(reverse("events.del",kwargs={'slug':"delete"}))
+        self.url_returns_200(reverse("events.del", kwargs={'slug': "delete"}))
 
     def test_view_event_url(self):
-        self.url_returns_200(reverse("event", kwargs={'slug':"event"}))
+        self.url_returns_200(reverse("event", kwargs={'slug': "event"}))
 
     def test_all_events_feed_url(self):
         self.url_returns_200(reverse("event_feed"))
 
     def test_latest_events_feed_url(self):
         self.url_returns_200(reverse("latest_event_feed"))
-
