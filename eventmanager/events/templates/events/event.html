@@ -24,6 +24,10 @@ body, html {
 <div class="bg">
     <p class="display-1" style="background-color: rgba(0,0,0,0.5);color: white;">
         {{event.title}}
+        {% if request.user == event.added_by %}
+            <button class="btn btn-danger btn-lg" onclick="location.href=window.location.href  + '/delete'" type="button"> DELETE</button>
+            <button class="btn btn-warning btn-lg" onclick="location.href=window.location.href  + '/edit'" type="button"> EDIT</button>
+        {% endif %}
     </p>
 </div>
 
@@ -31,5 +35,6 @@ body, html {
     {{event.description}}
 </p>
 
+<br> <br> <br> <br> <br> <br> <br> <br> <br>
 
 {% endblock %}

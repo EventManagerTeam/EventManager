@@ -4,6 +4,7 @@ if [ -n "$GROUP_ID" -a -n "$GROUP_NAME" -a -n "$USER_ID" -a -n "$USER_NAME" ]; t
     adduser -D -u $USER_ID $USER_NAME -G $GROUP_NAME
 fi
 
+python /code/eventmanager/manage.py makemigrations
 python /code/eventmanager/manage.py migrate 
 python /code/eventmanager/manage.py collectstatic --no-input
 python /code/eventmanager/manage.py runserver 0.0.0.0:8000  
