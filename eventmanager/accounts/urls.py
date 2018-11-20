@@ -9,6 +9,7 @@ urlpatterns = [
     path('signout', views.signout, name='accounts.signout'),
     path('login', views.login, name='accounts.login'),
     path('account', views.account_details, name='accounts.account'),
+    path('edit_account', views.edit_account_details, name='accounts.edit_account_details'),
     url(r'^change_password/$', views.change_password, name='change_password'),
     url(
         r'^account_details/$',
