@@ -3,25 +3,67 @@ import unittest
 from django.test import Client
 from django.test import TestCase
 from django.urls import reverse
+from categories.models import Category
+from django.contrib.auth.models import User
 
+class CategoriesTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(
+            'john',
+            'lennon@thebeatles.com',
+            'johnpassword'
+        )
+        self.client.login(username='john', password='johnpassword')
+        category = Category.objects.create(
+            name='test event',
+            description='cool description',
+            slug="test",
+        )
 
-class CategoriesTestCase(unittest.TestCase):
+        self.category2 = Category.objects.create(
+            name='fsdklfdklmfdskmfdkmlfksdmlfdms',
+            description='different',
+            slug='opa'
+        )
+
     def test_list_categories(self):
-        pass
+        response = self.client.get(reverse('categories.listing'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_list_categories_shows_news(self):
+        response = self.client.get(reverse('categories.listing'))
+        self.assertContains(response, 'test event')
+        self.assertContains(response, 'fsdklfdklmfdskmfdkmlfksdmlfdms')
+
 
     def test_list_events_from_one_category(self):
-        pass
+        response = self.client.get(reverse('categories.all_from_category',  kwargs={'slug':"test"}))
+        self.assertContains(response, 'test event')
 
 
-class CategoriessUrlsTestClass(unittest.TestCase):
+class CategoriessUrlsTestClass(TestCase):
     client = Client()
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user(
+            'john',
+            'lennon@thebeatles.com',
+            'johnpassword'
+        )
+        self.client.login(username='john', password='johnpassword')
+        category = Category.objects.create(
+            name='test event',
+            description='cool description',
+            slug="test",
+        )
 
     def url_testing(self, url):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
     def test_list_categories_url(self):
-        self.url_testing(reverse("accounts.login"))
+        self.url_testing(reverse("categories.listing"))
 
     def test_list_events_from_one_category_url(self):
-        self.url_testing(reverse("accounts.login"))
+        self.url_testing(reverse("categories.all_from_category", kwargs={'slug':"test"}))

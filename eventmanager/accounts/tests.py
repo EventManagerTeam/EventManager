@@ -63,7 +63,7 @@ class SignUpFormTest(TestCase):
         self.assertFalse(form.is_valid())
 
 
-class LoginTestCase(unittest.TestCase):
+class LoginTestCase(TestCase):
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(
@@ -72,18 +72,32 @@ class LoginTestCase(unittest.TestCase):
             'johnpassword'
         )
 
+    def url_testing(self, url, status_code = 200):
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status_code)
+
     def testLogin(self):
         self.client.login(username='john', password='johnpassword')
         response = self.client.get(reverse('accounts.index'))
         self.assertEqual(response.status_code, 200)
 
+    def testLoginName(self):
+        self.client.login(username='john', password='johnpassword')
+        response = self.client.get(reverse('accounts.index'))
+        self.assertEqual(str(response.context['user']), 'john')
 
-class AccountsUrlsTestClass(unittest.TestCase):
+    def testLogOut(self):
+        self.client.login(username='john', password='johnpassword')
+        response = self.client.get(reverse('accounts.signout'))
+        self.assertNotEqual(str(response.context['user']), 'john')
+
+
+class AccountsUrlsTestClass(TestCase):
     client = Client()
 
-    def url_testing(self, url):
+    def url_testing(self, url, status_code = 200):
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status_code)
 
     def test_homepage_url(self):
         self.url_testing(reverse("accounts.index"))
@@ -106,13 +120,22 @@ class AccountsUrlsTestClass(unittest.TestCase):
         self.url_testing(reverse("accounts.login"))
 
     def test_change_email(self):
-        pass
+        self.url_testing(reverse("change_email"),302)
 
     def test_change_password(self):
-        pass
+        self.url_testing(reverse("change_password"),302)
 
     def test_login(self):
-        pass
+        self.url_testing(reverse("accounts.login"))
 
     def test_signup(self):
-        pass
+        self.url_testing(reverse("accounts.signup"))
+
+    def test_account_details_create(self):
+        self.url_testing(reverse("accounts.details"),302)
+
+    def test_account_details_edit(self):
+        self.url_testing(reverse("accounts.account"),302)
+
+    def test_account_details_update(self):
+        self.url_testing(reverse("accounts.edit_account_details"),302)
