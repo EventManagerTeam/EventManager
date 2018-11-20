@@ -16,6 +16,6 @@ urlpatterns = [
     path('<slug:slug>/edit', views.edit_event, name='events.edit'),
     url(r'^feed/$', EventFeed(), name='event_feed'),
     url(r'^latest_feed/$', LatestEventFeed(), name='latest_event_feed'),
-    path('<slug:slug>', views.show_events_by_slug, name='article'),
+    path('<slug:slug>', views.show_events_by_slug, name='event'),
 
 ]
