@@ -178,7 +178,7 @@ def show_account_details(request):
 
 @login_required
 def edit_account_details(request):
-    user =  User.objects.all().get(username=request.user.username)
+    user = User.objects.all().get(username=request.user.username)
     instance = AccountDetails.objects.get(user=user)
 
     form = AccountDetailsForm(request.POST or None, instance=instance)
@@ -193,9 +193,9 @@ def edit_account_details(request):
         details.save()
         context = {'success_message': "added account details."}
         return render(request, 'CRUDops/successfully.html', context)
-    
+
     birthdate = str(instance.birth_date) or None
-    
+
     context = {
         'form': form,
         'birthdate': birthdate
