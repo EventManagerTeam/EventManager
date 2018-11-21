@@ -122,3 +122,68 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
+class CommentQuerySet(TreeQuerySet):
+    def active(self):
+        return self.filter(is_active=True)
+
+    def sort(self):
+        return self.order_by('name')
+
+
+class CommentManager(models.Manager):
+    def get_queryset(self):
+        return CommentQuerySet(self.model, using=self._db)
+
+    def active(self):
+        return self.get_queryset().active()
+
+    def sort(self):
+        return self.get_queryset().sort()
+
+
+class Comment(models.Model):
+
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+
+    event = models.ForeignKey(
+        'events.Event',
+        on_delete=models.CASCADE,
+        related_name='comments'
+    )
+
+    title = models.CharField(
+        verbose_name=_("Title"),
+        max_length=500,
+        unique=False,
+        null=False,
+        blank=False
+    )
+
+    content = models.TextField(
+        verbose_name=_("Description"),
+        unique=False,
+        null=False,
+        blank=False
+    )
+
+    is_active = models.BooleanField(verbose_name=_("Is active"), default=True)
+    created_at = models.DateTimeField(verbose_name=_("Created at"), auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name=_("Updated at"), auto_now=True)
+    remote_address = models.CharField(verbose_name=_("Remote Address"), max_length=512, null=True, blank=True)
+    remote_city = models.CharField(verbose_name=_("Remote City"), max_length=512, null=True, blank=True)
+    remote_country = models.CharField(verbose_name=_("Remote Country"), max_length=512, null=True, blank=True)
+    remote_agent = models.CharField(verbose_name=_("Remote Agent"), max_length=512, null=True, blank=True)
+    objects = CommentManager()
+
+
+    class Meta(object):
+        verbose_name = _("Comment")
+        verbose_name_plural = _("Comments")
+        ordering = ['created_at']
+
+    def __str__(self):
+        return self.title

@@ -7,19 +7,17 @@ body, html {
 }
 
 .bg {
-    /* The image used */
-    background-image: url({% if event.cover_image %} "{{ event.cover_image.url }}" {% endif %});
-
-    /* Full height */
+    {% if event.cover_image %}
+    background-image: url( "{{ event.cover_image.url }}" );
     height: 100%;
-
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    {% endif %}
 }
 </style>
 {% endblock %}
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="bg">
     <p class="display-1" style="background-color: rgba(0,0,0,0.5);color: white;">
@@ -35,6 +33,28 @@ body, html {
     {{event.description}}
 </p>
 
-<br> <br> <br> <br> <br> <br> <br> <br> <br>
+<div style="margin: auto;"> 
+
+<form method="post" style="padding: 3%;background-color: darkgrey;margin-left: 10%;margin-right: 10%;">
+    <h1 style="text-align: center;" class="display-3"> Add comment: </h1>
+     {% csrf_token %}
+     <h1> {{ form|crispy }} </h1>
+     <input type="submit" class="btn btn-success" value="Submit">
+ </form>
+
+<div style="margin: auto;"> 
+<h1 class="display-3" style="text-align: center;padding-top: 3%"> Comments: </h1>
+ {% for comment in comments %}
+     <div class="card" style="width: 60%;margin-left: 20%;margin-right: 20%;margin-top: 3% !important">
+       <div class="card-body">
+         <h3 class="card-title">{{ comment.title }} </h3>
+         <h4 class="card-subtitle mb-2 text-muted"> Commented by {{ comment.author }} on {{ comment.created_at }} </h4>
+         <p class="card-text">{{ comment.content|safe }}</p>
+       </div>
+     </div>
+ {% endfor %}
+</div>
+</div>
+<br> <br> <br> <br> 
 
 {% endblock %}
