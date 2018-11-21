@@ -123,6 +123,7 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
+
 class CommentQuerySet(TreeQuerySet):
     def active(self):
         return self.filter(is_active=True)
@@ -170,15 +171,22 @@ class Comment(models.Model):
         blank=False
     )
 
-    is_active = models.BooleanField(verbose_name=_("Is active"), default=True)
-    created_at = models.DateTimeField(verbose_name=_("Created at"), auto_now_add=True)
-    updated_at = models.DateTimeField(verbose_name=_("Updated at"), auto_now=True)
-    remote_address = models.CharField(verbose_name=_("Remote Address"), max_length=512, null=True, blank=True)
-    remote_city = models.CharField(verbose_name=_("Remote City"), max_length=512, null=True, blank=True)
-    remote_country = models.CharField(verbose_name=_("Remote Country"), max_length=512, null=True, blank=True)
-    remote_agent = models.CharField(verbose_name=_("Remote Agent"), max_length=512, null=True, blank=True)
-    objects = CommentManager()
+    is_active = models.BooleanField(
+        verbose_name=_("Is active"),
+        default=True
+    )
 
+    created_at = models.DateTimeField(
+        verbose_name=_("Created at"),
+        auto_now_add=True
+    )
+
+    updated_at = models.DateTimeField(
+        verbose_name=_("Updated at"),
+        auto_now_add=True
+    )
+
+    objects = CommentManager()
 
     class Meta(object):
         verbose_name = _("Comment")

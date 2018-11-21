@@ -148,8 +148,8 @@ def show_events_by_slug(request, slug):
             comment.event = event
             comment.author = request.user
             comment.save()
-
-    return render(request, 'events/event.html', {'event': event,'comments': comments,'form': form})
+    context = {'event': event, 'comments': comments, 'form': form}
+    return render(request, 'events/event.html', context)
 
 
 @login_required
