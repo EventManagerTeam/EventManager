@@ -55,7 +55,7 @@ def create_event(request):
                     request.POST.get('ends_at_time')
                 )
 
-            post.cover_image = request.POST.get('image')
+            post.cover_image = form.cleaned_data['image']
             post.save()
             category = Category.objects.filter(
                 name=request.POST["category_select"]
@@ -139,7 +139,7 @@ def edit_event(request, slug):
 
 def show_events_by_slug(request, slug):
     event = Event.objects.active().get(slug=slug)
-    comments = Comment.objects.all().filter(event=event)
+    comments = Comment.objects.all().filter(event=event).order_by('-created_at')
     form = CommentForm(request.POST or None)
 
     if request.method == 'POST':

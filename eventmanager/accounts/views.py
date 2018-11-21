@@ -169,11 +169,7 @@ def show_account_details(request):
             }
         )
     else:
-        message = "Details were'nt added yet."
-        context = {
-            'error_message': message
-        }
-        return render(request, 'CRUDops/error.html', context)
+        return account_details(request)
 
 
 @login_required
