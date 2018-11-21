@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'categories',
     'events',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,5 @@ MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'media'))
 
 # RSS Feed
 EVENTS_IN_FEED = 20
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

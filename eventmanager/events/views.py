@@ -6,6 +6,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import EventForm
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from .forms import CommentForm
+from events.models import Comment
 
 
 def index(request):
@@ -137,7 +139,17 @@ def edit_event(request, slug):
 
 def show_events_by_slug(request, slug):
     event = Event.objects.active().get(slug=slug)
-    return render(request, 'events/event.html', {'event': event})
+    comments = Comment.objects.all().filter(event=event)
+    form = CommentForm(request.POST or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.event = event
+            comment.author = request.user
+            comment.save()
+    context = {'event': event, 'comments': comments, 'form': form}
+    return render(request, 'events/event.html', context)
 
 
 @login_required
