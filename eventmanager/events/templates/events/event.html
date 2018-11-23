@@ -16,6 +16,16 @@
         background-size: cover;
     {% endif %}
     }
+
+    .custom-btn{
+        padding: 1%;
+        padding-left: 4%;
+        padding-right: 4%;
+        float: right;
+        font-size: x-large;
+        margin: auto;
+        margin-bottom: 5%;
+    }
 </style>
 
 {% load crispy_forms_tags %}
@@ -23,15 +33,16 @@
 
 {% block content %}
 <div class="bg">
-    <p class="display-1" style="background-color: rgba(0,0,0,0.5);color: white;">
+    <p class="display-1" style="background-color: rgba(0,0,0,0.5);color: white;padding: 2%">
         {{event.title}}
         {% if request.user == event.added_by %}
-        <button class="btn btn-danger btn-lg" onclick="location.href=window.location.href  + '/delete'" type="button"> DELETE</button>
-        <button class="btn btn-warning btn-lg" onclick="location.href=window.location.href  + '/edit'" type="button"> EDIT</button>
+        <button class="custom-btn btn-danger  btn-lg" onclick="location.href=window.location.href  + '/delete'" type="button"> DELETE</button>
+        <button class="custom-btn btn-warning  btn-lg" onclick="location.href=window.location.href  + '/edit'" type="button"> EDIT</button>
         {% endif %}
+ 
     </p>
 </div>
-
+<button class="custom-btn btn-success btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/join'" type="button" style="padding: 3%;"> JOIN</button>
 <p class="h2" style="padding: 5%">
     {{event.description}}
 </p>
@@ -41,7 +52,7 @@
         <h1 style="text-align: center;" class="display-3"> Add comment: </h1>
         {% csrf_token %}
         <h1> {{ form|crispy }} </h1>
-        <input type="submit" class="btn btn-success btn-block btn-lg" value="Submit">
+        <input type="submit" class="btn btn-success btn-block " value="Submit">
     </form>
     <div style="margin: auto;">
         <h1 class="display-3" style="text-align: center;padding-top: 3%"> Comments: </h1>

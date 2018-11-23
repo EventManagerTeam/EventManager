@@ -55,7 +55,7 @@ def create_event(request):
                     request.POST.get('ends_at_time')
                 )
 
-            post.cover_image = form.cleaned_data['image']
+            #post.cover_image = form.cleaned_data['image']
             post.save()
             category = Category.objects.filter(
                 name=request.POST["category_select"]
