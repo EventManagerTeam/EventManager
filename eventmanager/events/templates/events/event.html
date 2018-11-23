@@ -26,10 +26,14 @@
         margin: auto;
         margin-bottom: 5%;
     }
+    form{
+        padding: 3%;background-color: darkgrey;margin-left: 10%;margin-right: 10%;
+    }
 </style>
 
 {% load crispy_forms_tags %}
 {% endblock %}
+{% include "accounts/partials/messages_partial.html" with messages=messages %}
 
 {% block content %}
 <div class="bg">
@@ -42,13 +46,21 @@
  
     </p>
 </div>
-<button class="custom-btn btn-success btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/join'" type="button" style="padding: 3%;"> JOIN</button>
+{% if has_joined %}
+<button class="custom-btn btn-danger btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/cancel_join'" type="button" style="padding: 3%;">
+    REMOVE JOIN
+</button>
+{% else %}
+<button class="custom-btn btn-success btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/join'" type="button" style="padding: 3%;">
+    JOIN
+</button>
+{% endif %}
 <p class="h2" style="padding: 5%">
     {{event.description}}
 </p>
 
 <div style="margin: auto;">
-    <form method="post" style="padding: 3%;background-color: darkgrey;margin-left: 10%;margin-right: 10%;">
+    <form method="post">
         <h1 style="text-align: center;" class="display-3"> Add comment: </h1>
         {% csrf_token %}
         <h1> {{ form|crispy }} </h1>

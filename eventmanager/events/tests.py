@@ -24,6 +24,12 @@ class EventsTestCase(TestCase):
     def test_view_event(self):
         pass
 
+    def test_join_event(self):
+        pass
+
+    def test_unjoin_event(self):
+        pass
+
 
 class EventsFeedsTestCase(TestCase):
     def setUp(self):
@@ -124,3 +130,6 @@ class EventsUrlsTestClass(TestCase):
 
     def test_latest_events_feed_url(self):
         self.url_returns_200(reverse("latest_event_feed"))
+
+    def test_join_event(self):
+        self.url_returns_200(reverse("events.join", kwargs={'slug': "event"}))
