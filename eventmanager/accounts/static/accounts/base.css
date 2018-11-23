@@ -9,7 +9,6 @@
 }
 .container {
     position: relative;
-    margin: 0 auto;
 }
 .container .content {
     position: absolute;
@@ -36,3 +35,6 @@
 input{
     width: 30%
 }
+
+textarea { font-size: 20px !important; }
+.textinput{ font-size: 20px !important; }
