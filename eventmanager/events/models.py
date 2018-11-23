@@ -56,6 +56,13 @@ class Event(models.Model):
         blank=False,
         related_name="categories"
     )
+    attendees = models.ManyToManyField(
+        User,
+        verbose_name=_("Attendees"),
+        blank=True,
+        null=True,
+        related_name="attendees"
+    )
     cover_image = models.ImageField(
         upload_to='events',
         blank=True,
@@ -109,6 +116,10 @@ class Event(models.Model):
             unique_slug = '{}-{}'.format(slug, unique_num)
             unique_num += 1
         return unique_slug
+
+    def has_joined_event(user, event_slug):
+        attendees = Event.objects.all().get(slug=event_slug).attendees.all()
+        return user in attendees
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -166,7 +177,7 @@ class Comment(models.Model):
 
     content = models.TextField(
         verbose_name=_("Description"),
-        unique=False,
+        unique=True,
         null=False,
         blank=False
     )

@@ -55,7 +55,7 @@ def create_event(request):
                     request.POST.get('ends_at_time')
                 )
 
-            post.cover_image = form.cleaned_data['image']
+            # post.cover_image = form.cleaned_data['image']
             post.save()
             category = Category.objects.filter(
                 name=request.POST["category_select"]
@@ -149,7 +149,17 @@ def show_events_by_slug(request, slug):
             comment.event = event
             comment.author = request.user
             comment.save()
-    context = {'event': event, 'comments': comments, 'form': form}
+
+    has_joined = False
+    if Event.has_joined_event(request.user, slug):
+        has_joined = True
+
+    context = {
+        'event': event,
+        'comments': comments,
+        'form': form,
+        'has_joined': has_joined
+    }
     return render(request, 'events/event.html', context)
 
 
@@ -161,4 +171,22 @@ def delete_event_by_slug(request, slug):
     else:
         raise PermissionDenied
     context = {'success_message': "deleted event"}
+    return render(request, 'CRUDops/successfully.html', context)
+
+
+@login_required
+def join_event(request, slug):
+    event = Event.objects.get(slug=slug)
+    event.attendees.add(request.user)
+    event.save()
+    context = {'success_message': "joined event" + event.title}
+    return render(request, 'CRUDops/successfully.html', context)
+
+
+@login_required
+def cancel_join(request, slug):
+    event = Event.objects.get(slug=slug)
+    event.attendees.remove(request.user)
+    event.save()
+    context = {'success_message': "not going event" + event.title}
     return render(request, 'CRUDops/successfully.html', context)
