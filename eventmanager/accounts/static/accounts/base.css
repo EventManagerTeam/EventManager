@@ -9,7 +9,6 @@
 }
 .container {
     position: relative;
-    margin: 0 auto;
 }
 .container .content {
     position: absolute;

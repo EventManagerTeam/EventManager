@@ -139,7 +139,8 @@ def edit_event(request, slug):
 
 def show_events_by_slug(request, slug):
     event = Event.objects.active().get(slug=slug)
-    comments = Comment.objects.all().filter(event=event).order_by('-created_at')
+    comments = Comment.objects.active()
+    comments = comments.filter(event=event).order_by('-created_at')
     form = CommentForm(request.POST or None)
 
     if request.method == 'POST':
