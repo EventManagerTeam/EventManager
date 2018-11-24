@@ -123,7 +123,7 @@ class Event(models.Model):
 
     def get_guests(event_slug):
         return Event.objects.all().get(slug=event_slug).attendees.all()
-        
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = self.get_unique_slug()
