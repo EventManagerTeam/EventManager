@@ -97,10 +97,12 @@ def edit_event(request, slug):
 
             post.cover_image = request.POST.get('image')
             post.save()
+
             category = Category.objects.filter(
                 name=request.POST["category_select"]
             )
             post.category.add(*list(category))
+
             post.save()
             context = {
                 'success_message': "edited event"
@@ -189,5 +191,5 @@ def cancel_join(request, slug):
     event = Event.objects.get(slug=slug)
     event.attendees.remove(request.user)
     event.save()
-    context = {'success_message': "not going event" + event.title}
+    context = {'success_message': "removed going status from  " + event.title}
     return render(request, 'CRUDops/successfully.html', context)
