@@ -58,6 +58,35 @@
 <p class="h2" style="padding: 5%">
     {{event.description}}
 </p>
+<a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#guestsModal" style="padding: 1%;margin: auto;margin-left: 2%;font-size: x-large;"> List Guests</a>
+
+<div class="modal hide" id="guestsModal" style="margin-top: 7%;">
+<form class="well" method="post">
+    <div class="modal-header">
+        <h3 class="h1">Guest list:</h3>
+        <button type="button" class="close" data-dismiss="modal"> 
+<i class="fa-2x fas fa-times-circle"></i>
+ </button>
+    </div>
+    <div class="modal-body">
+        {% for guest in guests %}
+        <div class="card" style="margin-left: 5%;margin-right: 5%;margin-top: 1% !important">
+            <div class="card-body">
+                <h3 class="card-title">
+                    {{guest.username}}
+                    {% if guest.first_name and guest.last_name %}
+                        <div class=" text-muted">
+                            ({{ guest.first_name }} {{ guest.last_name }})
+                        </div>
+                    {% endif %}
+                </h3>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</form>
+</div>
+
 
 
 <div style="margin: auto;">
@@ -68,7 +97,9 @@
         <form class="well" method="post">
           <div class="modal-header">
             <h3 class="h1" style="text-align: center;">Add your comment:</h3>
-            <button type="button" class="close" data-dismiss="modal">×</button>
+            <button type="button" class="close" data-dismiss="modal"> 
+<i class="fa-2x fas fa-times-circle"></i>
+ </button>
           </div>
           <div class="modal-body">
                {% csrf_token %}

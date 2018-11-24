@@ -158,7 +158,8 @@ def show_events_by_slug(request, slug):
         'event': event,
         'comments': comments,
         'form': form,
-        'has_joined': has_joined
+        'has_joined': has_joined,
+        'guests': Event.get_guests(slug)
     }
     return render(request, 'events/event.html', context)
 
