@@ -59,15 +59,26 @@
     {{event.description}}
 </p>
 
+
 <div style="margin: auto;">
-    <form method="post">
-        <h1 style="text-align: center;" class="display-3"> Add comment: </h1>
-        {% csrf_token %}
-        <h1> {{ form|crispy }} </h1>
-        <input type="submit" class="btn btn-success btn-block " value="Submit">
-    </form>
     <div style="margin: auto;">
-        <h1 class="display-3" style="text-align: center;padding-top: 3%"> Comments: </h1>
+        <h1 class="display-3" style="text-align: center;padding-top: 3%"> Comments:  <a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#contactModal" style="padding: 1%;margin: auto;margin-left: 2%;font-size: x-large;"> Add comment</a>
+</h1>
+        <div class="modal hide" id="contactModal" style="margin-top: 7%;">
+        <form class="well" method="post">
+          <div class="modal-header">
+            <h3 class="h1" style="text-align: center;">Add your comment:</h3>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div>
+          <div class="modal-body">
+               {% csrf_token %}
+               <h1> {{ form|crispy }} </h1>
+          </div>
+          <div class="modal-footer">
+                <input type="submit" class="btn btn-success btn-block " value="Submit" style="font-size: x-large;">
+          </div>
+        </form>
+        </div>
         {% for comment in comments %}
         <div class="card" style="width: 60%;margin-left: 20%;margin-right: 20%;margin-top: 3% !important">
             <div class="card-body">
