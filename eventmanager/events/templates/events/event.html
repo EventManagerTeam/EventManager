@@ -1,12 +1,13 @@
-
-
 {% extends 'accounts/base.html' %}
+
+{% load crispy_forms_tags %}
+{% include "accounts/partials/messages_partial.html" with messages=messages %}
+{% load static %}
+{% block title %} {{event.title}} {% endblock %}
+
 {% block head %}
-<style>
-    body, html {
-        height: 100%;
-        margin: 0;
-    }
+<link href="{% static "events/event.css" %}" rel="stylesheet">
+<style type="text/css">
     .bg {
     {% if event.cover_image %}
         background-image: url( "{{ event.cover_image.url }}" );
@@ -16,51 +17,34 @@
         background-size: cover;
     {% endif %}
     }
-
-    .custom-btn{
-        padding: 1%;
-        padding-left: 4%;
-        padding-right: 4%;
-        float: right;
-        font-size: x-large;
-        margin: auto;
-        margin-bottom: 5%;
-    }
-    form{
-        padding: 3%;background-color: darkgrey;margin-left: 10%;margin-right: 10%;
-    }
 </style>
-
-{% load crispy_forms_tags %}
 {% endblock %}
-{% include "accounts/partials/messages_partial.html" with messages=messages %}
-
 {% block content %}
 <div class="bg">
-    <p class="display-1" style="background-color: rgba(0,0,0,0.5);color: white;padding: 2%">
+    <p class="display-1 edit_delete">
         {{event.title}}
         {% if request.user == event.added_by %}
-        <button class="custom-btn btn-danger  btn-lg" onclick="location.href=window.location.href  + '/delete'" type="button"> DELETE</button>
-        <button class="custom-btn btn-warning  btn-lg" onclick="location.href=window.location.href  + '/edit'" type="button"> EDIT</button>
+        <button class="custom-btn btn-danger btn-lg" onclick="location.href=window.location.href  + '/delete'" type="button"> DELETE</button>
+        <button class="custom-btn btn-warning btn-lg" onclick="location.href=window.location.href  + '/edit'" type="button"> EDIT</button>
         {% endif %}
  
     </p>
 </div>
 {% if has_joined %}
-<button class="custom-btn btn-danger btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/cancel_join'" type="button" style="padding: 3%;">
+<button class="custom-btn btn-danger btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/cancel_join'" type="button">
     REMOVE JOIN
 </button>
 {% else %}
-<button class="custom-btn btn-success btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/join'" type="button" style="padding: 3%;">
+<button class="custom-btn btn-success btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/join'" type="button">
     JOIN
 </button>
 {% endif %}
-<p class="h2" style="padding: 5%">
+<p class="h2">
     {{event.description}}
 </p>
-<a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#guestsModal" style="padding: 1%;margin: auto;margin-left: 2%;font-size: x-large;"> List Guests</a>
+<a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#guestsModal"> List Guests</a>
 
-<div class="modal hide" id="guestsModal" style="margin-top: 7%;">
+<div class="modal hide" id="guestsModal">
 <form class="well" method="post">
     <div class="modal-header">
         <h3 class="h1">Guest list:</h3>
@@ -70,7 +54,7 @@
     </div>
     <div class="modal-body">
         {% for guest in guests %}
-        <div class="card" style="margin-left: 5%;margin-right: 5%;margin-top: 1% !important">
+        <div class="card usercard">
             <div class="card-body">
                 <h3 class="card-title">
                     {{guest.username}}
@@ -88,15 +72,14 @@
 </div>
 
 
-
-<div style="margin: auto;">
-    <div style="margin: auto;">
-        <h1 class="display-3" style="text-align: center;padding-top: 3%"> Comments:  <a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#contactModal" style="padding: 1%;margin: auto;margin-left: 2%;font-size: x-large;"> Add comment</a>
+<div class="comments-div">
+    <div class="comments-div">
+        <h1 class="display-3 center-text comments-header"> Comments:  <a class="btn btn-success h1 btn-lg large-text add-comment-button" data-toggle="modal" href="#contactModal"> Add comment</a>
 </h1>
-        <div class="modal hide" id="contactModal" style="margin-top: 7%;">
+        <div class="modal hide" id="contactModal">
         <form class="well" method="post">
           <div class="modal-header">
-            <h3 class="h1" style="text-align: center;">Add your comment:</h3>
+            <h3 class="h1">Add your comment:</h3>
             <button type="button" class="close" data-dismiss="modal"> 
 <i class="fa-2x fas fa-times-circle"></i>
  </button>
@@ -106,12 +89,12 @@
                <h1> {{ form|crispy }} </h1>
           </div>
           <div class="modal-footer">
-                <input type="submit" class="btn btn-success btn-block " value="Submit" style="font-size: x-large;">
+                <input type="submit" class="btn btn-success btn-block " value="Submit">
           </div>
         </form>
         </div>
         {% for comment in comments %}
-        <div class="card" style="width: 60%;margin-left: 20%;margin-right: 20%;margin-top: 3% !important">
+        <div class="card comments-card">
             <div class="card-body">
                 <h3 class="card-title">{{ comment.title }} </h3>
                 <h4 class="card-subtitle mb-2 text-muted"> Commented by {{ comment.author }} on {{ comment.created_at }} </h4>
