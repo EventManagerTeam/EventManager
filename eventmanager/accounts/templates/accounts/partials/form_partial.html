@@ -4,11 +4,11 @@
 	{% include "accounts/partials/messages_partial.html" with messages=messages %}
 
 	<form method="post">
-	  {% csrf_token %}
-	  <h1 class="h1"> {{ form|crispy }} </h1>
+		{% csrf_token %}
+		<h1 class="h1"> {{ form|crispy }} </h1>
 
-	  <button class="btn btn-primary btn-lg " type="submit">
-	     <h1> {{ button_text }} </h1>
-	  </button>
+		<button class="btn btn-primary btn-lg " type="submit">
+		 <h1> {{ button_text }} </h1>
+		</button>
 	</form>
 </div>

@@ -1,0 +1,78 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.custom-btn{
+    padding: 1%;
+    padding-left: 4%;
+    padding-right: 4%;
+    float: right;
+    font-size: x-large;
+    margin: auto;
+    margin-bottom: 5%;   
+}
+
+form{
+    padding: 3%;
+    background-color: darkgrey;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.btn-success{
+    padding: 1%;
+    margin: auto;
+    margin-left: 2%;
+    font-size: x-large;
+}
+
+.h2{
+    padding: 5%
+}
+
+.edit_delete{
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    padding: 2%
+}
+
+.modal{
+    margin-top: 7%;
+}
+
+
+.comments-card{
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 3% !important;
+}
+
+.usercard{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1% !important;
+}
+
+.comments-div{
+    margin: auto;
+}
+
+.center-text{
+    text-align: center;
+}
+
+.large-text{
+    font-size: x-large;
+}
+
+.add-comment-button{
+    padding: 1%;
+    margin: auto;
+    margin-left: 2%;
+}
+
+.comments-header{
+    padding-top: 3%;
+}

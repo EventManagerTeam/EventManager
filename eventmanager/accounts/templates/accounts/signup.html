@@ -1,50 +1,51 @@
 {% extends 'accounts/base.html' %}
+{% load static %}
 
 {% block title %} Register {% endblock %} 
+{% block head %}
+<link href="{% static "accounts/signup.css" %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
 <br> <br>
-<div style="display: table;width: 100%;">
-  <form method="post" style="text-align: center;">
-     {% csrf_token %}
-     <div class="form-group">
+<div class="sign_up">
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
         {% for field in form %}
-        {% for error in field.errors %}
-          <div class="alert alert-danger alert-dismissible">
-             {{ error }} 
-          </div>
+            {% for error in field.errors %}
+                <div class="alert alert-danger alert-dismissible">
+                    {{ error }} 
+                </div>
+            {% endfor %}
+            <h1>  
+                {% if "_name" in field.name %}
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                {% endif %}
+
+                {% if "username" in field.name %}
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                {% endif %}
+
+                {% if "password" in field.name %}
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                {% endif %}
+
+                {% if "mail" in field.name %}
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                {% endif %}
+
+                {{ field.label_tag }} 
+            </h1>
+            <h1>
+                {{ field }} 
+            </h1> <br>
         {% endfor %}
-        <h1>  
-
-          {% if "_name" in field.name %}
-             <i class="fa fa-user-circle" aria-hidden="true"></i>
-          {% endif %}
-
-          {% if "username" in field.name %}
-             <i class="fa fa-user" aria-hidden="true"></i>
-          {% endif %}
-
-
-          {% if "password" in field.name %}
-             <i class="fa fa-key" aria-hidden="true"></i>
-          {% endif %}
-
-          {% if "mail" in field.name %}
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-          {% endif %}
-          
-          {{ field.label_tag }} 
-
-
-        </h1>
-        <h1 style="padding-bottom: 1%">   {{ field }} </h1>
-        {% endfor %}
-     </div>
-
-     <button class="btn btn-primary btn-lg" style="width: 50%" type="submit">
-        <h1> Sign up </h1>
-     </button>
-  </form>
+        <button class="btn btn-primary btn-lg"  type="submit">
+           <h1> Sign up </h1>
+        </button>
+    </div>
+</form>
    <br>
 </div>
 {% endblock %}

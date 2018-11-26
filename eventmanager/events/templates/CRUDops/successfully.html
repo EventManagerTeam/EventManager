@@ -1,10 +1,16 @@
 {% extends 'accounts/base.html' %}
+{% load static %}
+
 {% block title %} Success! {% endblock %}
+
+{% block head %}
+<link href="{% static "events/successfully.css" %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
 
 <div class="container h-100 d-flex" >
-    <div class="jumbotron my-auto" style="width: 100%; padding: 15%;margin-top: 12% !important;">
+    <div class="jumbotron my-auto" >
         <h1 class="display-3"> Success! </h1>
         <p class="lead h2"> You have successfully {{ success_message }}</p>
         <hr class="my-4">

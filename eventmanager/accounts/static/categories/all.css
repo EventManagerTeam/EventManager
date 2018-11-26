@@ -1,0 +1,9 @@
+.card{
+    width: 90% !important; 
+    margin: 5%;
+    padding: 5%;
+}
+
+.card-title{
+  color: saddlebrown;
+}
