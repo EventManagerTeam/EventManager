@@ -31,13 +31,13 @@
     </p>
 </div>
 {% if has_joined %}
-<button class="custom-btn btn-danger btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/cancel_join'" type="button">
-    REMOVE JOIN
-</button>
+    <button class="custom-btn btn-danger btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/cancel_join'" type="button">
+        REMOVE JOIN
+    </button>
 {% else %}
-<button class="custom-btn btn-success btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/join'" type="button">
-    JOIN
-</button>
+    <button class="custom-btn btn-success btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/join'" type="button">
+        JOIN
+    </button>
 {% endif %}
 <p class="h2">
     {{event.description}}
@@ -49,8 +49,8 @@
     <div class="modal-header">
         <h3 class="h1">Guest list:</h3>
         <button type="button" class="close" data-dismiss="modal"> 
-<i class="fa-2x fas fa-times-circle"></i>
- </button>
+            <i class="fa-2x fas fa-times-circle"></i>
+        </button>
     </div>
     <div class="modal-body">
         {% for guest in guests %}
@@ -74,15 +74,21 @@
 
 <div class="comments-div">
     <div class="comments-div">
-        <h1 class="display-3 center-text comments-header"> Comments:  <a class="btn btn-success h1 btn-lg large-text add-comment-button" data-toggle="modal" href="#contactModal"> Add comment</a>
-</h1>
+        <h1 class="display-3 center-text comments-header">
+            Comments:  
+            <a class="btn btn-success h1 btn-lg large-text add-comment-button" data-toggle="modal" href="#contactModal">
+                Add comment
+            </a>
+        </h1>
         <div class="modal hide" id="contactModal">
         <form class="well" method="post">
           <div class="modal-header">
-            <h3 class="h1">Add your comment:</h3>
+            <h3 class="h1">
+                Add your comment:
+            </h3>
             <button type="button" class="close" data-dismiss="modal"> 
-<i class="fa-2x fas fa-times-circle"></i>
- </button>
+                <i class="fa-2x fas fa-times-circle"></i>
+            </button>
           </div>
           <div class="modal-body">
                {% csrf_token %}
@@ -97,7 +103,9 @@
         <div class="card comments-card">
             <div class="card-body">
                 <h3 class="card-title">{{ comment.title }} </h3>
-                <h4 class="card-subtitle mb-2 text-muted"> Commented by {{ comment.author }} on {{ comment.created_at }} </h4>
+                <h4 class="card-subtitle mb-2 text-muted"> 
+                    Commented by {{ comment.author }} on {{ comment.created_at }} 
+                </h4>
                 <p class="card-text">{{ comment.content|safe }}</p>
             </div>
         </div>

@@ -1,31 +1,30 @@
 {% extends 'accounts/base.html' %}
 {% load static %}
+
+{% block title %} All categories{% endblock %}
+
 {% block head %}
-<style>
-.card{
-    width: 90% !important; margin: 5%;
-}
-</style>
+<link href="{% static "categories/all.css" %}" rel="stylesheet">
 {% endblock %}
+
 {% block content %}
-
-{% for category_list in categories%}
-     <div class="card-columns">
-
+    {% for category_list in categories%}
+    <div class="card-columns">
         {% for category in category_list%}
-
-             <div class="card bg-warning" style="padding: 5%">
-                  <div class="card-body">
-                    <h1 class="card-title" style="color: saddlebrown"> {{category.name}}</h1>
-                    <h3 class="card-text">{{category.description}} </h3>
-                      <h2> <a href="{{category.slug}}" class="card-link"> See all events with this category</a> </h2>
-                  </div>
-             </div>
-
+        <div class="card bg-warning">
+            <div class="card-body">
+                <h1 class="card-title"> {{category.name}}</h1>
+                <h3 class="card-text">{{category.description}} </h3>
+                <h2> 
+                    <a href="{{category.slug}}" class="card-link"> 
+                        See all events with this category
+                    </a> 
+                </h2>
+            </div>
+        </div>
         {% endfor %}
     </div>
-
-{% endfor %}
-
-  <br> <br>
+    {% endfor %}
+    <br> <br>
 {% endblock %}
+
