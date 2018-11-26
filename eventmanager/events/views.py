@@ -54,8 +54,9 @@ def create_event(request):
                     request.POST.get('ends_at'),
                     request.POST.get('ends_at_time')
                 )
+            if request.FILES['cover_image']:
+                post.cover_image = request.FILES['cover_image']
 
-            # post.cover_image = form.cleaned_data['image']
             post.save()
             category = Category.objects.filter(
                 name=request.POST["category_select"]
@@ -95,7 +96,9 @@ def edit_event(request, slug):
                     request.POST.get('ends_at_time')
                 )
 
-            post.cover_image = request.POST.get('image')
+            if request.FILES['cover_image']:
+                post.cover_image = request.FILES['cover_image']
+
             post.save()
 
             category = Category.objects.filter(

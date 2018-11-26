@@ -19,7 +19,7 @@
 </h1>
 <br>  <br><br><br>
 <div class="col-md-8  col-md-offset-2 centered">
-    <form method="post">
+    <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
         <h1> {{ form|crispy }} </h1>
 

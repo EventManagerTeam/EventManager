@@ -129,7 +129,7 @@ def has_already_added_account_info(username):
 
 @login_required
 def account_details(request):
-    form = AccountDetailsForm(request.POST or None)
+    form = AccountDetailsForm(request.POST, request.FILES or None)
 
     if request.method == 'POST':
         if has_already_added_account_info(request.user) != 0:
@@ -141,6 +141,8 @@ def account_details(request):
             details.user = request.user
             if request.POST.get('birthdate'):
                 details.birth_date = request.POST.get('birthdate')
+            if request.POST.get('profile_picture'):
+                details.profile_picture = request.FILES['profile_picture']
             details.save()
             context = {'success_message': "added account details."}
             return render(request, 'CRUDops/successfully.html', context)
@@ -179,13 +181,13 @@ def edit_account_details(request):
 
     form = AccountDetailsForm(request.POST or None, instance=instance)
     if form.is_valid():
-        pass
         details = form.save(commit=False)
         details.user = request.user
 
         if request.POST.get('birthdate'):
             details.birth_date = request.POST.get('birthdate')
-
+        if request.FILES['profile_picture']:
+            details.profile_picture = request.FILES['profile_picture']
         details.save()
         context = {'success_message': "added account details."}
         return render(request, 'CRUDops/successfully.html', context)
