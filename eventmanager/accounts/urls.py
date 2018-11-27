@@ -24,4 +24,6 @@ urlpatterns = [
 
     url(r'^change_email/$', views.change_email, name='change_email'),
     path('users', views.list_users, name='accounts.list_users'),
+    path('friends/find', views.search_users, name='events.search_users'),
+
 ]

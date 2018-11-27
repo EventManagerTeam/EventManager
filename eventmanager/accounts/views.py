@@ -22,7 +22,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 
 from accounts.models import AccountDetails
-
+from .filters import UserFilter
 
 def index(request):
     return render(request, 'accounts/index.html')
@@ -209,6 +209,7 @@ def edit_account_details(request):
 @login_required
 def list_users(request):
     users = User.objects.all()
+
     for user in users:
         details = AccountDetails.objects.get(user=user)
         user.details = details
@@ -216,6 +217,16 @@ def list_users(request):
     context = {'users': chunks}
     return render(request, 'friends/all_accounts.html', context)
 
+@login_required
+def search_users(request):
+    users = User.objects.all()
+    for user in users:
+        details = AccountDetails.objects.get(user=user)
+        user.details = details
+    user_filter = UserFilter(request.GET, queryset=users)
+
+    context = {'filter': user_filter}
+    return render(request, 'friends/find_account.html', context)
 
 @login_required
 def list_friends():
