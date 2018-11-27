@@ -48,14 +48,14 @@ class EventsFeedsTestCase(TestCase):
             self.event = Event.objects.create(
                 title=eventstring,
                 description=eventstring,
-                )
+            )
             self.event.save()
             self.event.category.add(category)
             self.event.save()
 
     def test_all_events_feed(self):
         response = self.client.get(reverse("event_feed"))
-        latest_event = "test" + str(self.total_number_of_events-1)
+        latest_event = "test" + str(self.total_number_of_events - 1)
         self.assertContains(response, latest_event)
         self.assertContains(response, "test" + str(1))
 
@@ -88,7 +88,7 @@ class EventsUrlsTestClass(TestCase):
             title="testy",
             description='cool description',
             slug="event",
-            )
+        )
         self.event.save()
         self.event.category.add(category)
         self.event.save()
@@ -117,7 +117,7 @@ class EventsUrlsTestClass(TestCase):
             description='cool description',
             slug="delete",
             added_by=self.user,
-            )
+        )
         self.event.save()
         self.event.category.add(category)
         self.url_returns_200(reverse("events.del", kwargs={'slug': "delete"}))

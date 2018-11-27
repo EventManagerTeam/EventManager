@@ -205,6 +205,7 @@ def edit_account_details(request):
         context
     )
 
+
 @login_required
 def list_users(request):
     users = User.objects.all()
@@ -215,13 +216,16 @@ def list_users(request):
     context = {'users': chunks}
     return render(request, 'friends/all_accounts.html', context)
 
+
 @login_required
 def list_friends():
     pass
 
+
 @login_required
 def friend():
     pass
+
 
 @login_required
 def unfriend():

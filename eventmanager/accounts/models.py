@@ -6,6 +6,7 @@ from mptt.querysets import TreeQuerySet
 
 class Accounts(object):
     """docstring for Accounts"""
+
     def __init__(self, arg):
         super(Accounts, self).__init__()
         self.arg = arg
@@ -40,7 +41,7 @@ class AccountDetails(models.Model):
         null=True
     )
 
-    birth_date = models.DateField(("birthdate"),  blank=True, null=True)
+    birth_date = models.DateField(("birthdate"), blank=True, null=True)
 
     description = models.TextField(
         verbose_name=_("Description"),
