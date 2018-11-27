@@ -23,4 +23,5 @@ urlpatterns = [
     ),
 
     url(r'^change_email/$', views.change_email, name='change_email'),
+    path('list_users', views.list_users, name='accounts.list_users'),
 ]

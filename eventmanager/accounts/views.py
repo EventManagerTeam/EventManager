@@ -186,7 +186,7 @@ def edit_account_details(request):
 
         if request.POST.get('birthdate'):
             details.birth_date = request.POST.get('birthdate')
-        if request.FILES['profile_picture']:
+        if request.FILES['profile_picture'] is not None:
             details.profile_picture = request.FILES['profile_picture']
         details.save()
         context = {'success_message': "added account details."}
@@ -204,3 +204,25 @@ def edit_account_details(request):
         'accounts/additonal_account_information.html',
         context
     )
+
+@login_required
+def list_users(request):
+    users = User.objects.all()
+    for user in users:
+        details = AccountDetails.objects.get(user=user)
+        user.details = details
+    chunks = [users[x:x + 3] for x in range(0, len(users), 3)]
+    context = {'users': chunks}
+    return render(request, 'friends/all_accounts.html', context)
+
+@login_required
+def list_friends():
+    pass
+
+@login_required
+def friend():
+    pass
+
+@login_required
+def unfriend():
+    pass
