@@ -1,0 +1,59 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} All users{% endblock %}
+
+{% block head %}
+<link href="{% static "categories/all.css" %}" rel="stylesheet">
+<link href="{% static "accounts/show_account_details.css" %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="col-md-8  col-md-offset-2 centered">
+    <form method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <h1> {{ form|crispy }} </h1>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+            <h1> Add info </h1>
+        </button>
+    </form>
+</div>
+<div class="col-md-8  col-md-offset-2 centered">
+
+ <ul>
+   <div class="card-columns">
+    {% for user in users%}
+    <div class="card-body">
+        <div class="card">
+            <img src="
+                {% if user.details.profile_picture %}
+                  {{user.details.profile_picture.url}}
+                {% else%}
+                  https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg/600px-Default_profile_picture_%28male%29_on_Facebook.jpg
+                {% endif %} ">
+            <h1> {{name}} </h1>
+            <h2> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h2>
+            {% if user.details.birth_date %} 
+            <h2> <i class="fa fa-birthday-cake" aria-hidden="true"></i> Born in: {{user.details.birth_date}}  </h2>
+            {% endif %}
+            <h2> {{user.details.description}} </h2>
+            {% if not user.my_friend %}
+                <button class="btn btn-success btn-lg btn-block"  onclick="location.href=window.location.origin + '/users/{{user.details.slug}}/friend'" type="button" style="font-size: x-large;"> Friend </button>
+            {% else %}
+                <button class="btn btn-danger btn-lg btn-block"  onclick="location.href=window.location.origin + '/users/{{user.details.slug}}/unfriend'" type="button" style="font-size: x-large;"> Unfriend </button>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+ </ul>
+ <br> <br>  
+ </div>
+
+    <br> <br>
+{% endblock %}
+

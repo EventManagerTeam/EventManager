@@ -62,3 +62,13 @@ class AccountDetailsForm(ModelForm):
             'profile_picture',
             'description',
         ]
+
+
+class UserForm(forms.Form):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'placeholder': 'Username'}
+        )
+    )
+
+    fields = ['username']

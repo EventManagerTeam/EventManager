@@ -13,9 +13,14 @@
 
 <div class="col-md-4 col-md-offset-4 centered class-div">
     {% include "accounts/partials/account_partial.html" with name=name username=username email=email details=details %}
-    <a href= "/edit_account" class="btn btn-success btn-lg btn-block" type="submit">
-        <h1> Edit account </h1>
-    </a>
+
+    {% if not friends %}
+    <button class="btn btn-success btn-lg btn-block" onclick="location.href=window.location.href  + '/friend'" type="button" style="font-size: x-large;"> Friend </button>
+   	{% endif %}
+
+   	 {% if friends%}
+   	 <button class="btn btn-danger btn-lg btn-block" onclick="location.href=window.location.href  + '/unfriend'" type="button" style="font-size: x-large;"> Unfriend </button>
+   	{% endif %}
 </div>
 {% endblock %}
 

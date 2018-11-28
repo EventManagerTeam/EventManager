@@ -1,0 +1,43 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} All users{% endblock %}
+
+{% block head %}
+<link href="{% static "categories/all.css" %}" rel="stylesheet">
+<link href="{% static "accounts/show_account_details.css" %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+    <h1 class="h1 display-3" style="font-size: xx-large;text-align: center;">  {{ title }} </h1>
+    {% for row in users%}
+    <div class="card-columns">
+        {% for user in row%}
+            <div class="card-body">
+                <div class="card">
+                    <img src="
+                        {% if user.details.profile_picture %}
+                          {{user.details.profile_picture.url}}
+                        {% else%}
+                          https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg/600px-Default_profile_picture_%28male%29_on_Facebook.jpg
+                        {% endif %} ">
+                    <h1> {{name}} </h1>
+                    <h2> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h2>
+                    {% if user.details.birth_date %} 
+                    <h2> <i class="fa fa-birthday-cake" aria-hidden="true"></i> Born in: {{user.details.birth_date}}  </h2>
+                    {% endif %}
+                    <h2> {{user.details.description}} </h2>
+                    {% if user.unfriend_url %} 
+                        <button class="btn btn-danger btn-lg btn-block"  onclick='{{user.unfriend_url}}' type="button" style="font-size: x-large;"> Unfriend </button>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    <br> <br>
+{% endblock %}
+

@@ -6,6 +6,7 @@ from mptt.querysets import TreeQuerySet
 
 class Accounts(object):
     """docstring for Accounts"""
+
     def __init__(self, arg):
         super(Accounts, self).__init__()
         self.arg = arg
@@ -40,7 +41,15 @@ class AccountDetails(models.Model):
         null=True
     )
 
-    birth_date = models.DateField(("birthdate"),  blank=True, null=True)
+    friends = models.ManyToManyField(
+        User,
+        verbose_name=_("Friends"),
+        blank=True,
+        null=True,
+        related_name="friends"
+    )
+
+    birth_date = models.DateField(("birthdate"), blank=True, null=True)
 
     description = models.TextField(
         verbose_name=_("Description"),
@@ -50,8 +59,22 @@ class AccountDetails(models.Model):
         blank=True
     )
 
+    def is_slug_used(slug):
+        return Category.objects.filter(slug=slug).exists()
+
+    def get_unique_slug(self):
+        slug = slugify(self.user.username)
+        unique_slug = slug
+        unique_num = 1
+        while Category.is_slug_used(unique_slug):
+            unique_slug = '{}-{}'.format(slug, unique_num)
+            unique_num += 1
+        return unique_slug
+
     def save_model(self, request, obj, form, change):
         obj.user = request.user
+        if not self.slug:
+            self.slug = self.get_unique_slug()
         super().save_model(request, obj, form, change)
 
     class Meta(object):

@@ -1,0 +1,17 @@
+<div class="card">
+    <img src="
+        {% if details.profile_picture %}
+          {{details.profile_picture.url}}
+        {% else%}
+          https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg/600px-Default_profile_picture_%28male%29_on_Facebook.jpg
+        {% endif %} ">
+    <h1> {{name}} </h1>
+    <h2> <i class="fa fa-user-circle" aria-hidden="true"></i> {{username}} </h2>
+    {% if email %}  
+    <h2> <i class="fa fa-envelope" aria-hidden="true"></i> {{email}} </h2>
+    {% endif %}
+    {% if details.birth_date %} 
+    <h2> <i class="fa fa-birthday-cake" aria-hidden="true"></i> Born in: {{details.birth_date}}  </h2>
+    {% endif %}
+    <h2> {{details.description}} </h2>
+</div>

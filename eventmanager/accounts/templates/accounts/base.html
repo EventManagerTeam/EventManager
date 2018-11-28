@@ -25,7 +25,17 @@
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
                 <ul class="navbar-nav mr-auto navbar-right">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <h3> Users </h3>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/users"> <h3> All users </h3> </a>
+                        <a class="dropdown-item" href="/friends/find"> <h3> Search users </h3> </a>
+                        <a class="dropdown-item" href="/friends"> <h3> Friends </h3> </a>
+                    </li>
+
                     <li class="nav-item active">
                         <a class="nav-link" href="/events/all/">
                             <h3> Events </h3>
@@ -41,11 +51,12 @@
                             <h3> Sample List Item </h3>
                         </a>
                     </li>
-
+                    
                     {% block navbar-left %}
                     {% endblock %}
 
                 </ul>
+               
                 <ul class="navbar-nav  navbar-right">
                     {% if request.user.is_authenticated %}
                     <li class="nav-item dropdown">

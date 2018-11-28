@@ -2,6 +2,7 @@ from accounts.forms import LoginForm
 from accounts.forms import SignUpForm
 from accounts.forms import ChangeEmailForm
 from accounts.forms import AccountDetailsForm
+from accounts.forms import UserForm
 
 from django.contrib import messages
 
@@ -175,6 +176,25 @@ def show_account_details(request):
 
 
 @login_required
+def gеt_user_by_slug(request, slug):
+    details = AccountDetails.objects.get(slug=slug)
+    user = details.user
+    details = AccountDetails.objects.get(user=user)
+    friend = is_my_friend(request, user)
+    return render(
+        request,
+        'accounts/user_account.html',
+        {
+            'details': details,
+            'name': request.user.first_name + request.user.last_name,
+            'username': request.user.username,
+            'email': request.user.email,
+            'friends': friend
+        }
+    )
+
+
+@login_required
 def edit_account_details(request):
     user = User.objects.all().get(username=request.user.username)
     instance = AccountDetails.objects.get(user=user)
@@ -186,7 +206,7 @@ def edit_account_details(request):
 
         if request.POST.get('birthdate'):
             details.birth_date = request.POST.get('birthdate')
-        if request.FILES['profile_picture']:
+        if request.FILES['profile_picture'] is not None:
             details.profile_picture = request.FILES['profile_picture']
         details.save()
         context = {'success_message': "added account details."}
@@ -204,3 +224,87 @@ def edit_account_details(request):
         'accounts/additonal_account_information.html',
         context
     )
+
+
+def is_my_friend(request, friend):
+    me = request.user
+    if AccountDetails.objects.filter(user=me).exists():
+        my_details = AccountDetails.objects.get(user=me).friends.all()
+    if AccountDetails.objects.filter(user=friend).exists():
+        friend_details = AccountDetails.objects.get(user=friend).friends.all()
+        if me in friend_details:
+            return True
+        if friend in my_details:
+            return True
+    return False
+
+
+@login_required
+def list_users(request):
+    users = User.objects.all()
+
+    for user in users:
+        if AccountDetails.objects.filter(user=user):
+            details = AccountDetails.objects.get(user=user)
+            user.details = details
+    chunks = [users[x:x + 3] for x in range(0, len(users), 3)]
+    context = {'users': chunks}
+    return render(request, 'friends/all_accounts.html', context)
+
+
+@login_required
+def search_users(request):
+    form = UserForm(request.POST or None)
+    users = []
+    context = {'form': form}
+    logged_in_user = request.user
+    if request.method == 'POST':
+        if form.is_valid():
+            username = request.POST.get('username')
+            users = User.objects.all().filter(username__icontains=username)
+            for user in users:
+                if AccountDetails.objects.filter(user=user):
+                    details = AccountDetails.objects.get(user=user)
+                    user.details = details
+                user.my_friend = is_my_friend(request, user)
+
+            context = {'users': users, 'form': form}
+
+    return render(request, 'friends/find_account.html', context)
+
+
+@login_required
+def my_friends(request):
+    friends = AccountDetails.objects.get(user=request.user).friends.all()
+    for user in friends:
+        if AccountDetails.objects.filter(user=user):
+            details = AccountDetails.objects.get(user=user)
+            user.details = details
+            user.unfriend_url = "users/" + user.details.slug + "/unfriend"
+
+    chunks = [friends[x:x + 3] for x in range(0, len(friends), 3)]
+    context = {'users': chunks, 'title': "My friends:"}
+    return render(request, 'friends/all_accounts.html', context)
+
+
+@login_required
+def friend(request, slug):
+    user1 = request.user
+    details1 = AccountDetails.objects.get(user=user1)
+    details2 = AccountDetails.objects.get(slug=slug)
+    user2 = details2.user
+    details1.friends.add(user2)
+    context = {'success_message': "sent friend request to  " + user2.username}
+    return render(request, 'CRUDops/successfully.html', context)
+
+
+@login_required
+def unfriend(request, slug):
+    user1 = request.user
+    details1 = AccountDetails.objects.get(user=user1)
+    details2 = AccountDetails.objects.get(slug=slug)
+    user2 = details2.user
+    details1.friends.remove(user2)
+    details2.friends.remove(user1)
+    context = {'success_message': "unfriended  " + user2.username}
+    return render(request, 'CRUDops/successfully.html', context)
