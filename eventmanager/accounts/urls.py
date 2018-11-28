@@ -1,6 +1,6 @@
 from . import views
-from django.urls import path
 from django.conf.urls import url
+from django.urls import path
 
 
 urlpatterns = [
@@ -24,9 +24,17 @@ urlpatterns = [
 
     url(r'^change_email/$', views.change_email, name='change_email'),
     path('users', views.list_users, name='accounts.list_users'),
-    path('users/<slug:slug>', views.gеt_user_by_slug, name='accounts.list_users'),
+    path(
+        'users/<slug:slug>',
+        views.gеt_user_by_slug,
+        name='accounts.list_users'
+    ),
     path('users/<slug:slug>/friend', views.friend, name='accounts.add_friend'),
-    path('users/<slug:slug>/unfriend', views.unfriend, name='accounts.unfriend'),
+    path(
+        'users/<slug:slug>/unfriend',
+        views.unfriend,
+        name='accounts.unfriend'
+    ),
     path('friends', views.my_friends, name='events.my_friends'),
 
     path('friends/find', views.search_users, name='events.search_users'),

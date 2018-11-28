@@ -174,12 +174,13 @@ def show_account_details(request):
     else:
         return account_details(request)
 
+
 @login_required
-def gеt_user_by_slug(request,slug):
+def gеt_user_by_slug(request, slug):
     details = AccountDetails.objects.get(slug=slug)
     user = details.user
     details = AccountDetails.objects.get(user=user)
-    friend = is_my_friend(request,user)
+    friend = is_my_friend(request, user)
     return render(
         request,
         'accounts/user_account.html',
@@ -191,6 +192,7 @@ def gеt_user_by_slug(request,slug):
             'friends': friend
         }
     )
+
 
 @login_required
 def edit_account_details(request):
@@ -223,7 +225,8 @@ def edit_account_details(request):
         context
     )
 
-def is_my_friend(request,friend):
+
+def is_my_friend(request, friend):
     me = request.user
     my_details = AccountDetails.objects.get(user=me).friends.all()
     friend_details = AccountDetails.objects.get(user=friend).friends.all()
@@ -237,7 +240,6 @@ def is_my_friend(request,friend):
     return my_details
 
 
-
 @login_required
 def list_users(request):
     users = User.objects.all()
@@ -249,6 +251,7 @@ def list_users(request):
     chunks = [users[x:x + 3] for x in range(0, len(users), 3)]
     context = {'users': chunks}
     return render(request, 'friends/all_accounts.html', context)
+
 
 @login_required
 def search_users(request):
@@ -279,14 +282,14 @@ def my_friends(request):
             details = AccountDetails.objects.get(user=user)
             user.details = details
             user.unfriend_url = "users/" + user.details.slug + "/unfriend"
-    
+
     chunks = [friends[x:x + 3] for x in range(0, len(friends), 3)]
     context = {'users': chunks, 'title': "My friends:"}
     return render(request, 'friends/all_accounts.html', context)
 
 
 @login_required
-def friend(request,slug):
+def friend(request, slug):
     user1 = request.user
     details1 = AccountDetails.objects.get(user=user1)
     details2 = AccountDetails.objects.get(slug=slug)
@@ -298,7 +301,7 @@ def friend(request,slug):
 
 
 @login_required
-def unfriend(request,slug):
+def unfriend(request, slug):
     user1 = request.user
     details1 = AccountDetails.objects.get(user=user1)
     details2 = AccountDetails.objects.get(slug=slug)
