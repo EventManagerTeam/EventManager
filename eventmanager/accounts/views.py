@@ -228,16 +228,15 @@ def edit_account_details(request):
 
 def is_my_friend(request, friend):
     me = request.user
-    my_details = AccountDetails.objects.get(user=me).friends.all()
-    friend_details = AccountDetails.objects.get(user=friend).friends.all()
-    if me in friend_details:
-        return True
-
-    if friend in my_details:
-        return True
-
+    if AccountDetails.objects.filter(user=me).exists():
+        my_details = AccountDetails.objects.get(user=me).friends.all()
+    if AccountDetails.objects.filter(user=friend).exists():
+        friend_details = AccountDetails.objects.get(user=friend).friends.all()
+        if me in friend_details:
+            return True
+        if friend in my_details:
+            return True
     return False
-    return my_details
 
 
 @login_required
@@ -295,8 +294,7 @@ def friend(request, slug):
     details2 = AccountDetails.objects.get(slug=slug)
     user2 = details2.user
     details1.friends.add(user2)
-    details2.friends.add(user1)
-    context = {'success_message': "friended  " + user2.username}
+    context = {'success_message': "sent friend request to  " + user2.username}
     return render(request, 'CRUDops/successfully.html', context)
 
 

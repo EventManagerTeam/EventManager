@@ -30,7 +30,9 @@
                     <h2> <i class="fa fa-birthday-cake" aria-hidden="true"></i> Born in: {{user.details.birth_date}}  </h2>
                     {% endif %}
                     <h2> {{user.details.description}} </h2>
-                     <button class="btn btn-danger btn-lg btn-block"  onclick='{{user.unfriend_url}}' type="button" style="font-size: x-large;"> Unfriend </button>
+                    {% if user.unfriend_url %} 
+                        <button class="btn btn-danger btn-lg btn-block"  onclick='{{user.unfriend_url}}' type="button" style="font-size: x-large;"> Unfriend </button>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
