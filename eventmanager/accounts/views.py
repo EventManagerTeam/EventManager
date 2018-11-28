@@ -237,16 +237,7 @@ def search_users(request):
             context = {'users': users, 'form': form}
 
     return render(request, 'friends/find_account.html', context)
-
-    # users = User.objects.all()
-    # for user in users:
-    #     details = AccountDetails.objects.get(user=user)
-    #     user.details = details
-    # user_filter = UserFilter(request.GET, queryset=users)
-
-    # context = {'filter': user_filter}
-    # return render(request, 'friends/find_account.html', context)
-
+    
 
 @login_required
 def list_friends():

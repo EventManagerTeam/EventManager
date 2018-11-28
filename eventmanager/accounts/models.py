@@ -41,6 +41,14 @@ class AccountDetails(models.Model):
         null=True
     )
 
+    friends = models.ManyToManyField(
+        User,
+        verbose_name=_("Friends"),
+        blank=True,
+        null=True,
+        related_name="friends"
+    )
+
     birth_date = models.DateField(("birthdate"), blank=True, null=True)
 
     description = models.TextField(
