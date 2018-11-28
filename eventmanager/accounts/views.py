@@ -174,6 +174,23 @@ def show_account_details(request):
     else:
         return account_details(request)
 
+@login_required
+def gеt_user_by_slug(request,slug):
+    details = AccountDetails.objects.get(slug=slug)
+    user = details.user
+    details = AccountDetails.objects.get(user=user)
+    friend = is_my_friend(request,user)
+    return render(
+        request,
+        'accounts/user_account.html',
+        {
+            'details': details,
+            'name': request.user.first_name + request.user.last_name,
+            'username': request.user.username,
+            'email': request.user.email,
+            'friends': friend
+        }
+    )
 
 @login_required
 def edit_account_details(request):
@@ -206,6 +223,20 @@ def edit_account_details(request):
         context
     )
 
+def is_my_friend(request,friend):
+    me = request.user
+    my_details = AccountDetails.objects.get(user=me).friends.all()
+    friend_details = AccountDetails.objects.get(user=friend).friends.all()
+    if me in friend_details:
+        return True
+
+    if friend in my_details:
+        return True
+
+    return False
+    return my_details
+
+
 
 @login_required
 def list_users(request):
@@ -219,13 +250,12 @@ def list_users(request):
     context = {'users': chunks}
     return render(request, 'friends/all_accounts.html', context)
 
-
 @login_required
 def search_users(request):
     form = UserForm(request.POST or None)
     users = []
     context = {'form': form}
-
+    logged_in_user = request.user
     if request.method == 'POST':
         if form.is_valid():
             username = request.POST.get('username')
@@ -234,10 +264,12 @@ def search_users(request):
                 if AccountDetails.objects.filter(user=user):
                     details = AccountDetails.objects.get(user=user)
                     user.details = details
+                user.my_friend = is_my_friend(request, user)
+
             context = {'users': users, 'form': form}
 
     return render(request, 'friends/find_account.html', context)
-    
+
 
 @login_required
 def list_friends():
@@ -245,10 +277,24 @@ def list_friends():
 
 
 @login_required
-def friend():
-    pass
+def friend(request,slug):
+    user1 = request.user
+    details1 = AccountDetails.objects.get(user=user1)
+    details2 = AccountDetails.objects.get(slug=slug)
+    user2 = details2.user
+    details1.friends.add(user2)
+    details2.friends.add(user1)
+    context = {'success_message': "friended  " + user2.username}
+    return render(request, 'CRUDops/successfully.html', context)
 
 
 @login_required
-def unfriend():
-    pass
+def unfriend(request,slug):
+    user1 = request.user
+    details1 = AccountDetails.objects.get(user=user1)
+    details2 = AccountDetails.objects.get(slug=slug)
+    user2 = details2.user
+    details1.friends.remove(user2)
+    details2.friends.remove(user1)
+    context = {'success_message': "unfriended  " + user2.username}
+    return render(request, 'CRUDops/successfully.html', context)
