@@ -24,6 +24,7 @@ from django.shortcuts import redirect
 
 from accounts.models import AccountDetails
 
+
 def index(request):
     return render(request, 'accounts/index.html')
 
@@ -218,6 +219,7 @@ def list_users(request):
     context = {'users': chunks}
     return render(request, 'friends/all_accounts.html', context)
 
+
 @login_required
 def search_users(request):
     form = UserForm(request.POST or None)
@@ -232,8 +234,7 @@ def search_users(request):
                 if AccountDetails.objects.filter(user=user):
                     details = AccountDetails.objects.get(user=user)
                     user.details = details
-            context = {'users': users,'form': form}
-
+            context = {'users': users, 'form': form}
 
     return render(request, 'friends/find_account.html', context)
 
@@ -245,6 +246,7 @@ def search_users(request):
 
     # context = {'filter': user_filter}
     # return render(request, 'friends/find_account.html', context)
+
 
 @login_required
 def list_friends():

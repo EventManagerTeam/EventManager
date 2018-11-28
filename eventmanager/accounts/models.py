@@ -50,6 +50,7 @@ class AccountDetails(models.Model):
         null=True,
         blank=True
     )
+
     def is_slug_used(slug):
         return Category.objects.filter(slug=slug).exists()
 

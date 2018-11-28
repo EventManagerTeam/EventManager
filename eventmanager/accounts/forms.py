@@ -63,6 +63,7 @@ class AccountDetailsForm(ModelForm):
             'description',
         ]
 
+
 class UserForm(forms.Form):
     username = forms.CharField(
         widget=forms.TextInput(
