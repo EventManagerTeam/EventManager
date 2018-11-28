@@ -2,6 +2,7 @@ from accounts.forms import LoginForm
 from accounts.forms import SignUpForm
 from accounts.forms import ChangeEmailForm
 from accounts.forms import AccountDetailsForm
+from accounts.forms import UserForm
 
 from django.contrib import messages
 
@@ -22,7 +23,6 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 
 from accounts.models import AccountDetails
-from .filters import UserFilter
 
 def index(request):
     return render(request, 'accounts/index.html')
@@ -211,22 +211,40 @@ def list_users(request):
     users = User.objects.all()
 
     for user in users:
-        details = AccountDetails.objects.get(user=user)
-        user.details = details
+        if AccountDetails.objects.filter(user=user):
+            details = AccountDetails.objects.get(user=user)
+            user.details = details
     chunks = [users[x:x + 3] for x in range(0, len(users), 3)]
     context = {'users': chunks}
     return render(request, 'friends/all_accounts.html', context)
 
 @login_required
 def search_users(request):
-    users = User.objects.all()
-    for user in users:
-        details = AccountDetails.objects.get(user=user)
-        user.details = details
-    user_filter = UserFilter(request.GET, queryset=users)
+    form = UserForm(request.POST or None)
+    users = []
+    context = {'form': form}
 
-    context = {'filter': user_filter}
+    if request.method == 'POST':
+        if form.is_valid():
+            username = request.POST.get('username')
+            users = User.objects.all().filter(username__icontains=username)
+            for user in users:
+                if AccountDetails.objects.filter(user=user):
+                    details = AccountDetails.objects.get(user=user)
+                    user.details = details
+            context = {'users': users,'form': form}
+
+
     return render(request, 'friends/find_account.html', context)
+
+    # users = User.objects.all()
+    # for user in users:
+    #     details = AccountDetails.objects.get(user=user)
+    #     user.details = details
+    # user_filter = UserFilter(request.GET, queryset=users)
+
+    # context = {'filter': user_filter}
+    # return render(request, 'friends/find_account.html', context)
 
 @login_required
 def list_friends():

@@ -13,14 +13,20 @@
 
 {% block content %}
 <br>
-<form method="get" style="width: 60%;margin: auto;">
-    <h1> {{ filter.form|crispy }} </h1>
-   <button type="submit" class="btn btn-primary btn-lg btn-block">Search</button>
- </form>
+<div class="col-md-8  col-md-offset-2 centered">
+    <form method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <h1> {{ form|crispy }} </h1>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">
+            <h1> Add info </h1>
+        </button>
+    </form>
+</div>
+<div class="col-md-8  col-md-offset-2 centered">
+
  <ul>
    <div class="card-columns">
-    {% for user in filter.qs %}
-    {{user}}
+    {% for user in users%}
     <div class="card-body">
         <div class="card">
             <img src="
@@ -29,7 +35,7 @@
                 {% else%}
                   https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg/600px-Default_profile_picture_%28male%29_on_Facebook.jpg
                 {% endif %} ">
-            <h1> {{name}} {{user}} </h1>
+            <h1> {{name}} </h1>
             <h2> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h2>
             {% if user.details.birth_date %} 
             <h2> <i class="fa fa-birthday-cake" aria-hidden="true"></i> Born in: {{user.details.birth_date}}  </h2>
@@ -40,6 +46,8 @@
     {% endfor %}
     </div>
  </ul>  
+ </div>
+
     <br> <br>
 {% endblock %}
 
