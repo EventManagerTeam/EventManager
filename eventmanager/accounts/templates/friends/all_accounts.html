@@ -12,6 +12,7 @@
 {% endblock %}
 
 {% block content %}
+    <h1 class="h1 display-3" style="font-size: xx-large;text-align: center;">  {{ title }} </h1>
     {% for row in users%}
     <div class="card-columns">
         {% for user in row%}
@@ -29,6 +30,7 @@
                     <h2> <i class="fa fa-birthday-cake" aria-hidden="true"></i> Born in: {{user.details.birth_date}}  </h2>
                     {% endif %}
                     <h2> {{user.details.description}} </h2>
+                     <button class="btn btn-danger btn-lg btn-block"  onclick='{{user.unfriend_url}}' type="button" style="font-size: x-large;"> Unfriend </button>
                 </div>
             </div>
         {% endfor %}

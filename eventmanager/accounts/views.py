@@ -272,8 +272,17 @@ def search_users(request):
 
 
 @login_required
-def list_friends():
-    pass
+def my_friends(request):
+    friends = AccountDetails.objects.get(user=request.user).friends.all()
+    for user in friends:
+        if AccountDetails.objects.filter(user=user):
+            details = AccountDetails.objects.get(user=user)
+            user.details = details
+            user.unfriend_url = "users/" + user.details.slug + "/unfriend"
+    
+    chunks = [friends[x:x + 3] for x in range(0, len(friends), 3)]
+    context = {'users': chunks, 'title': "My friends:"}
+    return render(request, 'friends/all_accounts.html', context)
 
 
 @login_required

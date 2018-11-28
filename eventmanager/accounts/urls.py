@@ -27,6 +27,7 @@ urlpatterns = [
     path('users/<slug:slug>', views.gеt_user_by_slug, name='accounts.list_users'),
     path('users/<slug:slug>/friend', views.friend, name='accounts.add_friend'),
     path('users/<slug:slug>/unfriend', views.unfriend, name='accounts.unfriend'),
+    path('friends', views.my_friends, name='events.my_friends'),
 
     path('friends/find', views.search_users, name='events.search_users'),
 
