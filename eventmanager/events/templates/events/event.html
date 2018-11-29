@@ -1,8 +1,11 @@
 {% extends 'accounts/base.html' %}
 
 {% load crispy_forms_tags %}
+
 {% include "accounts/partials/messages_partial.html" with messages=messages %}
+
 {% load static %}
+
 {% block title %} {{event.title}} {% endblock %}
 
 {% block head %}
@@ -39,9 +42,19 @@
         JOIN
     </button>
 {% endif %}
+<div class="col-xs-12" style="background-color: darkgrey">
+   <div class="row">
+      <div class="col-xs-8"><div class="sharethis-inline-share-buttons" style="padding-top: 2%"></div></div>
+      <div class="col-xs-4"><div class="sharethis-inline-reaction-buttons"></div>  </div>
+   </div>
+</div>
+        
+
 <p class="h2">
     {{event.description}}
 </p>
+
+
 <a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#guestsModal"> List Guests</a>
 
 <div class="modal hide" id="guestsModal">
