@@ -19,7 +19,7 @@ from django.urls import path
 from django.conf.urls.static import static
 from eventmanager import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.conf.urls import handler404,handler500
+from django.conf.urls import handler404, handler500
 
 
 urlpatterns = [
