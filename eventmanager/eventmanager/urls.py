@@ -19,13 +19,14 @@ from django.urls import path
 from django.conf.urls.static import static
 from eventmanager import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
+import notifications.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
     path('events/', include('events.urls')),
     path('categories/', include('categories.urls')),
+    url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
 ] + static(settings.STORAGE_URL, document_root=settings.STORAGE_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
