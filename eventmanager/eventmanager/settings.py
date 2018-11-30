@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'categories',
     'events',
     'crispy_forms',
+    'custom_errors'
 ]
 
 MIDDLEWARE = [
