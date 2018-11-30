@@ -26,7 +26,11 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('events/', include('events.urls')),
     path('categories/', include('categories.urls')),
-    url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
+    url(
+        '^inbox/notifications/',
+        include(notifications.urls,
+                namespace='notifications')
+    ),
 ] + static(settings.STORAGE_URL, document_root=settings.STORAGE_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
