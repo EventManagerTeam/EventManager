@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'events',
     'crispy_forms',
     'custom_errors'
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [

@@ -172,7 +172,7 @@ class Comment(models.Model):
 
     title = models.CharField(
         verbose_name=_("Title"),
-        max_length=500,
+        max_length=120,
         unique=False,
         null=False,
         blank=False
@@ -182,7 +182,8 @@ class Comment(models.Model):
         verbose_name=_("Description"),
         unique=True,
         null=False,
-        blank=False
+        blank=False,
+        max_length=500
     )
 
     is_active = models.BooleanField(

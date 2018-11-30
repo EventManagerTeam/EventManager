@@ -106,6 +106,23 @@
           <div class="modal-body">
                {% csrf_token %}
                <h1> {{ form|crispy }} </h1>
+               <script type="text/javascript">
+                    var textarea = document.querySelector("textarea");
+
+                    textarea.addEventListener("input", function(){
+                        var maxlength = 500;
+                        var currentLength = this.value.length;
+
+                        if( currentLength >= maxlength ){
+                            document.getElementById("remainingCount1").innerHTML = "You have reached the maximum number of characters.";
+                        } else{
+                            document.getElementById("remainingCount1").innerHTML = maxlength - currentLength + " chars left";
+                        }
+
+                    });
+                </script> 
+                <span id="remainingCount1">500 chars left </span>    
+
           </div>
           <div class="modal-footer">
                 <input type="submit" class="btn btn-success btn-block " value="Submit">
