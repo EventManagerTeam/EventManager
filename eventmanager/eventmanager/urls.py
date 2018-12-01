@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import include
 from django.urls import path
 from django.conf.urls import url
-
+from django.conf.urls import handler404, handler500
 from django.conf.urls.static import static
+
 from eventmanager import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 import notifications.urls
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,6 +37,9 @@ urlpatterns = [
     ),
 ] + static(settings.STORAGE_URL, document_root=settings.STORAGE_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'custom_errors.views.error_404_view'
+handler500 = 'custom_errors.views.error_404_view'
 
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
