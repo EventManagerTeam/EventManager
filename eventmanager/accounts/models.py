@@ -45,7 +45,6 @@ class AccountDetails(models.Model):
         User,
         verbose_name=_("Friends"),
         blank=True,
-        null=True,
         related_name="friends"
     )
 

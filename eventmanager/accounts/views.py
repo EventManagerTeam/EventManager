@@ -23,6 +23,8 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 
 from accounts.models import AccountDetails
+from events.models import Invite
+from events.models import Event
 
 
 def index(request):
@@ -289,22 +291,23 @@ def my_friends(request):
 
 @login_required
 def friend(request, slug):
-    user1 = request.user
-    details1 = AccountDetails.objects.get(user=user1)
-    details2 = AccountDetails.objects.get(slug=slug)
-    user2 = details2.user
-    details1.friends.add(user2)
-    context = {'success_message': "sent friend request to  " + user2.username}
+    logged_in_user = request.user
+    logged_in_user_details = AccountDetails.objects.get(user=logged_in_user)
+    other_user_details = AccountDetails.objects.get(slug=slug)
+    other_user = other_user_details.user
+    logged_in_user_details.friends.add(other_user)
+    context = {
+        'success_message': "sent friend request to  " + other_user.username}
     return render(request, 'CRUDops/successfully.html', context)
 
 
 @login_required
 def unfriend(request, slug):
-    user1 = request.user
-    details1 = AccountDetails.objects.get(user=user1)
-    details2 = AccountDetails.objects.get(slug=slug)
-    user2 = details2.user
-    details1.friends.remove(user2)
-    details2.friends.remove(user1)
-    context = {'success_message': "unfriended  " + user2.username}
+    logged_in_user = request.user
+    logged_in_user_details = AccountDetails.objects.get(user=logged_in_user)
+    other_user_details = AccountDetails.objects.get(slug=slug)
+    other_user = other_user_details.user
+    logged_in_user_details.friends.remove(other_user)
+    other_user_details.friends.remove(logged_in_user)
+    context = {'success_message': "unfriended  " + other_user.username}
     return render(request, 'CRUDops/successfully.html', context)
