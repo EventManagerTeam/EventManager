@@ -157,7 +157,7 @@ def show_events_by_slug(request, slug):
     for message in storage:
         pass
     final_users = []
-    users = None
+
     if AccountDetails.objects.filter(user=request.user).exists():
         users = AccountDetails.objects.get(user=request.user).friends.all()
         for user in users:
@@ -232,3 +232,12 @@ def invite(request, slug, event):
     success_message = 'You have invited the user successfully'
     messages.success(request, success_message)
     return show_events_by_slug(request, event.slug)
+
+
+def invites(request):
+    user = request.user
+    invites = Invite.objects.filter(invited_user=user, is_accepted=False)
+    events = Event.objects.all()
+
+    context = {'events': invites}
+    return render(request, 'events/invites.html', context)

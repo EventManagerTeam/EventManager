@@ -1,0 +1,41 @@
+
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block head %}
+<link href="{% static "events/event.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<h1 class="h1 display-3" style="text-align: center;"> Invites: </h1>
+    {% for event in events %}
+    <div class="card comments-card">
+        <div class="card-body">
+        	{% if event.event.cover_image%}
+        	 <div class="row">
+        	  <div class="col-sm-4">
+        	  	<h1 class="card-title" > 
+        	  		<a href = "/events/{{event.event.slug}}"> {{event.event}}  </a>	
+        	  		<div class="blockquote-footer"> Invited by {{ event.invited_by }} </div>
+        	  	</h1>
+        	  	<h2> {{event.event.description}}</h2>
+        	  </div>
+        	  <div class="col-sm-8"><img src="{{event.event.cover_image.url}}" style="max-width: 100%;"></div>
+
+        	</div>
+        	{% else %}
+        	<h1 class="card-title" > 
+        		<a href = "/events/{{event.event.slug}}"> {{event.event}}  </a>	
+        		<div class="blockquote-footer"> Invited by {{ event.invited_by }} </div>
+        	</h1>
+        	<h2> {{event.event.description}}</h2>	
+        	{% endif%}
+        	<br> <br>
+        	<button class="btn btn-success btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/users/{{user.details.slug}}/{{event.slug}}/invite'" type="button" style="font-size: x-large;max-width: 100%;"> Accept invitation </button>
+        	<p class="card-text">{{ comment.content|safe }} </p> 
+        </div>
+    </div>
+    <br> <br> <br> <br>
+    {% endfor %}
+{% endblock %}
+
