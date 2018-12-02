@@ -160,12 +160,11 @@ def show_events_by_slug(request, slug):
     users = None
     if AccountDetails.objects.filter(user=request.user).exists():
         users = AccountDetails.objects.get(user=request.user).friends.all()
-
-    for user in users:
-        if AccountDetails.objects.filter(user=user):
-            details = AccountDetails.objects.get(user=user)
-            user.details = details
-            final_users.append(user)
+        for user in users:
+            if AccountDetails.objects.filter(user=user):
+                details = AccountDetails.objects.get(user=user)
+                user.details = details
+                final_users.append(user)
 
     if request.method == 'POST':
         if form.is_valid():
