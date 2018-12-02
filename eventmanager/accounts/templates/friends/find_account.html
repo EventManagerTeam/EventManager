@@ -1,8 +1,6 @@
 {% extends 'accounts/base.html' %}
 {% load static %}
 
-{% load crispy_forms_tags %}
-
 {% block title %} All users{% endblock %}
 
 {% block head %}
@@ -12,28 +10,9 @@
 {% endblock %}
 
 {% block content %}
-<br>
-<div class="col-md-8  col-md-offset-2 centered">
-    <form method="post" enctype='multipart/form-data'>
-        {% csrf_token %}
-        <div class="row">
-            <div class="col-sm-8">        
-                <h1> {{ form.username|as_crispy_field }} </h1>
-            </div>
-            <div class="col-sm-4">
-                <button class="btn btn-primary btn-lg btn-block" style="margin:auto;position:absolute; bottom:0;" type="submit">
-                    <h1> Find </h1>
-                </button>
-
-            </div>  
-        </div> 
-        
-    </form>
-</div>
+    
+{% include "friends/partials/search_by_username_form.html" with form=form %}
 {% include "friends/partials/list_friends.html" with users=users form=form %}
 
- </div>
-
-    <br> <br>
 {% endblock %}
 

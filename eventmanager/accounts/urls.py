@@ -35,6 +35,7 @@ urlpatterns = [
         views.unfriend,
         name='accounts.unfriend'
     ),
+
     path('friends', views.my_friends, name='events.my_friends'),
     path('friends/find', views.search_users, name='events.search_users'),
 

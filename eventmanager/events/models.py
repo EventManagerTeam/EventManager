@@ -60,7 +60,6 @@ class Event(models.Model):
         User,
         verbose_name=_("Attendees"),
         blank=True,
-        null=True,
         related_name="attendees"
     )
     cover_image = models.ImageField(
@@ -210,3 +209,57 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class IniviteQuerySet(TreeQuerySet):
+    def active(self):
+        return self.filter(is_active=True)
+
+    def sort(self):
+        return self.order_by('name')
+
+
+class IniviteManager(models.Manager):
+    def get_queryset(self):
+        return IniviteQuerySet(self.model, using=self._db)
+
+    def active(self):
+        return self.get_queryset().active()
+
+    def sort(self):
+        return self.get_queryset().sort()
+
+
+class Invite(models.Model):
+
+    invited_user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='invited_user'
+    )
+
+    invited_by = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='invited_by'
+    )
+
+    event = models.ForeignKey(
+        'events.Event',
+        on_delete=models.CASCADE,
+        related_name='event',
+    )
+
+    is_accepted = models.BooleanField(
+        verbose_name=_("Is accepted"),
+        default=False
+    )
+
+    objects = IniviteManager()
+
+    class Meta(object):
+        verbose_name = _("Inivite")
+        verbose_name_plural = _("Inivites")
+
+    def __str__(self):
+        return self.invited_user.username

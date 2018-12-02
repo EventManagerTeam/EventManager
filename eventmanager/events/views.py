@@ -1,13 +1,17 @@
-from django.shortcuts import render
-from events.models import Event
-from categories.models import Category
-from django.contrib.auth.models import User
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .forms import EventForm
-from django.contrib.auth.decorators import login_required
-from django.core.exceptions import PermissionDenied
 from .forms import CommentForm
+from .forms import EventForm
+from accounts.forms import UserForm
+from accounts.models import AccountDetails
+from categories.models import Category
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render
 from events.models import Comment
+from events.models import Event
+from events.models import Invite
 
 
 def index(request):
@@ -147,6 +151,21 @@ def show_events_by_slug(request, slug):
     comments = Comment.objects.active()
     comments = comments.filter(event=event).order_by('-created_at')
     form = CommentForm(request.POST or None)
+    username_form = UserForm(request.POST or None)
+
+    storage = messages.get_messages(request)
+    for message in storage:
+        pass
+    final_users = []
+    users = None
+    if AccountDetails.objects.filter(user=request.user).exists():
+        users = AccountDetails.objects.get(user=request.user).friends.all()
+
+    for user in users:
+        if AccountDetails.objects.filter(user=user):
+            details = AccountDetails.objects.get(user=user)
+            user.details = details
+            final_users.append(user)
 
     if request.method == 'POST':
         if form.is_valid():
@@ -164,7 +183,8 @@ def show_events_by_slug(request, slug):
         'comments': comments,
         'form': form,
         'has_joined': has_joined,
-        'guests': Event.get_guests(slug)
+        'guests': Event.get_guests(slug),
+        'users': final_users
     }
     return render(request, 'events/event.html', context)
 
@@ -196,3 +216,20 @@ def cancel_join(request, slug):
     event.save()
     context = {'success_message': "removed going status from  " + event.title}
     return render(request, 'CRUDops/successfully.html', context)
+
+
+def invite(request, slug, event):
+    logged_in_user = request.user
+    logged_in_user_details = AccountDetails.objects.get(user=logged_in_user)
+    other_user_details = AccountDetails.objects.get(slug=slug)
+    invited_user = other_user_details.user
+
+    event = Event.objects.get(slug=event)
+    invite = Invite.objects.get_or_create(
+        invited_user=invited_user,
+        invited_by=logged_in_user,
+        event=event)
+
+    success_message = 'You have invited the user successfully'
+    messages.success(request, success_message)
+    return show_events_by_slug(request, event.slug)
