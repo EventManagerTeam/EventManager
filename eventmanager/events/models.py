@@ -258,8 +258,8 @@ class Invite(models.Model):
     objects = IniviteManager()
 
     class Meta(object):
-        verbose_name = _("Inivite")
-        verbose_name_plural = _("Inivites")
+        verbose_name = _("Invite")
+        verbose_name_plural = _("Invites")
 
     def __str__(self):
         return self.invited_user.username

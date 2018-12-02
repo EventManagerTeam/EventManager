@@ -42,31 +42,32 @@ def create_event(request):
     form = EventForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-            post = form.save(commit=False)
-            post.added_by = request.user
+            event = form.save(commit=False)
+            event.added_by = request.user
 
             if request.POST.get('starts_at') \
                     and request.POST.get('starts_at_time'):
-                post.starts_at = get_datetime(
+                event.starts_at = get_datetime(
                     request.POST.get('starts_at'),
                     request.POST.get('starts_at_time')
                 )
 
             if request.POST.get('ends_at') \
                     and request.POST.get('ends_at_time'):
-                post.ends_at = get_datetime(
+                event.ends_at = get_datetime(
                     request.POST.get('ends_at'),
                     request.POST.get('ends_at_time')
                 )
             if request.FILES['cover_image']:
-                post.cover_image = request.FILES['cover_image']
+                event.cover_image = request.FILES['cover_image']
 
-            post.save()
+            event.save()
             category = Category.objects.filter(
                 name=request.POST["category_select"]
             )
-            post.category.add(*list(category))
-            post.save()
+            event.category.add(*list(category))
+            event.attendees.add(request.user)
+            event.save()
             context = {'success_message': "added new event"}
             return render(request, 'CRUDops/successfully.html', context)
 
@@ -241,3 +242,13 @@ def invites(request):
 
     context = {'events': invites}
     return render(request, 'events/invites.html', context)
+
+
+def confirm_invite(request, slug):
+    event = Event.objects.get(slug=slug)
+    event.attendees.add(request.user)
+    Invite.objects.filter(
+        invited_user=request.user,
+        event=event).update(
+        is_accepted=True)
+    return invites(request)

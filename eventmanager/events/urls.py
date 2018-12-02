@@ -13,6 +13,11 @@ urlpatterns = [
     path('create_event/', views.create_event, name='events.create_event'),
     path('list/', views.index, name='events.list'),
     path('<slug:slug>', views.show_events_by_slug, name='events.event'),
+    path(
+        '<slug:slug>/confirm_invite',
+        views.confirm_invite,
+        name='events.confirm_invite'
+    ),
     path('<slug:slug>/delete', views.delete_event_by_slug, name='events.del'),
     path('<slug:slug>/edit', views.edit_event, name='events.edit'),
     path('<slug:slug>/join', views.join_event, name='events.join'),
