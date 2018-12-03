@@ -255,7 +255,8 @@ def search_users(request):
                 if AccountDetails.objects.filter(user=user):
                     details = AccountDetails.objects.get(user=user)
                     user.details = details
-                user.my_friend = AccountDetails.is_my_friend(request.user, user)
+                user.my_friend = AccountDetails.is_my_friend(
+                    request.user, user)
 
             context = {'users': users, 'form': form}
 

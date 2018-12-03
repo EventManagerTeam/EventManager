@@ -20,8 +20,16 @@ urlpatterns = [
     ),
     path('<slug:slug>/delete', views.delete_event_by_slug, name='events.del'),
     path('<slug:slug>/edit', views.edit_event, name='events.edit'),
-    path('<slug:slug>/add_teammate', views.add_teammate, name='events.add_teammate'),
-    path('<user>/<slug:slug>/add_teammate', views.event_team_add, name='events.event_team_add'),
+    path(
+        '<slug:slug>/add_teammate',
+        views.add_teammate,
+        name='events.add_teammate'
+    ),
+    path(
+        '<user>/<slug:slug>/add_teammate',
+        views.event_team_add,
+        name='events.event_team_add'
+    ),
     path('<slug:slug>/join', views.join_event, name='events.join'),
     path('<slug:slug>/cancel_join', views.cancel_join, name='events.rm_join'),
     url(r'^feed/$', EventFeed(), name='event_feed'),

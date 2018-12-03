@@ -256,7 +256,7 @@ def confirm_invite(request, slug):
 
 
 @login_required
-def add_teammate(request,slug):
+def add_teammate(request, slug):
     event = Event.objects.get(slug=slug)
     form = UserForm(request.POST or None)
 
@@ -273,13 +273,15 @@ def add_teammate(request,slug):
                     if AccountDetails.objects.filter(user=user):
                         details = AccountDetails.objects.get(user=user)
                         user.details = details
-                    user.my_friend = AccountDetails.is_my_friend(request.user, user)
+                    user.my_friend = AccountDetails.is_my_friend(
+                        request.user, user)
                     filtered_users.append(user)
             context = {'users': filtered_users, 'form': form, 'event': event}
 
     return render(request, 'events/add_teammate.html', context)
 
-def event_team_add(request,user, slug):
+
+def event_team_add(request, user, slug):
     event = Event.objects.get(slug=slug)
     user = User.objects.get(username=user)
     members = Event.objects.get(slug=slug).team_members.all()
@@ -289,6 +291,7 @@ def event_team_add(request,user, slug):
     if user not in members:
         event.team_members.add(user)
 
-    context = {'success_message': "added new team member " + str(user) + " for event " + event.title }
+    context = {'success_message': "added new team member " +
+               str(user) + " for event " + event.title}
     return render(request, 'CRUDops/successfully.html', context)
-    #return add_teammate(request,slug)
+    # return add_teammate(request,slug)

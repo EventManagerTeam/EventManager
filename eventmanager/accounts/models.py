@@ -74,7 +74,8 @@ class AccountDetails(models.Model):
         if AccountDetails.objects.filter(user=user).exists():
             my_details = AccountDetails.objects.get(user=user).friends.all()
         if AccountDetails.objects.filter(user=friend).exists():
-            friend_details = AccountDetails.objects.get(user=friend).friends.all()
+            friend_details = AccountDetails.objects.get(
+                user=friend).friends.all()
             if user in friend_details:
                 return True
             if friend in my_details:
