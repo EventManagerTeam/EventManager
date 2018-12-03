@@ -182,7 +182,7 @@ def gеt_user_by_slug(request, slug):
     details = AccountDetails.objects.get(slug=slug)
     user = details.user
     details = AccountDetails.objects.get(user=user)
-    friend = is_my_friend(request, user)
+    friend = AccountDetails.is_my_friend(request.user, user)
     return render(
         request,
         'accounts/user_account.html',
@@ -228,19 +228,6 @@ def edit_account_details(request):
     )
 
 
-def is_my_friend(request, friend):
-    me = request.user
-    if AccountDetails.objects.filter(user=me).exists():
-        my_details = AccountDetails.objects.get(user=me).friends.all()
-    if AccountDetails.objects.filter(user=friend).exists():
-        friend_details = AccountDetails.objects.get(user=friend).friends.all()
-        if me in friend_details:
-            return True
-        if friend in my_details:
-            return True
-    return False
-
-
 @login_required
 def list_users(request):
     users = User.objects.all()
@@ -268,7 +255,7 @@ def search_users(request):
                 if AccountDetails.objects.filter(user=user):
                     details = AccountDetails.objects.get(user=user)
                     user.details = details
-                user.my_friend = is_my_friend(request, user)
+                user.my_friend = AccountDetails.is_my_friend(request.user, user)
 
             context = {'users': users, 'form': form}
 

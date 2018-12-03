@@ -62,6 +62,12 @@ class Event(models.Model):
         blank=True,
         related_name="attendees"
     )
+    team_members = models.ManyToManyField(
+        User,
+        verbose_name=_("Team"),
+        blank=True,
+        related_name="team"
+    )
     cover_image = models.ImageField(
         upload_to='events',
         blank=True,
