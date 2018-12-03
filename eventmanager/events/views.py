@@ -159,20 +159,21 @@ def show_events_by_slug(request, slug):
         pass
     final_users = []
 
-    if AccountDetails.objects.filter(user=request.user).exists():
-        users = AccountDetails.objects.get(user=request.user).friends.all()
-        for user in users:
-            if AccountDetails.objects.filter(user=user):
-                details = AccountDetails.objects.get(user=user)
-                user.details = details
-                final_users.append(user)
+    if request.user.is_authenticated:
+        if AccountDetails.objects.filter(user=request.user).exists():
+            users = AccountDetails.objects.get(user=request.user).friends.all()
+            for user in users:
+                if AccountDetails.objects.filter(user=user):
+                    details = AccountDetails.objects.get(user=user)
+                    user.details = details
+                    final_users.append(user)
 
-    if request.method == 'POST':
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.event = event
-            comment.author = request.user
-            comment.save()
+        if request.method == 'POST':
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.event = event
+                comment.author = request.user
+                comment.save()
 
     has_joined = False
     if Event.has_joined_event(request.user, slug):
