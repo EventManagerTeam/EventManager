@@ -29,10 +29,12 @@
         {% if request.user == event.added_by %}
         <button class="custom-btn btn-danger btn-lg" onclick="location.href=window.location.href  + '/delete'" type="button"> DELETE</button>
         <button class="custom-btn btn-warning btn-lg" onclick="location.href=window.location.href  + '/edit'" type="button"> EDIT</button>
+        <button class="custom-btn btn-warning btn-lg" onclick="location.href=window.location.href  + '/edit'" type="button"> ADD TEAM </button>
         {% endif %}
  
     </p>
 </div>
+{% if request.user.is_authenticated %}
 {% if has_joined %}
     <button class="custom-btn btn-danger btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/cancel_join'" type="button">
         REMOVE JOIN
@@ -41,8 +43,11 @@
     <button class="custom-btn btn-success btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/join'" type="button">
         JOIN
     </button>
-{% endif %}
 {% include "accounts/partials/messages_partial.html" with messages=messages %}
+
+{% endif %}
+{% endif %}
+
 
 <div class="col-xs-12" style="background-color: darkgrey">
    <div class="row">
@@ -85,6 +90,8 @@
     </div>
 </form>
 </div>
+
+{% if request.user.is_authenticated %}
 
 <a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#inviteModal"> Invite to event</a>
 
@@ -168,6 +175,7 @@
           </div>
         </form>
         </div>
+        {% endif %}
         {% for comment in comments %}
         <div class="card comments-card">
             <div class="card-body">
