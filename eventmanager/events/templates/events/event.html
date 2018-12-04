@@ -24,15 +24,22 @@
 {% endblock %}
 {% block content %}
 <div class="bg">
-    <p class="display-1 edit_delete">
+    <div class="display-1 edit_delete">
         {{event.title}}
-        {% if request.user == event.added_by %}
-        <button class="custom-btn btn-danger btn-lg" onclick="location.href=window.location.href  + '/delete'" type="button"> DELETE</button>
-        <button class="custom-btn btn-warning btn-lg" onclick="location.href=window.location.href  + '/edit'" type="button"> EDIT</button>
-        <button class="custom-btn btn-warning btn-lg" onclick="location.href=window.location.href  + '/edit'" type="button"> ADD TEAM </button>
-        {% endif %}
- 
-    </p>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Edit event
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% if request.user == event.added_by %}
+            <a class="dropdown-item btn-primary" onclick="location.href=window.location.href  + '/delete'" type="button"> delete event</a>
+            <a class="dropdown-item btn-primary" onclick="location.href=window.location.href  + '/edit'" type="button"> edit event</a>
+            <a class="dropdown-item btn-primary" onclick="location.href=window.location.href  + '/edit'" type="button"> add team </a>
+            {% endif %}
+            <a class="dropdown-item btn-primary"> change visibility of event </a>
+          </div>
+        </div>
+    </div>
 </div>
 {% if request.user.is_authenticated %}
 {% if has_joined %}
