@@ -58,7 +58,7 @@ class Event(models.Model):
         related_name="categories"
     )
 
-    visibility =  models.CharField(
+    visibility = models.CharField(
         verbose_name=_("visibility"),
         unique=False,
         null=False,

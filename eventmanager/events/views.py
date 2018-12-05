@@ -256,6 +256,7 @@ def confirm_invite(request, slug):
         is_accepted=True)
     return invites(request)
 
+
 @login_required
 def visibility_settings(request, slug):
     event = Event.objects.get(slug=slug)
@@ -267,6 +268,7 @@ def visibility_settings(request, slug):
             visibility = visibility_settings_form.cleaned_data['visibility']
             Event.objects.filter(slug=slug).update(visibility=visibility)
 
-
-    context = {'event': event,'visibility_settings_form':visibility_settings_form}
+    context = {
+        'event': event,
+        'visibility_settings_form': visibility_settings_form}
     return render(request, 'events/visibility_settings.html', context)
