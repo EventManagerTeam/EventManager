@@ -22,6 +22,7 @@ urlpatterns = [
     path('<slug:slug>/edit', views.edit_event, name='events.edit'),
     path('<slug:slug>/join', views.join_event, name='events.join'),
     path('<slug:slug>/cancel_join', views.cancel_join, name='events.rm_join'),
+    path('<slug:slug>/settings', views.visibility_settings, name='events.settings'),
     url(r'^feed/$', EventFeed(), name='event_feed'),
     url(r'^latest_feed/$', LatestEventFeed(), name='latest_event_feed'),
     path('<slug:slug>', views.show_events_by_slug, name='event'),

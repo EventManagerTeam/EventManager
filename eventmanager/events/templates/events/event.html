@@ -24,21 +24,28 @@
 {% endblock %}
 {% block content %}
 <div class="bg">
-    <div class="display-1 edit_delete">
+    <div class="display-1 edit_delete row">
+
+    <div class="col-xs-6 col-md-10">
         {{event.title}}
+    </div>
+
+    <div class="col-xs-6 col-md-2" >
         <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-warning dropdown-toggle custom-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false" style="font-size: xx-large;"  >
             Edit event
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            {% if request.user == event.added_by %}
-            <a class="dropdown-item btn-primary" onclick="location.href=window.location.href  + '/delete'" type="button"> delete event</a>
-            <a class="dropdown-item btn-primary" onclick="location.href=window.location.href  + '/edit'" type="button"> edit event</a>
-            <a class="dropdown-item btn-primary" onclick="location.href=window.location.href  + '/edit'" type="button"> add team </a>
-            {% endif %}
-            <a class="dropdown-item btn-primary"> change visibility of event </a>
-          </div>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% if request.user == event.added_by %}
+                <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/delete'" type="button"> delete event</a>
+                <a class="dropdown-item btn-primary large-text"  onclick="location.href=window.location.href  + '/edit'" type="button"> edit event</a>
+                <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/edit'" type="button"> add team </a>
+                {% endif %}
+                <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/settings'"> change visibility of event </a>
+            </div>
         </div>
+
+    </div>
     </div>
 </div>
 {% if request.user.is_authenticated %}

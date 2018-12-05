@@ -1,5 +1,7 @@
 from .forms import CommentForm
 from .forms import EventForm
+from .forms import VisibilitySettings
+
 from accounts.forms import UserForm
 from accounts.models import AccountDetails
 from categories.models import Category
@@ -253,3 +255,18 @@ def confirm_invite(request, slug):
         event=event).update(
         is_accepted=True)
     return invites(request)
+
+@login_required
+def visibility_settings(request, slug):
+    event = Event.objects.get(slug=slug)
+    visibility_settings_form = VisibilitySettings(request.POST or None)
+    print(visibility_settings_form)
+    print(request.POST)
+    if request.method == 'POST':
+        if visibility_settings_form.is_valid():
+            visibility = visibility_settings_form.cleaned_data['visibility']
+            Event.objects.filter(slug=slug).update(visibility=visibility)
+
+
+    context = {'event': event,'visibility_settings_form':visibility_settings_form}
+    return render(request, 'events/visibility_settings.html', context)

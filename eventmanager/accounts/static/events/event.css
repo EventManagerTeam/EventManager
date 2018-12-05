@@ -76,3 +76,7 @@ form{
 .comments-header{
     padding-top: 3%;
 }
+
+.large-text{
+    font-size: x-large;
+}
