@@ -39,7 +39,7 @@
                 {% if request.user == event.added_by %}
                 <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/delete'" type="button"> delete event</a>
                 <a class="dropdown-item btn-primary large-text"  onclick="location.href=window.location.href  + '/edit'" type="button"> edit event</a>
-                <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/edit'" type="button"> add team </a>
+                <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/add_teammate'" type="button"> add team </a>
                 {% endif %}
                 <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/settings'"> change visibility of event </a>
             </div>
@@ -90,10 +90,40 @@
                 <div class="card usercard">
                     <div class="card-body">
                         <h3 class="card-title">
-                            {{guest.username}}
+                            <a href="/users/{{guest.details.slug}}"> {{guest.username}} </a>
                             {% if guest.first_name and guest.last_name %}
                                 <div class=" text-muted">
                                     ({{ guest.first_name }} {{ guest.last_name }})
+                                </div>
+                            {% endif %}
+                        </h3>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+</div>
+
+
+<a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#teamModal"> List team members</a>
+
+<div class="modal hide" id="teamModal">
+    <form class="well" method="post">
+        <div class="modal-header">
+            <h3 class="h1"> Team members</h3>
+            <button type="button" class="close" data-dismiss="modal"> 
+                <i class="fa-2x fas fa-times-circle"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            {% for member in team %}
+                <div class="card usercard">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <a href="/users/{{member.details.slug}}"> {{member.username}} </a>
+                            {% if member.first_name and member.last_name %}
+                                <div class=" text-muted">
+                                    ({{ member.first_name }} {{ member.last_name }})
                                 </div>
                             {% endif %}
                         </h3>
@@ -118,28 +148,31 @@
     </div>
     <div class="modal-body">
         <ul>
-               <div class="card-columns">
-                {% for user in users%}
-                <div class="card-body">
-                    <div class="card" style="text-align: center; padding: 5%;">
-                        <img src="
-                            {% if user.details.profile_picture %}
-                              {{user.details.profile_picture.url}}
-                            {% else%}
-                              https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg/600px-Default_profile_picture_%28male%29_on_Facebook.jpg
-                            {% endif %} " style="width:100%">
-                        <h1> {{name}} </h1>
-                        <h2> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h2>
-                        {% if user.details.birth_date %} 
-                        <h2> <i class="fa fa-birthday-cake" aria-hidden="true"></i> Born in: {{user.details.birth_date}}  </h2>
-                        {% endif %}
-                        <h2> {{user.details.description}} </h2>
-                        <button class="btn btn-success btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/users/{{user.details.slug}}/{{event.slug}}/invite'" type="button" style="font-size: x-large;"> Invite </button>
-                    </div>
+           <div class="card-columns">
+            {% for user in users%}
+            <div class="card-body">
+                <div class="card" style="text-align: center; padding: 5%;">
+                    <img src="
+                        {% if user.details.profile_picture %}
+                          {{user.details.profile_picture.url}}
+                        {% else%}
+                          https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg/600px-Default_profile_picture_%28male%29_on_Facebook.jpg
+                        {% endif %} " style="width:100%">
+                    <h1> {{name}} </h1>
+                    <h2> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h2>
+                    {% if user.details.birth_date %} 
+                        <h2> 
+                            <i class="fa fa-birthday-cake" aria-hidden="true"></i> 
+                            Born in: {{user.details.birth_date}}  
+                        </h2>
+                    {% endif %}
+                    <h2> {{user.details.description}} </h2>
+                    <button class="btn btn-success btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/users/{{user.details.slug}}/{{event.slug}}/invite'" type="button" style="font-size: x-large;"> Invite </button>
                 </div>
-                {% endfor %}
-                </div>
-             </ul>
+            </div>
+            {% endfor %}
+            </div>
+        </ul>
     </div>
 </form>
 </div>

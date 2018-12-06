@@ -188,9 +188,9 @@ def gеt_user_by_slug(request, slug):
         'accounts/user_account.html',
         {
             'details': details,
-            'name': request.user.first_name + request.user.last_name,
-            'username': request.user.username,
-            'email': request.user.email,
+            'name': user.first_name + user.last_name,
+            'username': user.username,
+            'email': user.email,
             'friends': friend
         }
     )
