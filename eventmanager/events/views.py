@@ -187,7 +187,8 @@ def show_events_by_slug(request, slug):
             'form': form,
             'has_joined': has_joined,
             'guests': Event.get_guests(slug),
-            'users': final_users
+            'users': final_users,
+            'team': event.team_members.all()
         }
         return render(request, 'events/event.html', context)
 
@@ -318,9 +319,14 @@ def event_team_add(request, user, slug):
     members = Event.objects.get(slug=slug).team_members.all()
     if request.user not in members:
         event.team_members.add(request.user)
+        if request.user not in Event.objects.get(slug=slug).attendees.all():
+            event.attendees.add(request.user)
+
 
     if user not in members:
         event.team_members.add(user)
+        if user not in Event.objects.get(slug=slug).attendees.all():
+            event.attendees.add(user)
 
     context = {'success_message': "added new team member " +
                str(user) + " for event " + event.title}
