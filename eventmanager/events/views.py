@@ -330,7 +330,6 @@ def event_team_add(request, user, slug):
         if request.user not in Event.objects.get(slug=slug).attendees.all():
             event.attendees.add(request.user)
 
-
     if user not in members:
         event.team_members.add(user)
         if user not in Event.objects.get(slug=slug).attendees.all():

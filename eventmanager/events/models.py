@@ -1,5 +1,5 @@
 from categories.models import Category
-from accounts.models import  AccountDetails
+from accounts.models import AccountDetails
 from django.db import models
 from django.utils.translation import ugettext as _
 from mptt.querysets import TreeQuerySet
