@@ -266,7 +266,9 @@ def visibility_settings(request, slug):
     visibility_settings_form = VisibilitySettings(request.POST or None)
 
     if event.visibility != '1':
-        visibility_settings_form = VisibilitySettings(request.POST or None,initial={'visibility': event.visibility})
+        visibility_settings_form = VisibilitySettings(
+            request.POST or None, initial={
+                'visibility': event.visibility})
 
     if request.method == 'POST':
         if visibility_settings_form.is_valid():
@@ -277,6 +279,7 @@ def visibility_settings(request, slug):
         'event': event,
         'visibility_settings_form': visibility_settings_form}
     return render(request, 'events/visibility_settings.html', context)
+
 
 def add_teammate(request, slug):
     event = Event.objects.get(slug=slug)
