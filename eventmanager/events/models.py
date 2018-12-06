@@ -49,6 +49,7 @@ class Event(models.Model):
         null=False,
         blank=False
     )
+
     category = models.ManyToManyField(
         Category,
         verbose_name=_("Categories"),
@@ -56,27 +57,41 @@ class Event(models.Model):
         blank=False,
         related_name="categories"
     )
+
+    visibility = models.CharField(
+        verbose_name=_("visibility"),
+        unique=False,
+        null=False,
+        blank=False,
+        default='1',
+        max_length=2,
+    )
+
     attendees = models.ManyToManyField(
         User,
         verbose_name=_("Attendees"),
         blank=True,
         related_name="attendees"
     )
+
     team_members = models.ManyToManyField(
         User,
         verbose_name=_("Team"),
         blank=True,
         related_name="team"
     )
+
     cover_image = models.ImageField(
         upload_to='events',
         blank=True,
         null=True
     )
+
     is_active = models.BooleanField(
         verbose_name=_("Is active"),
         default=True
     )
+
     created_at = models.DateTimeField(
         verbose_name=_("Created at"),
         auto_now_add=True
