@@ -150,46 +150,52 @@ def edit_event(request, slug):
 
 
 def show_events_by_slug(request, slug):
-    event = Event.objects.active().get(slug=slug)
-    comments = Comment.objects.active()
-    comments = comments.filter(event=event).order_by('-created_at')
-    form = CommentForm(request.POST or None)
-    username_form = UserForm(request.POST or None)
+    try:
+        event = Event.objects.active().get(slug=slug)
+        if Event.can_view_event(event, request.user):
+            comments = Comment.objects.active()
+            comments = comments.filter(event=event).order_by('-created_at')
+            form = CommentForm(request.POST or None)
+            username_form = UserForm(request.POST or None)
 
-    storage = messages.get_messages(request)
-    for message in storage:
+            storage = messages.get_messages(request)
+            for message in storage:
+                pass
+            final_users = []
+
+            if request.user.is_authenticated:
+                if AccountDetails.objects.filter(user=request.user).exists():
+                    users = AccountDetails.objects.get(user=request.user).friends.all()
+                    for user in users:
+                        if AccountDetails.objects.filter(user=user):
+                            details = AccountDetails.objects.get(user=user)
+                            user.details = details
+                            final_users.append(user)
+
+                if request.method == 'POST':
+                    if form.is_valid():
+                        comment = form.save(commit=False)
+                        comment.event = event
+                        comment.author = request.user
+                        comment.save()
+
+            has_joined = Event.has_joined_event(request.user, slug)
+
+            context = {
+                'event': event,
+                'comments': comments,
+                'form': form,
+                'has_joined': has_joined,
+                'guests': Event.get_guests(slug),
+                'users': final_users
+            }
+            return render(request, 'events/event.html', context)
+    except:
         pass
-    final_users = []
 
-    if request.user.is_authenticated:
-        if AccountDetails.objects.filter(user=request.user).exists():
-            users = AccountDetails.objects.get(user=request.user).friends.all()
-            for user in users:
-                if AccountDetails.objects.filter(user=user):
-                    details = AccountDetails.objects.get(user=user)
-                    user.details = details
-                    final_users.append(user)
+    context = {'error_message': "Event is not available yet or you don't have permission to view it."}
+    return render(request, 'CRUDops/error.html', context)
 
-        if request.method == 'POST':
-            if form.is_valid():
-                comment = form.save(commit=False)
-                comment.event = event
-                comment.author = request.user
-                comment.save()
-
-    has_joined = False
-    if Event.has_joined_event(request.user, slug):
-        has_joined = True
-
-    context = {
-        'event': event,
-        'comments': comments,
-        'form': form,
-        'has_joined': has_joined,
-        'guests': Event.get_guests(slug),
-        'users': final_users
-    }
-    return render(request, 'events/event.html', context)
 
 
 @login_required

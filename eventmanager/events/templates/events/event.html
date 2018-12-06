@@ -49,21 +49,20 @@
     </div>
 </div>
 {% if request.user.is_authenticated %}
-{% if has_joined %}
-    <button class="custom-btn btn-danger btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/cancel_join'" type="button">
-        REMOVE JOIN
-    </button>
-{% else %}
-    <button class="custom-btn btn-success btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/join'" type="button">
-        JOIN
-    </button>
-{% include "accounts/partials/messages_partial.html" with messages=messages %}
-
+    {% if has_joined %}
+        <button class="custom-btn btn-danger btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/cancel_join'" type="button">
+            REMOVE JOIN
+        </button>
+    {% else %}
+        <button class="custom-btn btn-success btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/join'" type="button">
+            JOIN
+        </button>
+    {% include "accounts/partials/messages_partial.html" with messages=messages %}
+    {% endif %}
 {% endif %}
-{% endif %}
 
 
-<div class="col-xs-12" style="background-color: darkgrey">
+<div class="col-xs-12">
    <div class="row">
       <div class="col-xs-8"><div class="sharethis-inline-share-buttons" style="padding-top: 2%"></div></div>
       <div class="col-xs-4"><div class="sharethis-inline-reaction-buttons"></div>  </div>
