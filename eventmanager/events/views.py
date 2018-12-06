@@ -277,3 +277,43 @@ def visibility_settings(request, slug):
         'event': event,
         'visibility_settings_form': visibility_settings_form}
     return render(request, 'events/visibility_settings.html', context)
+
+def add_teammate(request, slug):
+    event = Event.objects.get(slug=slug)
+    form = UserForm(request.POST or None)
+
+    context = {'form': form}
+    logged_in_user = request.user
+
+    filtered_users = []
+    if request.method == 'POST':
+        if form.is_valid():
+            username = request.POST.get('username')
+            users = User.objects.all().filter(username__icontains=username)
+            for user in users:
+                if AccountDetails.is_my_friend(request.user, user):
+                    if AccountDetails.objects.filter(user=user):
+                        details = AccountDetails.objects.get(user=user)
+                        user.details = details
+                    user.my_friend = AccountDetails.is_my_friend(
+                        request.user, user)
+                    filtered_users.append(user)
+            context = {'users': filtered_users, 'form': form, 'event': event}
+
+    return render(request, 'events/add_teammate.html', context)
+
+
+def event_team_add(request, user, slug):
+    event = Event.objects.get(slug=slug)
+    user = User.objects.get(username=user)
+    members = Event.objects.get(slug=slug).team_members.all()
+    if request.user not in members:
+        event.team_members.add(request.user)
+
+    if user not in members:
+        event.team_members.add(user)
+
+    context = {'success_message': "added new team member " +
+               str(user) + " for event " + event.title}
+    return render(request, 'CRUDops/successfully.html', context)
+    # return add_teammate(request,slug)
