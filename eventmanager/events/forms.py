@@ -33,3 +33,8 @@ class VisibilitySettings(forms.Form):
         label='Choose event visibility',
         widget=forms.Select,
         choices=Options)
+
+    class Meta:
+        fields = [
+            'visibility',
+        ]

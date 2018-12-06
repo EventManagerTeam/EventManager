@@ -221,6 +221,7 @@ def cancel_join(request, slug):
     return render(request, 'CRUDops/successfully.html', context)
 
 
+@login_required
 def invite(request, slug, event):
     logged_in_user = request.user
     logged_in_user_details = AccountDetails.objects.get(user=logged_in_user)
@@ -238,6 +239,7 @@ def invite(request, slug, event):
     return show_events_by_slug(request, event.slug)
 
 
+@login_required
 def invites(request):
     user = request.user
     invites = Invite.objects.filter(invited_user=user, is_accepted=False)
@@ -247,6 +249,7 @@ def invites(request):
     return render(request, 'events/invites.html', context)
 
 
+@login_required
 def confirm_invite(request, slug):
     event = Event.objects.get(slug=slug)
     event.attendees.add(request.user)
@@ -261,8 +264,10 @@ def confirm_invite(request, slug):
 def visibility_settings(request, slug):
     event = Event.objects.get(slug=slug)
     visibility_settings_form = VisibilitySettings(request.POST or None)
-    print(visibility_settings_form)
-    print(request.POST)
+
+    if event.visibility != '1':
+        visibility_settings_form = VisibilitySettings(request.POST or None,initial={'visibility': event.visibility})
+
     if request.method == 'POST':
         if visibility_settings_form.is_valid():
             visibility = visibility_settings_form.cleaned_data['visibility']
