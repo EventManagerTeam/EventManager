@@ -138,14 +138,32 @@ class Event(models.Model):
         return unique_slug
 
     def has_joined_event(user, event_slug):
-        attendees = Event.objects.all().get(slug=event_slug).attendees.all()
-        return user in attendees
+        try:
+            attendees = Event.objects.get(slug=event_slug).attendees.all()
+            return user in attendees
+        except BaseException:
+            return False
 
     def get_guests(event_slug):
         return Event.objects.all().get(slug=event_slug).attendees.all()
 
-    def can_view_event(user, event_slug):
-        return True
+    def can_view_event(event_slug, user):
+        event_visibility = Event.objects.all().get(slug=event_slug).visibility
+        event = Event.objects.all().get(slug=event_slug)
+        has_joined_event = Event.has_joined_event(user, event)
+
+        if has_joined_event:
+            return True
+
+        if event_visibility == '1':  # is for everyone
+            return True
+
+        if user.is_authenticated:
+            if event_visibility == '2':  # is for logged in
+                return True
+            else:  # is for invited only
+                return Invite.is_invited(user, event)
+        return False
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -280,6 +298,13 @@ class Invite(models.Model):
     )
 
     objects = IniviteManager()
+
+    def is_invited(user, event):
+        try:
+            invite = Invite.objects.get(event=event, invited_user=user)
+            return True
+        except BaseException:
+            return False
 
     class Meta(object):
         verbose_name = _("Invite")
