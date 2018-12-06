@@ -1,4 +1,5 @@
 from categories.models import Category
+from accounts.models import  AccountDetails
 from django.db import models
 from django.utils.translation import ugettext as _
 from mptt.querysets import TreeQuerySet
@@ -145,7 +146,14 @@ class Event(models.Model):
             return False
 
     def get_guests(event_slug):
-        return Event.objects.all().get(slug=event_slug).attendees.all()
+        attendees = Event.objects.all().get(slug=event_slug).attendees.all()
+        filtered_attendees = []
+        for user in attendees:
+            if AccountDetails.objects.filter(user=user):
+                details = AccountDetails.objects.get(user=user)
+                user.details = details
+                filtered_attendees.append(user)
+        return attendees
 
     def can_view_event(event_slug, user):
         event_visibility = Event.objects.all().get(slug=event_slug).visibility

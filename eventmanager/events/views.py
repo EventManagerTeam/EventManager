@@ -161,6 +161,7 @@ def show_events_by_slug(request, slug):
         for message in storage:
             pass
         final_users = []
+        final_team = []
 
         if request.user.is_authenticated:
             if AccountDetails.objects.filter(user=request.user).exists():
@@ -181,6 +182,13 @@ def show_events_by_slug(request, slug):
 
         has_joined = Event.has_joined_event(request.user, slug)
 
+        team = event.team_members.all()
+        for user in team:
+            if AccountDetails.objects.filter(user=user):
+                details = AccountDetails.objects.get(user=user)
+                user.details = details
+                final_team.append(user)
+
         context = {
             'event': event,
             'comments': comments,
@@ -188,7 +196,7 @@ def show_events_by_slug(request, slug):
             'has_joined': has_joined,
             'guests': Event.get_guests(slug),
             'users': final_users,
-            'team': event.team_members.all()
+            'team': final_team
         }
         return render(request, 'events/event.html', context)
 
