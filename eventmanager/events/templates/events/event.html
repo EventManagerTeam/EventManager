@@ -45,30 +45,30 @@
 <a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#guestsModal"> List Guests</a>
 
 <div class="modal hide" id="guestsModal">
-<form class="well" method="post">
-    <div class="modal-header">
-        <h3 class="h1">Guest list:</h3>
-        <button type="button" class="close" data-dismiss="modal"> 
-            <i class="fa-2x fas fa-times-circle"></i>
-        </button>
-    </div>
-    <div class="modal-body">
-        {% for guest in guests %}
-        <div class="card usercard">
-            <div class="card-body">
-                <h3 class="card-title">
-                    {{guest.username}}
-                    {% if guest.first_name and guest.last_name %}
-                        <div class=" text-muted">
-                            ({{ guest.first_name }} {{ guest.last_name }})
-                        </div>
-                    {% endif %}
-                </h3>
-            </div>
+    <form class="well" method="post">
+        <div class="modal-header">
+            <h3 class="h1">Guest list:</h3>
+            <button type="button" class="close" data-dismiss="modal"> 
+                <i class="fa-2x fas fa-times-circle"></i>
+            </button>
         </div>
-        {% endfor %}
-    </div>
-</form>
+        <div class="modal-body">
+            {% for guest in guests %}
+                <div class="card usercard">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            {{guest.username}}
+                            {% if guest.first_name and guest.last_name %}
+                                <div class=" text-muted">
+                                    ({{ guest.first_name }} {{ guest.last_name }})
+                                </div>
+                            {% endif %}
+                        </h3>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </form>
 </div>
 
 
