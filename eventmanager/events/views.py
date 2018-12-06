@@ -165,7 +165,8 @@ def show_events_by_slug(request, slug):
 
             if request.user.is_authenticated:
                 if AccountDetails.objects.filter(user=request.user).exists():
-                    users = AccountDetails.objects.get(user=request.user).friends.all()
+                    users = AccountDetails.objects.get(
+                        user=request.user).friends.all()
                     for user in users:
                         if AccountDetails.objects.filter(user=user):
                             details = AccountDetails.objects.get(user=user)
@@ -190,12 +191,14 @@ def show_events_by_slug(request, slug):
                 'users': final_users
             }
             return render(request, 'events/event.html', context)
-    except:
+    except BaseException:
         pass
 
-    context = {'error_message': "Event is not available yet or you don't have permission to view it."}
+    error_message = "Event is not available yet\
+         or you don't have permission to view it."
+    context = {
+        'error_message': error_message}
     return render(request, 'CRUDops/error.html', context)
-
 
 
 @login_required
@@ -214,7 +217,7 @@ def join_event(request, slug):
     event = Event.objects.get(slug=slug)
     event.attendees.add(request.user)
     event.save()
-    context = {'success_message': "joined event" + event.title}
+    context = {'success_message': "joined event " + event.title}
     return render(request, 'CRUDops/successfully.html', context)
 
 
