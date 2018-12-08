@@ -136,9 +136,7 @@ def account_details(request):
 
     if request.method == 'POST':
         if has_already_added_account_info(request.user) != 0:
-            context = {'error_message': "Details were already added."}
-            return render(request, 'CRUDops/error.html', context)
-
+            return edit_account_details(request)
         if form.is_valid():
             details = form.save(commit=False)
             details.user = request.user
