@@ -19,7 +19,7 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - bash docker/helpers/coverage.sh
   - cd eventmanager
+  - bash ../docker/helpers/coverage.sh 
   - pycodestyle .
   - docker run event-manager /bin/sh -c "eventmanager/manage.py test eventmanager/"
