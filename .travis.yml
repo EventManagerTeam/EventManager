@@ -15,9 +15,7 @@ env:
 install:
   - docker-compose build
   - pip install pycodestyle
-  - pip install pytest
-  - pip install pytest-cov
-  - pip install coveralls
+  - pip install coverage
 
 script:
   - cd eventmanager
@@ -26,4 +24,5 @@ script:
   - pytest --cov=eventmanager/
 
 after_success:
-  - coveralls
+  - cd 
+  - bash docker/helpers/coverage.sh
