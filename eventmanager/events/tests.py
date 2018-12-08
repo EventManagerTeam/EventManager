@@ -225,23 +225,3 @@ class EventsUrlsTestClass(TestCase):
         )
         self.client.login(username='johnaaaa', password='johnpasswordaaa')
         self.url_returns_200('events/userslug/eventааааа/add_teammate')
-
-    def test_add_team_url(self):
-        user = User.objects.create_user(
-            'johnaaaa',
-            'lennonaaa@thebeatles.com',
-            'johnpasswordaaa'
-        )
-        event = Event.objects.create(
-            title="testy",
-            description='cool description',
-            slug="eventааааа",
-            added_by=user,
-        )
-        self.client.login(username='johnaaaa', password='johnpasswordaaa')
-
-        self.url_returns_200(
-            reverse(
-                "events.add_teammate",
-                kwargs={
-                    'slug': event.slug}))
