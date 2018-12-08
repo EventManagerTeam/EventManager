@@ -16,6 +16,7 @@ install:
   - docker-compose build
   - pip install pycodestyle
   - pip install coverage
+  - pip install -r requirements.txt
 
 script:
   - bash docker/helpers/coverage.sh
