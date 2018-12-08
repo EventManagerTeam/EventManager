@@ -160,7 +160,7 @@ def show_events_by_slug(request, slug):
         storage = messages.get_messages(request)
         for message in storage:
             pass
-            
+
         final_users = []
         final_team = []
 

@@ -184,19 +184,32 @@ class EventsUrlsTestClass(TestCase):
         self.url_returns_200(reverse("events.join", kwargs={'slug': "event"}))
 
     def test_unjoin_event(self):
-        self.url_returns_200(reverse("events.rm_join", kwargs={'slug': "event"}))
+        self.url_returns_200(
+            reverse(
+                "events.rm_join",
+                kwargs={
+                    'slug': "event"}))
 
     def test_event_settings_url(self):
-        self.url_returns_200(reverse("events.settings", kwargs={'slug': "event"}))
+        self.url_returns_200(
+            reverse(
+                "events.settings",
+                kwargs={
+                    'slug': "event"}))
 
     def test_event_invites_url(self):
         self.url_returns_200(reverse("events.invites"))
 
     def test_event_invite_url(self):
-        self.url_returns_200(reverse("events.invite", kwargs={'slug': 'userslug','event':"event"}))
+        self.url_returns_200(
+            reverse(
+                "events.invite",
+                kwargs={
+                    'slug': 'userslug',
+                    'event': "event"}))
 
     def test_event_url(self):
-        self.url_returns_200(reverse("events.event", kwargs={'slug':"event"}))
+        self.url_returns_200(reverse("events.event", kwargs={'slug': "event"}))
 
     def test_add_team_member(self):
         user = User.objects.create_user(
@@ -227,4 +240,8 @@ class EventsUrlsTestClass(TestCase):
         )
         self.client.login(username='johnaaaa', password='johnpasswordaaa')
 
-        self.url_returns_200(reverse("events.add_teammate",kwargs={'slug':event.slug}))
+        self.url_returns_200(
+            reverse(
+                "events.add_teammate",
+                kwargs={
+                    'slug': event.slug}))
