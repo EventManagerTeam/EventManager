@@ -21,4 +21,4 @@ script:
   - cd eventmanager
   - pycodestyle .
   - docker run event-manager /bin/sh -c "eventmanager/manage.py test eventmanager/"
-  - docker run event-manager /bin/sh -c "bash docker/helpers/coverage.sh"
+  - bash /code/docker/helpers/coverage.sh
