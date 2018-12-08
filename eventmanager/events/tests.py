@@ -9,8 +9,39 @@ from events.models import Event
 
 
 class EventsTestCase(TestCase):
-    def test_list_events(self):
-        pass
+    def setUp(self):
+        self.total_number_of_events = 25
+        self.client = Client()
+
+        self.client.login(username='john', password='johnpassword')
+        category = Category.objects.create(
+            name='test event category',
+            description='cool description',
+            slug="test",
+        )
+
+        for event_id in range(self.total_number_of_events):
+            eventstring = "test" + str(event_id)
+            self.event = Event.objects.create(
+                title=eventstring,
+                description=eventstring,
+            )
+            self.event.save()
+            self.event.category.add(category)
+            self.event.save()
+
+    def test_list_events_lists_event(self):
+        url = reverse('events.list')
+        resp = self.client.get(url)
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b"test1", resp.content)
+
+    def test_list_events_lists_categories(self):
+        url = reverse('events.list')
+        resp = self.client.get(url)
+        self.assertEqual(resp.status_code, 200)
+        self.assertIn(b'test event category', resp.content)
+
 
     def test_create_event(self):
         pass

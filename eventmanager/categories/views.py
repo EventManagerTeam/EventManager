@@ -7,7 +7,7 @@ from events.models import Event
 
 
 def listing(request):
-    categories = Category.objects.active()
+    categories = Category.objects.active().sort()
     chunks = [categories[x:x + 3] for x in range(0, len(categories), 3)]
     context = {'categories': chunks}
     return render(request, 'categories/all_categories.html', context)
@@ -28,6 +28,6 @@ def all_from_category(request, slug):
     except EmptyPage:
         events = paginator.page(paginator.num_pages)
 
-    categories = Category.objects.active()
+    categories = Category.objects.sort().active()
     context = {'events': events, 'categories': categories}
     return render(request, 'events/list_events.html', context)

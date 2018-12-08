@@ -72,7 +72,7 @@ class LoginTestCase(TestCase):
             'johnpassword'
         )
 
-    def url_testing(self, url, status_code=200):
+    def url_testing(self, url, status_code=200): # pragma: no cover
         response = self.client.get(url)
         self.assertEqual(response.status_code, status_code)
 
@@ -95,7 +95,7 @@ class LoginTestCase(TestCase):
 class AccountsUrlsTestClass(TestCase):
     client = Client()
 
-    def url_testing(self, url, status_code=200):
+    def url_testing(self, url, status_code=200): # pragma: no cover
         response = self.client.get(url)
         self.assertEqual(response.status_code, status_code)
 
@@ -114,10 +114,7 @@ class AccountsUrlsTestClass(TestCase):
         self.url_testing(reverse("accounts.signout"))
 
     def test_home_url(self):
-        self.url_testing(reverse("accounts.home"))
-
-    def test_home_url(self):
-        self.url_testing(reverse("accounts.login"))
+        self.url_testing(reverse("accounts.home"),302)
 
     def test_change_email(self):
         self.url_testing(reverse("change_email"), 302)
@@ -139,3 +136,12 @@ class AccountsUrlsTestClass(TestCase):
 
     def test_account_details_update(self):
         self.url_testing(reverse("accounts.edit_account_details"), 302)
+
+    def test_all_users_url(self):
+        self.url_testing(reverse("accounts.list_users"),302)
+
+    def test_friends_url(self):
+        self.url_testing(reverse('accounts.my_friends'),302)
+
+    def test_search_friends_url(self):
+        self.url_testing(reverse("accounts.search_users"),302)
