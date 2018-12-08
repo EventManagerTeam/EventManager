@@ -42,7 +42,6 @@ class EventsTestCase(TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertIn(b'test event category', resp.content)
 
-
     def test_create_event(self):
         pass
 
