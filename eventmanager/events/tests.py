@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from categories.models import Category
 from events.models import Event
+from accounts.models import AccountDetails
 
 
 class EventsTestCase(TestCase):
@@ -60,6 +61,9 @@ class EventsTestCase(TestCase):
     def test_unjoin_event(self):
         pass
 
+    def test_add_teammate(self):
+        pass
+
 
 class EventsFeedsTestCase(TestCase):
     def setUp(self):
@@ -107,6 +111,13 @@ class EventsUrlsTestClass(TestCase):
             'lennon@thebeatles.com',
             'johnpassword'
         )
+
+        self.user.details = AccountDetails.objects.create(
+            user=self.user,
+            description='cool description',
+            slug="userslug"
+        )
+
         self.client.login(username='john', password='johnpassword')
         category = Category.objects.create(
             name='test event',
@@ -118,6 +129,7 @@ class EventsUrlsTestClass(TestCase):
             title="testy",
             description='cool description',
             slug="event",
+            added_by=self.user,
         )
         self.event.save()
         self.event.category.add(category)
@@ -137,19 +149,26 @@ class EventsUrlsTestClass(TestCase):
         self.url_returns_200(reverse("events.edit", kwargs={'slug': "event"}))
 
     def test_delete_event_url(self):
+        user = User.objects.create_user(
+            'johnaaaa',
+            'lennonaaa@thebeatles.com',
+            'johnpasswordaaa'
+        )
+        self.client.login(username='johnaaaa', password='johnpasswordaaa')
+
         category = Category.objects.create(
             name='unisdjsd',
             description='cool description',
             slug="tesddssst",
         )
-        self.event = Event.objects.create(
+        event = Event.objects.create(
             title="delete",
             description='cool description',
             slug="delete",
-            added_by=self.user,
+            added_by=user,
         )
-        self.event.save()
-        self.event.category.add(category)
+        event.save()
+        event.category.add(category)
         self.url_returns_200(reverse("events.del", kwargs={'slug': "delete"}))
 
     def test_view_event_url(self):
@@ -163,3 +182,46 @@ class EventsUrlsTestClass(TestCase):
 
     def test_join_event(self):
         self.url_returns_200(reverse("events.join", kwargs={'slug': "event"}))
+
+    def test_unjoin_event(self):
+        self.url_returns_200(
+            reverse(
+                "events.rm_join",
+                kwargs={
+                    'slug': "event"}))
+
+    def test_event_settings_url(self):
+        self.url_returns_200(
+            reverse(
+                "events.settings",
+                kwargs={
+                    'slug': "event"}))
+
+    def test_event_invites_url(self):
+        self.url_returns_200(reverse("events.invites"))
+
+    def test_event_invite_url(self):
+        self.url_returns_200(
+            reverse(
+                "events.invite",
+                kwargs={
+                    'slug': 'userslug',
+                    'event': "event"}))
+
+    def test_event_url(self):
+        self.url_returns_200(reverse("events.event", kwargs={'slug': "event"}))
+
+    def test_add_team_member(self):
+        user = User.objects.create_user(
+            'johnaaaa',
+            'lennonaaa@thebeatles.com',
+            'johnpasswordaaa'
+        )
+        event = Event.objects.create(
+            title="testy",
+            description='cool description',
+            slug="eventааааа",
+            added_by=user,
+        )
+        self.client.login(username='johnaaaa', password='johnpasswordaaa')
+        self.url_returns_200('events/userslug/eventааааа/add_teammate')

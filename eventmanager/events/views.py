@@ -160,6 +160,7 @@ def show_events_by_slug(request, slug):
         storage = messages.get_messages(request)
         for message in storage:
             pass
+
         final_users = []
         final_team = []
 
@@ -301,9 +302,8 @@ def add_teammate(request, slug):
     form = UserForm(request.POST or None)
 
     context = {'form': form}
-    logged_in_user = request.user
-
     filtered_users = []
+
     if request.method == 'POST':
         if form.is_valid():
             username = request.POST.get('username')
