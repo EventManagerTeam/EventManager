@@ -1,10 +1,14 @@
 from api.serializers import EventSerializer
-from api.serializers import CategorySerializer, CommentsSerializer, InvitationsSerializer
+from api.serializers import CategorySerializer
+from api.serializers import CommentsSerializer
+from api.serializers import InvitationsSerializer
 
 from django.core.serializers import serialize
 from django.shortcuts import render
 
-from events.models import Event, Comment, Invite
+from events.models import Event
+from events.models import Comment
+from events.models import Invite
 from categories.models import Category
 
 from rest_framework import filters
@@ -19,6 +23,7 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
+
 class CategoriesViewSet(viewsets.ModelViewSet):
     """
     A ModelViewSet for listing or retrieving news.
@@ -26,12 +31,14 @@ class CategoriesViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+
 class CommentsViewSet(viewsets.ModelViewSet):
     """
     A ModelViewSet for listing or retrieving news.
     """
     queryset = Comment.objects.all()
     serializer_class = CommentsSerializer
+
 
 class InvitationsViewSet(viewsets.ModelViewSet):
     """
