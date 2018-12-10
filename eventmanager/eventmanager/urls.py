@@ -35,6 +35,7 @@ urlpatterns = [
         include(notifications.urls,
                 namespace='notifications')
     ),
+    url(r'^api/', include('api.urls')),
 ] + static(settings.STORAGE_URL, document_root=settings.STORAGE_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
