@@ -24,6 +24,10 @@ from eventmanager import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 import notifications.urls
 
+from django.conf.urls import url
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='EventManager API')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,6 +40,7 @@ urlpatterns = [
                 namespace='notifications')
     ),
     url(r'^api/', include('api.urls')),
+    url(r'^swagger/', schema_view),
 ] + static(settings.STORAGE_URL, document_root=settings.STORAGE_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
