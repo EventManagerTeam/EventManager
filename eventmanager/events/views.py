@@ -338,3 +338,12 @@ def event_team_add(request, user, slug):
     context = {'success_message': "added new team member " +
                str(user) + " for event " + event.title}
     return render(request, 'CRUDops/successfully.html', context)
+
+
+def delete_comment_by_slug(request, slug, comment):
+    Comment.objects.get(pk=comment).delete()
+    return show_events_by_slug(request, slug)
+
+
+def edit_comment_by_slug(request, slug, comment):
+    pass
