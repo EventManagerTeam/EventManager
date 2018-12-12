@@ -19,8 +19,18 @@ urlpatterns = [
         name='events.confirm_invite'
     ),
     path('<slug:slug>/delete', views.delete_event_by_slug, name='events.del'),
-    path('<slug:slug>/<comment>/delete', views.delete_comment_by_slug, name='events.comment.del'),
-    path('<slug:slug>/<comment>/edit', views.edit_comment_by_slug, name='events.comment.edit'),
+    path(
+        '<slug:slug>/<comment>/delete',
+        views.delete_comment_by_slug,
+        name='events.comment.del'
+    ),
+
+    path(
+        '<slug:slug>/<comment>/edit',
+        views.edit_comment_by_slug,
+        name='events.comment.edit'
+    ),
+
 
     path('<slug:slug>/edit', views.edit_event, name='events.edit'),
     path(
