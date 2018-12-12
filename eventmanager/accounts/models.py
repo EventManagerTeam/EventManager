@@ -59,7 +59,6 @@ class AccountDetails(models.Model):
         blank=True
     )
 
-
     def is_my_friend(user, friend):
         if AccountDetails.objects.filter(user=user).exists():
             my_details = AccountDetails.objects.get(user=user).friends.all()
