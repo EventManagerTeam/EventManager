@@ -353,5 +353,5 @@ def edit_comment_by_slug(request, slug, comment):
         if form.is_valid():
             form.save()
 
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'events/add_comment.html', context)
