@@ -76,63 +76,10 @@
 
 
 <a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#guestsModal"> List Guests</a>
-
-<div class="modal hide" id="guestsModal">
-    <form class="well" method="post">
-        <div class="modal-header">
-            <h3 class="h1">Guest list:</h3>
-            <button type="button" class="close" data-dismiss="modal"> 
-                <i class="fa-2x fas fa-times-circle"></i>
-            </button>
-        </div>
-        <div class="modal-body">
-            {% for guest in guests %}
-                <div class="card usercard">
-                    <div class="card-body">
-                        <h3 class="card-title">
-                            <a href="/users/{{guest.details.slug}}"> {{guest.username}} </a>
-                            {% if guest.first_name and guest.last_name %}
-                                <div class=" text-muted">
-                                    ({{ guest.first_name }} {{ guest.last_name }})
-                                </div>
-                            {% endif %}
-                        </h3>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </form>
-</div>
-
+{% include "events/partials/guest_list.html" with guests=guests %}
 
 <a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#teamModal"> List team members</a>
-
-<div class="modal hide" id="teamModal">
-    <form class="well" method="post">
-        <div class="modal-header">
-            <h3 class="h1"> Team members</h3>
-            <button type="button" class="close" data-dismiss="modal"> 
-                <i class="fa-2x fas fa-times-circle"></i>
-            </button>
-        </div>
-        <div class="modal-body">
-            {% for member in team %}
-                <div class="card usercard">
-                    <div class="card-body">
-                        <h3 class="card-title">
-                            <a href="/users/{{member.details.slug}}"> {{member.username}} </a>
-                            {% if member.first_name and member.last_name %}
-                                <div class=" text-muted">
-                                    ({{ member.first_name }} {{ member.last_name }})
-                                </div>
-                            {% endif %}
-                        </h3>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </form>
-</div>
+{% include "events/partials/team_members.html" with team=team %}
 
 {% if request.user.is_authenticated %}
 
@@ -176,43 +123,7 @@
     </div>
 </form>
 </div>
-
-<div class="modal hide" id="contactModal">
-<form class="well" method="post">
-  <div class="modal-header">
-    <h3 class="h1">
-        Add your comment:
-    </h3>
-    <button type="button" class="close" data-dismiss="modal"> 
-        <i class="fa-2x fas fa-times-circle"></i>
-    </button>
-  </div>
-  <div class="modal-body">
-       {% csrf_token %}
-       <h1> {{ form|crispy }} </h1>
-       <script type="text/javascript">
-            var textarea = document.querySelector("textarea");
-
-            textarea.addEventListener("input", function(){
-                var maxlength = 500;
-                var currentLength = this.value.length;
-
-                if( currentLength >= maxlength ){
-                    document.getElementById("remainingCount1").innerHTML = "You have reached the maximum number of characters.";
-                } else{
-                    document.getElementById("remainingCount1").innerHTML = maxlength - currentLength + " chars left";
-                }
-
-            });
-        </script> 
-        <span id="remainingCount1">500 chars left </span>    
-
-  </div>
-  <div class="modal-footer">
-        <input type="submit" class="btn btn-success btn-block " value="Submit">
-  </div>
-</form>
-</div>
+{% include "events/partials/add_comment_modal.html" with form=form %}
 
 {% endif %}
 

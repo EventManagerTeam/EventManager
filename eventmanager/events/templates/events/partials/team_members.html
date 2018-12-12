@@ -1,0 +1,26 @@
+<div class="modal hide" id="teamModal">
+    <form class="well" method="post">
+        <div class="modal-header">
+            <h3 class="h1"> Team members</h3>
+            <button type="button" class="close" data-dismiss="modal"> 
+                <i class="fa-2x fas fa-times-circle"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            {% for member in team %}
+                <div class="card usercard">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <a href="/users/{{member.details.slug}}"> {{member.username}} </a>
+                            {% if member.first_name and member.last_name %}
+                                <div class=" text-muted">
+                                    ({{ member.first_name }} {{ member.last_name }})
+                                </div>
+                            {% endif %}
+                        </h3>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+</div>

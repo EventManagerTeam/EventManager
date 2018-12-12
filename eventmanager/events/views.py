@@ -346,4 +346,12 @@ def delete_comment_by_slug(request, slug, comment):
 
 
 def edit_comment_by_slug(request, slug, comment):
-    pass
+    instance = Comment.objects.get(pk=comment)
+    form = CommentForm(request.POST or None, instance=instance)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+
+    context = {'form':form}
+    return render(request, 'events/add_comment.html', context)
