@@ -25,29 +25,29 @@
 {% block content %}
 <div class="bg">
     <div class="display-1 edit_delete row">
-
-    <div class="col-xs-6 col-md-10">
-        {{event.title}}
-    </div>
-
-    <div class="col-xs-6 col-md-2" >
-        <div class="dropdown">
-            <button class="btn btn-warning dropdown-toggle custom-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false" style="font-size: xx-large;"  >
-            Edit event
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {% if request.user == event.added_by %}
-                <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/delete'" type="button"> delete event</a>
-                <a class="dropdown-item btn-primary large-text"  onclick="location.href=window.location.href  + '/edit'" type="button"> edit event</a>
-                <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/add_teammate'" type="button"> add team </a>
-                {% endif %}
-                <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/settings'"> change visibility of event </a>
-            </div>
+        <div class="col-xs-6 col-md-10">
+            {{event.title}}
         </div>
 
-    </div>
+        <div class="col-xs-6 col-md-2" >
+            <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle custom-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false" style="font-size: xx-large;"  >
+                Edit event
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {% if request.user == event.added_by %}
+                    <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/delete'" type="button"> delete event</a>
+                    <a class="dropdown-item btn-primary large-text"  onclick="location.href=window.location.href  + '/edit'" type="button"> edit event</a>
+                    <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/add_teammate'" type="button"> add team </a>
+                    {% endif %}
+                    <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/settings'"> change visibility of event </a>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
+
 {% if request.user.is_authenticated %}
     {% if has_joined %}
         <button class="custom-btn btn-danger btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/cancel_join'" type="button">
@@ -76,63 +76,10 @@
 
 
 <a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#guestsModal"> List Guests</a>
-
-<div class="modal hide" id="guestsModal">
-    <form class="well" method="post">
-        <div class="modal-header">
-            <h3 class="h1">Guest list:</h3>
-            <button type="button" class="close" data-dismiss="modal"> 
-                <i class="fa-2x fas fa-times-circle"></i>
-            </button>
-        </div>
-        <div class="modal-body">
-            {% for guest in guests %}
-                <div class="card usercard">
-                    <div class="card-body">
-                        <h3 class="card-title">
-                            <a href="/users/{{guest.details.slug}}"> {{guest.username}} </a>
-                            {% if guest.first_name and guest.last_name %}
-                                <div class=" text-muted">
-                                    ({{ guest.first_name }} {{ guest.last_name }})
-                                </div>
-                            {% endif %}
-                        </h3>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </form>
-</div>
-
+{% include "events/partials/guest_list.html" with guests=guests %}
 
 <a class="btn btn-success h1 btn-lg" data-toggle="modal" href="#teamModal"> List team members</a>
-
-<div class="modal hide" id="teamModal">
-    <form class="well" method="post">
-        <div class="modal-header">
-            <h3 class="h1"> Team members</h3>
-            <button type="button" class="close" data-dismiss="modal"> 
-                <i class="fa-2x fas fa-times-circle"></i>
-            </button>
-        </div>
-        <div class="modal-body">
-            {% for member in team %}
-                <div class="card usercard">
-                    <div class="card-body">
-                        <h3 class="card-title">
-                            <a href="/users/{{member.details.slug}}"> {{member.username}} </a>
-                            {% if member.first_name and member.last_name %}
-                                <div class=" text-muted">
-                                    ({{ member.first_name }} {{ member.last_name }})
-                                </div>
-                            {% endif %}
-                        </h3>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    </form>
-</div>
+{% include "events/partials/team_members.html" with team=team %}
 
 {% if request.user.is_authenticated %}
 
@@ -176,65 +123,11 @@
     </div>
 </form>
 </div>
+{% include "events/partials/add_comment_modal.html" with form=form %}
 
-<div class="comments-div">
-    <div class="comments-div">
-        <h1 class="display-3 center-text comments-header">
-            Comments:  
-            <a class="btn btn-success h1 btn-lg large-text add-comment-button" data-toggle="modal" href="#contactModal">
-                Add comment
-            </a>
-        </h1>
-        <div class="modal hide" id="contactModal">
-        <form class="well" method="post">
-          <div class="modal-header">
-            <h3 class="h1">
-                Add your comment:
-            </h3>
-            <button type="button" class="close" data-dismiss="modal"> 
-                <i class="fa-2x fas fa-times-circle"></i>
-            </button>
-          </div>
-          <div class="modal-body">
-               {% csrf_token %}
-               <h1> {{ form|crispy }} </h1>
-               <script type="text/javascript">
-                    var textarea = document.querySelector("textarea");
+{% endif %}
 
-                    textarea.addEventListener("input", function(){
-                        var maxlength = 500;
-                        var currentLength = this.value.length;
-
-                        if( currentLength >= maxlength ){
-                            document.getElementById("remainingCount1").innerHTML = "You have reached the maximum number of characters.";
-                        } else{
-                            document.getElementById("remainingCount1").innerHTML = maxlength - currentLength + " chars left";
-                        }
-
-                    });
-                </script> 
-                <span id="remainingCount1">500 chars left </span>    
-
-          </div>
-          <div class="modal-footer">
-                <input type="submit" class="btn btn-success btn-block " value="Submit">
-          </div>
-        </form>
-        </div>
-        {% endif %}
-        {% for comment in comments %}
-        <div class="card comments-card">
-            <div class="card-body">
-                <h3 class="card-title">{{ comment.title }} </h3>
-                <h4 class="card-subtitle mb-2 text-muted"> 
-                    Commented by {{ comment.author }} on {{ comment.created_at }} 
-                </h4>
-                <p class="card-text">{{ comment.content|safe }}</p>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</div>
+{% include "events/partials/comments.html" with comments=comments %}
 <br> <br> <br> <br> 
 {% endblock %}
 
