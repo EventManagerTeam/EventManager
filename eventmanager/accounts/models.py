@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 from mptt.querysets import TreeQuerySet
+from eventmanager.slugify import *
 
 
 class Accounts(object):
@@ -58,17 +59,6 @@ class AccountDetails(models.Model):
         blank=True
     )
 
-    def is_slug_used(slug):
-        return Category.objects.filter(slug=slug).exists()
-
-    def get_unique_slug(self):
-        slug = slugify(self.user.username)
-        unique_slug = slug
-        unique_num = 1
-        while Category.is_slug_used(unique_slug):
-            unique_slug = '{}-{}'.format(slug, unique_num)
-            unique_num += 1
-        return unique_slug
 
     def is_my_friend(user, friend):
         if AccountDetails.objects.filter(user=user).exists():
@@ -94,7 +84,8 @@ class AccountDetails(models.Model):
     def save_model(self, request, obj, form, change):
         obj.user = request.user
         if not self.slug:
-            self.slug = self.get_unique_slug()
+            unique_slugify(self, self.user.username)
+
         super().save_model(request, obj, form, change)
 
     class Meta(object):

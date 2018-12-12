@@ -6,6 +6,7 @@ from mptt.querysets import TreeQuerySet
 from django.contrib.auth.models import User
 
 from django.utils.text import slugify
+from eventmanager.slugify import *
 
 
 class EventQuerySet(TreeQuerySet):
@@ -126,18 +127,6 @@ class Event(models.Model):
         obj.added_by = request.user
         super().save_model(request, obj, form, change)
 
-    def is_slug_used(slug):
-        return Event.objects.filter(slug=slug).exists()
-
-    def get_unique_slug(self):
-        slug = slugify(self.title)
-        unique_slug = slug
-        unique_num = 1
-        while Event.is_slug_used(unique_slug):
-            unique_slug = '{}-{}'.format(slug, unique_num)
-            unique_num += 1
-        return unique_slug
-
     def has_joined_event(user, event_slug):
         try:
             attendees = Event.objects.get(slug=event_slug).attendees.all()
@@ -175,7 +164,7 @@ class Event(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = self.get_unique_slug()
+            unique_slugify(self, self.title)
         super(Event, self).save(*args, **kwargs)
 
     class Meta(object):

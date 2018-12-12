@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext as _
 from mptt.querysets import TreeQuerySet
 from django.utils.text import slugify
+from eventmanager.slugify import *
 
 
 class CategoryQuerySet(TreeQuerySet):
@@ -59,21 +60,9 @@ class Category(models.Model):
 
     objects = CategoryManager()
 
-    def is_slug_used(slug):
-        return Category.objects.filter(slug=slug).exists()
-
-    def get_unique_slug(self):
-        slug = slugify(self.name)
-        unique_slug = slug
-        unique_num = 1
-        while Category.is_slug_used(unique_slug):
-            unique_slug = '{}-{}'.format(slug, unique_num)
-            unique_num += 1
-        return unique_slug
-
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = self.get_unique_slug()
+            unique_slugify(self, self.name)
         super(Category, self).save(*args, **kwargs)
 
     class Meta(object):
