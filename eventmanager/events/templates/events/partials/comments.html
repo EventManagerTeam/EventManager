@@ -1,0 +1,16 @@
+
+<div class="comments-div">
+    <div class="comments-div">
+        <h1 class="display-3 center-text comments-header">
+            Comments:  
+            <a class="btn btn-success h1 btn-lg large-text add-comment-button" data-toggle="modal" href="#contactModal">
+                Add comment
+            </a>
+        </h1>
+
+       
+        {% for comment in comments %}
+            {% include "events/partials/comment.html" with comment=comment %}
+        {% endfor %}
+    </div>
+</div>
