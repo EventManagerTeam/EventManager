@@ -60,8 +60,8 @@ def create_event(request):
                     request.POST.get('ends_at'),
                     request.POST.get('ends_at_time')
                 )
-            if request.FILES['cover_image']:
-                event.cover_image = request.FILES['cover_image']
+            if request.FILES.get('cover_image'):
+                event.cover_image = request.FILES.get('cover_image')
 
             event.save()
             category = Category.objects.filter(
