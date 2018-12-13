@@ -5,14 +5,6 @@ from mptt.querysets import TreeQuerySet
 from eventmanager.slugify import *
 
 
-class Accounts(object):
-    """docstring for Accounts"""
-
-    def __init__(self, arg):
-        super(Accounts, self).__init__()
-        self.arg = arg
-
-
 class AccountDetailsQuerySet(TreeQuerySet):
     def all(self):
         return self
