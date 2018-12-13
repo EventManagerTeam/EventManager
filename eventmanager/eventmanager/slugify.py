@@ -2,7 +2,6 @@
 # https://djangosnippets.org/snippets/690/
 # All rights go to the author(SmileyChris) of the code snippet
 
-
 import re
 from django.template.defaultfilters import slugify
 
