@@ -324,8 +324,7 @@ class AccountsUrlsTestClass(TestCase):
         self.client.login(username='testuser', password='12345')
         response = self.client.get(reverse('accounts.list_users'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response,"testuser")
-
+        self.assertContains(response, "testuser")
 
     def test_search_users(self):
         self.user = User.objects.create_user(
@@ -338,8 +337,7 @@ class AccountsUrlsTestClass(TestCase):
         self.client.login(username='testuser', password='12345')
         response = self.client.get(reverse('accounts.search_users'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response,"testuser")
-
+        self.assertContains(response, "testuser")
 
     def test_gеt_user_by_slug(self):
         self.user = User.objects.create_user(
@@ -353,13 +351,20 @@ class AccountsUrlsTestClass(TestCase):
             slug="userslug"
         )
 
-
-        response = self.client.get(reverse('accounts.gеt_user_by_slug', kwargs={'slug': "userslug"}))
+        response = self.client.get(
+            reverse(
+                'accounts.gеt_user_by_slug',
+                kwargs={
+                    'slug': "userslug"}))
         self.assertEqual(response.status_code, 302)
         self.client.login(username='testuser', password='12345')
-        response = self.client.get(reverse('accounts.gеt_user_by_slug', kwargs={'slug': "userslug"}))
+        response = self.client.get(
+            reverse(
+                'accounts.gеt_user_by_slug',
+                kwargs={
+                    'slug': "userslug"}))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response,"testuser")
+        self.assertContains(response, "testuser")
 
     def test_show_account_details(self):
         self.user = User.objects.create_user(
@@ -374,7 +379,6 @@ class AccountsUrlsTestClass(TestCase):
         )
         self.client.login(username='testuser', password='12345')
         response = self.client.get(reverse('accounts.details'))
-
 
 
 class FriendsTestClass(TestCase):
@@ -408,7 +412,6 @@ class FriendsTestClass(TestCase):
         )
         self.client.login(username='john', password='johnpassword')
 
-
     def test_my_friend(self):
         self.user.details.friends.add(self.user2)
         self.user2.details.friends.add(self.user)
@@ -422,13 +425,20 @@ class FriendsTestClass(TestCase):
         response = self.client.get(reverse('accounts.my_friends'))
         self.assertContains(response, "testuser")
 
-        self.url_testing(reverse("accounts.unfriend", kwargs={'slug': "userslug2"}))
+        self.url_testing(
+            reverse(
+                "accounts.unfriend",
+                kwargs={
+                    'slug': "userslug2"}))
 
         response = self.client.get(reverse('accounts.my_friends'))
         self.assertNotContains(response, "testuser")
 
     def test_friend(self):
-        self.url_testing(reverse("accounts.add_friend", kwargs={'slug': "userslug2"}))
+        self.url_testing(
+            reverse(
+                "accounts.add_friend",
+                kwargs={
+                    'slug': "userslug2"}))
         response = self.client.get(reverse('accounts.my_friends'))
         self.assertContains(response, "testuser")
-
