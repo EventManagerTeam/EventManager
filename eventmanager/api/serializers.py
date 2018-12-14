@@ -2,6 +2,8 @@ from events.models import Event
 from events.models import Comment
 from events.models import Invite
 from categories.models import Category
+from accounts.models import AccountDetails
+
 from rest_framework import serializers
 
 
@@ -46,3 +48,15 @@ class InvitationsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invite
         fields = ("id", "invited_user", "invited_by", "event", "is_accepted",)
+
+
+class AccountDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AccountDetails
+        fields = (
+            "user",
+            "profile_picture",
+            "friends",
+            "birth_date",
+            "description",
+        )
