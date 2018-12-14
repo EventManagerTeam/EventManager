@@ -49,7 +49,14 @@ class InvitationsSerializer(serializers.ModelSerializer):
         model = Invite
         fields = ("id", "invited_user", "invited_by", "event", "is_accepted",)
 
+
 class AccountDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = AccountDetails
-        fields = ("user", "profile_picture", "friends", "birth_date", "description",)
+        fields = (
+            "user",
+            "profile_picture",
+            "friends",
+            "birth_date",
+            "description",
+        )
