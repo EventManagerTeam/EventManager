@@ -48,3 +48,11 @@ input, textarea, .card-text {
 
 textarea { font-size: 15px !important; }
 .textinput{ font-size: 30px !important; }
+
+.simple{
+    font-family: 'Bellefair', serif;
+}
+
+h3{
+    font-size: x-large;
+}
