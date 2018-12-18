@@ -32,15 +32,15 @@
         <div class="col-xs-6 col-md-2" >
             <div class="dropdown">
                 <button class="btn btn-warning dropdown-toggle custom-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false" style="font-size: xx-large;"  >
-                Edit event
+                Edit
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    {% if request.user == event.added_by %}
+                    {% if request.user == event.added_by or is_team_member %}
                     <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/delete'" type="button"> delete event</a>
                     <a class="dropdown-item btn-primary large-text"  onclick="location.href=window.location.href  + '/edit'" type="button"> edit event</a>
                     <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/add_teammate'" type="button"> add team </a>
-                    {% endif %}
                     <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/settings'"> change visibility of event </a>
+                    {% endif %}
                 </div>
             </div>
 

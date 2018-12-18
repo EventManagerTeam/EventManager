@@ -197,7 +197,8 @@ def show_events_by_slug(request, slug):
             'has_joined': has_joined,
             'guests': Event.get_guests(slug),
             'users': final_users,
-            'team': final_team
+            'team': final_team,
+            'is_team_member': Event.is_team_member(request.user, slug)
         }
         return render(request, 'events/event.html', context)
 

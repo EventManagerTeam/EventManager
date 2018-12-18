@@ -134,6 +134,13 @@ class Event(models.Model):
         except BaseException:
             return False
 
+    def is_team_member(user, event_slug):
+        try:
+            team = Event.objects.get(slug=event_slug).team_members.all()
+            return user in team
+        except BaseException:
+            return False
+
     def get_guests(event_slug):
         attendees = Event.objects.all().get(slug=event_slug).attendees.all()
         filtered_attendees = []
