@@ -75,16 +75,16 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <h3> Welcome, {{request.user}} </h3>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/account_details"> <h3> Account details </h3> </a>
-                        <a class="dropdown-item" href="/change_password"> <h3> Change password </h3> </a>
-                        <a class="dropdown-item" href="/change_email"> <h3> Change email </h3> </a>
+                        <a class="dropdown-item" href="/account_details"> <h3 style="font-size: x-large;"> Account details </h3> </a>
+                        <a class="dropdown-item" href="/change_password"> <h3 style="font-size: x-large;"> Change password </h3> </a>
+                        <a class="dropdown-item" href="/change_email"> <h3 style="font-size: x-large;"> Change email </h3> </a>
 
                         {% block navbar-right %}
                         {% endblock %}
 
                         <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/signout">
-                                <div class = "blue"> <h3>  Sign out </h3> </div>
+                                <div class = "blue"> <h3 style="font-size: x-large;">  Sign out </h3> </div>
                             </a>
                         </div>
                     </li>
@@ -100,8 +100,8 @@
         {% block content %}
         {% endblock %}
         <br>
-        <footer class="container-fluid text-center">
-            <h5> All rights reserved. </h5>
+        <footer class="container-fluid text-center ">
+            <h5 style="font-size: x-large;"> All rights reserved. </h5>
         </footer>
     </body>
 </html>
