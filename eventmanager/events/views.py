@@ -361,6 +361,7 @@ def edit_comment_by_slug(request, slug, comment):
     context = {'form': form}
     return render(request, 'events/add_comment.html', context)
 
+
 @login_required
 def event_board(request, slug):
     members = Event.objects.get(slug=slug).team_members.all()
@@ -373,4 +374,3 @@ def event_board(request, slug):
         context = {
             'error_message': error_message}
         return render(request, 'CRUDops/error.html', context)
-
