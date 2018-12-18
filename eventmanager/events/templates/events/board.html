@@ -1,0 +1,42 @@
+{% extends 'accounts/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block title %} Event Board {% endblock %}
+{% block head %}
+<style type="text/css">
+    .col-sm-3{
+        margin-left: 6%;
+        color:white;
+        text-align: center;
+    }
+
+    .heading{
+        padding: 5%;
+    }
+
+    hr{
+        border-top: 10px solid #ccc;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<br>
+  <div class="row" style="height: 80%;">
+    <div class="col-sm-3 bg-warning"> 
+        <h1 class="heading"> TO DO: <hr> </h1>
+        
+    </div>
+
+    <div class="col-sm-3 bg-success">
+        <h1 class="heading"> DONE: <hr> </h1>  
+    </div>
+    <div class="col-sm-3 bg-primary">
+        <h1 class="heading"> DOING: <hr> </h1>  
+    </div>
+  </div>
+{% endblock %}
+
