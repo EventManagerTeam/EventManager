@@ -1,3 +1,7 @@
+body{
+    font-family: 'Staatliches', cursive !important;
+}
+
 .container-fluid {
     background-color: #2f2f2f; 
     color: #fff;
@@ -7,9 +11,11 @@
     padding-top: 1%;
     padding-bottom: 1%;
 }
+
 .container {
     position: relative;
 }
+
 .container .content {
     position: absolute;
     bottom: 0;
@@ -36,5 +42,9 @@ input{
     width: 30%
 }
 
-textarea { font-size: 20px !important; }
-.textinput{ font-size: 20px !important; }
+input, textarea, .card-text {   
+    font-family: 'Arial';
+}
+
+textarea { font-size: 15px !important; }
+.textinput{ font-size: 30px !important; }

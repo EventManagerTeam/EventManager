@@ -298,6 +298,7 @@ def visibility_settings(request, slug):
     return render(request, 'events/visibility_settings.html', context)
 
 
+@login_required
 def add_teammate(request, slug):
     event = Event.objects.get(slug=slug)
     form = UserForm(request.POST or None)
@@ -322,6 +323,7 @@ def add_teammate(request, slug):
     return render(request, 'events/add_teammate.html', context)
 
 
+@login_required
 def event_team_add(request, user, slug):
     event = Event.objects.get(slug=slug)
     user = User.objects.get(username=user)
@@ -341,11 +343,13 @@ def event_team_add(request, user, slug):
     return render(request, 'CRUDops/successfully.html', context)
 
 
+@login_required
 def delete_comment_by_slug(request, slug, comment):
     Comment.objects.get(pk=comment).delete()
     return show_events_by_slug(request, slug)
 
 
+@login_required
 def edit_comment_by_slug(request, slug, comment):
     instance = Comment.objects.get(pk=comment)
     form = CommentForm(request.POST or None, instance=instance)
@@ -356,3 +360,17 @@ def edit_comment_by_slug(request, slug, comment):
 
     context = {'form': form}
     return render(request, 'events/add_comment.html', context)
+
+@login_required
+def event_board(request, slug):
+    members = Event.objects.get(slug=slug).team_members.all()
+
+    if request.user in members:
+        return render(request, 'events/board.html')
+    else:
+        error_message = "This event board is available only\
+             to team members."
+        context = {
+            'error_message': error_message}
+        return render(request, 'CRUDops/error.html', context)
+
