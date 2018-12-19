@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'api',
     'categories',
     'events',
+    'tasks',
     'crispy_forms',
     'custom_errors',
     'django_cleanup.apps.CleanupConfig'
