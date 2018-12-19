@@ -26,11 +26,13 @@ class TaskManager(models.Manager):
     def sort(self):
         return self.get_queryset().sort()
 
+
 STATUS_CHOICES = [
     ("TODO", "TODO"),
     ("DOING", "DOING"),
     ("DONE", "DONE"),
 ]
+
 
 class Task(models.Model):
     title = models.CharField(
@@ -57,7 +59,6 @@ class Task(models.Model):
     )
 
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)
-
 
     is_active = models.BooleanField(
         verbose_name=_("Is active"),
