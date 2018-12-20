@@ -69,6 +69,7 @@ def create_event(request):
             )
             event.category.add(*list(category))
             event.attendees.add(request.user)
+            event.team_members.add(request.user)
             event.save()
             context = {'success_message': "added new event"}
             return render(request, 'CRUDops/successfully.html', context)
