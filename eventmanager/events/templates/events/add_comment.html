@@ -3,11 +3,14 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block head %}
+<title> Edit comment </title>
+{% endblock %}
 
 {% block content %}
 <br>
 <h1 class="h1 display-3" style="text-align: center;"> Edit comment: </h1>
-<form class="well" method="post" style="margin:5%;">
+<form class="well" method="post" style="margin:2%;">
     {% csrf_token %}
     <h1> {{ form|crispy }} </h1>
     <script type="text/javascript">
@@ -25,9 +28,9 @@
 
         });
     </script> 
-    <span id="remainingCount1"> <h2> 500 chars left </h2> </span>    
+    <h1> <span id="remainingCount1">  500 chars left  </span>  </h1>  
 
-    <input type="submit" class="btn btn-success btn-block display-3" value="Submit">
+    <h1> <input type="submit" class="btn btn-success btn-block" value="Submit" style="font-size: x-large;"> </h1>
   
 </form>
 
