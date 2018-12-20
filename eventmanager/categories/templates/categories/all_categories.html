@@ -5,26 +5,40 @@
 
 {% block head %}
 <link href="{% static "categories/all.css" %}" rel="stylesheet">
+<style type="text/css">
+    .background{
+        background: #22c1c3;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #fdbb2d, #22c1c3); 
+        background: linear-gradient(to right, #fdbb2d, #22c1c3); 
+    }
+
+    .white-text{
+        color: white;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
+<div class="card-group">
     {% for category_list in categories%}
     <div class="card-columns">
         {% for category in category_list%}
-        <div class="card bg-warning">
-            <div class="card-body">
-                <h1 class="card-title"> {{category.name}}</h1>
-                <h3 class="card-text">{{category.description}} </h3>
+        <div class="card bg-warning background " style="height: 100%;">
+            <div class="card-body " style="">
+                <h1 class="card-title white-text"> {{category.name}}</h1>
+                <h3 class="card-text white-text">{{category.description}} </h3>
                 <h2> 
                     <a href="{{category.slug}}" class="card-link"> 
                         See all events with this category
                     </a> 
                 </h2>
             </div>
+
         </div>
         {% endfor %}
     </div>
     {% endfor %}
+    </div>
     <br> <br>
 {% endblock %}
 
