@@ -279,6 +279,15 @@ def confirm_invite(request, slug):
 
 
 @login_required
+def decline_invite(request, slug):
+    event = Event.objects.get(slug=slug)
+    Invite.objects.filter(
+        invited_user=request.user,
+        event=event).delete()
+    return invites(request)
+
+
+@login_required
 def visibility_settings(request, slug):
     event = Event.objects.get(slug=slug)
     visibility_settings_form = VisibilitySettings(request.POST or None)

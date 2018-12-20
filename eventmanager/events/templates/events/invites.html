@@ -31,9 +31,10 @@
         	</h1>
         	<h2> {{event.event.description}}</h2>	
         	{% endif%}
-        	<br> <br>
-        	<button class="btn btn-success btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/{{event.event.slug}}/confirm_invite'" type="button" style="font-size: x-large;max-width: 100%;"> Accept invitation </button>
-        	<p class="card-text">{{ comment.content|safe }} </p> 
+            <p class="card-text">{{ comment.content|safe }} </p> 
+
+        	<button class="btn btn-success btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/{{event.event.slug}}/confirm_invite'" type="button" style="font-size: x-large;margin: 0;"> Accept invitation </button>
+            <button class="btn btn-danger btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/{{event.event.slug}}/decline_invite'" type="button" style="font-size: x-large;"> Decline invitation </button>
         </div>
     </div>
     <br> <br> <br> <br>
