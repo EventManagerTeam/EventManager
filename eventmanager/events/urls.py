@@ -18,6 +18,11 @@ urlpatterns = [
         views.confirm_invite,
         name='events.confirm_invite'
     ),
+    path(
+        '<slug:slug>/decline_invite',
+        views.decline_invite,
+        name='invites.decline_invite'
+    ),
     path('<slug:slug>/delete', views.delete_event_by_slug, name='events.del'),
     path('<slug:slug>/board', views.event_board, name='events.board'),
 
