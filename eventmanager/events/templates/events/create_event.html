@@ -24,8 +24,8 @@
         <h1> {{ form|crispy }} </h1>
 
         <br> <br>  <br> <br>
-        <select id="category" class="form-control form-control-lg" name="category_select">
-            <option class="disabled" value="">Choose a category</option>
+        <select id="category" class="form-control form-control-lg" name="category_select" style="height: 12% !important">
+            <option class="disabled" value="" >Choose a category</option> 
             {% for category in categories %}
             <h1>
                 <option  value="{{ category.name }}" name="{{ category.name }}">{{ category.name }}</option>

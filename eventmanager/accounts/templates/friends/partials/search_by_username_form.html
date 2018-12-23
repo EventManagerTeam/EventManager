@@ -3,12 +3,14 @@
 <div class="col-md-8  col-md-offset-2 centered">
     <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
+        <br>
+        <h1> {{ form.username.label_tag}} </h1>
         <div class="row">
             <div class="col-sm-8">        
-                <h1> {{ form.username|as_crispy_field }} </h1>
+                <h1> {{ form.username}} </h1>
             </div>
             <div class="col-sm-4">
-                <button class="btn btn-primary btn-lg btn-block" style="margin:auto;position:absolute; bottom:0;" type="submit">
+                <button class="btn btn-primary btn-lg btn-block" style="height: 100%;" type="submit">
                     <h1> Find </h1>
                 </button>
             </div>  

@@ -42,16 +42,19 @@ body{
 }
 
 input{
-    width: 30%
+    width: 30%;
+
 }
 
 input, textarea, .card-text {   
     font-family: 'Arial';
 }
 
-textarea { font-size: 15px !important; }
-.textinput{ font-size: 30px !important; }
+textarea, .textinput, select{ font-size: 30px !important;}
 
+.textinput, select{
+    height: 7%;
+}
 .simple{
     font-family: 'Bellefair', serif;
 }
