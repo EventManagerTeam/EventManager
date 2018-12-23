@@ -34,8 +34,12 @@
         height: 8% !important;
     }
 
-    a{
+    a i {
         color: white;
+    }
+
+    .row{
+        padding-bottom: 10%;
     }
 
 </style>
@@ -45,18 +49,33 @@
 
 {% block content %}
 <br>
-  <div class="row" style="height: 80%">
+{% include "events/partials/add_task_modal.html" with task_form=task_form %}
+  <div class="row">
     <div class="col-sm-3 bg-warning"> 
         <h1 class="heading"> TO DO: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr> </h1>
-{% include "events/partials/add_task_modal.html" with task_form=task_form %}
+
+        {% for task in todo_tickets %}
+            {% include "events/partials/task_partial.html" with task=task %}
+        {% endfor%}
     </div>
 
     <div class="col-sm-3 bg-success">
-        <h1 class="heading"> DONE: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr>  </h1>  
+        <h1 class="heading"> DONE: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr>  </h1> 
+
+        {% for task in done_tickets %}
+            {% include "events/partials/task_partial.html" with task=task %}
+        {% endfor%}
+
     </div>
     <div class="col-sm-3 bg-primary">
         <h1 class="heading"> DOING: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr> </h1>  
+
+        {% for task in doing_tickets %}
+            {% include "events/partials/task_partial.html" with task=task %}
+        {% endfor%}
     </div>
   </div>
+
+  {{todo_tickets}}
 {% endblock %}
 

@@ -15,6 +15,7 @@ from django.shortcuts import render
 from events.models import Comment
 from events.models import Event
 from events.models import Invite
+from tasks.models import Task
 from eventmanager.slugify import *
 
 
@@ -384,6 +385,9 @@ def edit_comment_by_slug(request, slug, comment):
 @login_required
 def event_board(request, slug):
     members = Event.objects.get(slug=slug).team_members.all()
+    todo_tickets = Task.objects.filter(status='TODO')
+    doing_tickets = Task.objects.filter(status='DOING')
+    done_tickets = Task.objects.filter(status='DONE')
 
     if request.user in members:
         form = TaskForm(request.POST or None)
@@ -395,7 +399,12 @@ def event_board(request, slug):
                 unique_slugify(task, form.cleaned_data['title'])
                 task.event_id = Event.objects.get(slug=slug).pk
                 task.save()
-        context = {'task_form': form}
+                
+        context = {
+            'task_form': form,
+            'todo_tickets': todo_tickets,
+            'doing_tickets': doing_tickets,
+            'done_tickets': done_tickets}
         return render(request, 'events/board.html', context)
     else:
         error_message = "This event board is available only\
