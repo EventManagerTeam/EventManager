@@ -19,6 +19,13 @@ from events.models import Invite
 def index(request):
     events_list = Event.objects.active()
     number_of_items_per_page = 5
+
+    events = []
+    for event in events_list:
+        if Event.can_view_event(event.slug, request.user):
+            events.append(event)   
+
+    events_list = events
     paginator = Paginator(events_list, number_of_items_per_page)
 
     page = request.GET.get('page', 1)
