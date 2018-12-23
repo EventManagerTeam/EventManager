@@ -15,6 +15,14 @@
     .white-text{
         color: white;
     }
+
+    .card-columns{
+        padding-top: 3%;
+    }
+
+    .card{
+        height: 100%;
+    }
 </style>
 {% endblock %}
 
@@ -23,8 +31,8 @@
     {% for category_list in categories%}
     <div class="card-columns">
         {% for category in category_list%}
-        <div class="card bg-warning background " style="height: 100%;">
-            <div class="card-body " style="">
+        <div class="card bg-warning background ">
+            <div class="card-body ">
                 <h1 class="card-title white-text"> {{category.name}}</h1>
                 <h3 class="card-text white-text">{{category.description}} </h3>
                 <h2> 
