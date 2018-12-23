@@ -6,7 +6,11 @@ from django.conf.urls import url
 
 urlpatterns = [
     path(
-        'events/<slug:slug>/task/<task>/delete',
+        'events/<slug:slug>/task/<task>/delete/',
         views.delete_task,
         name='tasks.delete_task'),
+    path(
+        'events/<slug:slug>/task/<task>/edit',
+        views.edit_task,
+        name='tasks.edit_task'),
 ]
