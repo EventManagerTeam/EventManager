@@ -385,10 +385,12 @@ def edit_comment_by_slug(request, slug, comment):
 @login_required
 def event_board(request, slug):
     members = Event.objects.get(slug=slug).team_members.all()
-    
+
     event = Event.objects.get(slug=slug)
     todo_tickets = Task.objects.filter(status='TODO').filter(event_id=event.pk)
-    doing_tickets = Task.objects.filter(status='DOING').filter(event_id=event.pk)
+    doing_tickets = Task.objects.filter(
+        status='DOING').filter(
+        event_id=event.pk)
     done_tickets = Task.objects.filter(status='DONE').filter(event_id=event.pk)
 
     if request.user in members:
