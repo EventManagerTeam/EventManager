@@ -11,6 +11,7 @@ urlpatterns = [
     path('all/', views.index, name='events.list'),
     path('invites/', views.invites, name='events.invites'),
     path('create_event/', views.create_event, name='events.create_event'),
+    path('my_events/', views.my_events, name='events.my_events'),
     path('list/', views.index, name='events.list'),
     path('<slug:slug>', views.show_events_by_slug, name='events.event'),
     path(
