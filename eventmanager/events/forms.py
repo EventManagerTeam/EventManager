@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from events.models import Event
 from events.models import Comment
+from tasks.models import Task
 
 
 class EventForm(ModelForm):
@@ -20,6 +21,17 @@ class CommentForm(ModelForm):
         fields = [
             'title',
             'content'
+        ]
+
+
+class TaskForm(ModelForm):
+    class Meta:
+        model = Task
+        fields = [
+            'title',
+            'description',
+            'status',
+            'assignee'
         ]
 
 

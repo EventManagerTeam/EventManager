@@ -5,6 +5,7 @@ from .forms import VisibilitySettings
 from accounts.forms import UserForm
 from accounts.models import AccountDetails
 from categories.models import Category
+from events.forms import TaskForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -14,6 +15,8 @@ from django.shortcuts import render
 from events.models import Comment
 from events.models import Event
 from events.models import Invite
+from tasks.models import Task
+from eventmanager.slugify import *
 
 
 def index(request):
@@ -383,8 +386,30 @@ def edit_comment_by_slug(request, slug, comment):
 def event_board(request, slug):
     members = Event.objects.get(slug=slug).team_members.all()
 
+    event = Event.objects.get(slug=slug)
+    todo_tickets = Task.objects.filter(status='TODO').filter(event_id=event.pk)
+    doing_tickets = Task.objects.filter(
+        status='DOING').filter(
+        event_id=event.pk)
+    done_tickets = Task.objects.filter(status='DONE').filter(event_id=event.pk)
+
     if request.user in members:
-        return render(request, 'events/board.html')
+        form = TaskForm(request.POST or None)
+
+        if request.method == 'POST':
+            if form.is_valid():
+                task = form.save(commit=False)
+                task.added_by = request.user
+                unique_slugify(task, form.cleaned_data['title'])
+                task.event_id = Event.objects.get(slug=slug).pk
+                task.save()
+
+        context = {
+            'task_form': form,
+            'todo_tickets': todo_tickets,
+            'doing_tickets': doing_tickets,
+            'done_tickets': done_tickets}
+        return render(request, 'events/board.html', context)
     else:
         error_message = "This event board is available only\
              to team members."
