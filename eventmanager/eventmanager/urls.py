@@ -33,6 +33,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
     path('events/', include('events.urls')),
+    path('', include('tasks.urls')),
     path('categories/', include('categories.urls')),
     url(
         '^inbox/notifications/',
