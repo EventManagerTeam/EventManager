@@ -228,7 +228,7 @@ def edit_account_details(request):
 
 @login_required
 def list_users(request):
-    users = User.objects.all()
+    users = User.objects.all().exclude(username=request.user)
 
     for user in users:
         if AccountDetails.objects.filter(user=user):
@@ -248,14 +248,16 @@ def search_users(request):
     if request.method == 'POST':
         if form.is_valid():
             username = request.POST.get('username')
-            users = User.objects.all().filter(username__icontains=username)
+            users = User.objects.all().filter(
+                username__icontains=username).exclude(
+                username=request.user)
+                
             for user in users:
                 if AccountDetails.objects.filter(user=user):
                     details = AccountDetails.objects.get(user=user)
                     user.details = details
                 user.my_friend = AccountDetails.is_my_friend(
                     request.user, user)
-
             context = {'users': users, 'form': form}
 
     return render(request, 'friends/find_account.html', context)
