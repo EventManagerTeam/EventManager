@@ -385,9 +385,11 @@ def edit_comment_by_slug(request, slug, comment):
 @login_required
 def event_board(request, slug):
     members = Event.objects.get(slug=slug).team_members.all()
-    todo_tickets = Task.objects.filter(status='TODO')
-    doing_tickets = Task.objects.filter(status='DOING')
-    done_tickets = Task.objects.filter(status='DONE')
+    
+    event = Event.objects.get(slug=slug)
+    todo_tickets = Task.objects.filter(status='TODO').filter(event_id=event.pk)
+    doing_tickets = Task.objects.filter(status='DOING').filter(event_id=event.pk)
+    done_tickets = Task.objects.filter(status='DONE').filter(event_id=event.pk)
 
     if request.user in members:
         form = TaskForm(request.POST or None)
@@ -399,7 +401,7 @@ def event_board(request, slug):
                 unique_slugify(task, form.cleaned_data['title'])
                 task.event_id = Event.objects.get(slug=slug).pk
                 task.save()
-                
+
         context = {
             'task_form': form,
             'todo_tickets': todo_tickets,
