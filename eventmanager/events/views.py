@@ -391,3 +391,23 @@ def event_board(request, slug):
         context = {
             'error_message': error_message}
         return render(request, 'CRUDops/error.html', context)
+
+
+@login_required
+def my_events(request):
+    number_of_items_per_page = 5
+
+    user = User.objects.get(username=request.user)
+    events_list = Event.objects.filter(attendees=user)
+
+    paginator = Paginator(events_list, number_of_items_per_page)
+    page = request.GET.get('page', 1)
+    try:
+        events = paginator.page(page)
+    except PageNotAnInteger:
+        events = paginator.page(1)
+    except EmptyPage:
+        events = paginator.page(paginator.num_pages)
+
+    context = {'events': events}
+    return render(request, 'events/list_my_events.html', context)

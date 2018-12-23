@@ -251,7 +251,7 @@ def search_users(request):
             users = User.objects.all().filter(
                 username__icontains=username).exclude(
                 username=request.user)
-                
+
             for user in users:
                 if AccountDetails.objects.filter(user=user):
                     details = AccountDetails.objects.get(user=user)
