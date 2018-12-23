@@ -23,7 +23,7 @@ def index(request):
     events = []
     for event in events_list:
         if Event.can_view_event(event.slug, request.user):
-            events.append(event)   
+            events.append(event)
 
     events_list = events
     paginator = Paginator(events_list, number_of_items_per_page)
