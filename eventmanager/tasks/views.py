@@ -7,6 +7,6 @@ from django.urls import reverse
 
 
 def delete_task(request, slug, task):
-	event_id = Event.objects.get(slug=slug).pk
-	Task.objects.filter(event=event_id).get(slug=task).delete()
-	return redirect(reverse('events.board', kwargs={'slug': slug}))
+    event_id = Event.objects.get(slug=slug).pk
+    Task.objects.filter(event=event_id).get(slug=task).delete()
+    return redirect(reverse('events.board', kwargs={'slug': slug}))
