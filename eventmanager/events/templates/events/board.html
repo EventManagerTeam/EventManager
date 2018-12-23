@@ -9,9 +9,9 @@
 <style type="text/css">
     .col-sm-3{
         margin-left: 6%;
-        color:white;
         text-align: center;
-        opacity: 0.8;
+        color: white;
+        /*opacity: 0.8;*/
     }
 
     .heading{
@@ -20,24 +20,42 @@
 
     hr{
         border-top: 10px solid #ccc;
+    }   
+
+    i{
+        float: right;
+    }
+
+    textarea{
+        height: 30% !important;
+    }
+
+    select{
+        height: 8% !important;
+    }
+
+    a{
+        color: white;
     }
 
 </style>
+<link href="{% static "events/event.css" %}" rel="stylesheet">
+
 {% endblock %}
 
 {% block content %}
 <br>
-  <div class="row" style="height: 80%;">
+  <div class="row" style="height: 80%">
     <div class="col-sm-3 bg-warning"> 
-        <h1 class="heading"> TO DO: <hr> </h1>
-        
+        <h1 class="heading"> TO DO: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr> </h1>
+{% include "events/partials/add_task_modal.html" with task_form=task_form %}
     </div>
 
     <div class="col-sm-3 bg-success">
-        <h1 class="heading"> DONE: <hr> </h1>  
+        <h1 class="heading"> DONE: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr>  </h1>  
     </div>
     <div class="col-sm-3 bg-primary">
-        <h1 class="heading"> DOING: <hr> </h1>  
+        <h1 class="heading"> DOING: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr> </h1>  
     </div>
   </div>
 {% endblock %}
