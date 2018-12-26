@@ -26,6 +26,7 @@ from accounts.models import AccountDetails
 from events.models import Invite
 from events.models import Event
 
+from eventmanager.slugify import *
 
 def index(request):
     return render(request, 'accounts/index.html')
@@ -73,6 +74,8 @@ def signup(request):
         raw_password = form.cleaned_data.get('password1')
         user = authenticate(username=username, password=raw_password)
         auth_login(request, user)
+        dt = AccountDetails.objects.create(user=user)
+        unique_slugify(AccountDetails.objects.get(user=user), username)
         return redirect('accounts.account')
     return render(request, 'accounts/signup.html', {'form': form})
 
@@ -141,8 +144,8 @@ def account_details(request):
             details = form.save(commit=False)
             details.user = request.user
             if request.POST.get('birthdate'):
-                details.birth_date = request.POST.get('birthdate')
-            if request.POST.get('profile_picture'):
+                details.birth_date = request.POST.get['birthdate']
+            if request.POST and 'profile_picture' in request.POST:
                 details.profile_picture = request.FILES['profile_picture']
             details.save()
             context = {'success_message': "added account details."}
@@ -206,7 +209,7 @@ def edit_account_details(request):
 
         if request.POST.get('birthdate'):
             details.birth_date = request.POST.get('birthdate')
-        if request.FILES['profile_picture'] is not None:
+        if request.FILES and 'profile_picture'in request.FILES:
             details.profile_picture = request.FILES['profile_picture']
         details.save()
         context = {'success_message': "added account details."}
@@ -265,12 +268,14 @@ def search_users(request):
 
 @login_required
 def my_friends(request):
-    friends = AccountDetails.objects.get(user=request.user).friends.all()
-    for user in friends:
-        if AccountDetails.objects.filter(user=user):
-            details = AccountDetails.objects.get(user=user)
-            user.details = details
-            user.unfriend_url = "users/" + user.details.slug + "/unfriend"
+    friends = []
+    if AccountDetails.objects.filter(user=request.user).exists():
+        friends = AccountDetails.objects.get(user=request.user).friends.all()
+        for user in friends:
+            if AccountDetails.objects.filter(user=user):
+                details = AccountDetails.objects.get(user=user)
+                user.details = details
+                user.unfriend_url = "users/" + user.details.slug + "/unfriend"
 
     chunks = [friends[x:x + 3] for x in range(0, len(friends), 3)]
     context = {'users': chunks, 'title': "My friends:"}
