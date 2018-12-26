@@ -60,6 +60,15 @@
         {% endfor%}
     </div>
 
+    
+    <div class="col-sm-3 bg-primary">
+        <h1 class="heading"> DOING: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr> </h1>  
+
+        {% for task in doing_tickets %}
+            {% include "events/partials/task_partial.html" with task=task %}
+        {% endfor%}
+    </div>
+
     <div class="col-sm-3 bg-success">
         <h1 class="heading"> DONE: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr>  </h1> 
 
@@ -67,13 +76,6 @@
             {% include "events/partials/task_partial.html" with task=task %}
         {% endfor%}
 
-    </div>
-    <div class="col-sm-3 bg-primary">
-        <h1 class="heading"> DOING: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr> </h1>  
-
-        {% for task in doing_tickets %}
-            {% include "events/partials/task_partial.html" with task=task %}
-        {% endfor%}
     </div>
   </div>
 

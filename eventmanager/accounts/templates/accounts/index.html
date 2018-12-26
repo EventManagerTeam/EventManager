@@ -4,17 +4,153 @@
 
 {% block head %}
 <link href="{% static "accounts/index.css" %}" rel="stylesheet">
+<style type="text/css">
+ body, html {
+   height: 100%;
+   font-family: 'Bitter', serif;
+ }
+
+ .parallax {
+   /* The image used */
+   background-image: url('https://lh3.googleusercontent.com/9xETDEtx4stABvhboCOrEQXwdlvi0nW1WZbce6VYvIK8grK-ndxPFaEj8QpeDWa6XDHUa6KtWJ32jO4mtNkA9SHvy5litV2HfkLLaTfieqe0PqFA2HQAp5agkCnJoVS7lx4hav9QDADRDri5YA2tP3BKtl55oLxA0xuAHKeNs3B0rRacntVVlRnwq2BJkV_eto0DIX1F8nxODMhBBOqyToQS-ffhn7k4mnMQhNul2aabY7xcrR_rW4f9AkR0jxChzkqWKNIc5Mdtj_q9mW3oPV2-annh3QNOpUSGmrb0l3SwmGwhVe10xH-GMq68CxV-e6yx_ykcHBmQKUA3zOVHXxuyjIuqen-1Ee6289iz9ewHfMiguwlL-z00jInuHChsc-YKF0YdK5I7_M20v4QeYq6WFtxgR8tcbKH0q1LvkeuyV7CGdKyBnl3OkvsySv52SYKYQS583RePN_Kw6t1nZDJbvRKpDNqvY0ScNR3v2xbR7PrFXgV-Y4pc7Lq2p2VPH1WqgOhSihjfcVOPR6yihN1R1Qleuu65sb6iV9jSV1heOnE0F1ead0k_UCIjT9FWmpmWnnjEs_6L4rF8Vm5N1LH8fJKQtwKD3JjejrHVEKll81UJXWayQzLGm6S9YgR4ByZBi_PPleb-ukKpSlFixYGym2RbMJgBP9ffMHuD6Frqkp4LZLr7bkQsrjS1dRtuyxEyl3KrFyPYuKTSGNg=w1849-h804-no');
+
+   /* Full height */
+   height: 100%; 
+
+   /* Create the parallax scrolling effect */
+   background-attachment: fixed;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+
+ /* Turn off parallax scrolling for tablets and phones. Increase the pixels if needed */
+ @media only screen and (max-device-width: 1366px) {
+   .parallax {
+     background-attachment: scroll;
+   }
+ }
+ .text_container {
+   background-color: #ededed;
+   color: #343434;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 100vh;
+ }
+ .text_container h1 {
+   line-height: 1.4;
+   word-spacing: 3px;
+   text-shadow: 0px 1px 0px white;
+ }
+ .text_container .highlight {
+   display: inline-block;
+   color: #343434;
+   transition: color 250ms, text-shadow 250ms;
+   text-decoration: none;
+   text-shadow: 0px 1px 0px white;
+   position: relative;
+   z-index: 0;
+ }
+ .text_container .highlight::after {
+   position: absolute;
+   z-index: -1;
+   bottom: -5px;
+   left: 50%;
+   -webkit-transform: translateX(-50%);
+           transform: translateX(-50%);
+   content: '';
+   width: 100%;
+   height: 3px;
+   background-color: #343434;
+   transition: all 250ms;
+ }
+ .text_container .highlight:hover {
+   color: white;
+   text-shadow: 0px 1px 0px black;
+ }
+ .text_container .highlight:hover::after {
+   height: 105%;
+   width: 105%;
+ }
+
+ .box{
+   background-color: #ededed;
+ }
+
+.flex-box {
+   align-items:center;
+}
+.features{
+	width: 100% !important;
+	min-height: 1%;
+	padding-left: 15%;
+}
+
+.image-descr{
+	max-width: 5%;margin: auto;
+}
+</style>	
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <img src = "https://lh3.googleusercontent.com/9xETDEtx4stABvhboCOrEQXwdlvi0nW1WZbce6VYvIK8grK-ndxPFaEj8QpeDWa6XDHUa6KtWJ32jO4mtNkA9SHvy5litV2HfkLLaTfieqe0PqFA2HQAp5agkCnJoVS7lx4hav9QDADRDri5YA2tP3BKtl55oLxA0xuAHKeNs3B0rRacntVVlRnwq2BJkV_eto0DIX1F8nxODMhBBOqyToQS-ffhn7k4mnMQhNul2aabY7xcrR_rW4f9AkR0jxChzkqWKNIc5Mdtj_q9mW3oPV2-annh3QNOpUSGmrb0l3SwmGwhVe10xH-GMq68CxV-e6yx_ykcHBmQKUA3zOVHXxuyjIuqen-1Ee6289iz9ewHfMiguwlL-z00jInuHChsc-YKF0YdK5I7_M20v4QeYq6WFtxgR8tcbKH0q1LvkeuyV7CGdKyBnl3OkvsySv52SYKYQS583RePN_Kw6t1nZDJbvRKpDNqvY0ScNR3v2xbR7PrFXgV-Y4pc7Lq2p2VPH1WqgOhSihjfcVOPR6yihN1R1Qleuu65sb6iV9jSV1heOnE0F1ead0k_UCIjT9FWmpmWnnjEs_6L4rF8Vm5N1LH8fJKQtwKD3JjejrHVEKll81UJXWayQzLGm6S9YgR4ByZBi_PPleb-ukKpSlFixYGym2RbMJgBP9ffMHuD6Frqkp4LZLr7bkQsrjS1dRtuyxEyl3KrFyPYuKTSGNg=w1849-h804-no" id="event-cover-photo">      
-        <div class="content">
-            <h1> EventManager </h1> 
-        <p>Event Manager is the social network for your needs! </p>
-      </div>
-      
-    </div>
+
+<div class="parallax"></div>
+
+<div class="text_container" style="width: 100% !important;min-height: 6%;padding-bottom: 1%;">
+	<h1 class="h1" style="padding-top: 5%;"> Welcome to <a class="highlight" href="#"><span>Event Manager!</span></a></h1>
+</div>
+
+<div class="container text_container" style="max-width: 100% !important;">
+	<div class="box row">
+		<div class="col-md-8" style="background-color: #343434;color: white;padding: 5%;">
+			<h1 class="h1"> EventManager is the newest social network. Combining event attendees and creators's needs, EventManager gives everyone the possiblitiy to be part of a better event experience. </h1>
+		</div>
+		<div class="col-md-4" style="background-color: #343434;vertical-align: middle;padding: 0% !important;">
+			<img src="{% static "pictures/event.jpeg" %}" style="max-width: 100%;">
+			<img src="{% static "pictures/event_board.jpeg" %}" style="max-width: 100%;">
+		</div>
+	</div>
+</div>
+
+<div class="parallax"></div>
+
+<div class="text_container features">
+	 <h1 class="h1 display-1"> What are our top features?</h1>
+</div>
+
+<div class="text_container features">
+	<div class="flex-box h1">
+	    <img src="https://svgsilh.com/svg/2818034.svg" class="image-descr">
+	    <span>Freedom. Everyone can create new events, free of charge and censurship.</span>
+	</div>
+</div>
+<div class="text_container features">
+	<div class="flex-box h1">
+	    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Ic_visibility_48px.svg/2000px-Ic_visibility_48px.svg.png" class="image-descr">
+	    <span>Visibility. Private and public events are treated equally.</span>
+	</div>
+</div>
+<div class="text_container features">
+	<div class="flex-box h1">
+	    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Group_people_icon.jpg" class="image-descr" >
+	    <span>Socialize. Find events you may be interested in easily. </span>
+	</div>
+</div>
+
+
+<div class="text_container features" style="padding-bottom: 5%;">
+	<div class="flex-box h1">
+	    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Manage-settings.svg/2000px-Manage-settings.svg.png" class="image-descr" >
+	    <span>Manage. All event tasks are in one place. No more complicated tools needed. </span>
+	</div>
+</div>
+
+<div class="parallax"></div>
+
+<div class="text_container" style="width: 100% !important;min-height: 10%;padding-bottom: 10%;">
+	<h1 class="h1" style="padding-top: 5%;"> What are you waiting for? <a class="highlight" href="/signup"><span>Register now!</span></a></h1>
+</div>
 
 {% endblock %}
 
