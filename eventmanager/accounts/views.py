@@ -28,6 +28,7 @@ from events.models import Event
 
 from eventmanager.slugify import *
 
+
 def index(request):
     return render(request, 'accounts/index.html')
 
