@@ -11,7 +11,7 @@
                 <div class="card usercard">
                     <div class="card-body">
                         <h3 class="card-title">
-                            {% if member.details.slug %}
+                            {% if member.details.slug and request.user.is_authenticated %}
                                 <a href="/users/{{member.details.slug}}"> {{member.username}} </a>
                             {% else %}
                                 {{member.username}}
