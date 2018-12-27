@@ -1,0 +1,482 @@
+[
+{
+   "model": "categories.category",
+   "pk": 7,
+   "fields": {
+      "name": "Other",
+      "slug": "other",
+      "is_active": true,
+      "created_at": "2018-12-27T10:03:07.297Z",
+      "updated_at": "2018-12-27T10:03:07.297Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 8,
+   "fields": {
+      "name": "Weekend",
+      "slug": "weekend",
+      "is_active": true,
+      "created_at": "2018-12-27T10:03:13.618Z",
+      "updated_at": "2018-12-27T10:03:13.618Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 9,
+   "fields": {
+      "name": "Leisure",
+      "slug": "leisure",
+      "is_active": true,
+      "created_at": "2018-12-27T10:03:16.657Z",
+      "updated_at": "2018-12-27T10:03:16.657Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 10,
+   "fields": {
+      "name": "Party",
+      "slug": "party",
+      "is_active": true,
+      "created_at": "2018-12-27T10:03:21.297Z",
+      "updated_at": "2018-12-27T10:03:21.297Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 11,
+   "fields": {
+      "name": "Concert",
+      "slug": "concert",
+      "is_active": true,
+      "created_at": "2018-12-27T10:03:23.958Z",
+      "updated_at": "2018-12-27T10:03:23.958Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 12,
+   "fields": {
+      "name": "Sports",
+      "slug": "sports",
+      "is_active": true,
+      "created_at": "2018-12-27T10:03:26.895Z",
+      "updated_at": "2018-12-27T10:03:26.895Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 13,
+   "fields": {
+      "name": "Seminar",
+      "slug": "seminar",
+      "is_active": true,
+      "created_at": "2018-12-27T10:03:45.057Z",
+      "updated_at": "2018-12-27T10:03:45.057Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 14,
+   "fields": {
+      "name": "Conference",
+      "slug": "conference",
+      "is_active": true,
+      "created_at": "2018-12-27T10:03:53.514Z",
+      "updated_at": "2018-12-27T10:03:53.514Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 15,
+   "fields": {
+      "name": "Trade show",
+      "slug": "trade-show",
+      "is_active": true,
+      "created_at": "2018-12-27T10:03:57.902Z",
+      "updated_at": "2018-12-27T10:03:57.902Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 16,
+   "fields": {
+      "name": "Food",
+      "slug": "food",
+      "is_active": true,
+      "created_at": "2018-12-27T10:04:12.312Z",
+      "updated_at": "2018-12-27T10:04:12.312Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 17,
+   "fields": {
+      "name": "Drinks",
+      "slug": "drinks",
+      "is_active": true,
+      "created_at": "2018-12-27T10:04:15.095Z",
+      "updated_at": "2018-12-27T10:04:15.095Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 18,
+   "fields": {
+      "name": "Dancing",
+      "slug": "dancing",
+      "is_active": true,
+      "created_at": "2018-12-27T10:04:19.202Z",
+      "updated_at": "2018-12-27T10:04:19.202Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 19,
+   "fields": {
+      "name": "Training",
+      "slug": "training",
+      "is_active": true,
+      "created_at": "2018-12-27T10:04:22.130Z",
+      "updated_at": "2018-12-27T10:04:22.130Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 20,
+   "fields": {
+      "name": "Competition",
+      "slug": "competition",
+      "is_active": true,
+      "created_at": "2018-12-27T10:04:31.512Z",
+      "updated_at": "2018-12-27T10:04:31.512Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 21,
+   "fields": {
+      "name": "Team-Building",
+      "slug": "team-building",
+      "is_active": true,
+      "created_at": "2018-12-27T10:04:42.154Z",
+      "updated_at": "2018-12-27T10:04:42.155Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 22,
+   "fields": {
+      "name": "Product Launch",
+      "slug": "product-launch",
+      "is_active": true,
+      "created_at": "2018-12-27T10:04:51.827Z",
+      "updated_at": "2018-12-27T10:04:51.827Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 23,
+   "fields": {
+      "name": "Meeting",
+      "slug": "meeting",
+      "is_active": true,
+      "created_at": "2018-12-27T10:05:01.193Z",
+      "updated_at": "2018-12-27T10:05:01.193Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 24,
+   "fields": {
+      "name": "Camp",
+      "slug": "camp",
+      "is_active": true,
+      "created_at": "2018-12-27T10:05:04.553Z",
+      "updated_at": "2018-12-27T10:05:04.553Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 25,
+   "fields": {
+      "name": "Birthday",
+      "slug": "birthday",
+      "is_active": true,
+      "created_at": "2018-12-27T10:05:08.229Z",
+      "updated_at": "2018-12-27T10:05:08.229Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 26,
+   "fields": {
+      "name": "Movie",
+      "slug": "movie",
+      "is_active": true,
+      "created_at": "2018-12-27T10:05:47.181Z",
+      "updated_at": "2018-12-27T10:05:47.181Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 27,
+   "fields": {
+      "name": "Premiere",
+      "slug": "premiere",
+      "is_active": true,
+      "created_at": "2018-12-27T10:05:53.133Z",
+      "updated_at": "2018-12-27T10:05:53.133Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 28,
+   "fields": {
+      "name": "Hackathon",
+      "slug": "hackathon",
+      "is_active": true,
+      "created_at": "2018-12-27T10:05:56.334Z",
+      "updated_at": "2018-12-27T10:05:56.334Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 29,
+   "fields": {
+      "name": "Coctail",
+      "slug": "coctail",
+      "is_active": true,
+      "created_at": "2018-12-27T10:08:31.701Z",
+      "updated_at": "2018-12-27T10:08:31.701Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 30,
+   "fields": {
+      "name": "Bootcamp",
+      "slug": "bootcamp",
+      "is_active": true,
+      "created_at": "2018-12-27T10:08:34.949Z",
+      "updated_at": "2018-12-27T10:08:34.949Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 31,
+   "fields": {
+      "name": "Charity",
+      "slug": "charity",
+      "is_active": true,
+      "created_at": "2018-12-27T10:08:43.463Z",
+      "updated_at": "2018-12-27T10:08:43.463Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 32,
+   "fields": {
+      "name": "Theatre",
+      "slug": "theatre",
+      "is_active": true,
+      "created_at": "2018-12-27T10:09:11.324Z",
+      "updated_at": "2018-12-27T10:09:11.324Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 33,
+   "fields": {
+      "name": "Fishing",
+      "slug": "fishing",
+      "is_active": true,
+      "created_at": "2018-12-27T10:09:22.259Z",
+      "updated_at": "2018-12-27T10:09:22.260Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 34,
+   "fields": {
+      "name": "Wedding",
+      "slug": "wedding",
+      "is_active": true,
+      "created_at": "2018-12-27T10:09:44.952Z",
+      "updated_at": "2018-12-27T10:09:44.952Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 35,
+   "fields": {
+      "name": "Travel",
+      "slug": "travel",
+      "is_active": true,
+      "created_at": "2018-12-27T10:10:33.933Z",
+      "updated_at": "2018-12-27T10:10:33.933Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 36,
+   "fields": {
+      "name": "Promo",
+      "slug": "promo",
+      "is_active": true,
+      "created_at": "2018-12-27T10:11:58.171Z",
+      "updated_at": "2018-12-27T10:11:58.171Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 37,
+   "fields": {
+      "name": "Press conference",
+      "slug": "press-conference",
+      "is_active": true,
+      "created_at": "2018-12-27T10:12:32.195Z",
+      "updated_at": "2018-12-27T10:12:32.195Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 38,
+   "fields": {
+      "name": "Networking",
+      "slug": "networking",
+      "is_active": true,
+      "created_at": "2018-12-27T10:12:39.710Z",
+      "updated_at": "2018-12-27T10:12:39.710Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 39,
+   "fields": {
+      "name": "Studying",
+      "slug": "studying",
+      "is_active": true,
+      "created_at": "2018-12-27T10:12:43.339Z",
+      "updated_at": "2018-12-27T10:12:43.339Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 40,
+   "fields": {
+      "name": "Awards",
+      "slug": "awards",
+      "is_active": true,
+      "created_at": "2018-12-27T10:12:55.558Z",
+      "updated_at": "2018-12-27T10:12:55.558Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 41,
+   "fields": {
+      "name": "Anniversary",
+      "slug": "anniversary",
+      "is_active": true,
+      "created_at": "2018-12-27T10:13:07.079Z",
+      "updated_at": "2018-12-27T10:13:07.079Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 42,
+   "fields": {
+      "name": "Fashion",
+      "slug": "fashion",
+      "is_active": true,
+      "created_at": "2018-12-27T10:13:50.493Z",
+      "updated_at": "2018-12-27T10:13:50.493Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 43,
+   "fields": {
+      "name": "Shopping",
+      "slug": "shopping",
+      "is_active": true,
+      "created_at": "2018-12-27T10:14:04.953Z",
+      "updated_at": "2018-12-27T10:14:04.953Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 44,
+   "fields": {
+      "name": "Festival",
+      "slug": "festival",
+      "is_active": true,
+      "created_at": "2018-12-27T10:14:51.292Z",
+      "updated_at": "2018-12-27T10:14:51.292Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 45,
+   "fields": {
+      "name": "Demonstration",
+      "slug": "demonstration",
+      "is_active": true,
+      "created_at": "2018-12-27T10:15:02.079Z",
+      "updated_at": "2018-12-27T10:15:02.079Z",
+      "description": ""
+   }
+},
+{
+   "model": "categories.category",
+   "pk": 46,
+   "fields": {
+      "name": "Fair",
+      "slug": "fair",
+      "is_active": true,
+      "created_at": "2018-12-27T10:18:19.707Z",
+      "updated_at": "2018-12-27T10:18:19.707Z",
+      "description": ""
+   }
+}
+]
