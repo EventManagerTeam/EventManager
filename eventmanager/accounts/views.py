@@ -146,7 +146,7 @@ def account_details(request):
             details.user = request.user
             if request.POST.get('birthdate'):
                 details.birth_date = request.POST.get['birthdate']
-            if request.POST and 'profile_picture' in request.POST:
+            if 'profile_picture' in request.FILES:
                 details.profile_picture = request.FILES['profile_picture']
             details.save()
             context = {'success_message': "added account details."}
@@ -203,18 +203,19 @@ def edit_account_details(request):
     user = User.objects.all().get(username=request.user.username)
     instance = AccountDetails.objects.get(user=user)
 
-    form = AccountDetailsForm(request.POST or None, instance=instance)
-    if form.is_valid():
-        details = form.save(commit=False)
-        details.user = request.user
+    form = AccountDetailsForm(request.POST, request.FILES or None, instance=instance)
+    if request.POST:
+        if form.is_valid():
+            details = form.save(commit=False)
+            details.user = request.user
 
-        if request.POST.get('birthdate'):
-            details.birth_date = request.POST.get('birthdate')
-        if request.FILES and 'profile_picture'in request.FILES:
-            details.profile_picture = request.FILES['profile_picture']
-        details.save()
-        context = {'success_message': "added account details."}
-        return render(request, 'CRUDops/successfully.html', context)
+            if request.POST.get('birthdate'):
+                details.birth_date = request.POST.get('birthdate')
+            if 'profile_picture'in request.FILES:
+                details.profile_picture = request.FILES['profile_picture']
+            details.save()
+            context = {'success_message': "added account details."}
+            return render(request, 'CRUDops/successfully.html', context)
 
     birthdate = str(instance.birth_date) or None
 

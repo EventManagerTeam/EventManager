@@ -6,7 +6,7 @@
 
 {% load crispy_forms_tags %}
 
-<div class="col-md-8  col-md-offset-2 centered">
+<div class="col-md-8  col-md-offset-2 centered" style="padding-bottom: 5%;">
     <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
         <h1> {{ form|crispy }} </h1>
