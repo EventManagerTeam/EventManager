@@ -179,24 +179,25 @@ def show_account_details(request):
         return account_details(request)
 
 
-@login_required
 def gеt_user_by_slug(request, slug):
-    details = AccountDetails.objects.get(slug=slug)
-    user = details.user
-    details = AccountDetails.objects.get(user=user)
-    friend = AccountDetails.is_my_friend(request.user, user)
-    return render(
-        request,
-        'accounts/user_account.html',
-        {
-            'details': details,
-            'name': user.first_name + user.last_name,
-            'username': user.username,
-            'email': user.email,
-            'friends': friend
-        }
-    )
-
+    if request.user.is_authenticated:    
+        details = AccountDetails.objects.get(slug=slug)
+        user = details.user
+        details = AccountDetails.objects.get(user=user)
+        friend = AccountDetails.is_my_friend(request.user, user)
+        return render(
+            request,
+            'accounts/user_account.html',
+            {
+                'details': details,
+                'name': user.first_name + user.last_name,
+                'username': user.username,
+                'email': user.email,
+                'friends': friend
+            }
+        )
+    context = {'error_message': "Sorry, you are not logged in."}
+    return render(request, 'CRUDops/error.html', context)
 
 @login_required
 def edit_account_details(request):
