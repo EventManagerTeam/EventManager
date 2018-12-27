@@ -11,7 +11,11 @@
                 <div class="card usercard">
                     <div class="card-body">
                         <h3 class="card-title">
-                            <a href="/users/{{member.details.slug}}"> {{member.username}} </a>
+                            {% if member.details.slug %}
+                                <a href="/users/{{member.details.slug}}"> {{member.username}} </a>
+                            {% else %}
+                                {{member.username}}
+                            {% endif %}
                             {% if member.first_name and member.last_name %}
                                 <div class=" text-muted">
                                     ({{ member.first_name }} {{ member.last_name }})
