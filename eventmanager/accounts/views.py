@@ -203,7 +203,10 @@ def edit_account_details(request):
     user = User.objects.all().get(username=request.user.username)
     instance = AccountDetails.objects.get(user=user)
 
-    form = AccountDetailsForm(request.POST, request.FILES or None, instance=instance)
+    form = AccountDetailsForm(
+        request.POST,
+        request.FILES or None,
+        instance=instance)
     if request.POST:
         if form.is_valid():
             details = form.save(commit=False)
