@@ -356,7 +356,9 @@ class AccountsUrlsTestClass(TestCase):
                 'accounts.gеt_user_by_slug',
                 kwargs={
                     'slug': "userslug"}))
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, "testuser")
+
         self.client.login(username='testuser', password='12345')
         response = self.client.get(
             reverse(
