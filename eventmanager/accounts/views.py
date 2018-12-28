@@ -76,7 +76,8 @@ def signup(request):
         user = authenticate(username=username, password=raw_password)
         auth_login(request, user)
         dt = AccountDetails.objects.create(user=user)
-        unique_slugify(AccountDetails.objects.get(user=user), username)
+        unique_slugify(dt, username)
+        dt.save()
         return redirect('accounts.account')
     return render(request, 'accounts/signup.html', {'form': form})
 
@@ -180,7 +181,7 @@ def show_account_details(request):
 
 
 def gеt_user_by_slug(request, slug):
-    if request.user.is_authenticated:    
+    if request.user.is_authenticated:
         details = AccountDetails.objects.get(slug=slug)
         user = details.user
         details = AccountDetails.objects.get(user=user)
@@ -198,6 +199,7 @@ def gеt_user_by_slug(request, slug):
         )
     context = {'error_message': "Sorry, you are not logged in."}
     return render(request, 'CRUDops/error.html', context)
+
 
 @login_required
 def edit_account_details(request):

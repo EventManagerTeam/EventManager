@@ -25,6 +25,7 @@ class CommentForm(ModelForm):
 
 
 class TaskForm(ModelForm):
+
     class Meta:
         model = Task
         fields = [

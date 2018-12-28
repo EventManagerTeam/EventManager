@@ -43,7 +43,6 @@ body{
 
 input{
     width: 30%;
-
 }
 
 input, textarea, .card-text {   
@@ -55,10 +54,17 @@ textarea, .textinput, select{ font-size: 30px !important;}
 .textinput, select{
     height: 7%;
 }
+
 .simple{
     font-family: 'Bellefair', serif;
 }
 
 h3{
     font-size: x-large;
+}
+
+@media (max-width: 1200px) {
+    input {
+        width: 80% !important;
+    }
 }

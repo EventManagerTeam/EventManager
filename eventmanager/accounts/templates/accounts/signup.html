@@ -5,10 +5,15 @@
 {% block head %}
 <link href="{% static "accounts/signup.css" %}" rel="stylesheet">
 {% endblock %}
+<style>
+  input {
+    width: 80% !important;
+  }
 
+</style>
 {% block content %}
 <br> <br>
-<div class="sign_up">
+<div class="sign_up" style="padding-bottom: 5%;">
 <form method="post">
     {% csrf_token %}
     <div class="form-group">
