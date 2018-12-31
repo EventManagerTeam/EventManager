@@ -44,7 +44,7 @@ def login(request):
         if user is not None:
             if user.is_active:
                 auth_login(request, user)
-                return render(request, 'accounts/index.html')
+                return render(request, 'accounts/home.html')
         else:
             context = {'form': form, 'wrong_credentials': True}
             return render(
