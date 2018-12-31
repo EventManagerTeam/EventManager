@@ -37,6 +37,7 @@ html {
 
 .navbar {
     margin-bottom: 0 !important;
+    border-radius: 0px;
 }
 
 input{
