@@ -94,7 +94,7 @@ def create_event(request):
 
 def edit_event(request, slug):
     instance = Event.objects.all().get(slug=slug)
-    form = EventForm(request.POST,request.FILES or None, instance=instance)
+    form = EventForm(request.POST, request.FILES or None, instance=instance)
     if request.method == 'POST':
         if form.is_valid():
             post = form.save(commit=False)
