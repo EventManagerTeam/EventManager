@@ -3,6 +3,7 @@ from events.models import Comment
 from events.models import Invite
 from categories.models import Category
 from accounts.models import AccountDetails
+from tasks.models import Task
 
 from rest_framework import serializers
 
@@ -59,4 +60,22 @@ class AccountDetailsSerializer(serializers.ModelSerializer):
             "friends",
             "birth_date",
             "description",
+        )
+
+
+class TasksSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = (
+            "id",
+            "title",
+            "slug",
+            "description",
+            "status",
+            "is_active",
+            "created_at",
+            "updated_at",
+            'added_by',
+            'assignee',
+            'event'
         )
