@@ -276,13 +276,15 @@ def invites(request):
     context = {'events': invites}
     return render(request, 'events/invites.html', context)
 
+
 @login_required
 def tasks(request):
     user = request.user
     todo_tickets = Task.objects.filter(assignee=user).filter(status='TODO')
     doing_tickets = Task.objects.filter(assignee=user).filter(status='DOING')
-    context = {'todo_tickets': todo_tickets,'doing_tickets':doing_tickets}
+    context = {'todo_tickets': todo_tickets, 'doing_tickets': doing_tickets}
     return render(request, 'events/my_tasks.html', context)
+
 
 @login_required
 def confirm_invite(request, slug):
