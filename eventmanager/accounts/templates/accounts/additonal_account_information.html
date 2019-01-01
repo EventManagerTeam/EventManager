@@ -10,7 +10,8 @@
     <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
         <h1> {{ form|crispy }} </h1>
-        <h1>
+
+        <h1> <b> Birthdate:</b> <br>
             <input type="date" id="birthdate" class="birthdate" name="birthdate" value="{{birthdate}}">
         </h1>
         <button class="btn btn-primary btn-lg btn-block" type="submit">

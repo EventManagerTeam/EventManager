@@ -94,7 +94,7 @@ def create_event(request):
 
 def edit_event(request, slug):
     instance = Event.objects.all().get(slug=slug)
-    form = EventForm(request.POST or None, instance=instance)
+    form = EventForm(request.POST,request.FILES or None, instance=instance)
     if request.method == 'POST':
         if form.is_valid():
             post = form.save(commit=False)
@@ -114,9 +114,10 @@ def edit_event(request, slug):
                     request.POST.get('ends_at_time')
                 )
 
-            if request.FILES['cover_image']:
-                post.cover_image = request.FILES['cover_image']
-
+            # if request.FILES['cover_image']:
+            #     post.cover_image = request.FILES['cover_image']
+            if request.FILES.get('cover_image'):
+                event.cover_image = request.FILES.get('cover_image')
             post.save()
 
             category = Category.objects.filter(

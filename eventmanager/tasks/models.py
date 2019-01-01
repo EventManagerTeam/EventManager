@@ -54,8 +54,8 @@ class Task(models.Model):
         verbose_name=_("Description"),
         help_text=_("Plain text, any formatting or links will be removed"),
         unique=False,
-        null=False,
-        blank=False
+        null=True,
+        blank=True
     )
 
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)

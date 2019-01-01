@@ -30,6 +30,8 @@ from eventmanager.slugify import *
 
 
 def index(request):
+    if request.user.is_authenticated:
+        return home(request)
     return render(request, 'accounts/index.html')
 
 
@@ -171,7 +173,7 @@ def show_account_details(request):
             'accounts/show_account_details.html',
             {
                 'details': details,
-                'name': request.user.first_name + request.user.last_name,
+                'name': request.user.first_name + ' ' + request.user.last_name,
                 'username': request.user.username,
                 'email': request.user.email
             }
