@@ -38,7 +38,7 @@ urlpatterns = [
     url(
         '^inbox/notifications/',
         include(notifications.urls,
-        namespace='notifications')
+                namespace='notifications')
     ),
     url(r'^api/', include('api.urls')),
     url(r'^swagger/', schema_view),

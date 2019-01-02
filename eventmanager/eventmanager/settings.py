@@ -75,7 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends', 
+                'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
         },
@@ -157,7 +157,7 @@ EVENTS_IN_FEED = 20
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-#login url for socail-auth
+# login url for socail-auth
 LOGIN_URL = 'login'
 LOGOUT_URL = 'signout'
 LOGIN_REDIRECT_URL = 'accounts.home'
