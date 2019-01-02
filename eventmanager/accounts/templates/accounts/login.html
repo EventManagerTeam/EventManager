@@ -28,14 +28,19 @@
 
       <h1>   
          <a href="/signup">
-            Don't have account? Register here. <br> 
-         </a>
+            Don't have account? Register here. 
+         </a><br>
       </h1>
-
       <button class="btn btn-primary btn-lg btn-block" type="submit">
          <h1> Log in </h1>
-      </button>
+      </button> <br>
+      <h1 class="text-center h1" style="font-size: xx-large !important;"> You can also: </h1> <br>
 
+       <a href="{% url 'social:begin' 'github' %}">
+      <button class="btn btn-success btn-lg btn-block" type="submit">
+         <h1> Log in with <i class="fab fa-github "></i> </h1>
+      </button>
+      </a>
    </form>
 </div>
 {% endblock %}
