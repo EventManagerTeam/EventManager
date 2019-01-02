@@ -404,7 +404,7 @@ def event_board(request, slug):
 
     if request.user in members:
         form = TaskForm(request.POST or None)
-
+        form.fields["assignee"].queryset = members
         if request.method == 'POST':
             if form.is_valid():
                 task = form.save(commit=False)
