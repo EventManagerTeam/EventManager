@@ -36,6 +36,9 @@ def index(request):
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return home(request)
+
     form = LoginForm(request.POST or None)
     if form.is_valid():
         username = form.cleaned_data['username']
@@ -70,6 +73,9 @@ def signout(request):
 
 
 def signup(request):
+    if request.user.is_authenticated:
+        return home(request)
+        
     form = SignUpForm(request.POST or None)
     if form.is_valid():
         form.save()
