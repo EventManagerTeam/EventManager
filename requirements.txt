@@ -11,3 +11,4 @@ djangorestframework==3.9.0
 markdown==3.0.1
 django-filter==2.0.0
 django-rest-swagger==2.2.0
+social-auth-app-django==3.1.0

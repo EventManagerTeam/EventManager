@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
     'rest_framework',
     'rest_framework_swagger',
     'notifications',
@@ -58,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'eventmanager.urls'
@@ -73,10 +75,20 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'eventmanager.wsgi.application'
 
@@ -144,3 +156,16 @@ MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, 'media'))
 EVENTS_IN_FEED = 20
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# login url for socail-auth
+LOGIN_URL = 'login'
+LOGOUT_URL = 'signout'
+LOGIN_REDIRECT_URL = 'accounts.home'
+
+SOCIAL_AUTH_GITHUB_KEY = ''
+SOCIAL_AUTH_GITHUB_SECRET = ''
+
+try:
+    from eventmanager.local_settings import *
+except ImportError:
+    pass
