@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'events',
     'tasks',
     'crispy_forms',
+    'colorfield',
     'custom_errors',
     'django_cleanup.apps.CleanupConfig'
 ]

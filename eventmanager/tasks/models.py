@@ -7,6 +7,8 @@ from django.utils.text import slugify
 from eventmanager.slugify import *
 from events.models import Event
 
+from colorfield.fields import ColorField
+
 
 class TaskQuerySet(TreeQuerySet):
     def active(self):
@@ -104,3 +106,73 @@ class Task(models.Model):
         if not self.slug:
             unique_slugify(self, self.title)
         super().save_model(request, obj, form, change)
+
+
+class BoardQuerySet(TreeQuerySet):
+    def active(self):
+        return self.filter(is_active=True)
+
+    def sort(self):
+        return self.order_by('title')
+
+
+class BoardManager(models.Manager):
+    def get_queryset(self):
+        return BoardQuerySet(self.model, using=self._db)
+
+    def active(self):
+        return self.get_queryset().active()
+
+    def sort(self):
+        return self.get_queryset().sort()
+
+
+class Board(models.Model):
+    title = models.CharField(
+        verbose_name=_("Title"),
+        help_text=_("250 character limit"),
+        max_length=250,
+        unique=False,
+        null=False,
+        blank=False
+    )
+
+    slug = models.SlugField(
+        unique=True,
+        blank=True,
+        null=True
+    )
+
+    is_active = models.BooleanField(
+        verbose_name=_("Is active"),
+        default=True
+    )
+
+    created_at = models.DateTimeField(
+        verbose_name=_("Created at"),
+        auto_now_add=True
+    )
+
+    added_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+        related_name="board_added_by"
+    )
+
+    updated_at = models.DateTimeField(
+        verbose_name=_("Updated at"),
+        auto_now=True
+    )
+
+    event = models.ForeignKey(
+        Event,
+        on_delete=models.CASCADE,
+        null=False,
+        blank=False
+    )
+
+    background_color = ColorField(default='#FF0000')
+
+    objects = BoardManager()
