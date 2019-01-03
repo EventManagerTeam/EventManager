@@ -176,3 +176,9 @@ class Board(models.Model):
     background_color = ColorField(default='#FF0000')
 
     objects = BoardManager()
+
+    def save_model(self, request, obj, form, change):
+        obj.added_by = request.user
+        if not self.slug:
+            unique_slugify(self, self.title)
+        super().save_model(request, obj, form, change)
