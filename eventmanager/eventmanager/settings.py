@@ -158,7 +158,6 @@ EVENTS_IN_FEED = 20
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # login url for socail-auth
-LOGIN_URL = 'login'
 LOGOUT_URL = 'signout'
 LOGIN_REDIRECT_URL = 'accounts.home'
 
