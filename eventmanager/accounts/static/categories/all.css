@@ -7,3 +7,25 @@
 .card-title{
   color: saddlebrown;
 }
+
+.background{
+    background: #22c1c3;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #fdbb2d, #22c1c3); 
+    background: linear-gradient(to right, #fdbb2d, #22c1c3); 
+}
+
+.white-text{
+    color: white;
+}
+
+.card-columns{
+    padding-top: 3%;
+}
+
+.card{
+    height: auto;
+}
+
+body{
+	background-color: darkgrey;
+}

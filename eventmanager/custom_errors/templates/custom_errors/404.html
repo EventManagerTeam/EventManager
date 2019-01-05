@@ -5,27 +5,12 @@
 {% block title %} Error! {% endblock %}
 {% block head %}
 <link href="https://fonts.googleapis.com/css?family=Raleway:900" rel="stylesheet">
-
-<style type="text/css">
-    img{
-        max-width: 90%;
-        max-height: 60%;
-        padding-left: 10%;
-        padding-top: 5%;
-    }
-
-    h1{
-        font-family: 'Raleway', sans-serif;
-        padding-top: 10%;
-        text-align: center;
-    }
-</style>
-
+<link href="{% static "errors/404.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <div class="container" >
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Bundesstra%C3%9Fe_404_number.svg/2000px-Bundesstra%C3%9Fe_404_number.svg.png">
-        <h1 class="display-3">  Ooops.. The page you are looking for doesn't exist.. yet</h1>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Bundesstra%C3%9Fe_404_number.svg/2000px-Bundesstra%C3%9Fe_404_number.svg.png">
+    <h1 class="display-3">  Ooops.. The page you are looking for doesn't exist.. yet</h1>
 </div>
 {% endblock %}

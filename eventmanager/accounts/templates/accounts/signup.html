@@ -1,62 +1,54 @@
+
+
 {% extends 'accounts/base.html' %}
 {% load static %}
-
 {% block title %} Register {% endblock %} 
 {% block head %}
 <link href="{% static "accounts/signup.css" %}" rel="stylesheet">
 {% endblock %}
-<style>
-  input {
-    width: 80% !important;
-  }
-
-</style>
 {% block content %}
 <br> <br>
-<div class="sign_up" style="padding-bottom: 5%;">
-<form method="post">
-    {% csrf_token %}
-    <div class="form-group">
-        {% for field in form %}
+<div class="sign_up">
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {% for field in form %}
             {% for error in field.errors %}
-                <div class="alert alert-danger alert-dismissible">
-                    {{ error }} 
-                </div>
+            <div class="alert alert-danger alert-dismissible">
+                {{ error }} 
+            </div>
             {% endfor %}
             <h1>  
                 {% if "_name" in field.name %}
-                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
                 {% endif %}
-
                 {% if "username" in field.name %}
-                    <i class="fa fa-user" aria-hidden="true"></i>
+                <i class="fa fa-user" aria-hidden="true"></i>
                 {% endif %}
-
                 {% if "password" in field.name %}
-                    <i class="fa fa-key" aria-hidden="true"></i>
+                <i class="fa fa-key" aria-hidden="true"></i>
                 {% endif %}
-
                 {% if "mail" in field.name %}
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                <i class="fa fa-envelope" aria-hidden="true"></i>
                 {% endif %}
-
                 {{ field.label_tag }} 
             </h1>
             <h1>
                 {{ field }} 
-            </h1> <br>
-        {% endfor %}
-        <h1>   
-           <a href="/login">
-              Already have account? Login here. <br> 
-           </a>
-        </h1>
-        <button class="btn btn-primary btn-lg"  type="submit">
-           <h1> Sign up </h1>
-        </button>
-    </div>
-</form>
-   <br>
+            </h1>
+            <br>
+            {% endfor %}
+            <h1>   
+                <a href="/login">
+                Already have account? Login here. <br> 
+                </a>
+            </h1>
+            <button class="btn btn-primary btn-lg"  type="submit">
+                <h1> Sign up </h1>
+            </button>
+        </div>
+    </form>
+    <br>
 </div>
 {% endblock %}
 

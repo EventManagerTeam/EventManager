@@ -1,44 +1,40 @@
 {% extends 'accounts/base.html' %}
 {% load static %}
 {% block title %}  EventManager{% endblock %}
+
 {% block head %}
 <link href="{% static "accounts/home.css" %}" rel="stylesheet">
-
-<style type="text/css">
-  
-</style>
 {% endblock %}
-{% block content %}
 
+{% block content %}
 <h1 class="display-1 text-center">
-   Welcome to EventManager, {{request.user}}!
+    Welcome to EventManager, {{request.user}}!
 </h1>
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <a href = "events/all/"> <button type="button" class="btn btn-block btn-primary"> Browse events</button> </a>
+    <div class="row">
+        <div class="col">
+            <a href = "events/all/"> <button type="button" class="btn btn-block btn-primary"> Browse events</button> </a>
+        </div>
+        <div class="col">
+            <a href = "events/create_event/"> <button type="button" class="btn btn-block btn-success">Create event</button> </a>
+        </div>
     </div>
-    <div class="col">
-     <a href = "events/create_event/"> <button type="button" class="btn btn-block btn-success">Create event</button> </a>
+    <div class="row">
+        <div class="col">
+            <a href = "account_details/"> <button type="button" class="btn btn-block btn-danger">  Change account details  </button> </a>
+        </div>
+        <div class="col">
+            <a href = "events/invites/"> <button type="button" class="btn btn-block btn-warning">My invites </button> </a>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-     <a href = "account_details/"> <button type="button" class="btn btn-block btn-danger">  Change account details  </button> </a>
+    <div class="row">
+        <div class="col">
+            <a href = "categories/all"> <button type="button" class="btn btn-block btn-light">Browse categories</button> </a>
+        </div>
+        <div class="col">
+            <a href = "events/my_events/"> <button type="button" class="btn btn-block btn-dark"> My events </button> </a>
+        </div>
     </div>
-    <div class="col">
-       <a href = "events/invites/"> <button type="button" class="btn btn-block btn-warning">My invites </button> </a>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <a href = "categories/all"> <button type="button" class="btn btn-block btn-light">Browse categories</button> </a>
-    </div>
-    <div class="col">
-      <a href = "events/my_events/"> <button type="button" class="btn btn-block btn-dark"> My events </button> </a>
-    </div>
-  </div>
 </div>
-
-
 {% endblock %}
+

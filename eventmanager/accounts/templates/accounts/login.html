@@ -1,45 +1,47 @@
 {% extends 'accounts/base.html' %}
-
 {% block title %} Login {% endblock %} 
-
 {% block content %}
-
 <br> <br>
+
 <div class="col-md-4 col-md-offset-4 centered">
    <form method="post">
       {% csrf_token %}
       {% if wrong_credentials == True %}
-      <div class="alert alert-danger alert-dismissible">
-         You entered wrong credentials.
-      </div>
+         <div class="alert alert-danger alert-dismissible">
+            You entered wrong credentials.
+         </div>
       {% endif%}
       <div class="form-group">
-            <br> <h1>   
-               <i class="fa fa-user-circle" aria-hidden="true"></i>
-               Username: 
-            </h1> <br>
-            <h1> {{ form.username }}</h1> <br>
-            <h1>   
-               <i class="fa fa-key" aria-hidden="true"></i>
-               Password: 
-            </h1>
-            <h1> {{ form.password }} </h1> <br>
+         <br> 
+         <h1>   
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            Username: 
+         </h1>
+         <br>
+         <h1> {{ form.username }}</h1>
+         <br>
+         <h1>   
+            <i class="fa fa-key" aria-hidden="true"></i>
+            Password: 
+         </h1>
+         <h1> {{ form.password }} </h1>
+         <br>
       </div>
-
       <h1>   
          <a href="/signup">
-            Don't have account? Register here. 
+         Don't have account? Register here. 
          </a><br>
       </h1>
       <button class="btn btn-primary btn-lg btn-block" type="submit">
          <h1> Log in </h1>
-      </button> <br>
-      <h1 class="text-center h1" style="font-size: xx-large !important;"> You can also: </h1> <br>
-
-       <a href="{% url 'social:begin' 'github' %}">
-      <button class="btn btn-success btn-lg btn-block" type="submit">
-         <h1> Log in with <i class="fab fa-github "></i> </h1>
       </button>
+      <br>
+      <h1 class="text-center h1" style="font-size: xx-large !important;"> You can also: </h1>
+      <br>
+      <a href="{% url 'social:begin' 'github' %}">
+         <button class="btn btn-success btn-lg btn-block" type="submit">
+            <h1> Log in with <i class="fab fa-github "></i> </h1>
+         </button>
       </a>
    </form>
 </div>
