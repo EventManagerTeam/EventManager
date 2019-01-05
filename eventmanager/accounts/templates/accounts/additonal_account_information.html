@@ -1,7 +1,7 @@
 {% extends 'accounts/base.html' %}
 {% block title %} Additional account info {% endblock %}
-{% block content %}
 
+{% block content %}
 <br> <br>
 
 {% load crispy_forms_tags %}
@@ -10,7 +10,6 @@
     <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
         <h1> {{ form|crispy }} </h1>
-
         <h1> <b> Birthdate:</b> <br>
             <input type="date" id="birthdate" class="birthdate" name="birthdate" value="{{birthdate}}">
         </h1>

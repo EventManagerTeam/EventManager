@@ -8,12 +8,12 @@
                 </h4>
                 <p class="card-text simple h3">{{ comment.content|safe }}</p>
             </div>
-          <div class="col-sm-2">
+            <div class="col-sm-2">
             {% if request.user == comment.author %}
-            <a onclick="location.href=window.location.href  + '/{{comment.pk}}/delete'" type="button" style="float: right; padding-right: 20px;"> <i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
-            <a onclick="location.href=window.location.href  + '/{{comment.pk}}/edit'" type="button" style="float: right; padding-right: 20px;"> <i class="fas fa-edit fa-2x" style="float: right"></i></a>  
+                <a onclick="location.href=window.location.href  + '/{{comment.pk}}/delete'" type="button" style="float: right; padding-right: 20px;"> <i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+                <a onclick="location.href=window.location.href  + '/{{comment.pk}}/edit'" type="button" style="float: right; padding-right: 20px;"> <i class="fas fa-edit fa-2x" style="float: right"></i></a>  
             {% endif %}  
-          </div>
+            </div>
         </div>
         
     </div>
