@@ -227,8 +227,8 @@ class Comment(models.Model):
     )
 
     content = models.TextField(
-        verbose_name=_("Description"),
-        unique=True,
+        verbose_name=_("Content"),
+        unique=False,
         null=False,
         blank=False,
         max_length=500
