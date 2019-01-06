@@ -4,7 +4,7 @@ from django.test import Client
 from django.test import TestCase
 from django.urls import reverse
 
-from .forms import *   # import all forms
+from .forms import *
 from django.contrib.auth.models import User
 
 from accounts.models import AccountDetails

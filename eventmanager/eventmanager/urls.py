@@ -13,19 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import handler404
+from django.conf.urls import handler500
+from django.conf.urls import url
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
 from django.conf.urls import url
-from django.conf.urls import handler404, handler500
-from django.conf.urls.static import static
-
-from eventmanager import settings
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 import notifications.urls
 
-from django.conf.urls import url
+from eventmanager import settings
+
 from rest_framework_swagger.views import get_swagger_view
+
 
 schema_view = get_swagger_view(title='EventManager API')
 

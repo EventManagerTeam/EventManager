@@ -1,10 +1,13 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext as _
+
 from mptt.querysets import TreeQuerySet
-from django.contrib.auth.models import User
 
 from django.utils.text import slugify
+
 from eventmanager.slugify import *
+
 from events.models import Event
 
 

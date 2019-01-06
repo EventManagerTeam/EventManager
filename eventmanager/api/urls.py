@@ -1,11 +1,11 @@
 from rest_framework.routers import SimpleRouter
 
-from .views import EventViewSet
-from .views import CategoriesViewSet
-from .views import CommentsViewSet
-from .views import InvitationsViewSet
-from .views import AccountDetailsViewSet
-from .views import TasksViewSet
+from api.views import AccountDetailsViewSet
+from api.views import CategoriesViewSet
+from api.views import CommentsViewSet
+from api.views import EventViewSet
+from api.views import InvitationsViewSet
+from api.views import TasksViewSet
 
 
 router = SimpleRouter()

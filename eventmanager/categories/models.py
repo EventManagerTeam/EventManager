@@ -1,8 +1,10 @@
 from django.db import models
-from django.utils.translation import ugettext as _
-from mptt.querysets import TreeQuerySet
 from django.utils.text import slugify
+from django.utils.translation import ugettext as _
+
 from eventmanager.slugify import *
+
+from mptt.querysets import TreeQuerySet
 
 
 class CategoryQuerySet(TreeQuerySet):

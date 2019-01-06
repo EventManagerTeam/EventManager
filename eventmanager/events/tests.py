@@ -1,12 +1,16 @@
 import unittest
 
 from django.test import Client
-from django.urls import reverse
-from django.contrib.auth.models import User
 from django.test import TestCase
-from categories.models import Category
-from events.models import Event
+from django.urls import reverse
+
 from accounts.models import AccountDetails
+
+from categories.models import Category
+
+from django.contrib.auth.models import User
+
+from events.models import Event
 
 
 class EventsTestCase(TestCase):

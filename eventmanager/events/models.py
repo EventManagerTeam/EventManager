@@ -1,11 +1,14 @@
-from categories.models import Category
 from accounts.models import AccountDetails
+
+from categories.models import Category
+
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext as _
-from mptt.querysets import TreeQuerySet
-from django.contrib.auth.models import User
-
 from django.utils.text import slugify
+
+from mptt.querysets import TreeQuerySet
+
 from eventmanager.slugify import *
 
 

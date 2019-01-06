@@ -1,8 +1,11 @@
 from django.shortcuts import render
 
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
+from django.core.paginator import Paginator
 
 from categories.models import Category
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from events.models import Event
 
 

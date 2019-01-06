@@ -1,6 +1,8 @@
+from .models import Event
+
 from django.contrib.syndication.views import Feed
 from django.template.defaultfilters import truncatewords
-from .models import Event
+
 from eventmanager import settings
 
 

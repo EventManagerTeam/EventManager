@@ -5,18 +5,26 @@ from .forms import VisibilitySettings
 from accounts.forms import UserForm
 from accounts.models import AccountDetails
 from categories.models import Category
-from events.forms import TaskForm
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
 from django.core.exceptions import PermissionDenied
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
+from django.core.paginator import Paginator
+
 from django.shortcuts import render
+
+from eventmanager.slugify import *
+
+from events.forms import TaskForm
 from events.models import Comment
 from events.models import Event
 from events.models import Invite
+
 from tasks.models import Task
-from eventmanager.slugify import *
 
 
 def index(request):
