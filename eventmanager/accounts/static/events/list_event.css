@@ -15,3 +15,9 @@ img{
 .card-text{
 	margin: 2%;
 }
+
+@media only (max-width: 1026px) {
+    .categories {
+        display: none;
+    }
+}
