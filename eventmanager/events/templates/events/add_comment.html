@@ -13,21 +13,7 @@
 <form class="well" method="post" style="margin:2%;">
     {% csrf_token %}
     <h1> {{ form|crispy }} </h1>
-    <script type="text/javascript">
-        var textarea = document.querySelector("textarea");
-
-        textarea.addEventListener("input", function(){
-        var maxlength = 500;
-        var currentLength = this.value.length;
-
-        if( currentLength >= maxlength ){
-            document.getElementById("remainingCount1").innerHTML = "You have reached the maximum number of characters.";
-        } else{
-            document.getElementById("remainingCount1").innerHTML = maxlength - currentLength + " chars left";
-        }
-
-        });
-    </script> 
+    <script type="text/javascript" src="{% static "scripts/comment_countdown.js" %}"></script> 
     <h1> <span id="remainingCount1">  500 chars left  </span>  </h1>  
 
     <h1> <input type="submit" class="btn btn-success btn-block" value="Submit" style="font-size: x-large;"> </h1>
