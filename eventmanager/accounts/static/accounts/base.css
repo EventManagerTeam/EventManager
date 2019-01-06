@@ -1,69 +1,69 @@
-
-
 html {
-    font-family: Montserrat, sans-serif!important
+	font-family: Montserrat, sans-serif!important;
 }
+
 .container-fluid {
-    background-color: #2f2f2f; 
-    color: #fff;
-    position:fixed;
-    bottom:0;
-    width: 100%;
-    padding-top: 1%;
-    padding-bottom: 1%;
+	background-color: #2f2f2f;
+	color: #fff;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding-top: 1%;
+	padding-bottom: 1%;
 }
 
 .container {
-    position: relative;
+	position: relative;
 }
 
 .container .content {
-    position: absolute;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5); 
-    color: #f1f1f1;
-    width: 100%;
-    padding: 20px;
+	position: absolute;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
+	color: #f1f1f1;
+	width: 100%;
+	padding: 20px;
 }
 
-
-.blue{
-    color:rgb(51, 122, 183)
+.blue {
+	color: rgb(51, 122, 183);
 }
 
-.formfield{
-    width: 100%
+.formfield {
+	width: 100%;
 }
 
 .navbar {
-    margin-bottom: 0 !important;
-    border-radius: 0px;
+	margin-bottom: 0 !important;
+	border-radius: 0px;
 }
 
-input{
-    width: 30%;
+input {
+	width: 30%;
 }
 
-input, textarea, .card-text {   
-    font-family: 'Arial';
+input, textarea, .card-text {
+	font-family: 'Arial';
 }
 
-textarea, .textinput, select{ font-size: 30px !important;}
-
-.textinput, select{
-    height: 7%;
+textarea, .textinput, select {
+	font-size: 30px !important;
 }
 
-.simple{
-    font-family: 'Bellefair', serif;
+.textinput, select {
+	height: 7%;
 }
 
-h3{
-    font-size: x-large;
+.simple {
+	font-family: 'Bellefair', serif;
+}
+
+h3 {
+	font-size: x-large;
 }
 
 @media (max-width: 1200px) {
-    input {
-        width: 80% !important;
-    }
+	input {
+	width: 80% !important;
+  }
 }

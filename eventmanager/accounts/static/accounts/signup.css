@@ -1,15 +1,15 @@
 .btn{
-  width: 50%;
+	width: 50%;
 }
 
 form{
-  text-align: center;
+	text-align: center;
 }
 
 .sign_up{
-  display: table;
-  width: 100%;
-  padding-bottom: 5%;
+	display: table;
+	width: 100%;
+	padding-bottom: 5%;
 }
 
 @media screen and (min-width: 1200px) {
