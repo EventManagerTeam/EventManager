@@ -1,8 +1,11 @@
-from events.models import Event
-from events.models import Comment
-from events.models import Invite
-from categories.models import Category
 from accounts.models import AccountDetails
+
+from categories.models import Category
+
+from events.models import Comment
+from events.models import Event
+from events.models import Invite
+
 from tasks.models import Task
 
 from rest_framework import serializers

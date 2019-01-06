@@ -1,18 +1,21 @@
-from api.serializers import EventSerializer
+from api.serializers import AccountDetailsSerializer
 from api.serializers import CategorySerializer
 from api.serializers import CommentsSerializer
+from api.serializers import EventSerializer
 from api.serializers import InvitationsSerializer
-from api.serializers import AccountDetailsSerializer
 from api.serializers import TasksSerializer
 
 from django.core.serializers import serialize
 from django.shortcuts import render
 
-from events.models import Event
-from events.models import Comment
-from events.models import Invite
-from categories.models import Category
 from accounts.models import AccountDetails
+
+from categories.models import Category
+
+from events.models import Comment
+from events.models import Event
+from events.models import Invite
+
 from tasks.models import Task
 
 from rest_framework import filters

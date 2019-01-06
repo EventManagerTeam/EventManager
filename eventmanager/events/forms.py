@@ -1,7 +1,9 @@
-from django.forms import ModelForm
 from django import forms
-from events.models import Event
+from django.forms import ModelForm
+
 from events.models import Comment
+from events.models import Event
+
 from tasks.models import Task
 
 

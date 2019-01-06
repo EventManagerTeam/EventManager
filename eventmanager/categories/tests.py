@@ -1,10 +1,11 @@
 import unittest
 
+from categories.models import Category
+
+from django.contrib.auth.models import User
 from django.test import Client
 from django.test import TestCase
 from django.urls import reverse
-from categories.models import Category
-from django.contrib.auth.models import User
 
 
 class CategoriesTestCase(TestCase):

@@ -1,10 +1,13 @@
-from django.shortcuts import render
-from tasks.models import Task
-from events.models import Event
 import events.views as event_views
+
 from django.shortcuts import redirect
+from django.shortcuts import render
 from django.urls import reverse
+
 from events.forms import TaskForm
+from events.models import Event
+
+from tasks.models import Task
 
 
 def delete_task(request, slug, task):
