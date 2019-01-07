@@ -1,0 +1,93 @@
+.group           { 
+  position:relative; 
+  margin-bottom:65px; 
+}
+input             {
+  font-size:28px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:100%;
+  border:none;
+  border-bottom:1px solid rgb(0, 123, 255);;
+}
+input:focus{ outline:none; }
+
+label              {
+  color:rgb(0, 123, 255);; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all; 
+  -moz-transition:0.2s ease all; 
+  -webkit-transition:0.2s ease all;
+}
+
+input:focus ~ label, input:valid ~ label     {
+  top:-20px;
+  font-size:14px;
+  color:rgb(0, 123, 255);;
+}
+
+.bar  { position:relative; display:block; width:100%; }
+.bar:before, .bar:after    {
+  content:'';
+  height:3px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:rgb(0, 123, 255);; 
+  transition:1s ease all; 
+  -moz-transition:1s ease all; 
+  -webkit-transition:1s ease all;
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+
+.highlight {
+  position:absolute;
+  height:60%; 
+  width:100px; 
+  top:25%; 
+  left:0;
+  pointer-events:none;
+  opacity:0.5;
+}
+
+input:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+@-webkit-keyframes inputHighlighter {
+   from { background:#5264AE; }
+  to  { width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+   from { background:#5264AE; }
+  to  { width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+   from { background:#5264AE; }
+  to  { width:0; background:transparent; }
+}
+
+body{
+   background-color: rgba(107, 185, 240, 0.7);
+   background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
+   linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
+   linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
+   linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
+   background-size: 13px, 29px, 37px, 53px;
+}
