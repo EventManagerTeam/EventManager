@@ -25,6 +25,7 @@ from events.models import Event
 from events.models import Invite
 
 from tasks.models import Task
+from django.shortcuts import redirect
 
 
 def index(request):
@@ -394,7 +395,7 @@ def edit_comment_by_slug(request, slug, comment):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return render(request, 'events/add_comment.html', context)
+            return redirect("/events/"+slug)
 
     context = {'form': form}
     return render(request, 'events/add_comment.html', context)
