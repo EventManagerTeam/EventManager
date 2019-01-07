@@ -394,6 +394,7 @@ def edit_comment_by_slug(request, slug, comment):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            return render(request, 'events/add_comment.html', context)
 
     context = {'form': form}
     return render(request, 'events/add_comment.html', context)
