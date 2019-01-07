@@ -2,53 +2,105 @@
 {% load static %}
 {% block title %} Register {% endblock %} 
 
+
+
 {% block head %}
-<link href="{% static "accounts/signup.css" %}" rel="stylesheet">
+<link href="{% static "accounts/login.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <br> <br>
-<div class="sign_up">
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            {% for field in form %}
-            {% for error in field.errors %}
-            <div class="alert alert-danger alert-dismissible">
-                {{ error }} 
-            </div>
-            {% endfor %}
-            <h1>  
-                {% if "_name" in field.name %}
-                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                {% endif %}
-                {% if "username" in field.name %}
-                <i class="fa fa-user" aria-hidden="true"></i>
-                {% endif %}
-                {% if "password" in field.name %}
-                <i class="fa fa-key" aria-hidden="true"></i>
-                {% endif %}
-                {% if "mail" in field.name %}
+<div class="col-md"> </div>
+<div class="col-lg-4 col-lg-offset-4" style="background-color: white;padding: 5%;border: 4px solid black;  border-radius: 25px;">
+   <form method="post">
+      {% csrf_token %}
+      {% if wrong_credentials == True %}
+         <div class="alert alert-danger alert-dismissible" style="margin-bottom: 10%;">
+            <h1> You entered wrong credentials. </h1>
+         </div>
+      {% endif%}
+   
+        <div class="group form-group">      
+           <input type="text" class="form-field" required id="id_username" name="username">
+           <span class="highlight"></span>
+           <span class="bar"></span>
+           <label>
+            <h1>   
+               <i class="fa fa-user" aria-hidden="true"></i>
+               Username: 
+            </h1>
+            </label>
+         </div>
+           
+        <div class="group">      
+           <input type="email" class="form-field" name="email" required id="id_email" maxlength="254">
+           <span class="highlight"></span>
+           <span class="bar"></span>
+           <label>
+            <h1>   
                 <i class="fa fa-envelope" aria-hidden="true"></i>
-                {% endif %}
-                {{ field.label_tag }} 
+                Email:
             </h1>
-            <h1>
-                {{ field }} 
+           </label>
+         </div>
+
+         <div class="group">      
+           <input type="text" class="form-field" name="first_name" required id="id_first_name">
+           <span class="highlight"></span>
+           <span class="bar"></span>
+           <label>
+            <h1>   
+               <i class="fa fa-user-circle" aria-hidden="true"></i>
+               First name: 
             </h1>
-            <br>
-            {% endfor %}
+           </label>
+         </div>
+
+         <div class="group">      
+           <input type="text" class="form-field" name="last_name" required id="id_last_name">
+           <span class="highlight"></span>
+           <span class="bar"></span>
+           <label>
+            <h1>   
+               <i class="fa fa-user-circle" aria-hidden="true"></i>
+               Last name: 
+            </h1>
+           </label>
+         </div>
+
+         <div class="group">      
+           <input type="password" class="form-field" name="password1" required id="id_password1">
+           <span class="highlight"></span>
+           <span class="bar"></span>
+           <label>
+            <h1>   
+               <i class="fa fa-key" aria-hidden="true"></i>
+               Password: 
+            </h1>
+           </label>
+         </div>
+
+         <div class="group">      
+           <input type="password" class="form-field" name="password2" required id="id_password2">
+           <span class="highlight"></span>
+           <span class="bar"></span>
+           <label>
+            <h1>   
+               <i class="fa fa-key" aria-hidden="true"></i>
+               Password confirmation: 
+            </h1>
+           </label>
+         </div>
+
             <h1>   
                 <a href="/login">
                 Already have account? Login here. <br> 
                 </a>
             </h1>
-            <button class="btn btn-primary btn-lg"  type="submit">
+            <button class="btn btn-primary btn-lg btn-block"  type="submit">
                 <h1> Sign up </h1>
             </button>
-        </div>
-    </form>
-    <br>
+   </form>
 </div>
+<div class="col-md"> </div>
 {% endblock %}
-

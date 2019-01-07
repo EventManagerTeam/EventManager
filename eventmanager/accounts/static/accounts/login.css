@@ -36,7 +36,6 @@ input:focus ~ label, input:valid ~ label     {
   content:'';
   height:3px; 
   width:0;
-  bottom:1px; 
   position:absolute;
   background:rgb(0, 123, 255);; 
   transition:1s ease all; 
