@@ -114,10 +114,16 @@ def signup(request):
         return home(request)
 
     form = SignUpForm(request.POST or None)
-    if form.is_valid():
+    if request.POST and form.is_valid():
+        form.username = request.POST.get('username')
+        form.password = request.POST.get('password')
+        form.first = request.POST.get('first_name')
+        form.last = request.POST.get('last_name')
+        form.email = request.POST.get('email')
         form.save()
-        username = form.cleaned_data.get('username')
-        raw_password = form.cleaned_data.get('password1')
+
+        username = form.username
+        raw_password = form.password
         user = authenticate(username=username, password=raw_password)
         auth_login(request, user)
         dt = AccountDetails.objects.create(user=user)
