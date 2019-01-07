@@ -67,3 +67,17 @@ h3 {
 	width: 80% !important;
   }
 }
+
+
+.nav-link h3,  dropdown-toggle,.login{
+	padding-right: 1vw;
+	color: white;
+}
+
+.navbar-nav a, a:hover, a:visited, a:link, a:active{
+    text-decoration: none;
+}
+
+.login{
+	color: white;
+}
