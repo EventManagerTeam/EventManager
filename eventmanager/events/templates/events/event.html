@@ -55,12 +55,12 @@
 
 {% if request.user.is_authenticated %}
     {% if has_joined %}
-        <button class="custom-btn btn-danger btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/cancel_join'" type="button" style="margin-bottom: 0;">
-            REMOVE JOIN
+        <button class="custom-btn btn-danger btn-primary btn-block display-3 text-uppercase" onclick="location.href=window.location.href  + '/cancel_join'" type="button" style="margin-bottom: 0;">
+            cancel attendance
         </button>
     {% else %}
-        <button class="custom-btn btn-success btn-primary btn-block display-3" onclick="location.href=window.location.href  + '/join'" type="button"  style="margin-bottom: 0;">
-            JOIN
+        <button class="custom-btn btn-success btn-primary btn-block display-3 text-uppercase" onclick="location.href=window.location.href  + '/join'" type="button"  style="margin-bottom: 0;">
+            join
         </button>
     {% include "accounts/partials/messages_partial.html" with messages=messages %}
     {% endif %}
