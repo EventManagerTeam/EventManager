@@ -18,13 +18,13 @@
     {% endif%}  event:  
 </h1>
 <br>  <br> 
-<div class="col-md-8  col-md-offset-2 centered">
+<div class="col-md-8 col-md-offset-2 centered">
     <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
         <h1> {{ form|crispy }} </h1>
 
         <br> <br>  <br> <br>
-        <select id="category" class="form-control form-control-lg" name="category_select" style="height: 12% !important">
+        <select id="category" class="form-control form-control-lg" name="category_select">
             <option class="disabled" value="" >Choose a category</option> 
             {% for category in categories %}
             <h1>
@@ -52,8 +52,6 @@
             {% endif%}
         </button>
     </form>
-    <br> <br><br><br>
 </div>
-<br> <br><br><br>
 {% endblock %}
 
