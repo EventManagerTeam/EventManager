@@ -1,5 +1,6 @@
 .btn-primary{
 	width: 100%;
+	margin-bottom: 4%
 }
 
 .display-3{
@@ -13,4 +14,11 @@ input{
 
 .left_input{
 	margin-left: 2%;margin-right: 2%;
+}
+.centered{
+	padding-bottom: 3vw;
+}
+
+select{
+	height: 12% !important;
 }
