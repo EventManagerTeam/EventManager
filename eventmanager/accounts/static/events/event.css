@@ -10,7 +10,7 @@ body, html {
     float: right;
     font-size: x-large;
     margin: auto;
-    margin-bottom: 5%;   
+    margin-bottom: 5%; 
 }
 
 form{
@@ -79,4 +79,9 @@ form{
 
 .large-text{
     font-size: x-large;
+}
+
+#dropdownMenuButton{
+    background-color: rgba( 245, 245, 245 , 0.9);
+    color: black;
 }
