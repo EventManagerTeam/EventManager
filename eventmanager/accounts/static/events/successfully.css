@@ -2,4 +2,14 @@
 	width: 100%;
 	padding: 15%;
 	margin-top: 12% !important;
+	background-color: rgba(255,255,255,0.85)
+}
+
+body {
+background: linear-gradient(to left bottom, rgba(240,240,240,0) 0.4em, #3da988 0.4em, #3da988 1.02em, rgba(240,240,240,0) 1.02em) 0 0, linear-gradient(to right top, rgba(240,240,240,0) 0.4em, #3da988 0.4em, #3da988 1.02em, rgba(240,240,240,0) 1.02em) 2em 0, linear-gradient(to left bottom, rgba(240,240,240,0) 0.4em, #91C46C 0.4em, #91C46C 1.02em, rgba(240,240,240,0) 0.4em) 0 1.02em, linear-gradient(to right top, rgba(240,240,240,0) 0.4em, #91C46C 0.4em, #91C46C 1.02em, rgba(240,240,240,0) 0.4em) 2em 1.02em, linear-gradient(to left bottom, rgba(240,240,240,0) 0.4em, #287D7D 0.4em, #287D7D 1.02em, rgba(240,240,240,0) 0.4em) 0 2.04em, linear-gradient(to right top, rgba(240,240,240,0) 0.4em, #287D7D 0.4em, #287D7D 1.02em, rgba(240,240,240,0) 0.4em) 2em 2.04em, linear-gradient(to left bottom, rgba(240,240,240,0) 0.4em, #C6E070 0.4em, #C6E070 1.02em, rgba(240,240,240,0) 0.4em) 0 3.06em, linear-gradient(to right top, rgba(240,240,240,0) 0.4em, #C6E070 0.4em, #C6E070 1.02em, rgba(240,240,240,0) 0.4em) 2em 3.06em, linear-gradient(to right bottom, rgba(240,240,240,0) 0.4em, #C6E070 0.4em, #C6E070 1.02em, rgba(240,240,240,0) 1.02em) 0 0, linear-gradient(to left top, rgba(240,240,240,0) 0.4em, #C6E070 0.4em, #C6E070 1.02em, rgba(240,240,240,0) 1.02em) 2em 0, linear-gradient(to right bottom, rgba(240,240,240,0) 0.4em, #3da988 0.4em, #3da988 1.02em, rgba(240,240,240,0) 0.4em) 0 1.02em, linear-gradient(to left top, rgba(240,240,240,0) 0.4em, #3da988 0.4em, #3da988 1.02em, rgba(240,240,240,0) 0.4em) 2em 1.02em, linear-gradient(to right bottom, rgba(240,240,240,0) 0.4em, #91C46C 0.4em, #91C46C 1.02em, rgba(240,240,240,0) 0.4em) 0 2.04em, linear-gradient(to left top, rgba(240,240,240,0) 0.4em, #91C46C 0.4em, #91C46C 1.02em, rgba(240,240,240,0) 0.4em) 2em 2.04em, linear-gradient(to right bottom, rgba(240,240,240,0) 0.4em, #287D7D 0.4em, #287D7D 1.02em, rgba(240,240,240,0) 0.4em) 0 3.06em, linear-gradient(to left top, rgba(240,240,240,0) 0.4em, #287D7D 0.4em, #287D7D 1.02em, rgba(240,240,240,0) 0.4em) 2em 3.06em;  background-size: 4em 4em;
+}
+
+h1{
+	font-family: 'Staatliches', cursive;
+	font-size: 100px !important;
 }
