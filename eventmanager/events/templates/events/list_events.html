@@ -1,6 +1,7 @@
 {% extends 'accounts/base.html' %}
 
 {% load static %}
+{% load humanize %}
 
 {% block title %} Events {% endblock %}
 
@@ -32,9 +33,9 @@
     </div>
     <div class="col">
         {% for event in events%}
-    <div class="card event" >
-            <div class="card-header">
-                <h3 class="text-center">  Date: {{ event.created_at }} </h3>
+    <div class="card event" style="box-shadow: 20px 20px 10px grey;" >
+            <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
+                <h3 class="text-center">  Added {{ event.created_at|naturaltime  }} </h3>
             </div>
             <div class="card-body">
                 {% if event.cover_image%}

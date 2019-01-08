@@ -1,10 +1,12 @@
+{% load humanize %}
+
 <div class="card comments-card">
     <div class="card-body">
         <div class="row">
             <div class="col-sm-10">                
                 <h3 class="card-title" style="font-size: x-large;">{{ comment.title }} </h3>
                 <h4 class="card-subtitle mb-2 text-muted"> 
-                    Commented by {{ comment.author }} on {{ comment.created_at }} 
+                    Commented by {{ comment.author }} on {{ comment.created_at|naturaltime }} 
                 </h4>
                 <p class="card-text simple h3">{{ comment.content|safe }}</p>
             </div>
