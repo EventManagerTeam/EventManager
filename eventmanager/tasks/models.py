@@ -107,3 +107,6 @@ class Task(models.Model):
         if not self.slug:
             unique_slugify(self, self.title)
         super().save_model(request, obj, form, change)
+
+    def __str__(self):
+        return self.title
