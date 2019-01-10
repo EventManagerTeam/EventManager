@@ -21,9 +21,16 @@
 <div class="col-md-8 col-md-offset-2 centered">
     <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
-        <h1> {{ form|crispy }} </h1>
+
+         <h1> {{form|crispy}} </h1>
+        
+        <div class="upload-btn-wrapper">
+          <button class="btn btn-block"> Add cover photo</button>
+          <h1> <input type="file" name="cover_image" accept="image/*" id="id_cover_image"> </h1>
+        </div>
 
         <br> <br>  <br> <br>
+        <h1> <b> Categories: </b></h1>
         <select id="category" class="form-control form-control-lg" name="category_select">
             <option class="disabled" value="" >Choose a category</option> 
             {% for category in categories %}
@@ -33,12 +40,14 @@
             {% endfor %}
         </select>
         <br> <br>  <br> <br>
-
+        <h1> <b> Start time: </b> </h1>
         <h1>
             <input type="date" id="starts_at" class="starts_at left_input" name="starts_at" value="{{starts_date}}">
             <input type="time" id="starts_at_time" class="taskDate" name="starts_at_time" value="{{starts_time}}">
         </h1>
         <br> <br>  <br> <br>
+        <h1> <b> End time: </b> </h1>
+
         <h1>
             <input type="date" id="ends_at" class="ends_at left_input" name="ends_at" value="{{ends_date}}">
             <input type="time" id="ends_at_time" class="taskDate" name="ends_at_time" value="{{ends_time}}">
@@ -53,5 +62,6 @@
         </button>
     </form>
 </div>
+<script type="text/javascript" src="{% static "scripts/textarea_rows.js" %}"></script> 
 {% endblock %}
 
