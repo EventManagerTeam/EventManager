@@ -1,6 +1,7 @@
 {% extends 'accounts/base.html' %}
 
 {% load static %}
+{% load humanize %}
 
 {% block title %} Events {% endblock %}
 
@@ -11,23 +12,24 @@
 <h1 class="h1 display-3 text-center"> My events </h1>
 <div class="row" style="margin: 0!important;">
     {% for event in events%}
-    <div class="card" style="margin: 2%;margin-left: 15%;margin-right: 15%;">
-            <div class="card-header">
-                <h3 class="text-center">  Date: {{ event.created_at }} </h3>
+    <div class="card event col-lg-5" style="box-shadow: 20px 20px 10px grey;" >
+                <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
+                    <h3 class="text-center">  Added {{ event.created_at|naturaltime  }} </h3>
+                </div>
+                <div class="card-body">
+                    {% if event.cover_image%}
+                        <img src="{{ event.cover_image.url }}">
+                    {% endif %}
+                    <h1 class="card-title"> <b> {{ event.title }} </b> </h1>
+                    <h3 class="card-text"> {{ event.description }} </h3>
+                    <a href="/events/{{event.slug}}" class="btn btn-primary btn-block btn-lg">
+                        <h3> Open full event </h3>
+                    </a>
+                </div>
             </div>
-            <div class="card-body">
-                {% if event.cover_image%}
-                    <img src="{{ event.cover_image.url }}">
-                {% endif %}
-                <h1 class="card-title"> <b> {{ event.title }} </b> </h1>
-                <h3 class="card-text"> {{ event.description }} </h3>
-                <a href="/events/{{event.slug}}" class="btn btn-primary btn-block btn-lg">
-                    <h3> Open full event </h3>
-                </a>
-            </div>
-        </div>
-        <br> <br>
+        <br> <br>  <br> <br> 
         {% endfor %}
+        
         {% if events.has_other_pages %}
         <ul class="pagination text-center justify-content-center">
             {% if events.has_previous %}
@@ -75,6 +77,6 @@
         </ul>
         {% endif %}</div>
 </div>
-<br> <br>
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 {% endblock %}
 
