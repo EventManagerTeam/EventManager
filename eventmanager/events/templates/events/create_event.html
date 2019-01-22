@@ -31,8 +31,7 @@
 
         <br> <br>  <br> <br>
         <h1> <b> Categories: </b></h1>
-        <select id="category" class="form-control form-control-lg" name="category_select">
-            <option class="disabled" value="" >Choose a category</option> 
+        <select id="category" class="form-control form-control-lg" name="category_select" multiple>
             {% for category in categories %}
             <h1>
                 <option  value="{{ category.name }}" name="{{ category.name }}">{{ category.name }}</option>
