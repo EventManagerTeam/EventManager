@@ -9,74 +9,73 @@
 <link href="{% static "events/list_event.css" %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
-<h1 class="h1 display-3 text-center"> My events </h1>
-<div class="row" style="margin: 0!important;">
+<h1 class="h1 display-3 text-center"> My events: </h1>
+<div>
     {% for event in events%}
     <div class="card event col-lg-5" style="box-shadow: 20px 20px 10px grey;" >
-                <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
-                    <h3 class="text-center">  Added {{ event.created_at|naturaltime  }} </h3>
-                </div>
-                <div class="card-body">
-                    {% if event.cover_image%}
-                        <img src="{{ event.cover_image.url }}">
-                    {% endif %}
-                    <h1 class="card-title"> <b> {{ event.title }} </b> </h1>
-                    <h3 class="card-text"> {{ event.description }} </h3>
-                    <a href="/events/{{event.slug}}" class="btn btn-primary btn-block btn-lg">
-                        <h3> Open full event </h3>
-                    </a>
-                </div>
-            </div>
-        <br> <br>  <br> <br> 
-        {% endfor %}
-        
-        {% if events.has_other_pages %}
-        <ul class="pagination text-center justify-content-center">
-            {% if events.has_previous %}
-                <li class="page-item">
-                    <a href="?page={{ events.previous_page_number }}">
-                        <h1> &laquo;</h1>
-                    </a>
-                </li>
-            {% else %}
-                <li class="disabled">
-                    <span>
-                        <h1> &laquo; </h1>
-                    </span>
-                </li>
+        <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
+            <h3 class="text-center">  Added {{ event.created_at|naturaltime  }} </h3>
+        </div>
+        <div class="card-body">
+            {% if event.cover_image%}
+                <img src="{{ event.cover_image.url }}">
             {% endif %}
-            {% for i in events.paginator.page_range %}
-            {% if events.number == i %}
-                <li class="active page-item">
-                    <span>
-                        <h1> {{ i }} </h1>
-                        <span class="sr-only">(current)</span>
-                    </span>
-                </li>
-            {% else %}
-                <li class="page-item">
-                    <a href="?page={{ i }}">
-                        <h1>{{ i }} </h1>
-                    </a>
-                </li>
-            {% endif %}
-            {% endfor %}
-            {% if events.has_next %}
-                <li class="page-item">
-                    <a href="?page={{ events.next_page_number }}">
-                        <h1>&raquo;  </h1>
-                    </a>
-                </li>
-            {% else %}
-                <li class="disabled page-item">
-                    <span>
-                        <h1> &raquo;  </h1>
-                    </span>
-                </li>
-            {% endif %}
-        </ul>
-        {% endif %}</div>
+            <h1 class="card-title"> <b> {{ event.title }} </b> </h1>
+            <h3 class="card-text"> {{ event.description }} </h3>
+            <a href="/events/{{event.slug}}" class="btn btn-primary btn-block btn-lg">
+                <h3> Open full event </h3>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
 </div>
+{% if events.has_other_pages %}
+<ul class="pagination text-center justify-content-center">
+    {% if events.has_previous %}
+        <li class="page-item">
+            <a href="?page={{ events.previous_page_number }}">
+                <h1> &laquo;</h1>
+            </a>
+        </li>
+    {% else %}
+        <li class="disabled">
+            <span>
+                <h1> &laquo; </h1>
+            </span>
+        </li>
+    {% endif %}
+    {% for i in events.paginator.page_range %}
+    {% if events.number == i %}
+        <li class="active page-item">
+            <span>
+                <h1> {{ i }} </h1>
+                <span class="sr-only">(current)</span>
+            </span>
+        </li>
+    {% else %}
+        <li class="page-item">
+            <a href="?page={{ i }}">
+                <h1>{{ i }} </h1>
+            </a>
+        </li>
+    {% endif %}
+    {% endfor %}
+    {% if events.has_next %}
+        <li class="page-item">
+            <a href="?page={{ events.next_page_number }}">
+                <h1>&raquo;  </h1>
+            </a>
+        </li>
+    {% else %}
+        <li class="disabled page-item">
+            <span>
+                <h1> &raquo;  </h1>
+            </span>
+        </li>
+    {% endif %}
+</ul>
+{% endif %}
+<br> <br><br> <br> <br> <br>
 <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 {% endblock %}
 

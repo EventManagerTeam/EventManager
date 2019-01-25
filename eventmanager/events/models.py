@@ -17,7 +17,7 @@ class EventQuerySet(TreeQuerySet):
         return self.filter(is_active=True)
 
     def sort(self):
-        return self.order_by('name')
+        return self.order_by('title')
 
 
 class EventManager(models.Manager):

@@ -14,6 +14,7 @@ urlpatterns = [
     path('tasks/', views.tasks, name='events.tasks'),
     path('create_event/', views.create_event, name='events.create_event'),
     path('my_events/', views.my_events, name='events.my_events'),
+    path('hosted/', views.events_I_host, name='events.events_I_host'),
     path('list/', views.index, name='events.list'),
     path('<slug:slug>', views.show_events_by_slug, name='events.event'),
     path(
