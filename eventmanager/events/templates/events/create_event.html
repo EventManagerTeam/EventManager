@@ -25,8 +25,9 @@
          <h1> {{form|crispy}} </h1>
         
         <div class="upload-btn-wrapper">
-          <button class="btn btn-block"> Add cover photo</button>
+          <button class="btn btn-block" id="cover_button"> Add cover photo</button>
           <h1> <input type="file" name="cover_image" accept="image/*" id="id_cover_image"> </h1>
+          <img id="preview" src="" />
         </div>
 
         <br> <br>  <br> <br>
@@ -62,5 +63,6 @@
     </form>
 </div>
 <script type="text/javascript" src="{% static "scripts/textarea_rows.js" %}"></script> 
+<script type="text/javascript" src="{% static "scripts/preview_image.js"%}"></script>
 {% endblock %}
 
