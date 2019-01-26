@@ -66,18 +66,20 @@ def create_event(request):
             event = form.save(commit=False)
             event.added_by = request.user
 
-            if request.POST.get('starts_at') \
-                    and request.POST.get('starts_at_time'):
+            default_time = "00:00:00"
+            starts_at = request.POST.get('starts_at_time') or default_time
+            ends_at = request.POST.get('ends_at_time') or default_time
+
+            if request.POST.get('starts_at'):
                 event.starts_at = get_datetime(
                     request.POST.get('starts_at'),
-                    request.POST.get('starts_at_time')
+                    starts_at
                 )
 
-            if request.POST.get('ends_at') \
-                    and request.POST.get('ends_at_time'):
+            if request.POST.get('ends_at'):
                 event.ends_at = get_datetime(
                     request.POST.get('ends_at'),
-                    request.POST.get('ends_at_time')
+                    ends_at
                 )
             if request.FILES.get('cover_image'):
                 event.cover_image = request.FILES.get('cover_image')
@@ -108,19 +110,21 @@ def edit_event(request, slug):
         if form.is_valid():
             post = form.save(commit=False)
             post.added_by = request.user
+            default_time = "00:00:00"
 
-            if request.POST.get('starts_at') \
-                    and request.POST.get('starts_at_time'):
+            starts_at = request.POST.get('starts_at_time') or default_time
+            ends_at = request.POST.get('ends_at_time') or default_time
+
+            if request.POST.get('starts_at'):
                 post.starts_at = get_datetime(
                     request.POST.get('starts_at'),
-                    request.POST.get('starts_at_time')
+                    starts_at
                 )
 
-            if request.POST.get('ends_at') \
-                    and request.POST.get('ends_at_time'):
+            if request.POST.get('ends_at'):
                 post.ends_at = get_datetime(
                     request.POST.get('ends_at'),
-                    request.POST.get('ends_at_time')
+                    ends_at
                 )
 
             # if request.FILES['cover_image']:
