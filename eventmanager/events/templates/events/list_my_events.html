@@ -10,7 +10,7 @@
 {% endblock %}
 {% block content %}
 <h1 class="h1 display-3 text-center"> My events: </h1>
-<div>
+<div class="row">
     {% for event in events%}
     <div class="card event col-lg-5" style="box-shadow: 20px 20px 10px grey;" >
         <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
@@ -29,6 +29,8 @@
     </div>
     {% endfor %}
 </div>
+
+<br> <br><br> <br> <br> <br>
 {% if events.has_other_pages %}
 <ul class="pagination text-center justify-content-center">
     {% if events.has_previous %}
@@ -45,20 +47,20 @@
         </li>
     {% endif %}
     {% for i in events.paginator.page_range %}
-    {% if events.number == i %}
-        <li class="active page-item">
-            <span>
-                <h1> {{ i }} </h1>
-                <span class="sr-only">(current)</span>
-            </span>
-        </li>
-    {% else %}
-        <li class="page-item">
-            <a href="?page={{ i }}">
-                <h1>{{ i }} </h1>
-            </a>
-        </li>
-    {% endif %}
+        {% if events.number == i %}
+            <li class="active page-item">
+                <span>
+                    <h1> {{ i }} </h1>
+                    <span class="sr-only">(current)</span>
+                </span>
+            </li>
+        {% else %}
+            <li class="page-item">
+                <a href="?page={{ i }}">
+                    <h1>{{ i }} </h1>
+                </a>
+            </li>
+        {% endif %}
     {% endfor %}
     {% if events.has_next %}
         <li class="page-item">
@@ -75,7 +77,6 @@
     {% endif %}
 </ul>
 {% endif %}
-<br> <br><br> <br> <br> <br>
-<br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br>
 {% endblock %}
 
