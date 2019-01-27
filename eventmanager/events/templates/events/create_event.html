@@ -42,14 +42,16 @@
         <br> <br>  <br> <br>
         <h1> <b> Start time: </b> </h1>
         <h1>
-            <input type="date" id="starts_at" class="starts_at left_input" name="starts_at" value="{{starts_date}}">
+            <div class="start_h alert alert-danger hidden"> </div>
+            <input type="date" id="starts_at" class="starts_at left_input" name="starts_at" value="{{starts_date}}" min="">
             <input type="time" id="starts_at_time" class="taskDate" name="starts_at_time" value="{{starts_time}}">
         </h1>
         <br> <br>  <br> <br>
         <h1> <b> End time: </b> </h1>
 
         <h1>
-            <input type="date" id="ends_at" class="ends_at left_input" name="ends_at" value="{{ends_date}}">
+            <div class="end_h alert alert-danger hidden"> </div>
+            <input type="date" id="ends_at" class="ends_at left_input" name="ends_at" value="{{ends_date}}" min="">
             <input type="time" id="ends_at_time" class="taskDate" name="ends_at_time" value="{{ends_time}}">
         </h1>
         <br> <br>  <br> <br>
@@ -64,5 +66,8 @@
 </div>
 <script type="text/javascript" src="{% static "scripts/textarea_rows.js" %}"></script> 
 <script type="text/javascript" src="{% static "scripts/preview_image.js"%}"></script>
+<script type="text/javascript" src="{% static "scripts/validate_event_date.js"%}"></script>
+
+
 {% endblock %}
 

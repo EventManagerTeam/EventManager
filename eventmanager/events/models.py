@@ -3,14 +3,22 @@ from accounts.models import AccountDetails
 from categories.models import Category
 
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
-from django.utils.translation import ugettext as _
 from django.utils.text import slugify
+from django.utils.translation import ugettext as _
 
 from mptt.querysets import TreeQuerySet
 
+from datetime import date
+
 from eventmanager.slugify import *
 
+
+def future(value):
+    today = date.today()
+    if value < today:
+        raise ValidationError("Can't add events that have ended")
 
 class EventQuerySet(TreeQuerySet):
     def active(self):
@@ -116,12 +124,14 @@ class Event(models.Model):
     starts_at = models.DateTimeField(
         verbose_name=_("Event starts at"),
         blank=True,
-        null=True
+        null=True,
+        validators=[future]
     )
     ends_at = models.DateTimeField(
         verbose_name=_("Event ends at"),
         blank=True,
-        null=True
+        null=True,
+        validators=[future]
     )
 
     objects = EventManager()
