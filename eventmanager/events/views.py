@@ -27,7 +27,7 @@ from events.models import Invite
 from tasks.models import Task
 from django.shortcuts import redirect
 import random
-
+from django.core.exceptions import ObjectDoesNotExist
 
 def index(request):
     events_list = Event.objects.active()
@@ -484,7 +484,10 @@ def events_I_host(request):
 
 @login_required
 def show_random_event(request):
-    count = Event.objects.count()
-    random_pk = random.randint(0, count)
-    random_event = Event.objects.get(pk=random_pk)
-    return show_events_by_slug(request, random_event.slug)
+    try:
+        count = Event.objects.count()
+        random_pk = random.randint(0, count-1)
+        random_event = Event.objects.get(pk=random_pk)
+        return show_events_by_slug(request, random_event.slug)
+    except ObjectDoesNotExist:
+        return show_random_event(request)
