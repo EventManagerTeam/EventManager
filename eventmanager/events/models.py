@@ -20,6 +20,7 @@ def future(value):
     if value < today:
         raise ValidationError("Can't add events that have ended")
 
+
 class EventQuerySet(TreeQuerySet):
     def active(self):
         return self.filter(is_active=True)
