@@ -10,6 +10,7 @@ from .feeds import LatestEventFeed
 
 urlpatterns = [
     path('all/', views.index, name='events.list'),
+    path('random/', views.show_random_event, name='events.show_random_event'),
     path('invites/', views.invites, name='events.invites'),
     path('tasks/', views.tasks, name='events.tasks'),
     path('create_event/', views.create_event, name='events.create_event'),

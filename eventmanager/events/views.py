@@ -26,6 +26,7 @@ from events.models import Invite
 
 from tasks.models import Task
 from django.shortcuts import redirect
+import random
 
 
 def index(request):
@@ -399,7 +400,7 @@ def edit_comment_by_slug(request, slug, comment):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect("/events/"+slug)
+            return redirect("/events/" + slug)
 
     context = {'form': form}
     return render(request, 'events/add_comment.html', context)
@@ -479,3 +480,11 @@ def events_I_host(request):
 
     context = {'events': events}
     return render(request, 'events/list_my_events.html', context)
+
+
+@login_required
+def show_random_event(request):
+    count = Event.objects.count()
+    random_pk = random.randint(0, count)
+    random_event = Event.objects.get(pk=random_pk)
+    return show_events_by_slug(request, random_event.slug)
