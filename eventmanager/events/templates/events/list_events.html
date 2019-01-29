@@ -19,8 +19,8 @@
     <br> <br>
     <div class="col-sm-2 hidden-xs hidden-md">
         <div class="card">
-            <h1 class="card-title" >Categories</h1>
-            <ul class="list-group list-group-flush">
+            <h1 class="card-title" >Categories <a data-toggle="collapse" href="#collapseCategories" onclick="changeCollapeseIcon();"> <i class="fa fa-plus"  aria-hidden="true" id="collapse_icon"></i> </a> </h1>
+            <ul class="list-group list-group-flush collapse" id="collapseCategories">
                 {% for category in categories%}
                     <h1>
                         <a href = "/categories/{{category}} ">
@@ -101,6 +101,19 @@
 {% endif %}
 <br> <br><br> <br> <br> <br>
 
+<script type="text/javascript">
+    function changeCollapeseIcon(){
+        var element = document.getElementById("collapse_icon");
+        if(element.classList.contains("fa-plus")){
+            element.classList.add("fa-minus");
+            element.classList.remove("fa-plus");
+        }else{
+            element.classList.remove("fa-minus");
+            element.classList.add("fa-plus");
+        }
+        
 
+    }
+</script>
 {% endblock %}
 
