@@ -29,6 +29,7 @@ from django.shortcuts import redirect
 import random
 from django.core.exceptions import ObjectDoesNotExist
 
+
 def index(request):
     events_list = Event.objects.active()
     number_of_items_per_page = 5
@@ -486,7 +487,7 @@ def events_I_host(request):
 def show_random_event(request):
     try:
         count = Event.objects.count()
-        random_pk = random.randint(0, count-1)
+        random_pk = random.randint(0, count - 1)
         random_event = Event.objects.get(pk=random_pk)
         return show_events_by_slug(request, random_event.slug)
     except ObjectDoesNotExist:
