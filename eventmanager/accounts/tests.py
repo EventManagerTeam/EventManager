@@ -435,12 +435,3 @@ class FriendsTestClass(TestCase):
 
         response = self.client.get(reverse('accounts.my_friends'))
         self.assertNotContains(response, "testuser")
-
-    def test_friend(self):
-        self.url_testing(
-            reverse(
-                "accounts.add_friend",
-                kwargs={
-                    'slug': "userslug2"}))
-        response = self.client.get(reverse('accounts.my_friends'))
-        self.assertContains(response, "testuser")
