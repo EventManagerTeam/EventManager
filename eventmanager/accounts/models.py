@@ -86,3 +86,45 @@ class AccountDetails(models.Model):
 
     def __str__(self):
         return "Details for: " + self.slug
+
+
+class FriendRequestQuerySet(TreeQuerySet):
+    def active(self):
+        return self.filter(is_active=True)
+
+    def sort(self):
+        return self.order_by('name')
+
+
+class FriendRequestsManager(models.Manager):
+    def get_queryset(self):
+        return FriendRequestQuerySet(self.model, using=self._db)
+
+    def active(self):
+        return self.get_queryset().active()
+
+    def sort(self):
+        return self.get_queryset().sort()
+
+
+class FriendRequest(models.Model):
+    sent_by = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='sent_by'
+    )
+
+    sent_to = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='sent_to'
+    )
+
+    objects = FriendRequestsManager()
+
+    class Meta(object):
+        verbose_name = _("Friend Request")
+        verbose_name_plural = _("Friend Requests")
+
+    def __str__(self):
+        return "FriendRequest"

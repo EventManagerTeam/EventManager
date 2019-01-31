@@ -30,7 +30,25 @@ urlpatterns = [
         views.gеt_user_by_slug,
         name='accounts.gеt_user_by_slug'
     ),
-    path('users/<slug:slug>/friend', views.friend, name='accounts.add_friend'),
+    path(
+        'users/<slug:slug>/friend',
+        views.friend,
+        name='accounts.add_friend'
+    ),
+
+    path(
+        'users/<slug:slug>/accept',
+        views.accept_request,
+        name='accounts.accept_request'
+    ),
+
+    path(
+        'users/<slug:slug>/decline',
+        views.decline_request,
+        name='accounts.decline_request'
+    ),
+
+
     path(
         'users/<slug:slug>/unfriend',
         views.unfriend,
@@ -38,6 +56,12 @@ urlpatterns = [
     ),
 
     path('friends', views.my_friends, name='accounts.my_friends'),
+    path(
+        'friends/requests',
+        views.list_friendrequests,
+        name='accounts.list_friendrequests'
+    ),
+
     path('friends/find', views.search_users, name='accounts.search_users'),
 
 ]

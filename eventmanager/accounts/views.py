@@ -23,6 +23,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 
 from accounts.models import AccountDetails
+from accounts.models import FriendRequest
 from events.models import Invite
 from events.models import Event
 
@@ -304,9 +305,16 @@ def friend(request, slug):
     logged_in_user_details = AccountDetails.objects.get(user=logged_in_user)
     other_user_details = AccountDetails.objects.get(slug=slug)
     other_user = other_user_details.user
-    logged_in_user_details.friends.add(other_user)
+    # logged_in_user_details.friends.add(other_user)
+
+    friend_request, _ = FriendRequest.objects.get_or_create(
+        sent_by=logged_in_user,
+        sent_to=other_user
+    )
+
     context = {
-        'success_message': "sent friend request to  " + other_user.username}
+        'success_message': "sent friend request to " + other_user.username
+    }
     return render(request, 'CRUDops/successfully.html', context)
 
 
@@ -319,4 +327,55 @@ def unfriend(request, slug):
     logged_in_user_details.friends.remove(other_user)
     other_user_details.friends.remove(logged_in_user)
     context = {'success_message': "unfriended  " + other_user.username}
+    return render(request, 'CRUDops/successfully.html', context)
+
+
+@login_required
+def list_friendrequests(request):
+    logged_in_user = request.user
+    requests = FriendRequest.objects.filter(sent_to=logged_in_user)
+
+    for req in requests:
+        req.slug = AccountDetails.objects.get(user=req.sent_by).slug
+    context = {
+        'requests': requests
+    }
+    return render(request, 'friends/list_friendrequests.html', context)
+
+
+@login_required
+def accept_request(request, slug):
+    logged_in_user = request.user
+    logged_in_user_details = AccountDetails.objects.get(user=logged_in_user)
+    other_user_details = AccountDetails.objects.get(slug=slug)
+    other_user = other_user_details.user
+    logged_in_user_details.friends.add(other_user)
+
+    friend_request = FriendRequest.objects.get(
+        sent_by=other_user,
+        sent_to=logged_in_user
+    ).delete()
+
+    message = "accepted friend request from " + other_user.username
+    context = {
+        'success_message': message
+    }
+    return render(request, 'CRUDops/successfully.html', context)
+
+
+@login_required
+def decline_request(request, slug):
+    logged_in_user = request.user
+    other_user_details = AccountDetails.objects.get(slug=slug)
+    other_user = other_user_details.user
+
+    friend_request = FriendRequest.objects.get(
+        sent_by=other_user,
+        sent_to=logged_in_user
+    ).delete()
+
+    message = "declined friend request from " + other_user.username
+    context = {
+        'success_message': message
+    }
     return render(request, 'CRUDops/successfully.html', context)
