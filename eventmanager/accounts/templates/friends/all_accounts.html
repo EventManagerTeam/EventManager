@@ -31,7 +31,7 @@
                     {% endif %}
                     <h2> {{user.details.description}} </h2>
                     {% if user.unfriend_url %} 
-                        <button class="btn btn-danger btn-lg btn-block"  onclick='{{user.unfriend_url}}' type="button" style="font-size: x-large;"> Unfriend </button>
+                        <button class="btn btn-danger btn-lg btn-block"  onclick="location.href='{{user.unfriend_url}}'" type="button" style="font-size: x-large;"> Unfriend </button>
                     {% endif %}
                 </div>
             </div>
