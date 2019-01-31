@@ -307,13 +307,13 @@ def friend(request, slug):
     other_user = other_user_details.user
     # logged_in_user_details.friends.add(other_user)
 
-    friend_request, _  = FriendRequest.objects.get_or_create(
+    friend_request, _ = FriendRequest.objects.get_or_create(
         sent_by=logged_in_user,
         sent_to=other_user
     )
 
     context = {
-        'success_message': "sent friend request to "  + other_user.username
+        'success_message': "sent friend request to " + other_user.username
     }
     return render(request, 'CRUDops/successfully.html', context)
 
@@ -338,7 +338,7 @@ def list_friendrequests(request):
     for req in requests:
         req.slug = AccountDetails.objects.get(user=req.sent_by).slug
     context = {
-        'requests':requests
+        'requests': requests
     }
     return render(request, 'friends/list_friendrequests.html', context)
 

@@ -38,7 +38,12 @@ urlpatterns = [
     ),
 
     path('friends', views.my_friends, name='accounts.my_friends'),
-    path('friends/requests', views.list_friendrequests, name='accounts.list_friendrequests'),
+    path(
+        'friends/requests',
+        views.list_friendrequests,
+        name='accounts.list_friendrequests'
+    ),
+
     path('friends/find', views.search_users, name='accounts.search_users'),
 
 ]
