@@ -1,0 +1,33 @@
+
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} All users{% endblock %}
+
+{% block head %}
+<link href="{% static "categories/all.css" %}" rel="stylesheet">
+<link href="{% static "accounts/show_account_details.css" %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+<h1 class="h1 display-3" style="text-align: center;"> Friend requests by: </h1>
+    {% for request in requests %}
+    <div class="card comments-card" style="position: relative;height: auto;min-height: 100% !important;padding: 1%;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm"> 
+                  <a href="/users/{{request.slug}}"  <h3 class="card-title" style="font-size: x-large;">{{request.sent_by}} </h3>
+                </div>
+                <div class="col-sm" style="float: right">
+                    <a class="btn-lg btn btn-success"> Accept <i class="favicon fa fa-plus"> </i> </a>
+                    <a class="btn-lg btn btn-danger"> Decline <i class="favicon fa fa-minus"> </i> </a>
+                </div>
+            </div>
+        </div>
+    </div> 
+    {% endfor %}
+{% endblock %}
+
