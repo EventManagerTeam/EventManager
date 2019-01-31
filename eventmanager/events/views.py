@@ -489,6 +489,6 @@ def show_random_event(request):
         count = Event.objects.count()
         random_pk = random.randint(0, count - 1)
         random_event = Event.objects.get(pk=random_pk)
-        return show_events_by_slug(request, random_event.slug)
+        return redirect('events.event', slug=random_event.slug)
     except ObjectDoesNotExist:
         return show_random_event(request)
