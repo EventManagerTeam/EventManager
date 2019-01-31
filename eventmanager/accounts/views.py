@@ -342,5 +342,40 @@ def list_friendrequests(request):
     }
     return render(request, 'friends/list_friendrequests.html', context)
 
-# accept friend request
-# delete friend request
+
+@login_required
+def accept_request(request, slug):
+    logged_in_user = request.user
+    logged_in_user_details = AccountDetails.objects.get(user=logged_in_user)
+    other_user_details = AccountDetails.objects.get(slug=slug)
+    other_user = other_user_details.user
+    logged_in_user_details.friends.add(other_user)
+
+    friend_request = FriendRequest.objects.get(
+        sent_by=other_user,
+        sent_to=logged_in_user
+    ).delete()
+
+    message = "accepted friend request from " + other_user.username
+    context = {
+        'success_message': message
+    }
+    return render(request, 'CRUDops/successfully.html', context)
+
+
+@login_required
+def decline_request(request, slug):
+    logged_in_user = request.user
+    other_user_details = AccountDetails.objects.get(slug=slug)
+    other_user = other_user_details.user
+
+    friend_request = FriendRequest.objects.get(
+        sent_by=other_user,
+        sent_to=logged_in_user
+    ).delete()
+
+    message = "declined friend request from " + other_user.username
+    context = {
+        'success_message': message
+    }
+    return render(request, 'CRUDops/successfully.html', context)

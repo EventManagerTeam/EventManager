@@ -22,8 +22,8 @@
                   <a href="/users/{{request.slug}}"  <h3 class="card-title" style="font-size: x-large;">{{request.sent_by}} </h3>
                 </div>
                 <div class="col-sm" style="float: right">
-                    <a class="btn-lg btn btn-success"> Accept <i class="favicon fa fa-plus"> </i> </a>
-                    <a class="btn-lg btn btn-danger"> Decline <i class="favicon fa fa-minus"> </i> </a>
+                    <a href = "/users/{{request.slug}}/accept" class="btn-lg btn btn-success"> Accept <i class="favicon fa fa-plus"> </i> </a>
+                    <a href = "/users/{{request.slug}}/decline" class="btn-lg btn btn-danger"> Decline <i class="favicon fa fa-minus"> </i> </a>
                 </div>
             </div>
         </div>
