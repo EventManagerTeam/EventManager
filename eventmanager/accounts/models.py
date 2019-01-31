@@ -78,7 +78,6 @@ class AccountDetails(models.Model):
         obj.user = request.user
         if not self.slug:
             unique_slugify(self, self.user.username)
-
         super().save_model(request, obj, form, change)
 
     class Meta(object):
@@ -86,4 +85,4 @@ class AccountDetails(models.Model):
         verbose_name_plural = _("Account Details")
 
     def __str__(self):
-        return "Details for: " + self.user.username
+        return "Details for: " + self.slug
