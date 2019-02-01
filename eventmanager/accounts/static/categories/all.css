@@ -1,4 +1,4 @@
-.card{
+/*.card{
     width: 90% !important; 
     margin: 5%;
     padding: 5%;
@@ -9,7 +9,7 @@
 }
 
 .background{
-    background: #22c1c3;  /* fallback for old browsers */
+    background: #22c1c3; 
     background: -webkit-linear-gradient(to right, #fdbb2d, #22c1c3); 
     background: linear-gradient(to right, #fdbb2d, #22c1c3); 
 }
@@ -28,4 +28,17 @@
 
 body{
 	background-color: darkgrey;
+}*/
+
+/* demo shizzle only */
+.category-card {
+  max-width: 420px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+h1 { font-family: 'Enriqueta', arial, serif; font-weight: bold; } 
+
+body{
+    background-image: repeating-linear-gradient(165deg, #ccc, #ccc 60px, #dbdbdb 60px, #dbdbdb 120px);
 }

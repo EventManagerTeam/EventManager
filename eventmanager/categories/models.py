@@ -60,6 +60,12 @@ class Category(models.Model):
         blank=True
     )
 
+    category_image = models.ImageField(
+        upload_to='categories',
+        blank=True,
+        null=True
+    )
+
     objects = CategoryManager()
 
     def save(self, *args, **kwargs):

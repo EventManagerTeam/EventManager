@@ -4,30 +4,38 @@
 {% block title %} All categories{% endblock %}
 
 {% block head %}
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
 <link href="{% static "categories/all.css" %}" rel="stylesheet">
+
+<style type="text/css">
+    .bg-cover{
+        background-image: url({% static "pictures/logo-eventmanager.png" %});
+        background-color: black;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="card-group">
-    {% for category_list in categories%}
-    <div class="card-columns">
-        {% for category in category_list%}
-        <div class="card bg-warning background ">
-            <div class="card-body ">
-                <h1 class="card-title white-text"> {{category.name}}</h1>
-                <h3 class="card-text white-text">{{category.description}} </h3>
-                <h2> 
-                    <a href="{{category.slug}}" class="card-link"> 
-                        See all events with this category
-                    </a> 
-                </h2>
-            </div>
 
-        </div>
-        {% endfor %}
-    </div>
-    {% endfor %}
-    </div>
-    <br> <br>
+<div class="flex flex-wrap -m-3 "> 
+  
+  {% for category_list in categories%}
+      {% for category in category_list%}
+      <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3 category-card">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+          <div class="bg-cover h-48" style="{% if category.category_image %} background-image: url({{category.category_image.url}});{%endif%}" ></div>
+          <div class="p-4 flex-1 flex flex-col" >
+            <h2 class="mb-4">{{category.name}}   </h2>
+            <div class="mb-4 text-grey-darker text-sm flex-1">
+              <h2> {{category.description}} </h2>
+            </div>
+          </div>
+        </div>  
+      </div>
+      {% endfor %}
+  {% endfor %}
+
+    </div>  
+    <br> <br><br> <br>
 {% endblock %}
 
