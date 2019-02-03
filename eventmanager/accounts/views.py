@@ -61,6 +61,7 @@ def login(request):
 
     return render(request, 'accounts/login.html', {'form': form})
 
+
 @login_required
 def delete(request):
     logged_in = request.user
