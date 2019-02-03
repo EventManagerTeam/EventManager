@@ -1,12 +1,25 @@
 {% extends 'accounts/base.html' %}
 {% load static %}
-{% block title %} Login {% endblock %} 
+{% block title %} Delete account {% endblock %} 
 
 {% block head %}
 <link href="{% static "accounts/login.css" %}" rel="stylesheet">
-{% endblock %}
+<style type="text/css">
+  body,.bar:before, .bar:after{
+    background-color: rgba(255,10 ,10,0.7);
+  }
 
-{% block content %} 
+  label, h1{
+    color: rgba(255,10 ,10,0.7);
+  }
+
+  input{
+    border-bottom: 1px solid rgba(255,10 ,10,0.7);
+  }
+</style>
+{% endblock %}
+   
+{% block content %}
 <br> <br>
 <div class="col-md"> </div>
 <div class="col-lg-4 col-lg-offset-4" style="background-color: white;padding: 5%;border: 4px solid black;  border-radius: 25px;">
@@ -41,22 +54,12 @@
             </h1>
            </label>
          </div>
-         <h1>   
-            <a href="/signup">
-            Don't have account? Register here. 
-            </a><br>
-         </h1>
-         <button class="btn btn-primary btn-lg btn-block" type="submit">
-            <h1> Log in </h1>
+         <button class="btn btn-danger btn-lg btn-block" type="submit" >
+            <h1 style="color: white"> Delete account </h1>
          </button>
          <br>
          <br>
-         <a href="{% url 'social:begin' 'github' %}">
-            <button class="btn btn-dark btn-lg btn-block" type="submit">
-               <h1> Log in with <i class="fab fa-github "></i> </h1>
-            </button>
-         </a>
-   </form>
+      </form>
 </div>
 <div class="col-md"> </div>
 

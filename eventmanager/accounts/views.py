@@ -29,6 +29,8 @@ from events.models import Event
 
 from eventmanager.slugify import *
 
+from social.apps.django_app.default.models import UserSocialAuth
+
 
 def index(request):
     if request.user.is_authenticated:
@@ -64,7 +66,36 @@ def login(request):
 
 @login_required
 def delete(request):
-    logged_in = request.user
+    logged_in_user = request.user.username
+    user = None
+
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        try:
+            UserSocialAuth.objects.filter(user=request.user).delete()
+            signout(request)
+            context = {'success_message': "deleted account."}
+            return render(request, 'CRUDops/successfully.html', context)
+        except BaseException:
+            pass
+
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            details = AccountDetails.objects.get(user=user)
+            details.delete()
+            user.delete()
+            signout(request)
+            context = {'success_message': "deleted account."}
+            return render(request, 'CRUDops/successfully.html', context)
+        else:
+            context = {'wrong_credentials': True}
+            return render(request, 'accounts/delete_profile.html', context)
+
+    else:
+        context = {}
+        return render(request, 'accounts/delete_profile.html', context)
 
 
 @login_required
@@ -310,7 +341,6 @@ def friend(request, slug):
     logged_in_user_details = AccountDetails.objects.get(user=logged_in_user)
     other_user_details = AccountDetails.objects.get(slug=slug)
     other_user = other_user_details.user
-    # logged_in_user_details.friends.add(other_user)
 
     friend_request, _ = FriendRequest.objects.get_or_create(
         sent_by=logged_in_user,

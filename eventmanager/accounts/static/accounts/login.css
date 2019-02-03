@@ -13,7 +13,7 @@ input             {
 input:focus{ outline:none; }
 
 label              {
-  color:rgb(0, 123, 255);; 
+  color:rgb(0, 123, 255);
   font-size:18px;
   font-weight:normal;
   position:absolute;
