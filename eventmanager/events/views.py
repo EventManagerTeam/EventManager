@@ -60,7 +60,7 @@ def get_datetime(date, time):
     return date + " " + time
 
 
-@login_required
+@login_required(login_url='/login')
 def create_event(request):
     form = EventForm(request.POST or None)
     if request.method == 'POST':
@@ -236,7 +236,7 @@ def show_events_by_slug(request, slug):
     return render(request, 'CRUDops/error.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def delete_event_by_slug(request, slug):
     event = Event.objects.get(slug=slug)
     if request.user == event.added_by:
@@ -247,7 +247,7 @@ def delete_event_by_slug(request, slug):
     return render(request, 'CRUDops/successfully.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def join_event(request, slug):
     event = Event.objects.get(slug=slug)
     event.attendees.add(request.user)
@@ -256,7 +256,7 @@ def join_event(request, slug):
     return render(request, 'CRUDops/successfully.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def cancel_join(request, slug):
     event = Event.objects.get(slug=slug)
     event.attendees.remove(request.user)
@@ -265,7 +265,7 @@ def cancel_join(request, slug):
     return render(request, 'CRUDops/successfully.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def invite(request, slug, event):
     logged_in_user = request.user
     logged_in_user_details = AccountDetails.objects.get(user=logged_in_user)
@@ -283,7 +283,7 @@ def invite(request, slug, event):
     return show_events_by_slug(request, event.slug)
 
 
-@login_required
+@login_required(login_url='/login')
 def invites(request):
     user = request.user
     invites = Invite.objects.filter(invited_user=user, is_accepted=False)
@@ -292,7 +292,7 @@ def invites(request):
     return render(request, 'events/invites.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def tasks(request):
     user = request.user
     todo_tickets = Task.objects.filter(assignee=user).filter(status='TODO')
@@ -301,7 +301,7 @@ def tasks(request):
     return render(request, 'events/my_tasks.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def confirm_invite(request, slug):
     event = Event.objects.get(slug=slug)
     event.attendees.add(request.user)
@@ -312,7 +312,7 @@ def confirm_invite(request, slug):
     return invites(request)
 
 
-@login_required
+@login_required(login_url='/login')
 def decline_invite(request, slug):
     event = Event.objects.get(slug=slug)
     Invite.objects.filter(
@@ -321,7 +321,7 @@ def decline_invite(request, slug):
     return invites(request)
 
 
-@login_required
+@login_required(login_url='/login')
 def visibility_settings(request, slug):
     event = Event.objects.get(slug=slug)
     visibility_settings_form = VisibilitySettings(request.POST or None)
@@ -342,7 +342,7 @@ def visibility_settings(request, slug):
     return render(request, 'events/visibility_settings.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def add_teammate(request, slug):
     event = Event.objects.get(slug=slug)
     form = UserForm(request.POST or None)
@@ -367,7 +367,7 @@ def add_teammate(request, slug):
     return render(request, 'events/add_teammate.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def event_team_add(request, user, slug):
     event = Event.objects.get(slug=slug)
     user = User.objects.get(username=user)
@@ -387,13 +387,13 @@ def event_team_add(request, user, slug):
     return render(request, 'CRUDops/successfully.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def delete_comment_by_slug(request, slug, comment):
     Comment.objects.get(pk=comment).delete()
     return show_events_by_slug(request, slug)
 
 
-@login_required
+@login_required(login_url='/login')
 def edit_comment_by_slug(request, slug, comment):
     instance = Comment.objects.get(pk=comment)
     form = CommentForm(request.POST or None, instance=instance)
@@ -407,7 +407,7 @@ def edit_comment_by_slug(request, slug, comment):
     return render(request, 'events/add_comment.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def event_board(request, slug):
     members = Event.objects.get(slug=slug).team_members.all()
 
@@ -443,7 +443,7 @@ def event_board(request, slug):
         return render(request, 'CRUDops/error.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def my_events(request):
     number_of_items_per_page = 5
 
@@ -463,7 +463,7 @@ def my_events(request):
     return render(request, 'events/list_my_events.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def events_I_host(request):
     number_of_items_per_page = 5
 
@@ -483,7 +483,7 @@ def events_I_host(request):
     return render(request, 'events/list_my_events.html', context)
 
 
-@login_required
+@login_required(login_url='/login')
 def show_random_event(request):
     try:
         count = Event.objects.count()

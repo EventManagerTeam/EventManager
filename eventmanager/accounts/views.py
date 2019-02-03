@@ -61,13 +61,17 @@ def login(request):
 
     return render(request, 'accounts/login.html', {'form': form})
 
+@login_required
+def delete(request):
+    logged_in = request.user
+
 
 @login_required
 def home(request):
     return render(request, 'accounts/home.html')
 
 
-@login_required
+@login_required(login_url='/login')
 def signout(request):
     logout(request)
     return render(request, 'accounts/index.html')
