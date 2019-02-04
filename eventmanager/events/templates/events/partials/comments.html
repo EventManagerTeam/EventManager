@@ -7,6 +7,8 @@
             <a class="btn btn-success h1 btn-lg large-text add-comment-button" data-toggle="modal" href="#contactModal">
                 Add comment
             </a>
+            {% else %}
+            <div class="h3"> (only logged users can add commments) </div>
             {% endif %}
         </h1>
 
