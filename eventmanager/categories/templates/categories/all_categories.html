@@ -25,7 +25,7 @@
         <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
           <div class="bg-cover h-48" style="{% if category.category_image %} background-image: url({{category.category_image.url}});{%endif%}" ></div>
           <div class="p-4 flex-1 flex flex-col" >
-            <h2 class="mb-4">{{category.name}}   </h2>
+            <a href= "{{category.slug}}"> <h2 class="mb-4">{{category.name}}   </h2> </a>
             <div class="mb-4 text-grey-darker text-sm flex-1">
               <h2> {{category.description}} </h2>
             </div>

@@ -23,7 +23,7 @@
             <ul class="list-group list-group-flush collapse" id="collapseCategories">
                 {% for category in categories%}
                     <h1>
-                        <a href = "/categories/{{category}} ">
+                        <a href = "/categories/{{category.slug}} ">
                             <li class="list-group-item text-center"> {{category}} </li>
                         </a>
                     </h1>
@@ -52,7 +52,7 @@
        
     </div>
 </div>
-</div>
+
 {% if events.has_other_pages %}
 <ul class="pagination text-center justify-content-center">
     {% if events.has_previous %}
@@ -115,5 +115,6 @@
 
     }
 </script>
+
 {% endblock %}
 
