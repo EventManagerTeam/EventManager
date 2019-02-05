@@ -4,18 +4,29 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %} All users{% endblock %}
+{% block title %} Friend requests {% endblock %}
 
 {% block head %}
 <link href="{% static "categories/all.css" %}" rel="stylesheet">
 <link href="{% static "accounts/show_account_details.css" %}" rel="stylesheet">
-
+<style type="text/css">
+    @media only screen and (max-width: 600px) {
+        .card {
+            margin: 1%;
+            margin-right: 10%;
+            margin-left: 10%;
+        }
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 <h1 class="h1 display-3" style="text-align: center;"> Friend requests by: </h1>
+
+    <div class="row">
+
     {% for request in requests %}
-    <div class="card comments-card" style="position: relative;height: auto;min-height: 100% !important;padding: 1%;">
+    <div class="card comments-card col-sm-3" style="padding: 1%;margin: 1%;margin-left: 5%;">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm"> 
@@ -27,7 +38,8 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>  <br> <br> <br>
     {% endfor %}
+</div>
 {% endblock %}
 
