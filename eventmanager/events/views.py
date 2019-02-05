@@ -128,9 +128,7 @@ def edit_event(request, slug):
                     request.POST.get('ends_at'),
                     ends_at
                 )
-
-            # if request.FILES['cover_image']:
-            #     post.cover_image = request.FILES['cover_image']
+                
             if request.FILES.get('cover_image'):
                 event.cover_image = request.FILES.get('cover_image')
             post.save()

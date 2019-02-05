@@ -1,0 +1,16 @@
+.jumbotron{
+	width: 100%;
+	padding: 15%;
+	margin-top: 12% !important;
+	background-color: rgba(255,255,255,0.85)
+}
+
+body {
+	background: linear-gradient(to left bottom, rgba(255,69,0,0) 0.4em, #a83c40 0.4em, #a83c40 1.02em, rgba(255,69,0,0) 1.02em) 0 0, linear-gradient(to right top, rgba(255,69,0,0) 0.4em, #a83c40 0.4em, #a83c40 1.02em, rgba(255,69,0,0) 1.02em) 2em 0, linear-gradient(to left bottom, rgba(255,69,0,0) 0.4em, #DC143C 0.4em, #DC143C 1.02em, rgba(255,69,0,0) 0.4em) 0 1.02em, linear-gradient(to right top, rgba(255,69,0,0) 0.4em, #DC143C 0.4em, #DC143C 1.02em, rgba(255,69,0,0) 0.4em) 2em 1.02em, linear-gradient(to left bottom, rgba(255,69,0,0) 0.4em, #FA8072 0.4em, #FA8072 1.02em, rgba(255,69,0,0) 0.4em) 0 2.04em, linear-gradient(to right top, rgba(255,69,0,0) 0.4em, #FA8072 0.4em, #FA8072 1.02em, rgba(255,69,0,0) 0.4em) 2em 2.04em, linear-gradient(to left bottom, rgba(255,69,0,0) 0.4em, #800000 0.4em, #800000 1.02em, rgba(255,69,0,0) 0.4em) 0 3.06em, linear-gradient(to right top, rgba(255,69,0,0) 0.4em, #800000 0.4em, #800000 1.02em, rgba(255,69,0,0) 0.4em) 2em 3.06em, linear-gradient(to right bottom, rgba(255,69,0,0) 0.4em, #800000 0.4em, #800000 1.02em, rgba(255,69,0,0) 1.02em) 0 0, linear-gradient(to left top, rgba(255,69,0,0) 0.4em, #800000 0.4em, #800000 1.02em, rgba(255,69,0,0) 1.02em) 2em 0, linear-gradient(to right bottom, rgba(255,69,0,0) 0.4em, #a83c40 0.4em, #a83c40 1.02em, rgba(255,69,0,0) 0.4em) 0 1.02em, linear-gradient(to left top, rgba(255,69,0,0) 0.4em, #a83c40 0.4em, #a83c40 1.02em, rgba(255,69,0,0) 0.4em) 2em 1.02em, linear-gradient(to right bottom, rgba(255,69,0,0) 0.4em, #DC143C 0.4em, #DC143C 1.02em, rgba(255,69,0,0) 0.4em) 0 2.04em, linear-gradient(to left top, rgba(255,69,0,0) 0.4em, #DC143C 0.4em, #DC143C 1.02em, rgba(255,69,0,0) 0.4em) 2em 2.04em, linear-gradient(to right bottom, rgba(255,69,0,0) 0.4em, #FA8072 0.4em, #FA8072 1.02em, rgba(255,69,0,0) 0.4em) 0 3.06em, linear-gradient(to left top, rgba(255,69,0,0) 0.4em, #FA8072 0.4em, #FA8072 1.02em, rgba(255,69,0,0) 0.4em) 2em 3.06em;  background-size: 4em 4em;
+}
+
+h1{
+	font-family: 'Staatliches', cursive;
+	font-size: 100px !important;
+}
+
