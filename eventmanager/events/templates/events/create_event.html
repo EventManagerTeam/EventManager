@@ -1,7 +1,14 @@
 {% extends 'accounts/base.html' %}
 {% load static %}
 
-{% block title %} Create event{% endblock %}
+{% block title %} 
+    {% if editing %}
+        Edit {{ starts }}
+    {% else %}
+        Create
+    {% endif%}  
+    event
+{% endblock %}
 
 {% block head %}
 <link href="{% static "events/create_event.css" %}" rel="stylesheet">
