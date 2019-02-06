@@ -1,6 +1,11 @@
 {% extends 'accounts/base.html' %}
 {% block title %} Change email {% endblock %}
 
+{% load static %}
+{% block head %}
+<link href="{% static "background.css" %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
     {% include "accounts/partials/form_partial.html" with messages=messages form=form button_text="Change email" %}
 {% endblock %}
