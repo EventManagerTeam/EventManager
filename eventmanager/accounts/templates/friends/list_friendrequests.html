@@ -21,8 +21,8 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="h1 display-3" style="text-align: center;"> Friend requests by: </h1>
-
+<br>
+<h1 class="h1" style="text-align: center;"> Friend requests by: </h1>
     <div class="row">
 
     {% for request in requests %}
@@ -36,6 +36,7 @@
                     <a href = "/users/{{request.slug}}/accept" class="btn-lg btn btn-success"> Accept <i class="favicon fa fa-plus"> </i> </a>
                     <a href = "/users/{{request.slug}}/decline" class="btn-lg btn btn-danger"> Decline <i class="favicon fa fa-minus"> </i> </a>
                 </div>
+                
             </div>
         </div>
     </div>  <br> <br> <br>

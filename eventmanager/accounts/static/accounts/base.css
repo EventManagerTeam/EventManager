@@ -46,13 +46,13 @@ input, textarea, .card-text {
 	font-family: 'Arial';
 }
 
-textarea, .textinput, select {
+/*textarea, .textinput, select {
 	font-size: 30px !important;
-}
+}*/
 
-.textinput, select {
+/*.textinput, select {
 	height: 7%;
-}
+}*/
 
 .simple {
 	font-family: 'Bellefair', serif;
@@ -64,7 +64,7 @@ h3 {
 
 @media (max-width: 1200px) {
 	input {
-	width: 80% !important;
+		width: 80% !important;
   }
 }
 
@@ -81,3 +81,4 @@ h3 {
 .login{
 	color: white;
 }
+

@@ -6,19 +6,17 @@
 {% endblock %}
 
 {% block content %}
-<br> <br>
-<h1 class="text-center display-3"> My tasks: </h1>
-<br> <br>
+<br> <h1 class="text-center"> My tasks: </h1> <br>
 <div class="row">
     <div class="col-sm-2"> </div>
     <div class="col-sm-4 bg-warning">
         <br> 
-        <h1 class="heading text-center"> TO DO: </h1>
+        <h2 class="heading text-center"> TO DO: </h2>
         <br> 
         {% for task in todo_tickets %}
-        <div class="card" style="width: 18rem;color: black;width: 100%;">
+        <div class="card" style="color: black;width: 100%;">
             <div class="card-body">
-                <h1 class="card-title"> {{task.title}}</h1>
+                <h2 class="card-title"> {{task.title}}</h2>
                 <h3 class="card-subtitle mb-2 text-muted"> event: {{task.event}} </h3>
                 <h4 class="card-text">{{task.description}}</h4>
                 <a href="/events/{{task.event.slug}}/board" class="card-link" style="font-size: x-large;"> Go to event board </a>
@@ -29,12 +27,12 @@
     </div>
     <div class="col-sm-4 bg-primary">
         <br> 
-        <h1 class="heading text-center"> DOING:  </h1>
+        <h2 class="heading text-center"> DOING:  </h2>
         <br>
         {% for task in doing_tickets %}
-        <div class="card" style="width: 18rem;color: black;width: 100%;">
+        <div class="card" style="color: black;width: 100%;">
             <div class="card-body">
-                <h1 class="card-title"> {{task.title}}</h1>
+                <h2 class="card-title"> {{task.title}}</h2>
                 <h3 class="card-subtitle mb-2 text-muted"> event: {{task.event}} </h3>
                 <h4 class="card-text">{{task.description}}</h4>
                 <a href="/events/{{task.event.slug}}/board" class="card-link" style="font-size: x-large;"> Go to event board </a>

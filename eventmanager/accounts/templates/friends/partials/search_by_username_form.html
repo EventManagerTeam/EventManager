@@ -1,17 +1,17 @@
 {% load crispy_forms_tags %}
 
-<div class="col-md-8  col-md-offset-2 centered">
+<div class="col-md-8  md-offset-2 centered">
     <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
         <br>
-        <h1> {{ form.username.label_tag}} </h1>
+        <h2> {{ form.username.label_tag}} </h2>
         <div class="row">
             <div class="col-sm-8">        
-                <h1> {{ form.username}} </h1>
+                <h2> {{ form.username}} </h2>
             </div>
             <div class="col-sm-4">
                 <button class="btn btn-primary btn-lg btn-block" type="submit">
-                    <h1> Find </h1>
+                    <h2> Find </h2>
                 </button>
             </div>  
         </div> 

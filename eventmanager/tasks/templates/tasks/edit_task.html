@@ -4,20 +4,21 @@
 
 {% block head%}
 <style type="text/css">
-    textarea{
+/*    textarea{
     height: 30% !important;
     }
     select{
     height: 8% !important;
-    }
+    }*/
 </style>
 {% endblock %}
 
 {% block content %}
-<h1 class="h1 display-3" style="text-align: center;"> Edit comment: </h1>
+<br>
+<h1 class="h1" style="text-align: center;"> Edit task: </h1>
 <form class="well" method="post" style="margin:2%;color: black;margin-bottom: 7%;">
     {% csrf_token %}
-    <h1> {{ task_form|crispy }} </h1>
+    <h2> {{ task_form|crispy }} </h2>
     <h1> <input type="submit" class="btn btn-success btn-block" value="Save Changes" style="font-size: x-large;"> </h1>
 </form>
 {% endblock %}
