@@ -319,7 +319,6 @@ class AccountsUrlsTestClass(TestCase):
             slug="userslug"
         )
 
-
         self.user2 = User.objects.create_user(
             username='testuser2',
             password='12345'
@@ -337,7 +336,6 @@ class AccountsUrlsTestClass(TestCase):
         response = self.client.get(reverse('accounts.list_users'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "testuser2")
-
 
     def test_gеt_user_by_slug(self):
         self.user = User.objects.create_user(
@@ -367,7 +365,6 @@ class AccountsUrlsTestClass(TestCase):
                     'slug': "userslug"}))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "testuser")
-
 
     def test_show_account_details(self):
         self.user = User.objects.create_user(
