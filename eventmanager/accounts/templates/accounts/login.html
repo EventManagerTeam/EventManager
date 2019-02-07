@@ -9,7 +9,7 @@
 {% block content %} 
 <br> <br>
 <div class="col-md"> </div>
-<div class="col-lg-4 col-lg-offset-4" style="background-color: white;padding: 5%;border: 4px solid black;  border-radius: 25px;">
+<div class="col-lg-4 offset-lg-4" style="background-color: white;padding: 5%;border: 4px solid black;  border-radius: 25px;">
    <form method="post">
       {% csrf_token %}
       {% if wrong_credentials == True %}

@@ -295,7 +295,7 @@ class AccountsUrlsTestClass(TestCase):
         self.client.login(username='testuser', password='12345')
         response = self.client.get(reverse('accounts.account'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "testuser")
+        self.assertContains(response, "Profile picture ")
 
     def test_show_account_details_logged(self):
         self.user = User.objects.create_user(
@@ -319,25 +319,25 @@ class AccountsUrlsTestClass(TestCase):
             slug="userslug"
         )
 
-        response = self.client.get(reverse('accounts.list_users'))
-        self.assertEqual(response.status_code, 302)
-        self.client.login(username='testuser', password='12345')
-        response = self.client.get(reverse('accounts.list_users'))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "testuser")
 
-    def test_search_users(self):
-        self.user = User.objects.create_user(
-            username='testuser',
+        self.user2 = User.objects.create_user(
+            username='testuser2',
             password='12345'
         )
 
-        response = self.client.get(reverse('accounts.search_users'))
+        self.user.details = AccountDetails.objects.create(
+            user=self.user2,
+            description='cool description',
+            slug="userslug2"
+        )
+
+        response = self.client.get(reverse('accounts.list_users'))
         self.assertEqual(response.status_code, 302)
         self.client.login(username='testuser', password='12345')
-        response = self.client.get(reverse('accounts.search_users'))
+        response = self.client.get(reverse('accounts.list_users'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "testuser")
+        self.assertContains(response, "testuser2")
+
 
     def test_gеt_user_by_slug(self):
         self.user = User.objects.create_user(
@@ -367,6 +367,7 @@ class AccountsUrlsTestClass(TestCase):
                     'slug': "userslug"}))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "testuser")
+
 
     def test_show_account_details(self):
         self.user = User.objects.create_user(

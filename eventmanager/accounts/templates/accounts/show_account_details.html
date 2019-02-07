@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-md-4 md-offset-4 centered class-div">
+<div class="col-md-4 offset-md-4 centered class-div">
    {% include "accounts/partials/account_partial.html" with name=name username=username email=email details=details %}
    <a href= "/edit_account" class="btn btn-success btn-block" type="submit">
       <h4> Edit account </h4>
