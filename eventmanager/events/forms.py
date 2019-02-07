@@ -13,6 +13,8 @@ class EventForm(ModelForm):
         fields = [
             'title',
             'description',
+            'location',
+            'country'
         ]
 
 

@@ -7,6 +7,7 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import ugettext as _
+from django_countries.fields import CountryField
 
 from mptt.querysets import TreeQuerySet
 
@@ -63,6 +64,17 @@ class Event(models.Model):
         null=False,
         blank=False
     )
+
+    location = models.CharField(
+        verbose_name=_("Event Location"),
+        help_text=_("400 character limit"),
+        max_length=400,
+        unique=False,
+        null=True,
+        blank=True
+    )
+
+    country = CountryField()
 
     category = models.ManyToManyField(
         Category,

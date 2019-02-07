@@ -130,7 +130,7 @@ def edit_event(request, slug):
                 )
 
             if request.FILES.get('cover_image'):
-                event.cover_image = request.FILES.get('cover_image')
+                post.cover_image = request.FILES.get('cover_image')
             post.save()
 
             category = Category.objects.filter(

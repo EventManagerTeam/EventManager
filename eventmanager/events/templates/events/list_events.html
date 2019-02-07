@@ -7,6 +7,8 @@
 
 {% block head %}
 <link href="{% static "events/list_event.css" %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
+
 {% endblock %}
 {% block content %}
 <div class="row">
@@ -41,7 +43,7 @@
                 {% if event.cover_image%}
                     <img src="{{ event.cover_image.url }}">
                 {% endif %}
-                <h1 class="card-title"> <b> {{ event.title }} </b> </h1>
+                <h1 class="card-title"> <b> {{ event.title }} <i class="flag2x {{ event.country.flag_css }}"></i> </b> </h1>
                 <h3 class="card-text"> {{ event.description }} </h3>
                 <a href="/events/{{event.slug}}" class="btn btn-primary btn-block btn-lg">
                     <h3> Open full event </h3>
