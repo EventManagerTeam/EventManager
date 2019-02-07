@@ -12,61 +12,67 @@
 
 {% block head %}
 <link href="{% static "events/create_event.css" %}" rel="stylesheet">
+<style type="text/css">
+    .hidden{
+        display: none;
+    }
+    label{
+        font-weight: bold;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
 {% load crispy_forms_tags %}
-
-<h1 class="display-3">
+<br>
+<h1 class="text-center">
     {% if editing %}
         Edit {{ starts }}
     {% else %}
         Create
     {% endif%}  event:  
 </h1>
-<br>  <br> 
-<div class="col-md-8 col-md-offset-2 centered">
+
+<div class="col-md-8 md-offset-2 centered">
     <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
-
-         <h1> {{form|crispy}} </h1>
-        
         <div class="upload-btn-wrapper">
           <button class="btn btn-block" id="cover_button"> Add cover photo</button>
-          <h1> <input type="file" name="cover_image" accept="image/*" id="id_cover_image"> </h1>
+          <h3> <input type="file" name="cover_image" accept="image/*" id="id_cover_image"> </h3>
           <img id="preview" src="" />
         </div>
 
-        <br> <br>  <br> <br>
-        <h1> <b> Categories: </b></h1>
+         <h3> {{form|crispy}} </h3>
+        <br>
+        <h3> <b> Categories: </b></h3>
         <select id="category" class="form-control form-control-lg" name="category_select" multiple>
             {% for category in categories %}
-            <h1>
+            <h3>
                 <option  value="{{ category.name }}" name="{{ category.name }}">{{ category.name }}</option>
-            </h1>
+            </h3>
             {% endfor %}
         </select>
-        <br> <br>  <br> <br>
-        <h1> <b> Start time: </b> </h1>
-        <h1>
+        <br> <br>
+        <h3> <b> Start time: </b> </h3>
+        <h3>
             <div class="start_h alert alert-danger hidden"> </div>
             <input type="date" id="starts_at" class="starts_at left_input" name="starts_at" value="{{starts_date}}" min="">
             <input type="time" id="starts_at_time" class="taskDate" name="starts_at_time" value="{{starts_time}}">
-        </h1>
-        <br> <br>  <br> <br>
-        <h1> <b> End time: </b> </h1>
+        </h3>
+        <br> <br>
+        <h3> <b> End time: </b> </h3>
 
-        <h1>
+        <h3>
             <div class="end_h alert alert-danger hidden"> </div>
             <input type="date" id="ends_at" class="ends_at left_input" name="ends_at" value="{{ends_date}}" min="">
             <input type="time" id="ends_at_time" class="taskDate" name="ends_at_time" value="{{ends_time}}">
-        </h1>
+        </h3>
         <br> <br>  <br> <br>
         <button class="btn btn-primary btn-lg"  type="submit">
             {% if editing %}
-              <h1> Edit event </h1>
+              <h3> Edit event </h3>
             {% else %}
-              <h1> Create event </h1>
+              <h3> Create event </h3>
             {% endif%}
         </button>
     </form>

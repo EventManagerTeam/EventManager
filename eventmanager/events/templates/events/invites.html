@@ -7,7 +7,8 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="h1 display-3" style="text-align: center;"> Invites: </h1>
+<br>
+<h1 class="h1" style="text-align: center;"> Invites: </h1>
 {% if events%}
 {% for event in events %}
     <div class="card comments-card">
@@ -15,19 +16,19 @@
             {% if event.event.cover_image%}
                 <div class="row">
                     <div class="col-sm-4">
-                        <h1 class="card-title" >
+                        <h2 class="card-title" >
                             <a href = "/events/{{event.event.slug}}"> {{event.event}}  </a> 
                             <div class="blockquote-footer"> Invited by {{ event.invited_by }} </div>
-                        </h1>
-                        <h2> {{event.event.description}}</h2>
+                        </h2>
+                        <h4> {{event.event.description}}</h4>
                     </div>
                     <div class="col-sm-8"><img src="{{event.event.cover_image.url}}" style="max-width: 100%;"></div>
                 </div>
             {% else %}
-                <h1 class="card-title" >
+                <h2 class="card-title" >
                     <a href = "/events/{{event.event.slug}}"> {{event.event}}  </a> 
                     <div class="blockquote-footer"> Invited by {{ event.invited_by }} </div>
-                </h1>
+                </h2>
                 <h2> {{event.event.description}}</h2>
             {% endif%}
             <p class="card-text">{{ comment.content|safe }} </p>
@@ -38,7 +39,7 @@
     <br> <br> <br> <br>
 {% endfor %}
 {% else %}<br> <br>
-    <h1  style="text-align: center"> It looks like you haven't been invited to any event yet.  <br>  <br> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Gnome-face-sad.svg/1024px-Gnome-face-sad.svg.png" style="height: 30%;"></h1> 
+    <h4  style="text-align: center"> It looks like you haven't been invited to any event yet.  <br>  <br> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Gnome-face-sad.svg/1024px-Gnome-face-sad.svg.png" style="height: 30%;"></h4> 
 
 {% endif %}
 

@@ -15,24 +15,25 @@
     option{
         font-size: x-large;
 
-    }
+    }/*
     select{
         height: 8% !important;
     }
-    optgroup { font-size:14px; }
+    optgroup { font-size:14px; }*/
 </style>
 {% endblock %}
 {% block content %}
-<h1 class="h1 display-2" style="text-align: center;"> {{event}} settings </h1>
-<br> <br> <br> <br>
-<span class="h1 display-4" style="padding-left: 3%">Visibility settings</span>
+<br> 
+<h2 class="h2" style="text-align: center;"> {{event}} settings </h2>
+<br> 
+<span class="h3" style="padding-left: 3%">Visibility settings</span>
 <hr class="hr-success">
 
 <form method="post">
     {% csrf_token %}
-    <h1 style="padding-left: 8%;padding-right: 8%;"> {{ visibility_settings_form|crispy }} </h1>
+    <h4 style="padding-left: 8%;padding-right: 8%;"> {{ visibility_settings_form|crispy }} </h4>
     <button class="btn btn-primary" style="margin-left: 8%;" type="submit">
-       <h1> Save Changes </h1>
+       <h6> Save Changes </h6>
     </button>
 </form>
 {% endblock %}

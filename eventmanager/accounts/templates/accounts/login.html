@@ -9,12 +9,12 @@
 {% block content %} 
 <br> <br>
 <div class="col-md"> </div>
-<div class="col-lg-4 col-lg-offset-4" style="background-color: white;padding: 5%;border: 4px solid black;  border-radius: 25px;">
+<div class="col-lg-4 offset-lg-4" style="background-color: white;padding: 5%;border: 4px solid black;  border-radius: 25px;">
    <form method="post">
       {% csrf_token %}
       {% if wrong_credentials == True %}
          <div class="alert alert-danger alert-dismissible" style="margin-bottom: 10%;">
-            <h1> You entered wrong credentials. </h1>
+            <h3> You entered wrong credentials. </h3>
          </div>
       {% endif%}
    
@@ -23,10 +23,10 @@
            <span class="highlight"></span>
            <span class="bar"></span>
            <label>
-            <h1>   
+            <h3>   
                <i class="fa fa-user-circle" aria-hidden="true"></i>
                Username: 
-            </h1>
+            </h3>
             </label>
          </div>
            
@@ -35,25 +35,25 @@
            <span class="highlight"></span>
            <span class="bar"></span>
            <label>
-            <h1>   
+            <h3>   
                <i class="fa fa-key" aria-hidden="true"></i>
                Password: 
-            </h1>
+            </h3>
            </label>
          </div>
-         <h1>   
+         <h3>   
             <a href="/signup">
             Don't have account? Register here. 
             </a><br>
-         </h1>
+         </h3>
          <button class="btn btn-primary btn-lg btn-block" type="submit">
-            <h1> Log in </h1>
+            <h3> Log in </h3>
          </button>
          <br>
          <br>
          <a href="{% url 'social:begin' 'github' %}">
             <button class="btn btn-dark btn-lg btn-block" type="submit">
-               <h1> Log in with <i class="fab fa-github "></i> </h1>
+               <h3> Log in with <i class="fab fa-github "></i> </h3>
             </button>
          </a>
    </form>

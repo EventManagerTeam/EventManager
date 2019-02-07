@@ -30,9 +30,11 @@ import random
 from django.core.exceptions import ObjectDoesNotExist
 
 
+number_of_items_per_page = 6
+
+
 def index(request):
     events_list = Event.objects.active()
-    number_of_items_per_page = 5
 
     events = []
     for event in events_list:
@@ -443,8 +445,6 @@ def event_board(request, slug):
 
 @login_required(login_url='/login')
 def my_events(request):
-    number_of_items_per_page = 5
-
     user = User.objects.get(username=request.user)
     events_list = Event.objects.filter(attendees=user)
 
@@ -463,8 +463,6 @@ def my_events(request):
 
 @login_required(login_url='/login')
 def events_I_host(request):
-    number_of_items_per_page = 5
-
     user = User.objects.get(username=request.user)
     events_list = Event.objects.filter(team_members=user)
 

@@ -9,7 +9,7 @@
     background-color: rgba(255,10 ,10,0.7);
   }
 
-  label, h1{
+  label, h4{
     color: rgba(255,10 ,10,0.7);
   }
 
@@ -22,12 +22,12 @@
 {% block content %}
 <br> <br>
 <div class="col-md"> </div>
-<div class="col-lg-4 col-lg-offset-4" style="background-color: white;padding: 5%;border: 4px solid black;  border-radius: 25px;">
+<div class="col-lg-4 offset-lg-4" style="background-color: white;padding: 5%;border: 4px solid black;  border-radius: 25px;">
    <form method="post">
       {% csrf_token %}
       {% if wrong_credentials == True %}
          <div class="alert alert-danger alert-dismissible" style="margin-bottom: 10%;">
-            <h1> You entered wrong credentials. </h1>
+            <h4> You entered wrong credentials. </h4>
          </div>
       {% endif%}
    
@@ -36,10 +36,10 @@
            <span class="highlight"></span>
            <span class="bar"></span>
            <label>
-            <h1>   
+            <h4>   
                <i class="fa fa-user-circle" aria-hidden="true"></i>
                Username: 
-            </h1>
+            </h4>
             </label>
          </div>
            
@@ -48,14 +48,14 @@
            <span class="highlight"></span>
            <span class="bar"></span>
            <label>
-            <h1>   
+            <h4>   
                <i class="fa fa-key" aria-hidden="true"></i>
                Password: 
-            </h1>
+            </h4>
            </label>
          </div>
          <button class="btn btn-danger btn-lg btn-block" type="submit" >
-            <h1 style="color: white"> Delete account </h1>
+            <h4 style="color: white"> Delete account </h4>
          </button>
          <br>
          <br>
