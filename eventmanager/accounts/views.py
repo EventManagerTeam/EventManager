@@ -121,12 +121,12 @@ def signup(request):
         form.first = request.POST.get('first_name')
         form.last = request.POST.get('last_name')
         form.email = request.POST.get('email')
-        form.save()
+        user = form.save()
 
         username = form.username
         raw_password = form.password
 
-        user = authenticate(username=username, password=raw_password)
+        # user = authenticate(username=username, password=raw_password)
         auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         dt = AccountDetails.objects.create(user=user)
         unique_slugify(dt, username)
