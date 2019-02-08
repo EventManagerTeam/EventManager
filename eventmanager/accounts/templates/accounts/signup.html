@@ -2,52 +2,107 @@
 {% load static %}
 {% block title %} Register {% endblock %} 
 
+
+
 {% block head %}
-<link href="{% static "accounts/signup.css" %}" rel="stylesheet">
+<link href="{% static "accounts/login.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-<br><div class="sign_up">
-    <form method="post">
+<br> <br>
+<div class="col-md"> </div>
+<div class="col-lg-4 offset-lg-4" style="background-color: white;padding: 3%;border: 4px solid black; border-radius: 25px;">
+   <form method="post">
         {% csrf_token %}
-        <div class="form-group">
-            {% for field in form %}
-            {% for error in field.errors %}
-            <div class="alert alert-danger alert-dismissible">
-                {{ error }} 
+        {% if wrong_credentials == True %}
+            <div class="alert alert-danger alert-dismissible" style="margin-bottom: 10%;">
+                <h3> You entered wrong credentials. </h3>
             </div>
-            {% endfor %}
-            <h3>  
-                {% if "_name" in field.name %}
-                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                {% endif %}
-                {% if "username" in field.name %}
-                <i class="fa fa-user" aria-hidden="true"></i>
-                {% endif %}
-                {% if "password" in field.name %}
-                <i class="fa fa-key" aria-hidden="true"></i>
-                {% endif %}
-                {% if "mail" in field.name %}
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                {% endif %}
-                {{ field.label_tag }} 
-            </h3>
-            <h3>
-                {{ field }} 
-            </h3>
-            <br>
-            {% endfor %}
+        {% endif%}
+   
+        <div class="group form-group">      
+            <input type="text" class="form-field" required id="id_username" name="username">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>
             <h3>   
-                <a href="/login">
-                Already have account? Login here. <br> 
-                </a>
+               <i class="fa fa-user" aria-hidden="true"></i>
+               Username: 
             </h3>
-            <button class="btn btn-primary btn-lg"  type="submit">
-                <h3> Sign up </h3>
-            </button>
-        </div>
-    </form>
-    <br>
-</div>
-{% endblock %}
+            </label>
+         </div>
+           
+        <div class="group">      
+            <input type="email" class="form-field" name="email" required id="id_email" maxlength="254">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>
+            <h3>   
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                Email:
+            </h3>
+           </label>
+         </div>
 
+         <div class="group">      
+            <input type="text" class="form-field" name="first_name" required id="id_first_name">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>
+                <h3>   
+                   <i class="fa fa-user-circle" aria-hidden="true"></i>
+                   First name: 
+                </h3>
+            </label>
+         </div>
+
+         <div class="group">      
+            <input type="text" class="form-field" name="last_name" required id="id_last_name">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>
+                <h3>   
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    Last name: 
+                </h3>
+            </label>
+         </div>
+
+         <div class="group">      
+            <input type="password" class="form-field" name="password1" required id="id_password1">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>
+                <h3>   
+                    <i class="fa fa-key" aria-hidden="true"></i>
+                    Password: 
+                </h3>
+           </label>
+         </div>
+
+         <div class="group">      
+            <input type="password" class="form-field" name="password2" required id="id_password2">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>
+                <h3>   
+                   <i class="fa fa-key" aria-hidden="true"></i>
+                   Password confirmation: 
+                </h3>
+            </label>
+         </div>
+
+        <h3>   
+            <a href="/login">
+            Already have account? Login here. <br> 
+            </a>
+        </h3>
+        <button class="btn btn-primary btn-lg btn-block"  type="submit">
+            <h3> Sign up </h3>
+        </button>
+   </form>
+</div>
+<div class="col-md"> </div>
+<br> <br><br> <br>
+
+{% endblock %}

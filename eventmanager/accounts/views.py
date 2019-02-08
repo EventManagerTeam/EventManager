@@ -114,15 +114,28 @@ def signup(request):
         return home(request)
 
     form = SignUpForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        username = form.cleaned_data.get('username')
-        raw_password = form.cleaned_data.get('password1')
-        user = authenticate(username=username, password=raw_password)
-        auth_login(request, user)
+
+    if request.POST and form.is_valid():
+        form.username = request.POST.get('username')
+        form.password = request.POST.get('password')
+        form.first = request.POST.get('first_name')
+        form.last = request.POST.get('last_name')
+        form.email = request.POST.get('email')
+        user = form.save()
+
+        username = form.username
+        raw_password = form.password
+
+        # user = authenticate(username=username, password=raw_password)
+        auth_login(
+            request,
+            user,
+            backend='django.contrib.auth.backends.ModelBackend')
+
         dt = AccountDetails.objects.create(user=user)
         unique_slugify(dt, username)
         dt.save()
+
         return redirect('accounts.account')
     return render(request, 'accounts/signup.html', {'form': form})
 
