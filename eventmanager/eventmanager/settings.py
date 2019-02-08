@@ -104,6 +104,9 @@ DATABASES = {
         'USER': 'eventmanager',
         'PASSWORD': 'eventmanager',
         'HOST': 'db',
+        'TEST': {
+            'NAME': 'mytestdatabase',
+        },
     }
 }
 
