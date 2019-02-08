@@ -252,14 +252,13 @@ def edit_account_details(request):
     instance = AccountDetails.objects.get(user=user)
 
     form = AccountDetailsForm(
-        request.POST,
+        request.POST or None,
         request.FILES or None,
         instance=instance)
     if request.POST:
         if form.is_valid():
             details = form.save(commit=False)
             details.user = request.user
-
             if request.POST.get('birthdate'):
                 details.birth_date = request.POST.get('birthdate')
             if 'profile_picture'in request.FILES:
