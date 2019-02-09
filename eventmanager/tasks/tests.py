@@ -51,73 +51,97 @@ class EventsTestCase(TestCase):
             self.event.save()
 
         # create task
-        self.task = Task.objects.create(title="Opaaaa", event=self.event,slug="slug")
+        self.task = Task.objects.create(
+            title="Opaaaa", event=self.event, slug="slug")
         self.task.save()
 
-
     def test_delete_task_url_error(self):
-    	user = User.objects.create_user(
-    	    'test',
-    	    'lennon@thebeatles.com',
-    	    'johnpassword'
-    	)
-    	self.client.login(username='test', password='johnpassword')
-    	url = reverse("tasks.delete_task", kwargs={'slug': self.event.slug, "task":"slug"})
-    	response = self.client.get(url)
-    	self.assertEqual(response.status_code, 200)
-
+        user = User.objects.create_user(
+            'test',
+            'lennon@thebeatles.com',
+            'johnpassword'
+        )
+        self.client.login(username='test', password='johnpassword')
+        url = reverse(
+            "tasks.delete_task",
+            kwargs={
+                'slug': self.event.slug,
+                "task": "slug"})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
     def test_delete_task_url_returns_error(self):
-    	user = User.objects.create_user(
-    	    'test',
-    	    'lennon@thebeatles.com',
-    	    'johnpassword'
-    	)
-    	self.client.login(username='test', password='johnpassword')
-    	url = reverse("tasks.delete_task", kwargs={'slug': self.event.slug, "task":"slug"})
-    	response = self.client.get(url)
-    	self.assertContains(response, "Error")
+        user = User.objects.create_user(
+            'test',
+            'lennon@thebeatles.com',
+            'johnpassword'
+        )
+        self.client.login(username='test', password='johnpassword')
+        url = reverse(
+            "tasks.delete_task",
+            kwargs={
+                'slug': self.event.slug,
+                "task": "slug"})
+        response = self.client.get(url)
+        self.assertContains(response, "Error")
 
     def test_delete_task_url_success(self):
-    	self.client.login(username='john', password='johnpassword')
-    	url = reverse("tasks.delete_task", kwargs={'slug': self.event.slug, "task":"slug"})
-    	response = self.client.get(url)
-    	self.assertEqual(response.status_code, 302)
+        self.client.login(username='john', password='johnpassword')
+        url = reverse(
+            "tasks.delete_task",
+            kwargs={
+                'slug': self.event.slug,
+                "task": "slug"})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 302)
 
     def test_edit_task_url_error(self):
-    	user = User.objects.create_user(
-    	    'test',
-    	    'lennon@thebeatles.com',
-    	    'johnpassword'
-    	)
-    	self.client.login(username='test', password='johnpassword')
-    	url = reverse("tasks.edit_task", kwargs={'slug': self.event.slug, "task":"slug"})
-    	response = self.client.get(url)
-    	self.assertEqual(response.status_code, 200)
-
+        user = User.objects.create_user(
+            'test',
+            'lennon@thebeatles.com',
+            'johnpassword'
+        )
+        self.client.login(username='test', password='johnpassword')
+        url = reverse(
+            "tasks.edit_task",
+            kwargs={
+                'slug': self.event.slug,
+                "task": "slug"})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
     def test_edit_task_url_returns_error(self):
-    	user = User.objects.create_user(
-    	    'test',
-    	    'lennon@thebeatles.com',
-    	    'johnpassword'
-    	)
-    	self.client.login(username='test', password='johnpassword')
-    	url = reverse("tasks.edit_task", kwargs={'slug': self.event.slug, "task":"slug"})
-    	response = self.client.get(url)
-    	self.assertContains(response, "Error")
+        user = User.objects.create_user(
+            'test',
+            'lennon@thebeatles.com',
+            'johnpassword'
+        )
+        self.client.login(username='test', password='johnpassword')
+        url = reverse(
+            "tasks.edit_task",
+            kwargs={
+                'slug': self.event.slug,
+                "task": "slug"})
+        response = self.client.get(url)
+        self.assertContains(response, "Error")
 
     def test_edit_task_url_success(self):
-    	self.client.login(username='john', password='johnpassword')
-    	url = reverse("tasks.edit_task", kwargs={'slug': self.event.slug, "task":"slug"})
-    	response = self.client.get(url)
-    	self.assertEqual(response.status_code, 200)
-
+        self.client.login(username='john', password='johnpassword')
+        url = reverse(
+            "tasks.edit_task",
+            kwargs={
+                'slug': self.event.slug,
+                "task": "slug"})
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
     def test_edit_task_url_success_message(self):
-    	self.client.login(username='john', password='johnpassword')
-    	url = reverse("tasks.edit_task", kwargs={'slug': self.event.slug, "task":"slug"})
-    	response = self.client.get(url)
-    	self.assertContains(response, "Edit task:")
-    	self.assertContains(response, self.task.title)
-
+        self.client.login(username='john', password='johnpassword')
+        url = reverse(
+            "tasks.edit_task",
+            kwargs={
+                'slug': self.event.slug,
+                "task": "slug"})
+        response = self.client.get(url)
+        self.assertContains(response, "Edit task:")
+        self.assertContains(response, self.task.title)
