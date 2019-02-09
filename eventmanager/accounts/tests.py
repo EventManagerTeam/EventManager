@@ -8,6 +8,7 @@ from .forms import *
 from django.contrib.auth.models import User
 
 from accounts.models import AccountDetails
+from accounts.models import FriendRequest
 
 
 class SignUpFormTest(TestCase):
@@ -83,6 +84,13 @@ class LoginTestCase(TestCase):
         response = self.client.get(reverse('accounts.index'))
         self.assertEqual(response.status_code, 200)
 
+
+    def test_already_logged_in(self):
+        self.client.login(username='john', password='johnpassword')
+        response = self.client.get(reverse('accounts.login'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response,"Sign out")
+
     def testLoginName(self):
         self.client.login(username='john', password='johnpassword')
         response = self.client.get(reverse('accounts.index'))
@@ -105,6 +113,14 @@ class AccountsUrlsTestClass(TestCase):
         self.url_testing(reverse("accounts.index"))
 
     def test_signup_url(self):
+        self.url_testing(reverse("accounts.signup"))
+
+    def test_signup_url_when_logged_in(self):
+        self.user = User.objects.create_user(
+            username='testuser',
+            password='12345'
+        )
+        self.client.login(username='testuser', password='12345')
         self.url_testing(reverse("accounts.signup"))
 
     def test_signout_url(self):
@@ -155,6 +171,22 @@ class AccountsUrlsTestClass(TestCase):
 
     def test_search_friends_url(self):
         self.url_testing(reverse("accounts.search_users"), 302)
+
+    def test_delete_account_logged(self):
+        self.user = User.objects.create_user(
+            username='testuser',
+            password='12345'
+        )
+        self.client.login(username='testuser', password='12345')
+
+        self.url_testing(reverse("accounts.delete"), 200)
+
+        response = self.client.get(reverse("accounts.delete"))
+        self.assertContains(response,"Delete account")
+         
+
+    def test_delete_account_not_logged(self):
+        self.url_testing(reverse("accounts.delete"), 302)
 
     def test_change_email_logged(self):
         self.user = User.objects.create_user(
@@ -433,3 +465,40 @@ class FriendsTestClass(TestCase):
 
         response = self.client.get(reverse('accounts.my_friends'))
         self.assertNotContains(response, "testuser")
+
+
+    def test_friend_logged(self):
+        self.client.login(username='john', password='johnpassword')
+        response = self.client.get(reverse('accounts.add_friend', kwargs={"slug":self.user2.details.slug}))
+        self.assertContains(response, "Success!")
+
+    def test_list_friendrequests_withoutrequests(self):
+        response = self.client.get(reverse('accounts.list_friendrequests'))        
+        self.assertContains(response, "Friend requests")
+
+    def test_list_friendrequests(self):
+        FriendRequest.objects.create(sent_by=self.user2,sent_to=self.user)
+
+        response = self.client.get(reverse('accounts.list_friendrequests'))
+        
+        self.assertContains(response, "Friend requests")
+
+    def test_accept_request(self):
+        FriendRequest.objects.create(sent_by=self.user2,sent_to=self.user)
+        response = self.client.get(reverse('accounts.accept_request',kwargs={"slug":self.user2.details.slug}))
+        self.assertContains(response, "successfully accepted friend request")
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_decline_request(self):
+        FriendRequest.objects.create(sent_by=self.user2,sent_to=self.user)
+        response = self.client.get(reverse('accounts.decline_request',kwargs={"slug":self.user2.details.slug}))
+        self.assertContains(response, "successfully declined friend request")
+        self.assertEqual(response.status_code, 200)
+        pass
+
+    # def test_accept_request_logged(self):
+    #     pass
+
+    # def test_decline_request_logged(self):
+    #     pass
