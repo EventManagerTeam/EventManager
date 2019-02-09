@@ -84,12 +84,11 @@ class LoginTestCase(TestCase):
         response = self.client.get(reverse('accounts.index'))
         self.assertEqual(response.status_code, 200)
 
-
     def test_already_logged_in(self):
         self.client.login(username='john', password='johnpassword')
         response = self.client.get(reverse('accounts.login'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response,"Sign out")
+        self.assertContains(response, "Sign out")
 
     def testLoginName(self):
         self.client.login(username='john', password='johnpassword')
@@ -182,8 +181,7 @@ class AccountsUrlsTestClass(TestCase):
         self.url_testing(reverse("accounts.delete"), 200)
 
         response = self.client.get(reverse("accounts.delete"))
-        self.assertContains(response,"Delete account")
-         
+        self.assertContains(response, "Delete account")
 
     def test_delete_account_not_logged(self):
         self.url_testing(reverse("accounts.delete"), 302)
@@ -466,33 +464,42 @@ class FriendsTestClass(TestCase):
         response = self.client.get(reverse('accounts.my_friends'))
         self.assertNotContains(response, "testuser")
 
-
     def test_friend_logged(self):
         self.client.login(username='john', password='johnpassword')
-        response = self.client.get(reverse('accounts.add_friend', kwargs={"slug":self.user2.details.slug}))
+        response = self.client.get(
+            reverse(
+                'accounts.add_friend', kwargs={
+                    "slug": self.user2.details.slug}))
         self.assertContains(response, "Success!")
 
     def test_list_friendrequests_withoutrequests(self):
-        response = self.client.get(reverse('accounts.list_friendrequests'))        
+        response = self.client.get(reverse('accounts.list_friendrequests'))
         self.assertContains(response, "Friend requests")
 
     def test_list_friendrequests(self):
-        FriendRequest.objects.create(sent_by=self.user2,sent_to=self.user)
+        FriendRequest.objects.create(sent_by=self.user2, sent_to=self.user)
 
         response = self.client.get(reverse('accounts.list_friendrequests'))
-        
+
         self.assertContains(response, "Friend requests")
 
     def test_accept_request(self):
-        FriendRequest.objects.create(sent_by=self.user2,sent_to=self.user)
-        response = self.client.get(reverse('accounts.accept_request',kwargs={"slug":self.user2.details.slug}))
+        FriendRequest.objects.create(sent_by=self.user2, sent_to=self.user)
+        response = self.client.get(
+            reverse(
+                'accounts.accept_request',
+                kwargs={
+                    "slug": self.user2.details.slug}))
         self.assertContains(response, "successfully accepted friend request")
         self.assertEqual(response.status_code, 200)
 
-
     def test_decline_request(self):
-        FriendRequest.objects.create(sent_by=self.user2,sent_to=self.user)
-        response = self.client.get(reverse('accounts.decline_request',kwargs={"slug":self.user2.details.slug}))
+        FriendRequest.objects.create(sent_by=self.user2, sent_to=self.user)
+        response = self.client.get(
+            reverse(
+                'accounts.decline_request',
+                kwargs={
+                    "slug": self.user2.details.slug}))
         self.assertContains(response, "successfully declined friend request")
         self.assertEqual(response.status_code, 200)
         pass
