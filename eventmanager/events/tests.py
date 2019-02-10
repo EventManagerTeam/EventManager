@@ -164,6 +164,7 @@ class EventsUrlsTestClass(TestCase):
             'lennonaaa@thebeatles.com',
             'johnpasswordaaa'
         )
+
         self.client.login(username='johnaaaa', password='johnpasswordaaa')
 
         category = Category.objects.create(
@@ -181,7 +182,55 @@ class EventsUrlsTestClass(TestCase):
         event.category.add(category)
         self.url_returns_200(reverse("events.del", kwargs={'slug': "delete"}))
 
+    def test_delete_event_url_unsuccessful(self):
+        user = User.objects.create_user(
+            'johnaaaa',
+            'lennonaaa@thebeatles.com',
+            'johnpasswordaaa'
+        )
+
+        user2 = User.objects.create_user(
+            'johnaaaa2',
+            'lennonaaa2@thebeatles.com',
+            'johnpasswordaaa2'
+        )
+        self.client.login(username='johnaaaa', password='johnpasswordaaa')
+
+        category = Category.objects.create(
+            name='unisdjsd',
+            description='cool description',
+            slug="tesddssst",
+        )
+        event = Event.objects.create(
+            title="delete",
+            description='cool description',
+            slug="delete",
+            added_by=user2,
+        )
+        event.save()
+        event.category.add(category)
+        response = self.client.get(
+            reverse(
+                'events.del', kwargs={
+                    'slug': "delete"}))
+        self.assertEquals(response.status_code, 403)
+        self.assertContains(response.content, "403 Forbidden")
+
+        print(response.content)
+
     def test_view_event_url(self):
+        # add friend
+        user2 = User.objects.create_user(
+            username='testuser2',
+            password='12345'
+        )
+
+        user2.details = AccountDetails.objects.create(
+            user=user2,
+            description='cool description',
+            slug="userslug2"
+        )
+        self.user.details.friends.add(user2)
         self.url_returns_200(reverse("event", kwargs={'slug': "event"}))
 
     def test_all_events_feed_url(self):
@@ -290,10 +339,37 @@ class EventsUrlsTestClass(TestCase):
                     'slug': self.event.slug}))
 
     def test_add_teammate(self):
-        pass
+        self.url_returns_200(
+            reverse(
+                "events.add_teammate",
+                kwargs={
+                    'slug': self.event.slug}))
+
+        response = self.client.get(
+            reverse(
+                "events.add_teammate",
+                kwargs={
+                    'slug': self.event.slug}))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Find")
 
     def test_event_team_add(self):
-        pass
+        user2 = User.objects.create_user(
+            'johnaaaa',
+            'lennonaaa@thebeatles.com',
+            'johnpasswordaaa'
+        )
+
+        response = self.client.get(
+            reverse(
+                "events.event_team_add",
+                kwargs={
+                    'slug': self.event.slug,
+                    'user': user2
+                }))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Success")
+        self.assertContains(response, user2.username)
 
     def test_delete_comment_by_slug(self):
         Comment.objects.create(
