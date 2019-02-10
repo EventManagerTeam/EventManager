@@ -1,16 +1,21 @@
+import datetime
 import unittest
 
-from django.test import Client
-from django.test import TestCase
-from django.urls import reverse
-
 from accounts.models import AccountDetails
-
 from categories.models import Category
 
 from django.contrib.auth.models import User
 
+from django.test import Client
+from django.test import TestCase
+
+from django.urls import reverse
+
+from events.models import Comment
 from events.models import Event
+from events.models import Invite
+
+from tasks.models import Task
 
 
 class EventsTestCase(TestCase):
@@ -137,11 +142,12 @@ class EventsUrlsTestClass(TestCase):
         )
         self.event.save()
         self.event.category.add(category)
+        self.event.team_members.add(self.user)
         self.event.save()
 
-    def url_returns_200(self, url):
+    def url_returns_200(self, url, status_code=200):
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status_code)
 
     def test_list_events_url(self):
         self.url_returns_200(reverse("events.list"))
@@ -158,6 +164,7 @@ class EventsUrlsTestClass(TestCase):
             'lennonaaa@thebeatles.com',
             'johnpasswordaaa'
         )
+
         self.client.login(username='johnaaaa', password='johnpasswordaaa')
 
         category = Category.objects.create(
@@ -175,7 +182,52 @@ class EventsUrlsTestClass(TestCase):
         event.category.add(category)
         self.url_returns_200(reverse("events.del", kwargs={'slug': "delete"}))
 
+    def test_delete_event_url_unsuccessful(self):
+        user = User.objects.create_user(
+            'johnaaaa',
+            'lennonaaa@thebeatles.com',
+            'johnpasswordaaa'
+        )
+
+        user2 = User.objects.create_user(
+            'johnaaaa2',
+            'lennonaaa2@thebeatles.com',
+            'johnpasswordaaa2'
+        )
+        self.client.login(username='johnaaaa', password='johnpasswordaaa')
+
+        category = Category.objects.create(
+            name='unisdjsd',
+            description='cool description',
+            slug="tesddssst",
+        )
+        event = Event.objects.create(
+            title="delete",
+            description='cool description',
+            slug="delete",
+            added_by=user2,
+        )
+        event.save()
+        event.category.add(category)
+        response = self.client.get(
+            reverse(
+                'events.del', kwargs={
+                    'slug': "delete"}))
+        self.assertEquals(response.status_code, 403)
+
     def test_view_event_url(self):
+        # add friend
+        user2 = User.objects.create_user(
+            username='testuser2',
+            password='12345'
+        )
+
+        user2.details = AccountDetails.objects.create(
+            user=user2,
+            description='cool description',
+            slug="userslug2"
+        )
+        self.user.details.friends.add(user2)
         self.url_returns_200(reverse("event", kwargs={'slug': "event"}))
 
     def test_all_events_feed_url(self):
@@ -229,3 +281,160 @@ class EventsUrlsTestClass(TestCase):
         )
         self.client.login(username='johnaaaa', password='johnpasswordaaa')
         self.url_returns_200('events/userslug/eventааааа/add_teammate')
+
+    def test_get_tasks_no_tasks(self):
+        response = self.client.get(reverse('events.tasks'))
+        self.assertContains(response, "TO DO:")
+        self.assertContains(response, "DOING:")
+
+        self.assertEqual(response.status_code, 200)
+
+    def test_get_tasks(self):
+        task_title = "Vey cooollll"
+        self.task = Task.objects.create(
+            title=task_title,
+            event=self.event,
+            slug="event",
+            assignee=self.user,
+            status="TODO"
+        )
+        response = self.client.get(reverse('events.tasks'))
+
+        self.assertContains(response, task_title)
+        self.assertEqual(response.status_code, 200)
+
+    def test_confirm_invite(self):
+        user2 = User.objects.create_user(
+            'johnaaaa',
+            'lennonaaa@thebeatles.com',
+            'johnpasswordaaa'
+        )
+        Invite.objects.create(
+            invited_user=self.user,
+            invited_by=user2,
+            event=self.event)
+        self.url_returns_200(
+            reverse(
+                "events.confirm_invite",
+                kwargs={
+                    'slug': self.event.slug}))
+
+    def test_decline_invite(self):
+        user2 = User.objects.create_user(
+            'johnaaaa',
+            'lennonaaa@thebeatles.com',
+            'johnpasswordaaa'
+        )
+        Invite.objects.create(
+            invited_user=self.user,
+            invited_by=user2,
+            event=self.event)
+        self.url_returns_200(
+            reverse(
+                "invites.decline_invite",
+                kwargs={
+                    'slug': self.event.slug}))
+
+    def test_add_teammate(self):
+        self.url_returns_200(
+            reverse(
+                "events.add_teammate",
+                kwargs={
+                    'slug': self.event.slug}))
+
+        response = self.client.get(
+            reverse(
+                "events.add_teammate",
+                kwargs={
+                    'slug': self.event.slug}))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Find")
+
+    def test_event_team_add(self):
+        user2 = User.objects.create_user(
+            'johnaaaa',
+            'lennonaaa@thebeatles.com',
+            'johnpasswordaaa'
+        )
+
+        response = self.client.get(
+            reverse(
+                "events.event_team_add",
+                kwargs={
+                    'slug': self.event.slug,
+                    'user': user2
+                }))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Success")
+        self.assertContains(response, user2.username)
+
+    def test_delete_comment_by_slug(self):
+        Comment.objects.create(
+            event=self.event,
+            author=self.user,
+            title="opaaa",
+            content="sdasdsa")
+        comment = Comment.objects.first()
+        self.url_returns_200(
+            reverse(
+                "events.comment.del",
+                kwargs={
+                    'slug': self.event.slug,
+                    'comment': comment.pk}))
+
+    def test_edit_comment_by_slug(self):
+        Comment.objects.create(
+            event=self.event,
+            author=self.user,
+            title="opaaa",
+            content="sdasdsa")
+        comment = Comment.objects.first()
+
+        response = self.client.get(
+            reverse(
+                "events.comment.edit",
+                kwargs={
+                    'slug': self.event.slug,
+                    'comment': comment.pk}))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "opaaa")
+
+    def test_event_board(self):
+        self.url_returns_200(
+            reverse(
+                "events.board", kwargs={
+                    'slug': self.event.slug}))
+
+    def test_my_events(self):
+        event = Event.objects.create(
+            title="testy",
+            description='cool description',
+            slug="eventааааа",
+            added_by=self.user,
+        )
+        event.attendees.add(self.user)
+        response = self.client.get(reverse("events.my_events"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "testy")
+
+    def test_events_I_host(self):
+        event = Event.objects.create(
+            title="testy",
+            description='cool description',
+            slug="eventааааа",
+            added_by=self.user,
+        )
+        event.attendees.add(self.user)
+        response = self.client.get(reverse("events.events_I_host"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "testy")
+
+    def test_show_random_event(self):
+        event = Event.objects.create(
+            title="testy",
+            description='cool description',
+            slug="eventааааа",
+            added_by=self.user,
+        )
+        response = self.client.get(reverse("events.show_random_event"))
+        self.assertEqual(response.status_code, 302)
