@@ -214,9 +214,6 @@ class EventsUrlsTestClass(TestCase):
                 'events.del', kwargs={
                     'slug': "delete"}))
         self.assertEquals(response.status_code, 403)
-        self.assertContains(response.content, "403 Forbidden")
-
-        print(response.content)
 
     def test_view_event_url(self):
         # add friend
