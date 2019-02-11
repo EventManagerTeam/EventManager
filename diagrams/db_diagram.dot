@@ -1,0 +1,1608 @@
+digraph model_graph {
+  // Dotfile by Django-Extensions graph_models
+  // Created: 8019-02-10 13:09
+  // Cli Options: accounts/ api/ categories/ eventmanager/ events/ tasks/
+
+  fontname = "Helvetica"
+  fontsize = 80
+  splines  = true
+
+  node [
+    fontname = "Helvetica"
+    fontsize = 80
+    shape = "plaintext"
+  ]
+
+  edge [
+    fontname = "Helvetica"
+    fontsize = 80
+  ]
+
+  // Labels
+  subgraph cluster_django_contrib_admin {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="Black">
+          django.contrib.admin
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    django_contrib_admin_models_LogEntry [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      LogEntry
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">content_type</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">user</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">action_flag</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">PositiveSmallIntegerField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">action_time</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">change_message</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">TextField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">object_id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">TextField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">object_repr</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+  subgraph cluster_django_contrib_auth {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="Black">
+          django.contrib.auth
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    django_contrib_auth_models_AbstractUser [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      AbstractUser<BR/>&lt;<FONT POINT-SIZE="80" FACE="Helvetica Italic">AbstractBaseUser,PermissionsMixin</FONT>&gt;
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">date_joined</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">email</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">EmailField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">first_name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">is_active</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">is_staff</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">is_superuser</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Italic">last_login</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Italic">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">last_name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">password</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">username</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    django_contrib_auth_models_Permission [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Permission
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">content_type</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">codename</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    django_contrib_auth_models_Group [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Group
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    django_contrib_auth_models_User [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      User<BR/>&lt;<FONT POINT-SIZE="80" FACE="Helvetica Italic">AbstractUser</FONT>&gt;
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">date_joined</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Italic">email</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Italic">EmailField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Italic">first_name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Italic">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">is_active</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">is_staff</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">is_superuser</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Italic">last_login</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Italic">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Italic">last_name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Italic">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">password</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">username</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+  subgraph cluster_django_contrib_contenttypes {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="Black">
+          django.contrib.contenttypes
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    django_contrib_contenttypes_models_ContentType [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      ContentType
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">app_label</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">model</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+  subgraph cluster_django_contrib_sessions {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="Black">
+          django.contrib.sessions
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    django_contrib_sessions_base_session_AbstractBaseSession [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      AbstractBaseSession
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">expire_date</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">session_data</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">TextField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    django_contrib_sessions_models_Session [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Session<BR/>&lt;<FONT POINT-SIZE="80" FACE="Helvetica Italic">AbstractBaseSession</FONT>&gt;
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ItalicBold">session_key</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ItalicBold">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">expire_date</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">session_data</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">TextField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+  subgraph cluster_social_django {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="Black">
+          social_django
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    social_django_models_AbstractUserSocialAuth [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      AbstractUserSocialAuth
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">user</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">ForeignKey (None)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">extra_data</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">JSONField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">provider</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">uid</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    social_django_models_UserSocialAuth [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      UserSocialAuth<BR/>&lt;<FONT POINT-SIZE="80" FACE="Helvetica Italic">AbstractUserSocialAuth</FONT>&gt;
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ItalicBold">user</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ItalicBold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">extra_data</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">JSONField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">provider</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">uid</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Italic">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    social_django_models_Nonce [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Nonce
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">salt</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">server_url</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">timestamp</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">IntegerField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    social_django_models_Association [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Association
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">assoc_type</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">handle</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">issued</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">IntegerField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">lifetime</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">IntegerField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">secret</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">server_url</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    social_django_models_Code [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Code
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">code</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">email</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">EmailField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">timestamp</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">verified</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">BooleanField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    social_django_models_Partial [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Partial
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">backend</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">data</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">JSONField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">next_step</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">PositiveSmallIntegerField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">timestamp</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">token</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+  subgraph cluster_notifications {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="Black">
+          notifications
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    notifications_models_Notification [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Notification
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">action_object_content_type</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">actor_content_type</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">recipient</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">target_content_type</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">action_object_object_id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">actor_object_id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">data</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">JSONField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">deleted</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">description</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">TextField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">emailed</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">level</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">public</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">target_object_id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">timestamp</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">unread</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">verb</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+  subgraph cluster_accounts {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="Black">
+          accounts
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    accounts_models_AccountDetails [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      AccountDetails
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">user</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">birth_date</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">description</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">TextField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">profile_picture</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">ImageField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">slug</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">SlugField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+  subgraph cluster_categories {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="Black">
+          categories
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    categories_models_Category [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Category
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">created_at</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">description</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">TextField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">is_active</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">name</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">slug</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">SlugField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">updated_at</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+  subgraph cluster_events {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="Black">
+          events
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    events_models_Event [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Event
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">added_by</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">cover_image</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">ImageField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">created_at</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">description</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">TextField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">ends_at</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">is_active</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">slug</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">SlugField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">starts_at</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">title</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">updated_at</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">visibility</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    events_models_Comment [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Comment
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">author</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">event</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">content</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">TextField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">created_at</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">is_active</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">title</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">updated_at</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+  
+    events_models_Invite [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Invite
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">event</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">invited_by</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">invited_user</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">is_accepted</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">BooleanField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+  subgraph cluster_tasks {
+    label=<
+          <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="0">
+          <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER">
+          <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="Black">
+          tasks
+          </FONT>
+          </TD></TR>
+          </TABLE>
+          >
+    color=olivedrab4
+    style="rounded"
+  
+    tasks_models_Task [label=<
+      <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+      <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">
+      Task
+      </FONT></TD></TR>
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">id</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">AutoField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">added_by</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">assignee</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">event</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica Bold">ForeignKey (id)</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">created_at</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">description</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">TextField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">is_active</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">BooleanField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">slug</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">SlugField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">status</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">title</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" FACE="Helvetica ">CharField</FONT>
+      </TD></TR>
+    
+    
+    
+      <TR><TD ALIGN="LEFT" BORDER="0">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">updated_at</FONT>
+      </TD><TD ALIGN="LEFT">
+      <FONT POINT-SIZE="80" COLOR="#7B7B7B" FACE="Helvetica ">DateTimeField</FONT>
+      </TD></TR>
+    
+    
+      </TABLE>
+      >]
+
+  }
+
+
+  // Relations
+
+  django_contrib_admin_models_LogEntry -> django_contrib_auth_models_User
+  [label="user (logentry)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  django_contrib_admin_models_LogEntry -> django_contrib_contenttypes_models_ContentType
+  [label="content_type (logentry)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  django_contrib_auth_base_user_AbstractBaseUser [label=<
+  <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+  <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+  <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">AbstractBaseUser</FONT>
+  </TD></TR>
+  </TABLE>
+  >]
+  django_contrib_auth_models_AbstractUser -> django_contrib_auth_base_user_AbstractBaseUser
+  [label="abstract\ninheritance"] [arrowhead=empty, arrowtail=none, dir=both];
+  django_contrib_auth_models_PermissionsMixin [label=<
+  <TABLE BGCOLOR="palegoldenrod" BORDER="0" CELLBORDER="0" CELLSPACING="0">
+  <TR><TD COLSPAN="2" CELLPADDING="4" ALIGN="CENTER" BGCOLOR="olivedrab4">
+  <FONT POINT-SIZE="80" FACE="Helvetica Bold" COLOR="white">PermissionsMixin</FONT>
+  </TD></TR>
+  </TABLE>
+  >]
+  django_contrib_auth_models_AbstractUser -> django_contrib_auth_models_PermissionsMixin
+  [label="abstract\ninheritance"] [arrowhead=empty, arrowtail=none, dir=both];
+
+  django_contrib_auth_models_Permission -> django_contrib_contenttypes_models_ContentType
+  [label="content_type (permission)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  django_contrib_auth_models_Group -> django_contrib_auth_models_Permission
+  [label="permissions (group)"] [arrowhead=dot arrowtail=dot, dir=both];
+
+  django_contrib_auth_models_User -> django_contrib_auth_models_Group
+  [label="groups (user)"] [arrowhead=dot arrowtail=dot, dir=both];
+
+  django_contrib_auth_models_User -> django_contrib_auth_models_Permission
+  [label="user_permissions (user)"] [arrowhead=dot arrowtail=dot, dir=both];
+
+  django_contrib_auth_models_User -> django_contrib_auth_models_AbstractUser
+  [label="abstract\ninheritance"] [arrowhead=empty, arrowtail=none, dir=both];
+
+
+
+  django_contrib_sessions_models_Session -> django_contrib_sessions_base_session_AbstractBaseSession
+  [label="abstract\ninheritance"] [arrowhead=empty, arrowtail=none, dir=both];
+
+
+  social_django_models_AbstractUserSocialAuth -> django_contrib_auth_models_User
+  [label="user (social_auth)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  social_django_models_UserSocialAuth -> social_django_models_AbstractUserSocialAuth
+  [label="abstract\ninheritance"] [arrowhead=empty, arrowtail=none, dir=both];
+
+
+  notifications_models_Notification -> django_contrib_auth_models_User
+  [label="recipient (notifications)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  notifications_models_Notification -> django_contrib_contenttypes_models_ContentType
+  [label="actor_content_type (notify_actor)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  notifications_models_Notification -> django_contrib_contenttypes_models_ContentType
+  [label="target_content_type (notify_target)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  notifications_models_Notification -> django_contrib_contenttypes_models_ContentType
+  [label="action_object_content_type (notify_action_object)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+
+  accounts_models_AccountDetails -> django_contrib_auth_models_User
+  [label="user (accountdetails)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  accounts_models_AccountDetails -> django_contrib_auth_models_User
+  [label="friends (friends)"] [arrowhead=dot arrowtail=dot, dir=both];
+
+
+
+  events_models_Event -> django_contrib_auth_models_User
+  [label="added_by (event)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  events_models_Event -> categories_models_Category
+  [label="category (categories)"] [arrowhead=dot arrowtail=dot, dir=both];
+
+  events_models_Event -> django_contrib_auth_models_User
+  [label="attendees (attendees)"] [arrowhead=dot arrowtail=dot, dir=both];
+
+  events_models_Event -> django_contrib_auth_models_User
+  [label="team_members (team)"] [arrowhead=dot arrowtail=dot, dir=both];
+
+  events_models_Comment -> django_contrib_auth_models_User
+  [label="author (comment)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  events_models_Comment -> events_models_Event
+  [label="event (comments)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  events_models_Invite -> django_contrib_auth_models_User
+  [label="invited_user (invited_user)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  events_models_Invite -> django_contrib_auth_models_User
+  [label="invited_by (invited_by)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  events_models_Invite -> events_models_Event
+  [label="event (event)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+
+  tasks_models_Task -> django_contrib_auth_models_User
+  [label="added_by (added_by)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  tasks_models_Task -> django_contrib_auth_models_User
+  [label="assignee (assigned_to)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+  tasks_models_Task -> events_models_Event
+  [label="event (task)"] [arrowhead=none, arrowtail=dot, dir=both];
+
+
+}
