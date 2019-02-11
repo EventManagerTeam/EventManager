@@ -85,7 +85,10 @@ class AccountDetails(models.Model):
         verbose_name_plural = _("Account Details")
 
     def __str__(self):
-        return "Details for: " + self.slug
+        if self.slug:
+            return "Details for: " + self.slug
+        else:
+            return "No slug"
 
 
 class FriendRequestQuerySet(TreeQuerySet):
