@@ -34,23 +34,23 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'social_django',
-    'django_countries',
     'django.contrib.humanize',
+    'django.contrib.messages',
+    'django.contrib.sessions',
+    'django.contrib.staticfiles',
+    'crispy_forms',
+    'django_cleanup.apps.CleanupConfig'
+    'django_countries',
+    'notifications',
     'rest_framework',
     'rest_framework_swagger',
-    'notifications',
+    'social_django',
     'accounts',
     'api',
     'categories',
+    'custom_errors',
     'events',
     'tasks',
-    'crispy_forms',
-    'custom_errors',
-    'django_cleanup.apps.CleanupConfig'
 ]
 
 MIDDLEWARE = [
