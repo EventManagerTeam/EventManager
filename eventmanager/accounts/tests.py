@@ -79,7 +79,7 @@ class LoginTestCase(TestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status_code)
 
-    def testLogin(self):
+    def test_login(self):
         self.client.login(username='john', password='johnpassword')
         response = self.client.get(reverse('accounts.index'))
         self.assertEqual(response.status_code, 200)
@@ -90,12 +90,12 @@ class LoginTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Sign out")
 
-    def testLoginName(self):
+    def test_login_name(self):
         self.client.login(username='john', password='johnpassword')
         response = self.client.get(reverse('accounts.index'))
         self.assertEqual(str(response.context['user']), 'john')
 
-    def testLogOut(self):
+    def test_logout(self):
         self.client.login(username='john', password='johnpassword')
         response = self.client.get(reverse('accounts.signout'))
         self.assertNotEqual(str(response.context['user']), 'john')
@@ -502,10 +502,3 @@ class FriendsTestClass(TestCase):
                     "slug": self.user2.details.slug}))
         self.assertContains(response, "successfully declined friend request")
         self.assertEqual(response.status_code, 200)
-        pass
-
-    # def test_accept_request_logged(self):
-    #     pass
-
-    # def test_decline_request_logged(self):
-    #     pass

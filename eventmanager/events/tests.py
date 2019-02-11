@@ -216,7 +216,6 @@ class EventsUrlsTestClass(TestCase):
         self.assertEquals(response.status_code, 403)
 
     def test_view_event_url(self):
-        # add friend
         user2 = User.objects.create_user(
             username='testuser2',
             password='12345'
