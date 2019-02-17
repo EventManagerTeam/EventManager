@@ -96,19 +96,27 @@ WSGI_APPLICATION = 'eventmanager.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'eventmanager',
-        'USER': 'eventmanager',
-        'PASSWORD': 'eventmanager',
-        'HOST': 'db',
-        'TEST': {
-            'NAME': 'mytestdatabase',
-        },
+if os.getenv('TRAVIS', None):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql', 
+            'NAME': 'eventmanager',
+            'USER': 'eventmanager',
+            'PASSWORD': 'eventmanager',
+            'HOST': 'db',
+            'TEST': {
+                'NAME': 'mytestdatabase',
+            },
+        }
+    }
 
 
 # Password validation
