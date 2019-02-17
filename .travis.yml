@@ -25,4 +25,4 @@ before_script:
 script:
   - cd eventmanager
   - pycodestyle .
-  - docker run event-manager /bin/sh -c "eventmanager/manage.py test eventmanager/"
+  - docker run event-manager /bin/sh --settings=eventmanager.travis.settings -c "eventmanager/manage.py test eventmanager/"
