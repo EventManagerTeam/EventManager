@@ -486,8 +486,14 @@ def events_I_host(request):
 def show_random_event(request):
     try:
         count = Event.objects.count()
-        random_pk = random.randint(0, count - 1)
-        random_event = Event.objects.get(pk=random_pk)
-        return redirect('events.event', slug=random_event.slug)
+        if count > 0:
+            random_pk = random.randint(0, count - 1)
+            random_event = Event.objects.get(pk=random_pk)
+            return redirect('events.event', slug=random_event.slug)
+        else:
+            error_message = "No events have been added yet"
+            context = {'error_message': error_message}
+            return render(request, 'CRUDops/error.html', context)
+
     except ObjectDoesNotExist:
         return show_random_event(request)
