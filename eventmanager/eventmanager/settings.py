@@ -106,7 +106,7 @@ DATABASES = {
     }
 }
 
-if os.getenv('TRAVIS') is 'True':    
+if os.getenv('TRAVIS') is 'true':    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
