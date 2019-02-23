@@ -74,7 +74,10 @@ class Event(models.Model):
         blank=True
     )
 
-    country = CountryField()
+    country = CountryField(
+        blank=True,
+        null=True
+    )
 
     category = models.ManyToManyField(
         Category,
