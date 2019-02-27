@@ -22,4 +22,4 @@ install:
 script:
   - cd eventmanager
   - pycodestyle .
-  - docker run event-manager /bin/sh -c "eventmanager/manage.py test eventmanager/"
+  - docker run event-manager  /bin/sh -c "eventmanager/manage.py  test eventmanager/ --settings=eventmanager.travis"
