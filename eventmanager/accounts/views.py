@@ -31,6 +31,10 @@ from eventmanager.slugify import *
 
 from social.apps.django_app.default.models import UserSocialAuth
 
+from django.core.paginator import EmptyPage
+from django.core.paginator import PageNotAnInteger
+from django.core.paginator import Paginator
+
 
 def index(request):
     if request.user.is_authenticated:
@@ -297,12 +301,25 @@ def edit_account_details(request):
 @login_required
 def list_users(request):
     users = User.objects.all().exclude(username=request.user)
-
+    number_of_items_per_page = 2;
     for user in users:
         if AccountDetails.objects.filter(user=user):
             details = AccountDetails.objects.get(user=user)
             user.details = details
     chunks = [users[x:x + 3] for x in range(0, len(users), 3)]
+
+    paginator = Paginator(chunks, number_of_items_per_page)
+
+    page = request.GET.get('page', 1)
+
+    try:
+        chunks = paginator.page(page)
+    except PageNotAnInteger:
+        chunks = paginator.page(1)
+    except EmptyPage:
+        chunks = paginator.page(paginator.num_pages)
+
+
     context = {'users': chunks}
     return render(request, 'friends/all_accounts.html', context)
 
