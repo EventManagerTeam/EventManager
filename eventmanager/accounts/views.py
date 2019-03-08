@@ -301,7 +301,7 @@ def edit_account_details(request):
 @login_required
 def list_users(request):
     users = User.objects.all().exclude(username=request.user)
-    number_of_items_per_page = 2;
+    number_of_items_per_page = 2
     for user in users:
         if AccountDetails.objects.filter(user=user):
             details = AccountDetails.objects.get(user=user)
@@ -318,7 +318,6 @@ def list_users(request):
         chunks = paginator.page(1)
     except EmptyPage:
         chunks = paginator.page(paginator.num_pages)
-
 
     context = {'users': chunks}
     return render(request, 'friends/all_accounts.html', context)
