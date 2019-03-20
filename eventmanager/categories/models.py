@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import ugettext as _
+from django.contrib.auth.models import User
 
 from eventmanager.slugify import *
 
@@ -76,6 +77,49 @@ class Category(models.Model):
     class Meta(object):
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
+class SuggestedCategory(models.Model):
+    name = models.CharField(
+        verbose_name=_("Name"),
+        max_length=254,
+        null=False,
+        blank=False
+    )
+
+    created_at = models.DateTimeField(
+        verbose_name=_("Created at"),
+        auto_now_add=True
+    )
+
+    added_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+
+    description = models.TextField(
+        verbose_name=_("Description"),
+        help_text=_("Plain text, any formatting or links will be removed"),
+        unique=False,
+        null=True,
+        blank=True
+    )
+
+    category_image = models.ImageField(
+        upload_to='SuggestedCategories',
+        blank=True,
+        null=True
+    )
+
+    class Meta(object):
+        verbose_name = _("Suggested Category")
+        verbose_name_plural = _("Suggested Categories")
         ordering = ['name']
 
     def __str__(self):

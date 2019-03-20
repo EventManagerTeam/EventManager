@@ -21,6 +21,11 @@ $("#id_profile_picture").change(function() {
     $('#cover_button').text("Change profile photo");
 });
 
+$("#id_category_picture").change(function() {
+    readURL(this);
+    $('#cover_button').text("Change category photo");
+});
+
 var now = new Date(),
     minDate = now.toISOString().substring(0,10);
 

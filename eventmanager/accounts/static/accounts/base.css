@@ -2,6 +2,14 @@ html {
 	font-family: Montserrat, sans-serif!important;
 }
 
+.hidden{
+    display: none;
+}
+
+label{
+    font-weight: bold;
+}
+
 .container-fluid {
 	background-color: #2f2f2f;
 	color: #fff;

@@ -1,0 +1,42 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %} 
+    Suggest Category
+{% endblock %}
+
+{% block head %}
+<link href="{% static "events/create_event.css" %}" rel="stylesheet">
+<style type="text/css">
+    
+</style>
+{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<br>
+<h1 class="text-center">
+    Suggest category
+</h1>
+
+<div class="col-md-8 offset-md-2 centered">
+    <form method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class="upload-btn-wrapper">
+          <button class="btn btn-block" id="cover_button"> Add category photo</button>
+          <h3> <input type="file" name="category_picture" accept="image/*" id="id_category_picture"> </h3>
+          <img id="preview" src="" />
+        </div>
+
+         <h3> {{form|crispy}} </h3>
+        <br>
+        
+        <button class="btn btn-primary btn-lg"  type="submit">
+            Suggest
+        </button>
+    </form>
+</div>
+<script type="text/javascript" src="{% static "scripts/preview_image.js"%}"></script>
+
+{% endblock %}
+
