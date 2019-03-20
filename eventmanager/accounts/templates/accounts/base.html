@@ -67,11 +67,15 @@
                         {% endif %}
                     </li>
 
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/categories/all">
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <h3> Categories </h3>
-                        </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/categories/all"> <h3> All Categories </h3> </a>
+                        <a class="dropdown-item" href="/categories/suggested"> <h3> Suggested Categories </h3> </a>
+                        <a class="dropdown-item" href="/categories/suggest_category"> <h3> Suggest a category </h3> </a>
                     </li>
+
                     {% if request.user.is_authenticated %}
                     <li class="nav-item active">
                         <a class="nav-link" href="/events/invites/">
