@@ -276,12 +276,16 @@ def invite(request, slug, event):
     invited_user = other_user_details.user
 
     event = Event.objects.get(slug=event)
-    invite = Invite.objects.get_or_create(
-        invited_user=invited_user,
-        invited_by=logged_in_user,
-        event=event)
+    if Invite.objects.filter(invited_user=invited_user, event=event).exists():
+        success_message = "User has already been invited to this event"
+    else:
+        invite = Invite.objects.get_or_create(
+            invited_user=invited_user,
+            invited_by=logged_in_user,
+            event=event
+        )
+        success_message = 'You have invited the user successfully'
 
-    success_message = 'You have invited the user successfully'
     messages.success(request, success_message)
     return show_events_by_slug(request, event.slug)
 
