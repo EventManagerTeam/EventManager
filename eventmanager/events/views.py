@@ -96,8 +96,9 @@ def create_event(request):
             event.attendees.add(request.user)
             event.team_members.add(request.user)
             event.save()
-            context = {'success_message': "added new event"}
-            return render(request, 'CRUDops/successfully.html', context)
+
+            return redirect('events.event', slug=event.slug)
+
 
     context = {'form': form, 'categories': Category.objects.active()}
     return render(
