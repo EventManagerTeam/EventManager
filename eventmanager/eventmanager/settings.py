@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_swagger',
     'social_django',
+    'import_export',
     'accounts',
     'api',
     'categories',
@@ -168,6 +169,9 @@ LOGIN_REDIRECT_URL = 'accounts.home'
 
 SOCIAL_AUTH_GITHUB_KEY = ''
 SOCIAL_AUTH_GITHUB_SECRET = ''
+
+# determines if the library will use database transactions on data import
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 try:
     from eventmanager.local_settings import *

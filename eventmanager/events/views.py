@@ -502,3 +502,11 @@ def show_random_event(request):
 
     except ObjectDoesNotExist:
         return show_random_event(request)
+
+@login_required(login_url='/login')
+def export_as(request):
+    from .resources import EventResource
+    from django.http import HttpResponse
+    queryset = Event.objects.filter(added_by=request.user)
+    dataset = EventResource().export(queryset)
+    return HttpResponse(dataset.csv)
