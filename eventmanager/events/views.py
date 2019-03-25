@@ -32,6 +32,7 @@ from django.core.exceptions import ObjectDoesNotExist
 import csv
 from django.utils.encoding import smart_str
 from .resources import EventResource
+from django.http import HttpResponse
 
 
 number_of_items_per_page = 6
@@ -507,39 +508,26 @@ def show_random_event(request):
         return show_random_event(request)
 
 
+def get_user_events_dataset(user):
+    queryset = Event.objects.filter(added_by=user)
+    dataset = EventResource().export(queryset)
+    return dataset
+
+
 @login_required(login_url='/login')
 def export_as_csv(request):
-
-    queryset = Event.objects.filter(added_by=request.user)
-    dataset = EventResource().export(queryset)
-
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="MyEvents.csv"'
-
-    writer = csv.writer(response, csv.excel)
-    response.write(u'\ufeff'.encode('utf8'))
-
-    # write the headers
-    writer.writerow([
-        smart_str(u"id"),
-        smart_str(u"Event title"),
-        smart_str(u"Event Description"),
-        smart_str(u"Location"),
-        smart_str(u"Country"),
-        smart_str(u"Starts At"),
-        smart_str(u"Ends at"),
-    ])
-
-    # write the data
-    for row in dataset:
-        writer.writerow([
-            smart_str(row[0]),
-            smart_str(row[1]),
-            smart_str(row[2]),
-            smart_str(row[3]),
-            smart_str(row[4]),
-            smart_str(row[5]),
-            smart_str(row[6]),
-        ])
-
+    dataset = get_user_events_dataset(request.user)
+    response = HttpResponse(dataset.csv, content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="persons.csv"'
     return response
+
+
+@login_required(login_url='/login')
+def export_as_json(request):
+    dataset = get_user_events_dataset(request.user)
+    response = HttpResponse(dataset.json, content_type='application/json')
+    response['Content-Disposition'] = 'attachment; filename="MyEvents.json"'
+    return response
+
+def export(request):
+    pass
