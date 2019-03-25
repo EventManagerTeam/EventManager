@@ -29,6 +29,10 @@ from django.shortcuts import redirect
 import random
 from django.core.exceptions import ObjectDoesNotExist
 
+import csv
+from django.utils.encoding import smart_str
+from .resources import EventResource
+
 
 number_of_items_per_page = 6
 
@@ -98,7 +102,6 @@ def create_event(request):
             event.save()
 
             return redirect('events.event', slug=event.slug)
-
 
     context = {'form': form, 'categories': Category.objects.active()}
     return render(
@@ -503,10 +506,40 @@ def show_random_event(request):
     except ObjectDoesNotExist:
         return show_random_event(request)
 
+
 @login_required(login_url='/login')
-def export_as(request):
-    from .resources import EventResource
-    from django.http import HttpResponse
+def export_as_csv(request):
+
     queryset = Event.objects.filter(added_by=request.user)
     dataset = EventResource().export(queryset)
-    return HttpResponse(dataset.csv)
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="MyEvents.csv"'
+
+    writer = csv.writer(response, csv.excel)
+    response.write(u'\ufeff'.encode('utf8'))
+
+    # write the headers
+    writer.writerow([
+        smart_str(u"id"),
+        smart_str(u"Event title"),
+        smart_str(u"Event Description"),
+        smart_str(u"Location"),
+        smart_str(u"Country"),
+        smart_str(u"Starts At"),
+        smart_str(u"Ends at"),
+    ])
+
+    # write the data
+    for row in dataset:
+        writer.writerow([
+            smart_str(row[0]),
+            smart_str(row[1]),
+            smart_str(row[2]),
+            smart_str(row[3]),
+            smart_str(row[4]),
+            smart_str(row[5]),
+            smart_str(row[6]),
+        ])
+
+    return response

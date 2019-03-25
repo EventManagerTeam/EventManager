@@ -9,6 +9,7 @@ from .feeds import LatestEventFeed
 
 
 urlpatterns = [
+    path('export/csv', views.export_as_csv, name='events.export'),
     path('all/', views.index, name='events.list'),
     path('random/', views.show_random_event, name='events.show_random_event'),
     path('invites/', views.invites, name='events.invites'),
