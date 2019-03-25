@@ -1,0 +1,36 @@
+
+
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %} Export {% endblock %}
+{% block content %}
+<br> <br>
+<div class="d-flex" >
+    <div class="container">
+        <h1 style="text-align: center;padding-top: 12%;" class="text-center display-3"> Export your events as: </h1>
+        <br> <br>
+        <div class="row">
+            <div class="col-3"> </div>
+            <div class="col-5">
+                <a href="/events/export/csv">
+                    <button type="button" class="btn btn-primary btn-lg">
+                        <h1 class="display-3">
+                            CSV
+                        </h1>
+                    </button>
+                </a>
+                <a href="/events/export/json">
+                    <button type="button" class="btn btn-secondary btn-lg">
+                        <h1 class="display-3">
+                            JSON
+                        </h1>
+                    </button>
+                </a>
+            </div>
+            <div class="col-3"> </div>
+        </div>
+        <br>
+    </div>
+</div>
+{% endblock %}
+

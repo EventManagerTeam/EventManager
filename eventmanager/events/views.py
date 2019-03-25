@@ -530,4 +530,9 @@ def export_as_json(request):
     return response
 
 def export(request):
-    pass
+    if Event.objects.filter(added_by=request.user).count() > 0:
+        return render(request, 'export/export.html')
+    else:
+        error_message = "You have not added any events yet so you can't export them"
+        context = {'error_message': error_message}
+        return render(request, 'CRUDops/error.html', context)
