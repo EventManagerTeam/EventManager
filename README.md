@@ -1,4 +1,4 @@
-# EventManager [![Build Status](https://travis-ci.org/karinakozarova/EventManager.svg?branch=master)](https://travis-ci.org/karinakozarova/EventManager)
+# EventManager [![Build Status](https://travis-ci.org/EventManagerTeam/EventManager.svg?branch=master)](https://travis-ci.org/karinakozarova/EventManager)
 
 # What is EventManager?
 EventManager is the newest social network. Combining event attendees and creators's needs, EventManager gives everyone the possiblitiy to be part of a better event experience. 
