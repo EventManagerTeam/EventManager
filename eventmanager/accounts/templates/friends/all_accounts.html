@@ -12,6 +12,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="bg-pan-left">
     <h1 class="h1  " style="font-size: xx-large;text-align: center;">  {{ title }} </h1>
     {% for row in users%}
     <div class="card-columns">
@@ -26,11 +27,11 @@
                         {% endif %} ">
                     <h1> {{name}} </h1>
                     <h2> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h2>
-                    {% if user.details.birth_date %} 
+                    {% if user.details.birth_date %}
                     <h2> <i class="fa fa-birthday-cake" aria-hidden="true"></i> Born on: {{user.details.birth_date}}  </h2>
                     {% endif %}
                     <h2> {{user.details.description}} </h2>
-                    {% if user.unfriend_url %} 
+                    {% if user.unfriend_url %}
                         <button class="btn btn-danger btn-lg btn-block"  onclick="location.href='{{user.unfriend_url}}'" type="button" style="font-size: x-large;"> Unfriend </button>
                     {% endif %}
                 </div>
@@ -86,5 +87,6 @@
     </ul>
     {% endif %}
     <br> <br>
+</div>
 {% endblock %}
 

@@ -18,7 +18,7 @@
 <div class="list">
     {% for category_list in categories%}
     {% for category in category_list%}
-    <div class="w-full category-card">
+    <div class="w-full category-card animated zoomIn">
         <div class="box">
             <div class="bg-cover" style="{% if category.category_image %} background-image: url({{category.category_image.url}});{%endif%}" ></div>
             <div class="content" >
