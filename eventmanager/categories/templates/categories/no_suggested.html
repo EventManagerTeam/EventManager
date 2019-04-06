@@ -1,0 +1,32 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+		Suggest Category
+{% endblock %}
+
+{% block head %}
+<link href="{% static "categories/all.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="horizontally_centered">
+	<h1 class="text-center animated lightSpeedIn slow display-3">
+			No Suggested categories yet.
+	</h1>
+
+	<br> <br>
+
+	<div style="text-align:center;">
+		<a href="/events/export/json" class="animated zoomIn infinite slower">
+				<button type="button" class="btn btn-success ">
+						<h1>
+								Suggest a category
+						</h1>
+				</button>
+		</a>
+	</div>
+</div>
+{% endblock %}
+
