@@ -50,7 +50,7 @@ urlpatterns = [
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'custom_errors.views.error_404_view'
-handler500 = 'custom_errors.views.error_404_view'
+# handler500 = 'custom_errors.views.error_404_view'
 
 if settings.DEBUG:
     urlpatterns += staticfiles_urlpatterns()
