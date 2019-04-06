@@ -13,15 +13,19 @@
 <div class="row">
     {% if request.user.is_authenticated %}
     <br> <br>
-    
+
     <a class="btn btn-success btn-lg btn-block" id="create_event" href="/events/create_event/" role="button">
-        Create new event 
+        Create new event
     </a>
     {% endif %}
     <br> <br>
     <div class="col-2 hidden-xs hidden-md">
         <div class="card">
-            <h3 class="card-title" >Categories <a data-toggle="collapse" href="#collapseCategories" onclick="changeCollapeseIcon();"> <i class="fa fa-plus"  aria-hidden="true" id="collapse_icon"></i> </a> </h3>
+            <h3 class="card-title" >Categories
+            	<a data-toggle="collapse" href="#collapseCategories" onclick="changeCollapeseIcon();">
+	            	<i class="fa fa-plus"  aria-hidden="true" id="collapse_icon"> </i>
+	            </a>
+	        </h3>
             <ul class="list-group list-group-flush collapse" id="collapseCategories">
                 {% for category in categories%}
                         <a href = "/categories/{{category.slug}} ">
@@ -98,7 +102,7 @@
     {% endif %}
 </ul>
 {% endif %}
-<br> <br><br> 
+<br> <br><br>
 
 <script type="text/javascript">
     function changeCollapeseIcon(){
