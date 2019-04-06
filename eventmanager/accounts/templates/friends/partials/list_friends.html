@@ -12,18 +12,18 @@
                         {% endif %} ">
                     <h1> {{name}} </h1>
                     <h3> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h3>
-                    {% if user.details.birth_date %} 
+                    {% if user.details.birth_date %}
                         <h5> <i class="fa fa-birthday-cake" aria-hidden="true"></i> Born on: {{user.details.birth_date}}  </h5>
                     {% endif %}
                     <h5> {{user.details.description}} </h5>
-                    {% if friend_user is True %} 
+                    {% if friend_user is True %}
                         {% if not user.my_friend and user.details %}
                             <button class="btn btn-success btn-lg btn-block"  onclick="location.href=window.location.origin + '/users/{{user.details.slug}}/friend'" type="button" style="font-size: x-large;"> Friend </button>
                         {% elif user.my_friend %}
                             <button class="btn btn-danger btn-lg btn-block"  onclick="location.href=window.location.origin + '/users/{{user.details.slug}}/unfriend'" type="button" style="font-size: x-large;"> Unfriend </button>
                         {% endif %}
                     {% endif %}
-                    {% if add_to_team is True %} 
+                    {% if add_to_team is True %}
                         <button class="btn btn-danger btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/{{user.details.slug}}/{{event.slug}}/add_teammate'" type="button" style="font-size: x-large;"> Add to team </button>
                     {% endif %}
                 </div>

@@ -359,8 +359,11 @@ def my_friends(request):
                 user.unfriend_url = "users/" + user.details.slug + "/unfriend"
 
     chunks = [friends[x:x + 3] for x in range(0, len(friends), 3)]
-    context = {'users': chunks, 'title': "My friends:"}
-    return render(request, 'friends/all_accounts.html', context)
+    if len(chunks) > 0:
+        context = {'users': chunks, 'title': "My friends:"}
+        return render(request, 'friends/all_accounts.html', context)
+    else:
+        return render(request, 'friends/no_friends.html')
 
 
 @login_required

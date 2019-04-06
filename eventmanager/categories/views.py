@@ -20,13 +20,13 @@ def listing(request):
 
 
 def listing_suggested(request):
-	if SuggestedCategory.objects.count() > 0:
-	    categories = SuggestedCategory.objects.all()
-	    chunks = [categories[x:x + 3] for x in range(0, len(categories), 3)]
-	    context = {'categories': chunks}
-	    return render(request, 'categories/all_categories.html', context)
-	else:
-		return render(request, 'categories/no_suggested.html')
+    if SuggestedCategory.objects.count() > 0:
+        categories = SuggestedCategory.objects.all()
+        chunks = [categories[x:x + 3] for x in range(0, len(categories), 3)]
+        context = {'categories': chunks}
+        return render(request, 'categories/all_categories.html', context)
+    else:
+        return render(request, 'categories/no_suggested.html')
 
 
 def all_from_category(request, slug):

@@ -1,0 +1,28 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+	No friends
+{% endblock %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="horizontally_centered">
+	<h1 class="text-center animated lightSpeedIn slow display-3">
+		You don't have any friends yet.
+	</h1>
+
+	<br> <br>
+
+	<div style="text-align:center;">
+		<a href="/friends/find" class="animated zoomIn infinite slower">
+			<button type="button" class="btn btn-success ">
+				<h1>
+					Add friends
+				</h1>
+			</button>
+		</a>
+	</div>
+</div>
+{% endblock %}
+
