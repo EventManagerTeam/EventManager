@@ -1,20 +1,20 @@
 {% load static %}
 {% load crispy_forms_tags %}
-<div class="modal hide" id="contactModal">
+<div class="modal hide" id="contactModal" style="max-height: 75% !important;">
     <form class="well" method="post">
-        <div class="modal-header">
-            <h3 class="h1 xx-large">
+        <div class="modal-header" style="margin-top: -30px !important;">
+            <h3>
                 Add your comment:
             </h3>
-            <button type="button" class="close" data-dismiss="modal"> 
+            <button type="button" class="close" data-dismiss="modal">
             <i class="fa-2x fas fa-times-circle"></i>
             </button>
         </div>
         <div class="modal-body">
             {% csrf_token %}
-            <h1> {{ form|crispy }} </h1>
-            <script type="text/javascript" src="{% static "scripts/comment_countdown.js" %}"></script> 
-            <span id="remainingCount1" style="font-size: x-large;">500 chars left </span>    
+            <h3> {{ form|crispy }} </h3>
+            <script type="text/javascript" src="{% static "scripts/comment_countdown.js" %}"></script>
+            <span id="remainingCount1">500 chars left </span>
         </div>
         <div class="modal-footer">
             <input type="submit" class="btn btn-success btn-block " value="Submit">
