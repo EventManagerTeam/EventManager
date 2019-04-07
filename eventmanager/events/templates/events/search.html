@@ -1,0 +1,43 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %} {{event.title}} Search {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+<style type="text/css">
+	.custom-select{
+		max-width: 200px !important;
+	}
+
+	@media only screen and (min-device-width: 500px){
+		.custom-select{
+			min-width: 400px !important;
+		}
+	}
+
+	.input-group {
+		padding-left: 10%;
+		padding-right: 10%;
+	}
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="input-group horizontally_centered input-group-lg">
+	<div class="input-group-prepend">
+		<span class="input-group-text">Category</span>
+	</div>
+	<select class="custom-select md-3" id="categories">
+		{% for category in categories %}
+			<option value="{{category.pk}}">{{category}}</option>
+		{% endfor %}
+	</select>
+
+	<input type="text" class="form-control" id="search_string" placeholder="Search here...">
+</div>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="{% static 'scripts/search/search.js' %}"> </script>
+{% endblock %}
+
