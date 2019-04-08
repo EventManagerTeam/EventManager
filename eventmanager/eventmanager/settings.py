@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'events',
     'exporting',
     'tasks',
+    'homepage',
 ]
 
 MIDDLEWARE = [

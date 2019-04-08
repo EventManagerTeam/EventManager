@@ -510,12 +510,6 @@ def show_random_event(request):
         return show_random_event(request)
 
 
-def get_user_events_dataset(user):
-    queryset = Event.objects.filter(added_by=user)
-    dataset = EventResource().export(queryset)
-    return dataset
-
-
 def search(request):
     return render(request, 'events/search.html',
                   {'categories': Category.objects.all()})

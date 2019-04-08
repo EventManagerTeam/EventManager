@@ -36,10 +36,9 @@ from django.core.paginator import PageNotAnInteger
 from django.core.paginator import Paginator
 
 
-def index(request):
-    if request.user.is_authenticated:
-        return home(request)
-    return render(request, 'accounts/index.html')
+@login_required
+def home(request):
+    return render(request, 'accounts/home.html')
 
 
 def login(request):
@@ -100,11 +99,6 @@ def delete(request):
     else:
         context = {}
         return render(request, 'accounts/delete_profile.html', context)
-
-
-@login_required
-def home(request):
-    return render(request, 'accounts/home.html')
 
 
 @login_required(login_url='/login')
