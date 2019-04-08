@@ -10,7 +10,7 @@ body, html {
     float: right;
     font-size: x-large;
     margin: auto;
-    margin-bottom: 5%; 
+    margin-bottom: 5%;
 }
 
 form{
@@ -40,7 +40,6 @@ form{
 .modal{
     margin-top: 7%;
 }
-
 
 .comments-card{
     width: 60%;
@@ -84,4 +83,8 @@ form{
 #dropdownMenuButton{
     background-color: rgba( 245, 245, 245 , 0.9);
     color: black;
+}
+
+.row{
+    margin: 0px;
 }

@@ -16,23 +16,21 @@
     .bg {
     {% if event.cover_image %}
         background-image: url( "{{ event.cover_image.url }}" );
-        height: 100%;
+        height: 70%;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
     {% endif %}
     }
-    
-    .row{
-        margin: 0px;
-    }
+
+
 </style>
 {% endblock %}
 {% block content %}
 <div class="bg">
     <div class="display-1 edit_delete row">
         <div class="col-xs-6 col-md-10">
-            {{event.title}} <h3> <i class="fa fa-map" aria-hidden="true"></i> Location: <i class="flag2x {{ event.country.flag_css }}"></i>, {{ event.location }} </h3>
+            <h1> {{event.title}} </h1> <h3> <i class="fa fa-map" aria-hidden="true"></i> Location: <i class="flag2x {{ event.country.flag_css }}"></i>, {{ event.location }} </h3>
         </div>
 
         <div class="col-xs-6 col-md-2" >
@@ -75,10 +73,13 @@
    </div>
 </div>
 
-        
-<h3 class="h4 simple" style="text-indent: 50px;">
-    {{event.description}}
-</h3>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+  	<h1> Event Description:</h1>
+    <p class="lead h4 simple" style="text-indent: 50px;">{{event.description}}</p>
+  </div>
+</div>
 
 
 <a class="btn btn-success h3 btn-lg" data-toggle="modal" href="#guestsModal"> List Guests</a>
@@ -95,7 +96,7 @@
 <form class="well" method="post">
     <div class="modal-header">
         <h3 class="h3">Invite to {{event.title}}:</h3>
-        <button type="button" class="close" data-dismiss="modal"> 
+        <button type="button" class="close" data-dismiss="modal">
             <i class="fa-2x fas fa-times-circle"></i>
         </button>
     </div>
@@ -114,10 +115,10 @@
                         {% endif %} " style="width:100%">
                     <h3> {{name}} </h3>
                     <h4> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h4>
-                    {% if user.details.birth_date %} 
-                        <h4> 
-                            <i class="fa fa-birthday-cake" aria-hidden="true"></i> 
-                            Born on: {{user.details.birth_date}}  
+                    {% if user.details.birth_date %}
+                        <h4>
+                            <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+                            Born on: {{user.details.birth_date}}
                         </h4>
                     {% endif %}
                     <h4> {{user.details.description}} </h4>
@@ -135,6 +136,6 @@
 {% endif %}
 
 {% include "events/partials/comments.html" with comments=comments %}
-<br> <br> <br> <br> 
+<br> <br> <br> <br>
 {% endblock %}
 
