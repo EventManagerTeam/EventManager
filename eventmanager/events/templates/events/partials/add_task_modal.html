@@ -1,21 +1,22 @@
 {% load crispy_forms_tags %}
-<div class="modal hide" id="add_task" style="color: black;">
+<div class="modal hide" id="add_task" style="color: black;" style="margin-left:5%;margin-right:5%;">
     <form class="well" method="post">
-        <div class="modal-header">
-            <h3 class="h1 xx-large">
+        <div class="modal-header" style="margin-top: -3% !important;">
+            <h3>
                 Add your task:
             </h3>
-            <button type="button" class="close" data-dismiss="modal"> 
+            <button type="button" class="close" data-dismiss="modal">
             <i class="fa-2x fas fa-times-circle"></i>
             </button>
         </div>
         <div class="modal-body">
             {% csrf_token %}
-            <h1> {{ task_form|crispy }} </h1>
+            <h5> {{ task_form|crispy }} </h5>
         </div>
         <div class="modal-footer">
             <input type="submit" class="btn btn-success btn-block " value="Submit">
         </div>
     </form>
+    <br> <br>
 </div>
 
