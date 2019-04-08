@@ -21,11 +21,16 @@
 		padding-right: 10%;
 	}
 
+	.card{
+		margin: 3%;
+		margin-top: 0% !important;
+	}
+
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="input-group horizontally_centered input-group-lg">
+<div class="input-group input-group-lg" style="padding-top: 5%;">
 	<div class="input-group-prepend">
 		<span class="input-group-text">Category</span>
 	</div>
@@ -37,6 +42,16 @@
 
 	<input type="text" class="form-control" id="search_string" placeholder="Search here...">
 </div>
+
+<div class="search_progress" style="text-align: center;">
+
+</div>
+
+<div class="events centered" style="padding-top: 5%;margin-left:auto;margin-right:auto;">
+</div>
+
+<br>
+
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="{% static 'scripts/search/search.js' %}"> </script>
 {% endblock %}

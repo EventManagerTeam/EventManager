@@ -544,7 +544,7 @@ def search(request):
                   {'categories': Category.objects.all()})
 
 
-def search_json(request, category_id, slug):
+def search_json(request, category_id, slug=""):
     category = Category.objects.filter(pk=category_id)
     events = Event.objects.filter(category__in=category)
 
