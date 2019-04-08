@@ -15,24 +15,24 @@
 <br> <br>
 
 
-
 <div class="col-md-8  offset-md-2 centered" style="padding-bottom: 5%;">
     <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
-        <h2> <b> Profile picture </b> </h2>
+        <h4> <b> Profile picture </b> </h4>
         <div class="upload-btn-wrapper">
-          <button class="btn btn-block" id="cover_button"> Add profile picture</button>
-          <h2> <input type="file" name="profile_picture" accept="image/*" id="id_profile_picture"> </h2>
+          <button class="btn btn-block" id="cover_button">  Add profile picture</button>
+          <h4> <input type="file" name="profile_picture" accept="image/*" id="id_profile_picture"> </h4>
           <img id="preview" src="" />
         </div>
 
-        <h2> <b> {{ form.description.label }} </b> </h2>
-        <h2> {{ form.description }} </h2>
-        <h2> <b> Birthdate:</b> <br>
+        <h4> <b> {{ form.description.label }} </b> </h4>
+        <h4> {{ form.description }} </h4>
+        <h4> <b> Birthdate:</b> <br>
             <input type="date" id="birthdate" class="birthdate" name="birthdate" value="{{birthdate}}">
-        </h2>
+        </h4>
+        <br>
         <button class="btn btn-primary btn-lg btn-block" type="submit">
-            <h2> Add info </h2>
+            <h4> Add info </h4>
         </button>
     </form>
 </div>
