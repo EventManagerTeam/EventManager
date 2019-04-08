@@ -1,23 +1,39 @@
+import csv
+import random
+
 from .forms import CommentForm
 from .forms import EventForm
 from .forms import VisibilitySettings
 
+from .resources import EventResource
+
 from accounts.forms import UserForm
 from accounts.models import AccountDetails
+
 from categories.models import Category
 
 from django.contrib import messages
+
 from django.contrib.auth.decorators import login_required
+
 from django.contrib.auth.models import User
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import PermissionDenied
+
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import Paginator
 
 from django.db.models import Q
 
+from django.http import HttpResponse
+from django.http import JsonResponse
+
+from django.shortcuts import redirect
 from django.shortcuts import render
+
+from django.utils.encoding import smart_str
 
 from eventmanager.slugify import *
 
@@ -27,15 +43,6 @@ from events.models import Event
 from events.models import Invite
 
 from tasks.models import Task
-from django.shortcuts import redirect
-import random
-from django.core.exceptions import ObjectDoesNotExist
-
-import csv
-from django.utils.encoding import smart_str
-from .resources import EventResource
-from django.http import HttpResponse
-from django.http import JsonResponse
 
 number_of_items_per_page = 6
 

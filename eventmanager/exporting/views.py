@@ -1,9 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render
-from events.models import Event
+
 from django.http import HttpResponse
 from django.http import JsonResponse
+
+from django.shortcuts import render
+
+from events.models import Event
+
 from events.resources import EventResource
 
 

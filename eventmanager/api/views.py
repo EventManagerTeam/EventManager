@@ -6,6 +6,7 @@ from api.serializers import InvitationsSerializer
 from api.serializers import TasksSerializer
 
 from django.core.serializers import serialize
+
 from django.shortcuts import render
 
 from accounts.models import AccountDetails

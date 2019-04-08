@@ -1,11 +1,13 @@
+from accounts.forms import AccountDetailsForm
+from accounts.forms import ChangeEmailForm
 from accounts.forms import LoginForm
 from accounts.forms import SignUpForm
-from accounts.forms import ChangeEmailForm
-from accounts.forms import AccountDetailsForm
 from accounts.forms import UserForm
 
-from django.contrib import messages
+from accounts.models import AccountDetails
+from accounts.models import FriendRequest
 
+from django.contrib import messages
 
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
@@ -14,26 +16,23 @@ from django.contrib.auth import update_session_auth_hash
 
 from django.contrib.auth.decorators import login_required
 
-
 from django.contrib.auth.forms import PasswordChangeForm
 
 from django.contrib.auth.models import User
 
-from django.shortcuts import render
-from django.shortcuts import redirect
-
-from accounts.models import AccountDetails
-from accounts.models import FriendRequest
-from events.models import Invite
-from events.models import Event
-
-from eventmanager.slugify import *
-
-from social.apps.django_app.default.models import UserSocialAuth
-
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import Paginator
+
+from django.shortcuts import redirect
+from django.shortcuts import render
+
+from eventmanager.slugify import *
+
+from events.models import Event
+from events.models import Invite
+
+from social.apps.django_app.default.models import UserSocialAuth
 
 
 @login_required

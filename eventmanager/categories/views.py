@@ -1,15 +1,17 @@
+from categories.forms import SuggestedCategoryForm
+
+from categories.models import Category
+from categories.models import SuggestedCategory
+
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
 
 from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import Paginator
 
-from categories.models import Category
-from categories.models import SuggestedCategory
+from django.shortcuts import render
 
 from events.models import Event
-from categories.forms import SuggestedCategoryForm
 
 
 def listing(request):
