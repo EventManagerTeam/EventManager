@@ -10,7 +10,7 @@ function get_selected_category() {
 }
 
 function get_search_string(){
-	return document.getElementById("search_string").value;
+	return $("#search_string").val();
 }
 
 function get_search_query(){
@@ -30,13 +30,14 @@ function get_search_results(){
 	$('.events').html("");
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            var obj = JSON.parse(this.responseText);
+			var obj = JSON.parse(this.responseText);
 
             $(".search_progress").html("");
             var res = "";
             $(".events").html("");
+            $('.events').hide();
+
             Object.keys(obj).forEach(function(key) {
-            	console.log(obj[key].title)
                 var large = `<div class="card center-block">
 								<div class="card-body">
 									<h5 class="card-title"> ${obj[key].title} </h5>
@@ -48,6 +49,7 @@ function get_search_results(){
 
             });
             $('.events').append(res);
+            $('.events').show('slow');
         }
     };
 
@@ -59,6 +61,6 @@ $('#categories').on('change', function() {
   get_search_results();
 });
 
-$('#search_string').on('keydown', function() {
+$('#search_string').on('keypress', function() {
 	get_search_results();
 });

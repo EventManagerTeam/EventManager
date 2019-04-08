@@ -15,6 +15,8 @@ from django.core.paginator import EmptyPage
 from django.core.paginator import PageNotAnInteger
 from django.core.paginator import Paginator
 
+from django.db.models import Q
+
 from django.shortcuts import render
 
 from eventmanager.slugify import *
@@ -238,7 +240,7 @@ def show_events_by_slug(request, slug):
         return render(request, 'events/event.html', context)
 
     error_message = "Event is not available yet\
-		 or you don't have permission to view it."
+          or you don't have permission to view it."
     context = {
         'error_message': error_message}
     return render(request, 'CRUDops/error.html', context)
@@ -449,7 +451,7 @@ def event_board(request, slug):
         return render(request, 'events/board.html', context)
     else:
         error_message = "This event board is available only\
-			 to team members."
+              to team members."
         context = {
             'error_message': error_message}
         return render(request, 'CRUDops/error.html', context)
@@ -546,7 +548,19 @@ def search(request):
 
 def search_json(request, category_id, slug=""):
     category = Category.objects.filter(pk=category_id)
-    events = Event.objects.filter(category__in=category)
+    events = Event.objects.filter(
+        category__in=category
+    ).filter(
+        Q(
+            description__contains=slug
+        ) | Q(
+            title__contains=slug
+        )
+    ).only(
+        'title',
+        'description',
+        'slug'
+    )
 
     events_json = {}
     str = ""
