@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'categories',
     'custom_errors',
     'events',
+    'exporting',
     'tasks',
 ]
 

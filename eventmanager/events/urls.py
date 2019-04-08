@@ -14,16 +14,13 @@ urlpatterns = [
         views.search_json,
         name='events.search_json'
     ),
-
     path(
         'search_json/<int:category_id>/',
         views.search_json,
         name='events.search_json'
     ),
     path('search/', views.search, name='events.search'),
-    path('export/', views.export, name='events.export'),
-    path('export/csv', views.export_as_csv, name='events.export_csv'),
-    path('export/json', views.export_as_json, name='events.export_json'),
+
     path('all/', views.index, name='events.list'),
     path('random/', views.show_random_event, name='events.show_random_event'),
     path('invites/', views.invites, name='events.invites'),
