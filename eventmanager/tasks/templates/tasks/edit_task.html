@@ -1,25 +1,29 @@
 {% extends 'accounts/base.html' %}
 {% block title %} Change ticket {% endblock %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block head%}
-<style type="text/css">
-/*    textarea{
-    height: 30% !important;
-    }
-    select{
-    height: 8% !important;
-    }*/
-</style>
+<link href="{% static 'styles/edit_task.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <br>
-<h1 class="h1" style="text-align: center;"> Edit task: </h1>
-<form class="well" method="post" style="margin:2%;color: black;margin-bottom: 7%;">
+<h1 class="h1"> Edit task: </h1>
+<div class="row">
+<div class="col-md-3"> </div>
+<div class="  col-md-6 center-block justify-content-center align-items-center ">
+<form class="well" method="post">
     {% csrf_token %}
-    <h2> {{ task_form|crispy }} </h2>
-    <h1> <input type="submit" class="btn btn-success btn-block" value="Save Changes" style="font-size: x-large;"> </h1>
+    <h3> {{ task_form|crispy }} </h3>
+    <br>
+    <h1 class="h1">
+    	<input type="submit" class="btn btn-success btn-block" value="Save Changes">
+    </h1>
 </form>
+</div>
+<div class="col-md-3"> </div>
+</div>
+<br>
 {% endblock %}
 
