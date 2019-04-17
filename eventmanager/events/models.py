@@ -15,6 +15,8 @@ from datetime import date
 
 from eventmanager.slugify import *
 
+from tinymce.models import HTMLField
+
 
 def future(value):
     today = date.today()
@@ -252,7 +254,7 @@ class Comment(models.Model):
         blank=False
     )
 
-    content = models.TextField(
+    content = HTMLField(
         verbose_name=_("Content"),
         unique=False,
         null=False,

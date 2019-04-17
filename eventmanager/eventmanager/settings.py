@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'social_django',
     'import_export',
+    'tinymce',
     'accounts',
     'api',
     'categories',
