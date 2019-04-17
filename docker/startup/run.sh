@@ -7,6 +7,6 @@ fi
 python /code/eventmanager/manage.py migrate
 python /code/eventmanager/manage.py loaddata /code/eventmanager/initial_categories.json
 python /code/eventmanager/manage.py collectstatic --no-input
-python /code/eventmanager/manage.py runserver 0.0.0.0:8000 
+python /code/eventmanager/manage.py runserver 0.0.0.0:8000
 
 tail -f /dev/null

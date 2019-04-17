@@ -59,7 +59,7 @@ class Event(models.Model):
         null=True
     )
 
-    description = models.TextField(
+    description = HTMLField(
         verbose_name=_("Description"),
         help_text=_("Plain text, any formatting or links will be removed"),
         unique=False,

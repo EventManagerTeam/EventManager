@@ -12,5 +12,6 @@ django-filter==2.0.0
 django-rest-swagger==2.2.0
 social-auth-app-django==3.1.0
 python-social-auth[django]==0.3.6
-django-countries==5.3.2 
+django-countries==5.3.2
 django-import-export
+ django-tinymce==2.8.0
