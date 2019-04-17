@@ -1,13 +1,17 @@
-
-
 {% extends 'accounts/base.html' %}
 {% load static %}
+
 {% block title %} Export {% endblock %}
+
+{% block head%}
+<link href="{% static 'exporting/styles/export.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <br> <br>
 <div class="d-flex" >
     <div class="container animated zoomInUp slow">
-        <h1 style="text-align: center;padding-top: 12%;" class="text-center display-3"> Export your events as: </h1>
+        <h1 class="text-center display-3 title"> Export your events as: </h1>
         <br> <br>
         <div class="row">
             <div class="col-3"> </div>
