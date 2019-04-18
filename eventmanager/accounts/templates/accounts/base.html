@@ -14,6 +14,13 @@
         <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+        <!-- JavaScript -->
+        <script type="text/javascript" src="{% static 'base/scripts/jquery.slim.js' %}"></script>
+        <script type="text/javascript" src="{% static 'base/scripts/popper.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'base/scripts/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'base/scripts/jquery.min.js' %}"></script>
+
         {% block head %} {% endblock %}
     </head>
     <body>
@@ -118,11 +125,5 @@
         <footer class="container-fluid text-center " style="padding-right: 0!important;padding-left: 0!important;">
             <h5 style="font-size: x-large;"> All rights reserved. </h5>
         </footer>
-
-        <!-- JavaScript -->
-        <script type="text/javascript" src="{% static 'base/scripts/jquery.slim.js' %}"></script>
-        <script type="text/javascript" src="{% static 'base/scripts/popper.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'base/scripts/bootstrap.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'base/scripts/jquery.min.js' %}"></script>
     </body>
 </html>
