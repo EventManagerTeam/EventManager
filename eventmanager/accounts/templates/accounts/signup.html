@@ -1,11 +1,11 @@
 {% extends 'accounts/base.html' %}
 {% load static %}
-{% block title %} Register {% endblock %} 
+{% block title %} Register {% endblock %}
 
 
 
 {% block head %}
-<link href="{% static "accounts/login.css" %}" rel="stylesheet">
+<link href="{% static 'accounts/login.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -19,82 +19,82 @@
                 <h3> You entered wrong credentials. </h3>
             </div>
         {% endif%}
-   
-        <div class="group form-group">      
+
+        <div class="group form-group">
             <input type="text" class="form-field" required id="id_username" name="username">
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>
-            <h3>   
+            <h3>
                <i class="fa fa-user" aria-hidden="true"></i>
-               Username: 
+               Username:
             </h3>
             </label>
          </div>
-           
-        <div class="group">      
+
+        <div class="group">
             <input type="email" class="form-field" name="email" required id="id_email" maxlength="254">
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>
-            <h3>   
+            <h3>
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 Email:
             </h3>
            </label>
          </div>
 
-         <div class="group">      
+         <div class="group">
             <input type="text" class="form-field" name="first_name" required id="id_first_name">
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>
-                <h3>   
+                <h3>
                    <i class="fa fa-user-circle" aria-hidden="true"></i>
-                   First name: 
+                   First name:
                 </h3>
             </label>
          </div>
 
-         <div class="group">      
+         <div class="group">
             <input type="text" class="form-field" name="last_name" required id="id_last_name">
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>
-                <h3>   
+                <h3>
                     <i class="fa fa-user-circle" aria-hidden="true"></i>
-                    Last name: 
+                    Last name:
                 </h3>
             </label>
          </div>
 
-         <div class="group">      
+         <div class="group">
             <input type="password" class="form-field" name="password1" required id="id_password1">
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>
-                <h3>   
+                <h3>
                     <i class="fa fa-key" aria-hidden="true"></i>
-                    Password: 
+                    Password:
                 </h3>
            </label>
          </div>
 
-         <div class="group">      
+         <div class="group">
             <input type="password" class="form-field" name="password2" required id="id_password2">
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>
-                <h3>   
+                <h3>
                    <i class="fa fa-key" aria-hidden="true"></i>
-                   Password confirmation: 
+                   Password confirmation:
                 </h3>
             </label>
          </div>
 
-        <h3>   
+        <h3>
             <a href="/login">
-            Already have account? Login here. <br> 
+            Already have account? Login here. <br>
             </a>
         </h3>
         <button class="btn btn-primary btn-lg btn-block"  type="submit">

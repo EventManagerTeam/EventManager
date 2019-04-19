@@ -1,9 +1,9 @@
 {% extends 'accounts/base.html' %}
 {% load static %}
-{% block title %} Delete account {% endblock %} 
+{% block title %} Delete account {% endblock %}
 
 {% block head %}
-<link href="{% static "accounts/login.css" %}" rel="stylesheet">
+<link href="{% static 'accounts/login.css' %}" rel="stylesheet">
 <style type="text/css">
   body,.bar:before, .bar:after{
     background-color: rgba(255,10 ,10,0.7);
@@ -18,7 +18,7 @@
   }
 </style>
 {% endblock %}
-   
+
 {% block content %}
 <br> <br>
 <div class="col-md"> </div>
@@ -30,27 +30,27 @@
             <h4> You entered wrong credentials. </h4>
          </div>
       {% endif%}
-   
-      <div class="group form-group">      
+
+      <div class="group form-group">
            <input type="text" class="form-field" required id="id_username" name="username">
            <span class="highlight"></span>
            <span class="bar"></span>
            <label>
-            <h4>   
+            <h4>
                <i class="fa fa-user-circle" aria-hidden="true"></i>
-               Username: 
+               Username:
             </h4>
             </label>
          </div>
-           
-         <div class="group">      
+
+         <div class="group">
            <input type="password" class="form-field" name="password" required id="id_password">
            <span class="highlight"></span>
            <span class="bar"></span>
            <label>
-            <h4>   
+            <h4>
                <i class="fa fa-key" aria-hidden="true"></i>
-               Password: 
+               Password:
             </h4>
            </label>
          </div>

@@ -4,8 +4,8 @@
 {% block title %} Add teammate{% endblock %}
 
 {% block head %}
-<link href="{% static "categories/all.css" %}" rel="stylesheet">
-<link href="{% static "accounts/show_account_details.css" %}" rel="stylesheet">
+<link href="{% static 'categories/all.css' %}" rel="stylesheet">
+<link href="{% static 'accounts/show_account_details.css' %}" rel="stylesheet">
 <style type="text/css">
 	.textinput, input{
 		width: 100%;
@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-    
+
 {% include "friends/partials/search_by_username_form.html" with form=form %}
 {% include "friends/partials/list_friends.html" with users=users form=form friend_user=False add_to_team=True event=event %}
 

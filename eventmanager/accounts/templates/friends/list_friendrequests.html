@@ -7,8 +7,8 @@
 {% block title %} Friend requests {% endblock %}
 
 {% block head %}
-<link href="{% static "categories/all.css" %}" rel="stylesheet">
-<link href="{% static "accounts/show_account_details.css" %}" rel="stylesheet">
+<link href="{% static 'categories/all.css' %}" rel="stylesheet">
+<link href="{% static 'accounts/show_account_details.css' %}" rel="stylesheet">
 <style type="text/css">
     @media only screen and (max-width: 600px) {
         .card {
@@ -29,14 +29,14 @@
     <div class="card comments-card col-sm-3" style="padding: 1%;margin: 1%;margin-left: 5%;">
         <div class="card-body">
             <div class="row">
-                <div class="col-sm"> 
+                <div class="col-sm">
                   <a href="/users/{{request.slug}}"  <h3 class="card-title" style="font-size: x-large;">{{request.sent_by}} </h3>
                 </div>
                 <div class="col-sm" style="float: right">
                     <a href = "/users/{{request.slug}}/accept" class="btn-lg btn btn-success"> Accept <i class="favicon fa fa-plus"> </i> </a>
                     <a href = "/users/{{request.slug}}/decline" class="btn-lg btn btn-danger"> Decline <i class="favicon fa fa-minus"> </i> </a>
                 </div>
-                
+
             </div>
         </div>
     </div>  <br> <br> <br>

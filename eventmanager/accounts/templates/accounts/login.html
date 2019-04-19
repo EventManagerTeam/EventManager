@@ -1,12 +1,12 @@
 {% extends 'accounts/base.html' %}
 {% load static %}
-{% block title %} Login {% endblock %} 
+{% block title %} Login {% endblock %}
 
 {% block head %}
-<link href="{% static "accounts/login.css" %}" rel="stylesheet">
+<link href="{% static 'accounts/login.css' %}" rel="stylesheet">
 {% endblock %}
 
-{% block content %} 
+{% block content %}
 <br> <br>
 <div class="col-md"> </div>
 <div class="col-lg-4 offset-lg-4" style="background-color: white;padding: 5%;border: 4px solid black;  border-radius: 25px;">
@@ -17,33 +17,33 @@
             <h3> You entered wrong credentials. </h3>
          </div>
       {% endif%}
-   
-      <div class="group form-group">      
+
+      <div class="group form-group">
            <input type="text" class="form-field" required id="id_username" name="username">
            <span class="highlight"></span>
            <span class="bar"></span>
            <label>
-            <h3>   
+            <h3>
                <i class="fa fa-user-circle" aria-hidden="true"></i>
-               Username: 
+               Username:
             </h3>
             </label>
          </div>
-           
-         <div class="group">      
+
+         <div class="group">
            <input type="password" class="form-field" name="password" required id="id_password">
            <span class="highlight"></span>
            <span class="bar"></span>
            <label>
-            <h3>   
+            <h3>
                <i class="fa fa-key" aria-hidden="true"></i>
-               Password: 
+               Password:
             </h3>
            </label>
          </div>
-         <h3>   
+         <h3>
             <a href="/signup">
-            Don't have account? Register here. 
+            Don't have account? Register here.
             </a><br>
          </h3>
          <button class="btn btn-primary btn-lg btn-block" type="submit">

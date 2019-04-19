@@ -13,7 +13,7 @@
         <div class="modal-body">
             {% csrf_token %}
             <h3> {{ form|crispy }} </h3>
-            <script type="text/javascript" src="{% static "scripts/comment_countdown.js" %}"></script>
+            <script type="text/javascript" src="{% static 'scripts/comment_countdown.js' %}"></script>
             <span id="remainingCount1">500 chars left </span>
         </div>
         <div class="modal-footer">

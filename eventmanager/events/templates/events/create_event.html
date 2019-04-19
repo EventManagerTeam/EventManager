@@ -1,17 +1,17 @@
 {% extends 'accounts/base.html' %}
 {% load static %}
 
-{% block title %} 
+{% block title %}
     {% if editing %}
         Edit {{ starts }}
     {% else %}
         Create
-    {% endif%}  
+    {% endif%}
     event
 {% endblock %}
 
 {% block head %}
-<link href="{% static "events/create_event.css" %}" rel="stylesheet">
+<link href="{% static 'events/create_event.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -22,7 +22,7 @@
         Edit {{ starts }}
     {% else %}
         Create
-    {% endif%}  event:  
+    {% endif%}  event:
 </h1>
 
 <div class="col-md-8 offset-md-2 centered">
@@ -69,8 +69,8 @@
         </button>
     </form>
 </div>
-<script type="text/javascript" src="{% static "scripts/textarea_rows.js" %}"></script> 
-<script type="text/javascript" src="{% static "scripts/preview_image.js"%}"></script>
+<script type="text/javascript" src="{% static "scripts/textarea_rows.js" %}"></script>
+<script type="text/javascript" src="{% static 'scripts/preview_image.js'%}"></script>
 <script type="text/javascript" src="{% static "scripts/validate_event_date.js"%}"></script>
 
 

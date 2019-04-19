@@ -13,11 +13,11 @@
 <form class="well" method="post" style="margin-left:5%;margin-right:5%;">
     {% csrf_token %}
     <h2> {{ form|crispy }} </h2>
-    <script type="text/javascript" src="{% static "scripts/comment_countdown.js" %}"></script> 
-    <h2> <span id="remainingCount1">  500 chars left  </span>  </h2>  
+    <script type="text/javascript" src="{% static 'scripts/comment_countdown.js' %}"></script>
+    <h2> <span id="remainingCount1">  500 chars left  </span>  </h2>
 
     <h2> <input type="submit" class="btn btn-success btn-block" value="Submit" style="font-size: x-large;"> </h2>
-  
+
 </form>
 <br> <br>
 {% endblock %}
