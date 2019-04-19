@@ -10,74 +10,75 @@
 
 {% block head %}
 <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5bffb3800624ce0011ee8698&product=inline-share-buttons' async='async'></script>
-<link href="{% static "events/event.css" %}" rel="stylesheet">
+<link href="{% static 'events/event.css' %}" rel="stylesheet">
+
 <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
 <style type="text/css">
-    .bg {
-    {% if event.cover_image %}
-        background-image: url( "{{ event.cover_image.url }}" );
-        height: 70%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    {% endif %}
-    }
+	.bg {
+	{% if event.cover_image %}
+		background-image: url( "{{ event.cover_image.url }}" );
+		height: 70%;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	{% endif %}
+	}
 
 
 </style>
 {% endblock %}
 {% block content %}
 <div class="bg">
-    <div class="display-1 edit_delete row">
-        <div class="col-xs-6 col-md-10">
-            <h1> {{event.title}} </h1> <h3> <i class="fa fa-map" aria-hidden="true"></i> Location: <i class="flag2x {{ event.country.flag_css }}"></i>, {{ event.location }} </h3>
-        </div>
+	<div class="display-1 edit_delete row">
+		<div class="col-xs-6 col-md-10">
+			<h1> {{event.title}} </h1> <h3> <i class="fa fa-map" aria-hidden="true"></i> Location: <i class="flag2x {{ event.country.flag_css }}"></i>, {{ event.location }} </h3>
+		</div>
 
-        <div class="col-xs-6 col-md-2" >
-            {% if request.user == event.added_by or is_team_member %}
+		<div class="col-xs-6 col-md-2" >
+			{% if request.user == event.added_by or is_team_member %}
 
-            <div class="dropdown">
-                <button class="btn dropdown-toggle custom-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false" style="font-size: xx-large;"  >
-                Edit
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/delete'" > delete event</a>
-                    <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/edit'" > edit event</a>
-                    <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/add_teammate'" > add team </a>
-                    <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/settings'"> change visibility of event </a>
-                    <a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/board'"> event board </a>
-                </div>
-            </div>
-            {% endif %}
+			<div class="dropdown">
+				<button class="btn dropdown-toggle custom-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false" style="font-size: xx-large;"  >
+				Edit
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/delete'" > delete event</a>
+					<a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/edit'" > edit event</a>
+					<a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/add_teammate'" > add team </a>
+					<a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/settings'"> change visibility of event </a>
+					<a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/board'"> event board </a>
+				</div>
+			</div>
+			{% endif %}
 
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
 
 {% if request.user.is_authenticated %}
-    {% if has_joined %}
-        <button class="custom-btn btn-danger btn-primary btn-block   text-uppercase" onclick="location.href=window.location.href  + '/cancel_join'" type="button" style="margin-bottom: 0;">
-            cancel attendance
-        </button>
-    {% else %}
-        <button class="custom-btn btn-success btn-primary btn-block   text-uppercase" onclick="location.href=window.location.href  + '/join'" type="button"  style="margin-bottom: 0;">
-            join
-        </button>
-    {% include "accounts/partials/messages_partial.html" with messages=messages %}
-    {% endif %}
+	{% if has_joined %}
+		<button class="custom-btn btn-danger btn-primary btn-block   text-uppercase" onclick="location.href=window.location.href  + '/cancel_join'" type="button" style="margin-bottom: 0;">
+			cancel attendance
+		</button>
+	{% else %}
+		<button class="custom-btn btn-success btn-primary btn-block   text-uppercase" onclick="location.href=window.location.href  + '/join'" type="button"  style="margin-bottom: 0;">
+			join
+		</button>
+	{% include "accounts/partials/messages_partial.html" with messages=messages %}
+	{% endif %}
 {% endif %}
 
 <div class="col-xs-12" style="padding: 1%;">
    <div class="row">
-      <div class="col"><div class="sharethis-inline-share-buttons"></div></div>
+	  <div class="col"><div class="sharethis-inline-share-buttons"></div></div>
    </div>
 </div>
 
 
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-  	<h1> Event Description:</h1>
-    <p class="lead h4 simple" style="text-indent: 50px;">{{event.description|safe}}</p>
+	<h1> Event Description:</h1>
+	<p class="lead h4 simple" style="text-indent: 50px;">{{event.description|safe}}</p>
   </div>
 </div>
 
@@ -94,41 +95,41 @@
 
 <div class="modal hide" id="inviteModal">
 <form class="well" method="post">
-    <div class="modal-header">
-        <h3 class="h3">Invite to {{event.title}}:</h3>
-        <button type="button" class="close" data-dismiss="modal">
-            <i class="fa-2x fas fa-times-circle"></i>
-        </button>
-    </div>
-    <div class="modal-body">
-        <h3> <b> You can only invite users that you're friends with!</b> <h3>
-        <ul>
-           <div class="card-columns">
-            {% for user in users%}
-            <div class="card-body">
-                <div class="card" style="text-align: center; padding: 5%;">
-                    <img src="
-                        {% if user.details.profile_picture %}
-                          {{user.details.profile_picture.url}}
-                        {% else%}
-                          https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg/600px-Default_profile_picture_%28male%29_on_Facebook.jpg
-                        {% endif %} " style="width:100%">
-                    <h3> {{name}} </h3>
-                    <h4> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h4>
-                    {% if user.details.birth_date %}
-                        <h4>
-                            <i class="fa fa-birthday-cake" aria-hidden="true"></i>
-                            Born on: {{user.details.birth_date}}
-                        </h4>
-                    {% endif %}
-                    <h4> {{user.details.description}} </h4>
-                    <button class="btn btn-success btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/users/{{user.details.slug}}/{{event.slug}}/invite'" type="button" style="font-size: x-large;"> Invite </button>
-                </div>
-            </div>
-            {% endfor %}
-            </div>
-        </ul>
-    </div>
+	<div class="modal-header">
+		<h3 class="h3">Invite to {{event.title}}:</h3>
+		<button type="button" class="close" data-dismiss="modal">
+			<i class="fa-2x fas fa-times-circle"></i>
+		</button>
+	</div>
+	<div class="modal-body">
+		<h3> <b> You can only invite users that you're friends with!</b> <h3>
+		<ul>
+		   <div class="card-columns">
+			{% for user in users%}
+			<div class="card-body">
+				<div class="card" style="text-align: center; padding: 5%;">
+					<img src="
+						{% if user.details.profile_picture %}
+						  {{user.details.profile_picture.url}}
+						{% else%}
+						  https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Default_profile_picture_%28male%29_on_Facebook.jpg/600px-Default_profile_picture_%28male%29_on_Facebook.jpg
+						{% endif %} " style="width:100%">
+					<h3> {{name}} </h3>
+					<h4> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h4>
+					{% if user.details.birth_date %}
+						<h4>
+							<i class="fa fa-birthday-cake" aria-hidden="true"></i>
+							Born on: {{user.details.birth_date}}
+						</h4>
+					{% endif %}
+					<h4> {{user.details.description}} </h4>
+					<button class="btn btn-success btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/users/{{user.details.slug}}/{{event.slug}}/invite'" type="button" style="font-size: x-large;"> Invite </button>
+				</div>
+			</div>
+			{% endfor %}
+			</div>
+		</ul>
+	</div>
 </form>
 </div>
 {% include "events/partials/add_comment_modal.html" with form=form %}

@@ -20,7 +20,7 @@
 
     hr{
         border-top: 10px solid #ccc;
-    }   
+    }
 
     i{
         float: right;
@@ -44,7 +44,8 @@
     }
 
 </style>
-<link href="{% static "events/event.css" %}" rel="stylesheet">
+<link href="{% static 'events/event.css' %}" rel="stylesheet">
+
 
 {% endblock %}
 
@@ -52,7 +53,7 @@
 <br>
 {% include "events/partials/add_task_modal.html" with task_form=task_form %}
   <div class="row">
-    <div class="col-sm-3 bg-warning"> 
+    <div class="col-sm-3 bg-warning">
         <h2 class="heading"> TO DO: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr> </h2>
 
         {% for task in todo_tickets %}
@@ -60,9 +61,9 @@
         {% endfor%}
     </div>
 
-    
+
     <div class="col-sm-3 bg-primary">
-        <h2 class="heading"> DOING: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr> </h2>  
+        <h2 class="heading"> DOING: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr> </h2>
 
         {% for task in doing_tickets %}
             {% include "events/partials/task_partial.html" with task=task %}
@@ -70,7 +71,7 @@
     </div>
 
     <div class="col-sm-3 bg-success">
-        <h2 class="heading"> DONE: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr>  </h2> 
+        <h2 class="heading"> DONE: <a  data-toggle="modal" href="#add_task"> <i class="fas fa-plus"></i> </a> <hr>  </h2>
 
         {% for task in done_tickets %}
             {% include "events/partials/task_partial.html" with task=task %}
