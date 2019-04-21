@@ -20,9 +20,9 @@
     <form method="post" enctype='multipart/form-data'>
         {% csrf_token %}
         <div class="upload-btn-wrapper">
-          <button class="btn btn-block" id="cover_button"> Add category photo</button>
+          <button class="btn btn-block" id="cover_button"> Add category photo </button>
           <h3> <input type="file" name="category_picture" accept="image/*" id="id_category_picture"> </h3>
-          <img id="preview" src="" />
+          <img id="preview" src="" alt="suggested category photo"/>
         </div>
 
          <h3> {{form|crispy}} </h3>

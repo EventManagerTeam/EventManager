@@ -5,34 +5,34 @@
 
 <link href="{% static 'categories/all.css' %}" rel="stylesheet">
 <style type="text/css">
-    .bg-cover{
-        background-image: url({% static 'pictures/logo-eventmanager.png' %});
-        background-color: black;
-        background-size:cover;
-        height:12rem
-    }
+	.bg-cover{
+		background-image: url({% static 'pictures/logo-eventmanager.png' %});
+		background-color: black;
+		background-size:cover;
+		height:12rem
+	}
 
 </style>
 {% endblock %}
 {% block content %}
 <div class="list">
-    {% for category_list in categories%}
-    {% for category in category_list%}
-    <div class="w-full category-card animated zoomIn">
-        <div class="box">
-            <div class="bg-cover" style="{% if category.category_image %} background-image: url({{category.category_image.url}});{%endif%}" ></div>
-            <div class="content" >
-                <a href= "{{category.slug}}">
-                    <h2 class="category_name">{{category.name}}</h2>
-                </a>
-                <div class="description">
-                    <h2> {{category.description}} </h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-    {% endfor %}
+	{% for category_list in categories%}
+		{% for category in category_list%}
+		<div class="w-full category-card animated zoomIn">
+			<div class="box">
+				<div class="bg-cover" style="{% if category.category_image %} background-image: url({{category.category_image.url}});{%endif%}" ></div>
+				<div class="content" >
+					<a href= "{{category.slug}}">
+						<h2 class="category_name">{{category.name}}</h2>
+					</a>
+					<div class="description">
+						<h2> {{category.description}} </h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	{% endfor %}
 </div>
 <br> <br><br> <br>
 {% endblock %}
