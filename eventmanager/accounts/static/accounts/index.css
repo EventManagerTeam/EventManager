@@ -1,185 +1,179 @@
 html {
-	font-family: Montserrat, sans-serif!important
+    font-family: Montserrat, sans-serif!important
 }
 
-html, body {
-	max-width: 100%;
-	overflow-x: hidden;
+body,
+html {
+    max-width: 100%;
+    overflow-x: hidden
 }
 
 .description {
-	color: #9a9a9a;
-	font-weight: 300
-}
-
-.blockquote {
-	border: 1px solid #888;
-	padding: 20px
+    color: #9a9a9a;
+    font-weight: 300
 }
 
 .img-raised {
-	box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .3)
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .3)
 }
 
 .section {
-	padding: 70px 0;
-	position: relative;
-	background: #fff
+    padding: 70px 0;
+    position: relative;
+    background: #fff
 }
 
 .title {
-	color: #fff;
-	font-weight: 500;
-	font-size: 50px
+    color: #fff;
+    font-weight: 500;
+    font-size: 50px
 }
 
 .section-story-overview {
-	padding: 50px 0
+    padding: 50px 0
 }
 
 .section-story-overview .image-container {
-	height: 335px;
-	position: relative;
-	background-position: center center;
-	background-size: cover;
-	box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .3);
-	border-radius: .25rem
+    height: 335px;
+    position: relative;
+    background-position: center center;
+    background-size: cover;
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .3);
+    border-radius: .25rem
 }
 
 .rounded-circle {
-	max-width: 200px;
-	margin-bottom: 5px
+    max-width: 200px;
+    margin-bottom: 5px
 }
 
 blockquote {
-	background: #f9f9f9;
-	border-left: 10px solid #ccc;
-	margin: 1.5em 10px;
-	padding: .5em 10px;
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: .5em 10px
 }
 
 blockquote:before {
-	color: #ccc;
-	content: open-quote;
-	font-size: 4em;
-	line-height: .1em;
-	margin-right: .25em;
-	vertical-align: -.4em
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: .1em;
+    margin-right: .25em;
+    vertical-align: -.4em
 }
 
 .MainContainer {
-	perspective: 1px;
-	transform-style: preserve-3d;
-	height: 100vh;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    height: 100vh
 }
 
 .ContentContainer {
-	position: relative;
-	display: block;
-	background-color: #fff;
-	z-index: 1
+    position: relative;
+    display: block;
+    background-color: #fff;
+    z-index: 1
 }
 
 .ParallaxContainer {
-	display: flex;
-	flex: 1 0 auto;
-	position: relative;
-	z-index: -1;
-	height: 100vh;
-	justify-content: center;
-	align-items: center;
-	transform: translateZ(-1px) scale(2);
-	background: url(https://lh3.googleusercontent.com/9xETDEtx4stABvhboCOrEQXwdlvi0nW1WZbce6VYvIK8grK-ndxPFaEj8QpeDWa6XDHUa6KtWJ32jO4mtNkA9SHvy5litV2HfkLLaTfieqe0PqFA2HQAp5agkCnJoVS7lx4hav9QDADRDri5YA2tP3BKtl55oLxA0xuAHKeNs3B0rRacntVVlRnwq2BJkV_eto0DIX1F8nxODMhBBOqyToQS-ffhn7k4mnMQhNul2aabY7xcrR_rW4f9AkR0jxChzkqWKNIc5Mdtj_q9mW3oPV2-annh3QNOpUSGmrb0l3SwmGwhVe10xH-GMq68CxV-e6yx_ykcHBmQKUA3zOVHXxuyjIuqen-1Ee6289iz9ewHfMiguwlL-z00jInuHChsc-YKF0YdK5I7_M20v4QeYq6WFtxgR8tcbKH0q1LvkeuyV7CGdKyBnl3OkvsySv52SYKYQS583RePN_Kw6t1nZDJbvRKpDNqvY0ScNR3v2xbR7PrFXgV-Y4pc7Lq2p2VPH1WqgOhSihjfcVOPR6yihN1R1Qleuu65sb6iV9jSV1heOnE0F1ead0k_UCIjT9FWmpmWnnjEs_6L4rF8Vm5N1LH8fJKQtwKD3JjejrHVEKll81UJXWayQzLGm6S9YgR4ByZBi_PPleb-ukKpSlFixYGym2RbMJgBP9ffMHuD6Frqkp4LZLr7bkQsrjS1dRtuyxEyl3KrFyPYuKTSGNg=w1849-h804-no);
-	background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url(https://lh3.googleusercontent.com/9xETDEtx4stABvhboCOrEQXwdlvi0nW1WZbce6VYvIK8grK-ndxPFaEj8QpeDWa6XDHUa6KtWJ32jO4mtNkA9SHvy5litV2HfkLLaTfieqe0PqFA2HQAp5agkCnJoVS7lx4hav9QDADRDri5YA2tP3BKtl55oLxA0xuAHKeNs3B0rRacntVVlRnwq2BJkV_eto0DIX1F8nxODMhBBOqyToQS-ffhn7k4mnMQhNul2aabY7xcrR_rW4f9AkR0jxChzkqWKNIc5Mdtj_q9mW3oPV2-annh3QNOpUSGmrb0l3SwmGwhVe10xH-GMq68CxV-e6yx_ykcHBmQKUA3zOVHXxuyjIuqen-1Ee6289iz9ewHfMiguwlL-z00jInuHChsc-YKF0YdK5I7_M20v4QeYq6WFtxgR8tcbKH0q1LvkeuyV7CGdKyBnl3OkvsySv52SYKYQS583RePN_Kw6t1nZDJbvRKpDNqvY0ScNR3v2xbR7PrFXgV-Y4pc7Lq2p2VPH1WqgOhSihjfcVOPR6yihN1R1Qleuu65sb6iV9jSV1heOnE0F1ead0k_UCIjT9FWmpmWnnjEs_6L4rF8Vm5N1LH8fJKQtwKD3JjejrHVEKll81UJXWayQzLGm6S9YgR4ByZBi_PPleb-ukKpSlFixYGym2RbMJgBP9ffMHuD6Frqkp4LZLr7bkQsrjS1dRtuyxEyl3KrFyPYuKTSGNg=w1849-h804-no);
-	background-color: #000;
-	opacity: 80%
+    display: flex;
+    flex: 1 0 auto;
+    position: relative;
+    z-index: -1;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    transform: translateZ(-1px) scale(2);
+    background: url(https://lh3.googleusercontent.com/9xETDEtx4stABvhboCOrEQXwdlvi0nW1WZbce6VYvIK8grK-ndxPFaEj8QpeDWa6XDHUa6KtWJ32jO4mtNkA9SHvy5litV2HfkLLaTfieqe0PqFA2HQAp5agkCnJoVS7lx4hav9QDADRDri5YA2tP3BKtl55oLxA0xuAHKeNs3B0rRacntVVlRnwq2BJkV_eto0DIX1F8nxODMhBBOqyToQS-ffhn7k4mnMQhNul2aabY7xcrR_rW4f9AkR0jxChzkqWKNIc5Mdtj_q9mW3oPV2-annh3QNOpUSGmrb0l3SwmGwhVe10xH-GMq68CxV-e6yx_ykcHBmQKUA3zOVHXxuyjIuqen-1Ee6289iz9ewHfMiguwlL-z00jInuHChsc-YKF0YdK5I7_M20v4QeYq6WFtxgR8tcbKH0q1LvkeuyV7CGdKyBnl3OkvsySv52SYKYQS583RePN_Kw6t1nZDJbvRKpDNqvY0ScNR3v2xbR7PrFXgV-Y4pc7Lq2p2VPH1WqgOhSihjfcVOPR6yihN1R1Qleuu65sb6iV9jSV1heOnE0F1ead0k_UCIjT9FWmpmWnnjEs_6L4rF8Vm5N1LH8fJKQtwKD3JjejrHVEKll81UJXWayQzLGm6S9YgR4ByZBi_PPleb-ukKpSlFixYGym2RbMJgBP9ffMHuD6Frqkp4LZLr7bkQsrjS1dRtuyxEyl3KrFyPYuKTSGNg=w1849-h804-no);
+    background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .4)), url(https://lh3.googleusercontent.com/9xETDEtx4stABvhboCOrEQXwdlvi0nW1WZbce6VYvIK8grK-ndxPFaEj8QpeDWa6XDHUa6KtWJ32jO4mtNkA9SHvy5litV2HfkLLaTfieqe0PqFA2HQAp5agkCnJoVS7lx4hav9QDADRDri5YA2tP3BKtl55oLxA0xuAHKeNs3B0rRacntVVlRnwq2BJkV_eto0DIX1F8nxODMhBBOqyToQS-ffhn7k4mnMQhNul2aabY7xcrR_rW4f9AkR0jxChzkqWKNIc5Mdtj_q9mW3oPV2-annh3QNOpUSGmrb0l3SwmGwhVe10xH-GMq68CxV-e6yx_ykcHBmQKUA3zOVHXxuyjIuqen-1Ee6289iz9ewHfMiguwlL-z00jInuHChsc-YKF0YdK5I7_M20v4QeYq6WFtxgR8tcbKH0q1LvkeuyV7CGdKyBnl3OkvsySv52SYKYQS583RePN_Kw6t1nZDJbvRKpDNqvY0ScNR3v2xbR7PrFXgV-Y4pc7Lq2p2VPH1WqgOhSihjfcVOPR6yihN1R1Qleuu65sb6iV9jSV1heOnE0F1ead0k_UCIjT9FWmpmWnnjEs_6L4rF8Vm5N1LH8fJKQtwKD3JjejrHVEKll81UJXWayQzLGm6S9YgR4ByZBi_PPleb-ukKpSlFixYGym2RbMJgBP9ffMHuD6Frqkp4LZLr7bkQsrjS1dRtuyxEyl3KrFyPYuKTSGNg=w1849-h804-no);
+    background-color: #000;
+    opacity: 80%
 }
 
-.h1,
 h1 {
-	font-size: 3.5em;
-	line-height: 1.15;
-	margin-bottom: 30px
+    font-size: 3.5em;
+    line-height: 1.15;
+    margin-bottom: 30px
 }
 
-.h2,
 h2 {
-	font-size: 2.5em;
-	margin-bottom: 30px
+    font-size: 2.5em;
+    margin-bottom: 30px
 }
 
-.h3,
 h3 {
-	font-size: 2.2em;
-	margin-bottom: 30px;
-	line-height: 1.5em
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    line-height: 1.5em
 }
 
 .register-now {
-	background-color: #5cbf2a;
-	display: inline-block;
-	color: #fff;
-	padding: 14px 76px;
-	text-decoration: none;
-	width: 100%;
-	font-size: xx-large;
-	text-align: center
+    background-color: #5cbf2a;
+    display: inline-block;
+    color: #fff;
+    padding: 14px 76px;
+    text-decoration: none;
+    width: 100%;
+    font-size: xx-large;
+    text-align: center
 }
 
 .register-now:hover {
-	background-color: #44c767;
-	text-decoration: none;
-	color: #fff
+    background-color: #44c767;
+    text-decoration: none;
+    color: #fff
 }
 
 .browse-button {
-	background-color: #33bdef;
-	display: inline-block;
-	color: #fff;
-	font-size: xx-large;
-	padding: 14px 76px;
-	width: 100%;
-	text-decoration: none;
-	text-align: center
+    background-color: #33bdef;
+    display: inline-block;
+    color: #fff;
+    font-size: xx-large;
+    padding: 14px 76px;
+    width: 100%;
+    text-decoration: none;
+    text-align: center
 }
 
 .browse-button:hover {
-	background-color: #019ad2;
-	text-decoration: none;
-	color: #fff
+    background-color: #019ad2;
+    text-decoration: none;
+    color: #fff
 }
 
 .or-button {
-	background-color: #fff;
-	display: inline-block;
-	color: #666;
-	padding: 14px 76px;
-	font-size: xx-large;
-	text-decoration: none;
-	text-align: center
+    background-color: #fff;
+    display: inline-block;
+    color: #666;
+    padding: 14px 76px;
+    font-size: xx-large;
+    text-decoration: none;
+    text-align: center
 }
 
 .or-button:hover {
-	text-decoration: none;
-	color: #fff
+    text-decoration: none;
+    color: #fff
 }
 
-#difference{
-	max-height: 100px;
-}
-footer > h5{
-	font-size: x-large;
+#difference {
+    max-height: 100px
 }
 
-.logo-eventmanager{
-	max-height: 12%;
-	margin-left: 1%;
+footer>h5 {
+    font-size: x-large
 }
 
-.title{
-	color: black;
+.logo-eventmanager {
+    max-height: 12%;
+    margin-left: 1%
 }
 
-.white{
-	color: white;
+.title {
+    color: #000
+}
+
+.white {
+    color: #fff
 }
