@@ -13,3 +13,8 @@ h1{
 	font-family: 'Staatliches', cursive;
 	font-size: 100px !important;
 }
+
+#button{
+	padding-left: 3%;
+	padding-right: 3%;
+}
