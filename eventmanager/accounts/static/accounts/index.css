@@ -152,16 +152,11 @@ h3 {
     text-align: center
 }
 
-.or-button:hover {
-    text-decoration: none;
-    color: #fff
-}
-
 #difference {
     max-height: 100px
 }
 
-footer>h5 {
+footer > h5 {
     font-size: x-large
 }
 
