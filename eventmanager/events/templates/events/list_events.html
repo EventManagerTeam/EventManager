@@ -20,11 +20,11 @@
     {% endif %}
 
     <br> <br>
-    <div class="col-2 hidden-xs hidden-md">
+    <div class="col-md-2 hidden-xs hidden-md">
         <div class="card">
             <h3 class="card-title" >Categories
             	<a data-toggle="collapse" href="#collapseCategories" onclick="changeCollapeseIcon();">
-	            	<i class="fa fa-plus"  aria-hidden="true" id="collapse_icon"> </i>
+	            	<i class="fa fa-plus" aria-hidden="true" id="collapse_icon"> </i>
 	            </a>
 	        </h3>
             <ul class="list-group list-group-flush collapse" id="collapseCategories">
@@ -36,9 +36,9 @@
             </ul>
         </div>
     </div>
-    <div class="row col-10">
+    <div class="row col-md-10">
         {% for event in events%}
-        <div class="card event col-5" style="box-shadow: 20px 20px 10px grey;" >
+        <div class="card event col-md-5" style="box-shadow: 20px 20px 10px grey;" >
             <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
                 <h3 class="text-center">  Added {{ event.created_at|naturaltime  }} </h3>
             </div>
