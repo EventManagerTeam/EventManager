@@ -9,7 +9,7 @@ Then do the following:
 
 * `git clone https://github.com/EventManagerTeam/EventManager`
 * `cd EventManager`
-* Add your info in the .env and .env.mysql files, that can be found in docker/startup/envs.
+* Add your info in the `.env` and `.env.mysql` files, that can be found in `docker/startup/envs`.
 * For generating a secret key use Django Secret Key Generator - https://www.miniwebtool.com/django-secret-key-generator/.  
 * `sudo docker-compose up`
 
