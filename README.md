@@ -7,11 +7,11 @@ EventManager is the newest social network. Combining event attendees and creator
 Install `docker`, `docker-compose` and `git`.
 Then do the following:
 
-* git clone https://github.com/EventManagerTeam/EventManager
-* cd EventManager
+* `git clone https://github.com/EventManagerTeam/EventManager`
+* `cd EventManager`
 * Add your info in the .env and .env.mysql files, that can be found in docker/startup/envs.
 * For generating a secret key use Django Secret Key Generator - https://www.miniwebtool.com/django-secret-key-generator/.  
-* sudo docker-compose up
+* `sudo docker-compose up`
 
 And you have EventManager up and running :)
 
