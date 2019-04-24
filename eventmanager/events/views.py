@@ -18,7 +18,6 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
 
-from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import PermissionDenied
 
 from django.core.paginator import EmptyPage
@@ -503,17 +502,22 @@ def events_I_host(request):
 @login_required(login_url='/login')
 def show_random_event(request):
     try:
-        count = Event.objects.count()
+        ids = Event.objects.values_list('pk', flat=True)
+        count = ids.count()
         if count > 0:
-            random_pk = random.randint(0, count - 1)
-            random_event = Event.objects.get(pk=random_pk)
-            return redirect('events.event', slug=random_event.slug)
+            random_pk = random.randint(0, count-1)
+            print(random_pk)
+            try:
+                random_event = Event.objects.get(pk=ids[random_pk])
+                return redirect('events.event', slug=random_event.slug)
+            except:
+                return show_random_event(request)
         else:
             error_message = "No events have been added yet"
             context = {'error_message': error_message}
             return render(request, 'CRUDops/error.html', context)
 
-    except ObjectDoesNotExist:
+    except:
         return show_random_event(request)
 
 
