@@ -505,19 +505,19 @@ def show_random_event(request):
         ids = Event.objects.values_list('pk', flat=True)
         count = ids.count()
         if count > 0:
-            random_pk = random.randint(0, count-1)
+            random_pk = random.randint(0, count - 1)
             print(random_pk)
             try:
                 random_event = Event.objects.get(pk=ids[random_pk])
                 return redirect('events.event', slug=random_event.slug)
-            except:
+            except BaseException:
                 return show_random_event(request)
         else:
             error_message = "No events have been added yet"
             context = {'error_message': error_message}
             return render(request, 'CRUDops/error.html', context)
 
-    except:
+    except BaseException:
         return show_random_event(request)
 
 
