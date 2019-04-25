@@ -12,6 +12,11 @@
 
 {% block head %}
 <link href="{% static 'events/create_event.css' %}" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
 {% endblock %}
 
 {% block content %}
@@ -45,21 +50,48 @@
             {% endfor %}
         </select>
         <br> <br>
-        <h3> <b> Start time: </b> </h3>
-        <h3>
-            <div class="start_h alert alert-danger hidden"> </div>
-            <input type="date" id="starts_at" class="starts_at left_input" name="starts_at" value="{{starts_date}}">
-            <input type="time" id="starts_at_time" class="taskDate" name="starts_at_time" value="{{starts_time}}">
-        </h3>
-        <br> <br>
-        <h3> <b> End time: </b> </h3>
+        <div class="container">
+			<div class="row">
+				<div class="col-sm">
+					<h3>
+						<b> Start time: </b>
+						<div class="start_h alert alert-danger hidden"> </div>
+					</h3>
+					<div class="row">
+						<input  class="col-sm form-control border" type="date" id="starts_at" name="starts_at" value="{{starts_date}}">
 
-        <h3>
-            <div class="end_h alert alert-danger hidden"> </div>
-            <input type="date" id="ends_at" class="ends_at left_input" name="ends_at" value="{{ends_date}}">
-            <input type="time" id="ends_at_time" class="taskDate" name="ends_at_time" value="{{ends_time}}">
-        </h3>
-        <br> <br>  <br> <br>
+						<div class="col-sm">
+							<input type="time" id="starts_at_time" name="starts_at_time" value="{{starts_time}}">
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm">
+					<h3>
+						<b> End time: </b>
+						<div class="end_h alert alert-danger hidden"> </div>
+					</h3>
+					<div class="row">
+						<input type="date" id="ends_at" class="col-sm form-control border" name="ends_at" value="{{ends_date}}">
+
+						<div class="col-sm">
+						 <input type="time" id="ends_at_time" class="taskDate" name="ends_at_time" value="{{ends_time}}">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+       <script>
+           $('#starts_at_time').timepicker({
+               uiLibrary: 'bootstrap4'
+           });
+
+           $('#ends_at_time').timepicker({
+               uiLibrary: 'bootstrap4'
+           });
+       </script>
+        <br> <br>
         <button class="btn btn-primary btn-lg"  type="submit">
             {% if editing %}
               <h3> Edit event </h3>
@@ -69,10 +101,11 @@
         </button>
     </form>
 </div>
+<br> <br>
 <script type="text/javascript" src="{% static 'scripts/textarea_rows.js' %}"></script>
 <script type="text/javascript" src="{% static 'scripts/preview_image.js'%}"></script>
 <script type="text/javascript" src="{% static 'scripts/validate_event_date.js'%}"></script>
-
+<script type="text/javascript" src="http://weareoutman.github.io/clockpicker/distjquery-clockpicker.min.js"></script>
 
 {% endblock %}
 
