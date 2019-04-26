@@ -11,7 +11,13 @@ body {
 
 h1{
 	font-family: 'Staatliches', cursive;
-	font-size: 100px !important;
+	font-size: 5rem !important;
+}
+
+@media (min-width: 1000px){
+  h1{
+  	font-size: 150px !important;
+  }
 }
 
 #button{
