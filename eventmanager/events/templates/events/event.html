@@ -31,8 +31,15 @@
 <div class="bg">
 	<div class="display-1 edit_delete row">
 		<div class="col-xs-6 col-md-10">
-			<h1> {{event.title}} </h1> <h3> <i class="fa fa-map" aria-hidden="true"></i> Location: <i class="flag2x {{ event.country.flag_css }}"></i>, {{ event.location }} </h3>
+			<h1> {{event.title}} </h1>
+			{% if event.location %}
+				<h3>
+					<i class="fa fa-map" aria-hidden="true"></i>
+					Location: <i class="flag2x {{ event.country.flag_css }}"></i>, {{ event.location }}
+				</h3>
+			{% endif %}
 		</div>
+
 
 		<div class="col-xs-6 col-md-2" >
 			{% if request.user == event.added_by or is_team_member %}
