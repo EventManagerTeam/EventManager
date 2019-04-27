@@ -172,3 +172,8 @@ footer > h5 {
 .white {
     color: #fff
 }
+
+#different_section{
+	padding-left: 20px !important;
+	padding-right: 20px !important;
+}
