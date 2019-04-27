@@ -37,23 +37,29 @@
         </div>
     </div>
     <div class="row col-md-10">
-        {% for event in events%}
-        <div class="card event col-md-5" style="box-shadow: 20px 20px 10px grey;" >
-            <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
-                <h3 class="text-center">  Added {{ event.created_at|naturaltime  }} </h3>
-            </div>
-            <div class="card-body">
-                {% if event.cover_image%}
-                    <img src="{{ event.cover_image.url }}">
-                {% endif %}
-                <h1 class="card-title"> <b> {{ event.title }} <i class="flag2x {{ event.country.flag_css }}"></i> </b> </h1>
-                <h3 class="card-text"> {{ event.description }} </h3>
-                <a href="/events/{{event.slug}}" class="btn btn-primary btn-block btn-lg">
-                    <h3> Open full event </h3>
-                </a>
-            </div>
-        </div>
-        {% endfor %}
+    	{% if events %}
+	        {% for event in events%}
+	        <div class="card event col-md-5" style="box-shadow: 20px 20px 10px grey;" >
+	            <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
+	                <h3 class="text-center">  Added {{ event.created_at|naturaltime  }} </h3>
+	            </div>
+	            <div class="card-body">
+	                {% if event.cover_image%}
+	                    <img src="{{ event.cover_image.url }}">
+	                {% endif %}
+	                <h1 class="card-title"> <b> {{ event.title }} <i class="flag2x {{ event.country.flag_css }}"></i> </b> </h1>
+	                <h3 class="card-text"> {{ event.description }} </h3>
+	                <a href="/events/{{event.slug}}" class="btn btn-primary btn-block btn-lg">
+	                    <h3> Open full event </h3>
+	                </a>
+	            </div>
+	        </div>
+	        {% endfor %}
+        {% else %}
+    		<h2 class="col-md-10 text-center justify-content-center" style="padding-top: 20px;padding-left: 30px;">
+    			No events from this category have been added yet.
+    		</h2>
+        {% endif %}
     </div>
 </div>
 
