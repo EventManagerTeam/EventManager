@@ -68,6 +68,7 @@
 {% endblock %}
 {% block content %}
 <br>
+{% if events > 0 %}
 <div class="row">
 <svg>
 	<symbol id="s-text">
@@ -83,24 +84,44 @@
 	</g>
 </svg>
 </div>
+{% endif %}
 <div class="row">
-    {% for event in events%}
-    <div class="card event col-lg-5" style="box-shadow: 20px 20px 10px grey;" >
-        <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
-            <h6 class="text-center">  Added {{ event.created_at|naturaltime  }} </h6>
-        </div>
-        <div class="card-body">
-            {% if event.cover_image%}
-                <img src="{{ event.cover_image.url }}">
-            {% endif %}
-            <h2 class="card-title"> <b> {{ event.title }} </b> </h2>
-            <h6 class="card-text"> {{ event.description }} </h6>
-            <a href="/events/{{event.slug}}" class="btn btn-primary btn-block btn-lg">
-                <h6> Open full event </h6>
-            </a>
-        </div>
-    </div>
-    {% endfor %}
+	{% if events > 0 %}
+	    {% for event in events%}
+	    <div class="card event col-lg-5" style="box-shadow: 20px 20px 10px grey;" >
+	        <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
+	            <h6 class="text-center">  Added {{ event.created_at|naturaltime  }} </h6>
+	        </div>
+	        <div class="card-body">
+	            {% if event.cover_image%}
+	                <img src="{{ event.cover_image.url }}">
+	            {% endif %}
+	            <h2 class="card-title"> <b> {{ event.title }} </b> </h2>
+	            <h6 class="card-text"> {{ event.description }} </h6>
+	            <a href="/events/{{event.slug}}" class="btn btn-primary btn-block btn-lg">
+	                <h6> Open full event </h6>
+	            </a>
+	        </div>
+	    </div>
+	    {% endfor %}
+    {% else %}
+    	<div class="col-12 text-center" style="padding-top: 100px;">
+    	    <h1> You have not joined any events yet. </h1>
+    	    <br>
+    	    <div style="text-align:center;">
+    	    	<a href="/events/all" class="animated zoomIn infinite slower">
+    	    		<button type="button" class="btn btn-success ">
+    	    			<h2>
+    	    				Join event
+    	    			</h2>
+    	    		</button>
+    	    	</a>
+    	    </div>
+    	</div>
+
+
+
+    {% endif %}
 </div>
 
 <br> <br><br> <br> <br> <br>
