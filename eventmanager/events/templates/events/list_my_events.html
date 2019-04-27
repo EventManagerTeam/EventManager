@@ -86,7 +86,7 @@
 </div>
 {% endif %}
 <div class="row">
-	{% if events > 0 %}
+	{% if events|length > 0 %}
 	    {% for event in events%}
 	    <div class="card event col-lg-5" style="box-shadow: 20px 20px 10px grey;" >
 	        <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
