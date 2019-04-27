@@ -14,7 +14,8 @@
         <h1 class="h1"> Success! </h1>
         <p class="lead h2"> You have successfully {{ success_message }}</p>
         <hr class="my-4">
-        {%if not exclude_button%}
+
+        {% if exclude_button is not True %}
         <a class="btn btn-success btn-lg h2" href="/events/all/" role="button" id="button">
             <h2 > Browse other events </h2>
         </a>
