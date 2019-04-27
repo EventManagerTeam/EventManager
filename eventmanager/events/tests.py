@@ -334,12 +334,44 @@ class EventsUrlsTestClass(TestCase):
                 kwargs={
                     'slug': self.event.slug}))
 
-    def test_add_teammate(self):
+    def test_add_teammate_no_friends(self):
         self.url_returns_200(
             reverse(
                 "events.add_teammate",
                 kwargs={
                     'slug': self.event.slug}))
+
+        response = self.client.get(
+            reverse(
+                "events.add_teammate",
+                kwargs={
+                    'slug': self.event.slug}))
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, "Find")
+
+    def test_add_teammate(self):
+        user2 = User.objects.create_user(
+            'friendddddddd',
+            'lennon@thebeatles.com',
+            'johnpassword'
+        )
+        user2.details = AccountDetails.objects.create(
+            user=user2,
+            description='cool description',
+            slug="useddddrslug"
+        )
+        self.user.details.friends.add(user2)
+        self.user.save()
+        self.user.details.save()
+
+        self.url_returns_200(
+            reverse(
+                "events.add_teammate",
+                kwargs={
+                    'slug': self.event.slug
+                    }
+            )
+        )
 
         response = self.client.get(
             reverse(
