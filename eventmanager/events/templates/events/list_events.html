@@ -27,7 +27,7 @@
 	            	<i class="fa fa-plus" aria-hidden="true" id="collapse_icon"> </i>
 	            </a>
 	        </h3>
-            <ul class="list-group list-group-flush collapse" id="collapseCategories">
+            <ul class="list-group list-group-flush collapse.in" id="collapseCategories">
                 {% for category in categories%}
                         <a href = "/categories/{{category.slug}} ">
                             <li class="list-group-item text-center"> {{category}} </li>
@@ -122,7 +122,17 @@
             element.classList.add("fa-plus");
         }
     }
+
+    $(document).ready(function(){
+        if ($(window).width() <= 1000) {
+            $(".list-group").removeClass("collapse.in");
+            $(".list-group").addClass("collapse");
+        }else{
+	    	var element = document.getElementById("collapse_icon");
+	    	element.classList.add("fa-minus");
+	    	element.classList.remove("fa-plus");
+        }
+    });
 </script>
 
 {% endblock %}
-
