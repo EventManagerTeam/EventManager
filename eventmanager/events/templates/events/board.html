@@ -6,51 +6,14 @@
 
 {% block title %} Event Board {% endblock %}
 {% block head %}
-<style type="text/css">
-    .col-sm-3{
-        margin-left: 6%;
-        text-align: center;
-        color: white;
-        /*opacity: 0.8;*/
-    }
 
-    .heading{
-        padding: 5%;
-    }
-
-    hr{
-        border-top: 10px solid #ccc;
-    }
-
-    i{
-        float: right;
-    }
-/*
-    textarea{
-        height: 30% !important;
-    }
-
-    select{
-        height: 8% !important;
-    }*/
-
-    a i {
-        color: white;
-    }
-
-    .row{
-        padding-bottom: 10%;
-        min-height: 100%;
-    }
-
-</style>
 <link href="{% static 'events/event.css' %}" rel="stylesheet">
+<link href="{% static 'events/board.css' %}" rel="stylesheet">
 
 
 {% endblock %}
 
 {% block content %}
-<br>
 {% include "events/partials/add_task_modal.html" with task_form=task_form %}
   <div class="row">
     <div class="col-sm-3 bg-warning">

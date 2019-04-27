@@ -1,0 +1,35 @@
+.col-sm-3{
+		text-align: center;
+		color: white;
+}
+
+@media only screen and (min-width: 600px) {
+	.col-sm-3{
+			margin-left: 2%;
+	}
+
+	.col-sm-3:first-child {
+			margin-left: 10%;
+	}
+}
+
+.heading{
+		padding: 5%;
+}
+
+hr{
+		border-top: 10px solid #ccc;
+}
+
+i{
+		float: right;
+}
+
+a i {
+		color: white;
+}
+
+.row{
+		padding-bottom: 10%;
+		min-height: 100%;
+}
