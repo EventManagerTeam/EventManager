@@ -10,7 +10,7 @@
 
 {% block content %}
 <br>
-<h1 class="h1 animated flipInX" style="text-align: center;"> Invites: </h1>
+<h1 class="h1 animated flipInX title"> Invites: </h1>
 {% if events%}
 {% for event in events %}
     <div class="card comments-card animated zoomIn">
@@ -24,7 +24,7 @@
                         </h2>
                         <h4> {{event.event.description}}</h4>
                     </div>
-                    <div class="col-sm-8"><img src="{{event.event.cover_image.url}}" style="max-width: 100%;"></div>
+                    <div class="col-sm-8"><img src="{{event.event.cover_image.url}}" id="cover"></div>
                 </div>
             {% else %}
                 <h2 class="card-title" >
@@ -49,7 +49,11 @@
     <br>
 {% endfor %}
 {% else %} <br> <br>
-    <h4  style="text-align: center" > It looks like you haven't been invited to any event yet.  <br>  <br> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Gnome-face-sad.svg/1024px-Gnome-face-sad.svg.png" class="animated tada" style="height: 30%;"></h4>
+    <h4 style="text-align: center" >
+    	It looks like you haven't been invited to any event yet.
+    	<br>  <br>
+    	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Gnome-face-sad.svg/1024px-Gnome-face-sad.svg.png" class="animated tada" id="sad_face">
+    </h4>
 {% endif %}
 <br><br><br>
 {% endblock %}

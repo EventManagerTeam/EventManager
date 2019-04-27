@@ -6,3 +6,15 @@
 .btn-success{
 	margin: 0;
 }
+
+#sad_face{
+	height: 30%;
+}
+
+#cover{
+	max-width: 100%;
+}
+
+.title{
+	text-align: center;
+}
