@@ -2,8 +2,10 @@
 {% load static %}
 
 {% block title %} Invites {% endblock %}
+
 {% block head %}
 <link href="{% static 'events/event.css' %}" rel="stylesheet">
+<link href="{% static 'events/invites.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -32,16 +34,23 @@
                 <h2> {{event.event.description}}</h2>
             {% endif%}
             <p class="card-text">{{ comment.content|safe }} </p>
-            <button class="btn btn-success btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/{{event.event.slug}}/confirm_invite'" type="button" style="font-size: x-large;margin: 0;"> Accept invitation </button>
-            <button class="btn btn-danger btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/{{event.event.slug}}/decline_invite'" type="button" style="font-size: x-large;"> Decline invitation </button>
+
+            <button class="btn btn-success btn-lg btn-block" onclick="location.href=window.location.origin + '/events/{{event.event.slug}}/confirm_invite'" type="button">
+            	<i class="fas fa-check"></i>
+            	Accept invitation
+            </button>
+
+            <button class="btn btn-danger btn-lg btn-block" onclick="location.href=window.location.origin + '/events/{{event.event.slug}}/decline_invite'" type="button">
+            	<i class="fas fa-times"></i>
+            	Decline invitation
+            </button>
         </div>
     </div>
-    <br> <br> <br> <br>
+    <br>
 {% endfor %}
-{% else %}<br> <br>
+{% else %} <br> <br>
     <h4  style="text-align: center" > It looks like you haven't been invited to any event yet.  <br>  <br> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Gnome-face-sad.svg/1024px-Gnome-face-sad.svg.png" class="animated tada" style="height: 30%;"></h4>
-
 {% endif %}
-
+<br><br><br>
 {% endblock %}
 
