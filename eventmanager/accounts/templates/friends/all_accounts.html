@@ -19,12 +19,7 @@
 		{% for user in row%}
 			<div class="card-body">
 				<div class="card">
-					<img src="
-						{% if user.details.profile_picture %}
-						  {{user.details.profile_picture.url}}
-						{% else%}
-						  https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Default-welcomer.png/643px-Default-welcomer.png
-						{% endif %} " alt="profile_picture">
+					{% include "friends/partials/profile_picture.html" with picture=user.details.profile_picture %}
 					<h1> {{name}} </h1>
 					<h2> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h2>
 					{% if user.details.birth_date %}
