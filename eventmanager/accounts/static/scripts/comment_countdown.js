@@ -1,7 +1,7 @@
 var textarea = document.querySelector("textarea");
+var maxlength = 500;
 
 textarea.addEventListener("input", function(){
-    var maxlength = 500;
     var currentLength = this.value.length;
 
     if( currentLength >= maxlength ){
@@ -9,5 +9,10 @@ textarea.addEventListener("input", function(){
     } else{
         document.getElementById("remainingCount1").innerHTML = maxlength - currentLength + " chars left";
     }
-
 });
+
+
+$(document).ready(function(){
+	console.log(currentLength);
+	document.getElementById("remainingCount1").innerHTML = maxlength - currentLength + " chars left";
+})
