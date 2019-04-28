@@ -11,8 +11,7 @@ textarea.addEventListener("input", function(){
     }
 });
 
-
 $(document).ready(function(){
-	console.log(currentLength);
+	var currentLength = document.getElementById('id_content').value.length;
 	document.getElementById("remainingCount1").innerHTML = maxlength - currentLength + " chars left";
 })

@@ -369,7 +369,7 @@ class EventsUrlsTestClass(TestCase):
                 "events.add_teammate",
                 kwargs={
                     'slug': self.event.slug
-                    }
+                }
             )
         )
 

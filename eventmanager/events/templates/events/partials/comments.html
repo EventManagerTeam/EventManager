@@ -2,8 +2,8 @@
 <div class="comments-div">
     <div class="comments-div">
         <h1 class="  center-text comments-header">
-            Comments: 
-            {% if request.user.is_authenticated %} 
+            Comments:
+            {% if request.user.is_authenticated %}
             <a class="btn btn-success h1 btn-lg large-text add-comment-button" data-toggle="modal" href="#contactModal">
                 Add comment
             </a>
@@ -11,8 +11,13 @@
             <div class="h3"> (only logged users can add commments) </div>
             {% endif %}
         </h1>
+        {% if problem %}
+        	<br>
+            <div class="span4 col-8 offset-2 alert alert-danger h3" role="alert">
+        		You can't add same comment twice.
+        	</div>
+        {% endif %}
 
-       
         {% for comment in comments %}
             {% include "events/partials/comment.html" with comment=comment %}
         {% endfor %}

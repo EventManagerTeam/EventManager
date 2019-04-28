@@ -208,6 +208,7 @@ def show_events_by_slug(request, slug):
 
         final_users = []
         final_team = []
+        problem = False
 
         if request.user.is_authenticated:
             if AccountDetails.objects.filter(user=request.user).exists():
@@ -221,10 +222,22 @@ def show_events_by_slug(request, slug):
 
             if request.method == 'POST':
                 if form.is_valid():
-                    comment = form.save(commit=False)
-                    comment.event = event
-                    comment.author = request.user
-                    comment.save()
+                    count = Comment.objects.filter(
+                        title=form.cleaned_data['title']
+                    ).filter(
+                        author=request.user
+                    ).filter(
+                        content=form.cleaned_data['content']
+                    ).filter(
+                        event=event
+                    ).count()
+                    if count == 0:
+                        comment = form.save(commit=False)
+                        comment.event = event
+                        comment.author = request.user
+                        comment.save()
+                    else:
+                        problem = True
 
         has_joined = Event.has_joined_event(request.user, slug)
 
@@ -236,6 +249,7 @@ def show_events_by_slug(request, slug):
                 final_team.append(user)
 
         context = {
+            'problem': problem,
             'event': event,
             'comments': comments,
             'form': form,
@@ -430,7 +444,7 @@ def edit_comment_by_slug(request, slug, comment):
             form.save()
             return redirect("/events/" + slug)
 
-    context = {'form': form}
+    context = {'form': form, 'problem': True}
     return render(request, 'events/add_comment.html', context)
 
 
