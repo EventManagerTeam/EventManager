@@ -24,7 +24,7 @@
                         </h2>
                         <h4> {{event.event.description}}</h4>
                     </div>
-                    <div class="col-sm-8"><img src="{{event.event.cover_image.url}}" id="cover"></div>
+                    <div class="col-sm-8"><img src="{{event.event.cover_image.url}}" id="cover" alt="cover photo"></div>
                 </div>
             {% else %}
                 <h2 class="card-title" >
@@ -52,7 +52,7 @@
     <h4 style="text-align: center" >
     	It looks like you haven't been invited to any event yet.
     	<br>  <br>
-    	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Gnome-face-sad.svg/1024px-Gnome-face-sad.svg.png" class="animated tada" id="sad_face">
+    	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Gnome-face-sad.svg/1024px-Gnome-face-sad.svg.png" class="animated tada" id="sad_face" alt="sad_face">
     </h4>
 {% endif %}
 <br><br><br>

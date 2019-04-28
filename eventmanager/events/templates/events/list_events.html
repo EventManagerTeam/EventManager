@@ -45,7 +45,7 @@
 	            </div>
 	            <div class="card-body">
 	                {% if event.cover_image%}
-	                    <img src="{{ event.cover_image.url }}">
+	                    <img src="{{ event.cover_image.url }}" alt="event cover_image">
 	                {% endif %}
 	                <h1 class="card-title"> <b> {{ event.title }} <i class="flag2x {{ event.country.flag_css }}"></i> </b> </h1>
 	                <h3 class="card-text"> {{ event.description }} </h3>

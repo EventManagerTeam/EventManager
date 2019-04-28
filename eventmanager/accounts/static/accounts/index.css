@@ -166,14 +166,45 @@ footer > h5 {
 }
 
 .title {
-    color: #000
+    color: #000 html {
+        font-family: Montserrat, sans-serif!important
+    }
+    .container-fluid {
+        background-color: #2f2f2f;
+        color: #fff;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding-top: 1%;
+        padding-bottom: 1%
+    }
+    .container {
+        position: relative
+    }
+    .container .content {
+        position: absolute;
+        bottom: 0;
+        background: rgba(0, 0, 0, .5);
+        color: #f1f1f1;
+        width: 100%;
+        padding: 20px
+    }
+    h3 {
+        font-size: x-large
+    }
+    a:active,
+    a:hover,
+    a:link,
+    a:visited {
+        text-decoration: none
+    }
 }
 
 .white {
     color: #fff
 }
 
-#different_section{
-	padding-left: 20px !important;
-	padding-right: 20px !important;
+#different_section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
 }
