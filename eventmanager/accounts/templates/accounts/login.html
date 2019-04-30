@@ -4,12 +4,17 @@
 
 {% block head %}
 <link href="{% static 'accounts/login.css' %}" rel="stylesheet">
+<style type="text/css">
+	input{
+		width: 100% !important;
+	}
+</style>
 {% endblock %}
 
 {% block content %}
 <br> <br>
 <div class="col-md"> </div>
-<div class="col-lg-4 offset-lg-4" style="background-color: white;padding: 5%;border: 4px solid black;  border-radius: 25px;">
+<div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2" style="background-color: white;padding: 5%;border: 4px solid black;  border-radius: 25px;">
    <form method="post">
       {% csrf_token %}
       {% if wrong_credentials == True %}
@@ -49,7 +54,6 @@
          <button class="btn btn-primary btn-lg btn-block" type="submit">
             <h3> Log in </h3>
          </button>
-         <br>
          <br>
          <a href="{% url 'social:begin' 'github' %}">
             <button class="btn btn-dark btn-lg btn-block" type="submit">
