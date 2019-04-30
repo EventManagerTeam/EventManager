@@ -8,7 +8,10 @@
 }
 
 #sad_face{
-	height: 30%;
+	object-fit: scale-down;
+	width: 100%;
+	max-width: 100% !important;
+	height: 30% !important;
 }
 
 #cover{
