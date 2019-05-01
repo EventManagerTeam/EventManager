@@ -35,36 +35,42 @@
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <h3> Users </h3>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/users"> <h3> All users </h3> </a>
-                        <a class="dropdown-item" href="/friends/find"> <h3> Search users </h3> </a>
-                        <a class="dropdown-item" href="/friends"> <h3> Friends </h3> </a>
-                        <a class="dropdown-item" href="/friends/requests"> <h3> Friend requests </h3> </a>
+                        </a>
 
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                        <a class="dropdown-item h4" href="/users"> All users </a>
+	                        <a class="dropdown-item h4" href="/friends/find"> Search users </a>
+	                        <a class="dropdown-item h4" href="/friends"> Friends </a>
+	                        <a class="dropdown-item h4" href="/friends/requests"> Friend requests </a>
+	                    </div>
                     </li>
                     {% endif %}
 
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <h3> Events </h3>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/events/all/"> <h3> All events </h3> </a>
-                        {% if request.user.is_authenticated %}
-                        	<a class="dropdown-item" href="/events/create_event/"> <h3> Create event </h3> </a>
-                        	<a class="dropdown-item" href="/events/search/"> <h3> Search </h3> </a>
-                            <a class="dropdown-item" href="/events/my_events/"> <h3> My events </h3> </a>
-                            <a class="dropdown-item" href="/events/hosted/"> <h3> Events I host </h3> </a>
-                            <a class="dropdown-item" href="/events/random/"> <h3> Show random event </h3> </a>
-                        {% endif %}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                        <a class="dropdown-item" href="/events/all/"> <h3> All events </h3> </a>
+	                        {% if request.user.is_authenticated %}
+	                        	<a class="dropdown-item h4" href="/events/create_event/"> Create event </a>
+	                        	<a class="dropdown-item h4" href="/events/search/"> Search </a>
+	                            <a class="dropdown-item h4" href="/events/my_events/"> My events </a>
+	                            <a class="dropdown-item h4" href="/events/hosted/"> Events I host </a>
+	                            <a class="dropdown-item h4" href="/events/random/"> Show random event </a>
+	                        {% endif %}
+	                    </div>
                     </li>
 
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <h3> Categories </h3>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/categories/all"> <h3> All Categories </h3> </a>
-                        <a class="dropdown-item" href="/categories/suggested"> <h3> Suggested Categories </h3> </a>
-                        <a class="dropdown-item" href="/categories/suggest_category"> <h3> Suggest a category </h3> </a>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                        <a class="dropdown-item h4" href="/categories/all"> All Categories </a>
+	                        <a class="dropdown-item h4" href="/categories/suggested"> Suggested Categories </a>
+	                        <a class="dropdown-item h4" href="/categories/suggest_category"> Suggest a category </a>
+	                    </div>
                     </li>
 
                     {% if request.user.is_authenticated %}
@@ -88,30 +94,41 @@
                 <ul class="navbar-nav  navbar-right">
                     {% if request.user.is_authenticated %}
                     <li class="nav-item dropdown" style="padding-right: 4vw;">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <h3> Account info </h3>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/account_details"> <h3 style="font-size: x-large;"> Account details </h3> </a>
-                        <a class="dropdown-item" href="/events/export/"> <h3 style="font-size: x-large;"> Export events</h3> </a>
-                        <a class="dropdown-item" href="/change_password"> <h3 style="font-size: x-large;"> Change password </h3> </a>
-                        <a class="dropdown-item" href="/change_email"> <h3 style="font-size: x-large;"> Change email </h3> </a>
-                        <a class="dropdown-item" href="/delete"> <h3 style="font-size: x-large;"> Delete account </h3> </a>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                        <a class="dropdown-item h4" href="/account_details">
+	                        	Account details
+	                        </a>
+	                        <a class="dropdown-item h4" href="/events/export/">
+	                        	Export events
+	                        </a>
+	                        <a class="dropdown-item h4" href="/change_password">
+	                        	Change password
+	                        </a>
+	                        <a class="dropdown-item h4" href="/change_email">
+	                        	Change email
+	                        </a>
+	                        <a class="dropdown-item h4" href="/delete">
+	                        	Delete account
+	                        </a>
 
 
-                        {% block navbar-right %}
-                        {% endblock %}
+	                        {% block navbar-right %}
+	                        {% endblock %}
 
-                        <div class="dropdown-divider"></div>
+                        	<div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="/signout">
                                 <div class = "blue"> <h3 style="font-size: x-large;">  Sign out </h3> </div>
                             </a>
                         </div>
                     </li>
                     {% else %}
-                        <a href="/login" class="login" style="color: white;text-decoration: none;">
-                            <h3> Log in </h3>
+                        <a href="/login" class="login h4" style="color: white;text-decoration: none;">
+                            Log in
                         </a>
-                        {% endif %}
+                    {% endif %}
                     </a>
                 </ul>
             </div>
