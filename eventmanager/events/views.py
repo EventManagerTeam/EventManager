@@ -462,6 +462,9 @@ def event_board(request, slug):
     if request.user in members:
         form = TaskForm(request.POST or None)
         form.fields["assignee"].queryset = members
+        form.fields['assignee'].initial = request.user
+        form.fields['status'].initial = 'TODO'
+
         if request.method == 'POST':
             if form.is_valid():
                 task = form.save(commit=False)
