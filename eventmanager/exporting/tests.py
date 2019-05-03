@@ -62,7 +62,7 @@ class ExportingLoggedTestCase(TestCase):
         self.client.login(username='john', password='johnpassword')
 
     def test_export_as_json_logged_in_added_event(self):
-        json_res = '[{"id": 1, "title": "test0", "description": "test0", "location": "",'
+        json_res = '[{"id": 1, "title": "test0", "description": "test0"'
         response = self.client.get(
             reverse(
                 'exporting/export_json'

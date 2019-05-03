@@ -67,7 +67,6 @@ class CategoriesTestCase(TestCase):
             added_by=user
         )
 
-
         response = self.client.get(reverse('categories.listing_suggested'))
         self.assertEqual(response.status_code, 200)
         self.assertNotContains(response, 'SuggestedCategory')
@@ -103,5 +102,5 @@ class CategoriessUrlsTestClass(TestCase):
         self.url_testing(url)
 
     def test_suggest_categoru_url(self):
-    	url = reverse("categories.suggest_category")
-    	self.url_testing(url)
+        url = reverse("categories.suggest_category")
+        self.url_testing(url)
