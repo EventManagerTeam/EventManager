@@ -22,8 +22,8 @@ def listing(request):
 
 
 def listing_suggested(request):
-    if SuggestedCategory.objects.count() > 0:
-        categories = SuggestedCategory.objects.all()
+    if SuggestedCategory.objects.filter(added_by=request.user).count() > 0:
+        categories = SuggestedCategory.objects.filter(added_by=request.user)
         chunks = [categories[x:x + 3] for x in range(0, len(categories), 3)]
         context = {'categories': chunks}
         return render(request, 'categories/all_categories.html', context)

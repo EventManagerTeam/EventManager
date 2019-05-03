@@ -62,60 +62,13 @@ class ExportingLoggedTestCase(TestCase):
         self.client.login(username='john', password='johnpassword')
 
     def test_export_as_json_logged_in_added_event(self):
-        json_res = """
-        [
-            {
-                "id": 1 ,
-                "title": "test0" ,
-                "description": "test0" ,
-                "location": "" ,
-                "country": "" ,
-                "starts_at": "" ,
-                "ends_at": ""
-            } ,
-            {
-                "id": 2 ,
-                "title": "test1" ,
-                "description": "test1" ,
-                "location": "" ,
-                "country": "" ,
-                "starts_at": "" ,
-                "ends_at": ""
-            } ,
-            {
-                "id": 3 ,
-                "title": "test2" ,
-                "description": "test2" ,
-                "location": "" ,
-                "country": "" ,
-                "starts_at": "" ,
-                "ends_at": ""
-            } ,
-            {
-                "id": 4 ,
-                "title": "test3" ,
-                "description": "test3" ,
-                "location": "" ,
-                "country": "" ,
-                "starts_at": "" ,
-                "ends_at": ""
-            } ,
-            {
-                "id": 5 ,
-                "title": "test4" ,
-                "description": "test4" ,
-                "location": "" ,
-                "country": "" ,
-                "starts_at": "" ,
-                "ends_at": ""
-            }
-        ]"""
-
+        json_res = '[{"id": 1, "title": "test0", "description": "test0", "location": "",'
         response = self.client.get(
             reverse(
                 'exporting/export_json'
             )
         )
+
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, json_res)
         self.assertContains(response, 'test4')
