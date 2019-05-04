@@ -50,6 +50,7 @@ urlpatterns = [
     url(r'^swagger/', schema_view),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^tinymce/', include('tinymce.urls')),
+    url(r'hitcount/', include('hitcount.urls', namespace='hitcount')),
 ] + static(settings.STORAGE_URL, document_root=settings.STORAGE_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
