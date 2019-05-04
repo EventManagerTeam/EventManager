@@ -35,6 +35,7 @@ schema_view = get_swagger_view(title='EventManager API')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
+    path('events/', include('stats.urls')),
     path('', include('exporting.urls')),
     path('', include('homepage.urls')),
     path('events/', include('events.urls')),

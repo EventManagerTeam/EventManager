@@ -1,0 +1,24 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block title %} Event Stats {% endblock %}
+{% block head %}
+<style type="text/css">
+	.title{
+		text-align: center;
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+	<h1 class="title"> Event Stats </h1>
+
+	{% if comments_chart %}
+		<div style="width:600;height:500">
+		{{ comments_chart|safe }}
+		</div>
+	{% endif %}
+
+{% endblock %}
+

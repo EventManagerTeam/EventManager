@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'exporting',
     'tasks',
     'homepage',
+    'stats',
 ]
 
 MIDDLEWARE = [

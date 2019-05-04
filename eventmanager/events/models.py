@@ -332,6 +332,11 @@ class Invite(models.Model):
         default=False
     )
 
+    created_at = models.DateTimeField(
+        verbose_name=_("Created at"),
+        auto_now_add=True
+    )
+
     objects = IniviteManager()
 
     def is_invited(user, event):
