@@ -45,6 +45,9 @@ from events.models import Invite
 
 from tasks.models import Task
 
+from hitcount.models import HitCount
+from hitcount.views import HitCountMixin
+
 number_of_items_per_page = 6
 
 
@@ -197,6 +200,9 @@ def edit_event(request, slug):
 def show_events_by_slug(request, slug):
     event = Event.objects.active().get(slug=slug)
     if Event.can_view_event(slug, request.user) is True:
+        hit_count = HitCount.objects.get_for_object(event)
+        hit_count_response = HitCountMixin.hit_count(request, hit_count)
+
         comments = Comment.objects.active().sort()
         comments = comments.filter(event=event).order_by('-created_at')
         form = CommentForm(request.POST or None)

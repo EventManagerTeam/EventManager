@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'social_django',
     'import_export',
     'tinymce',
+    'hitcount',
     'accounts',
     'api',
     'categories',

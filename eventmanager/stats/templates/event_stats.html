@@ -1,6 +1,7 @@
 {% extends 'accounts/base.html' %}
 
 {% load static %}
+{% load hitcount_tags %}
 
 {% block title %} Event Stats {% endblock %}
 {% block head %}
@@ -9,11 +10,19 @@
 		text-align: center;
 	}
 </style>
+
 {% endblock %}
 
 {% block content %}
 	<br>
-	<h1 class="h1 animated fadeInLeftBig title"> Stats: </h1>
+	<h1 class="h1 animated fadeInLeftBig title"> Stats:</h1>
+	<h4 class="h4 animated fadeInLeftBig title"> Views:</h4>
+
+	<div class="container">
+		<h5> Event was opened: 	{% get_hit_count for event %} times </h5>
+		<h5> Event was opened today: {% get_hit_count for event within days=1 %} times </h5>
+		<h5> Event was opened in the last 30 days: {% get_hit_count for event within days=30 %} times </h5>
+	</div>
 
 	{% if comments_chart %}
 		<div style="width:600;height:500" class="animated fadeInUp slow">
@@ -21,11 +30,13 @@
 		</div>
 	{% endif %}
 	<br>
+
 	{% if invites_chart %}
 		<div style="width:600;height:500" class="animated fadeInUp slow delay-1s">
 		{{ invites_chart|safe }}
 		</div>
 	{% endif %}
+
 	<br> <br>
 {% endblock %}
 

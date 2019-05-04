@@ -83,6 +83,7 @@ def get_statistics(request, slug):
         context = {
             'comments_chart': get_comments_stats(event_comments),
             'invites_chart': get_invites_stats(event_invites),
+            'event': event,
         }
         return render(request, 'event_stats.html', context)
     else:
