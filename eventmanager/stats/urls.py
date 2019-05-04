@@ -6,5 +6,8 @@ from django.urls import path
 
 
 urlpatterns = [
-	path('<slug:slug>/statistics', views.get_statistics, name='events.statistics'),
+    path(
+        '<slug:slug>/statistics',
+        views.get_statistics,
+        name='events.statistics'),
 ]
