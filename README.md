@@ -1,6 +1,6 @@
-# EventManager [![Build Status](https://travis-ci.org/EventManagerTeam/EventManager.svg?branch=master)](https://travis-ci.org/EventManagerTeam/EventManager) [![Requirements Status](https://requires.io/github/EventManagerTeam/EventManager/requirements.svg?branch=master)](https://requires.io/github/EventManagerTeam/EventManager/requirements/?branch=master) [![HitCount](http://hits.dwyl.io/EventManagerTeam/EventManager.svg)](http://hits.dwyl.io/EventManagerTeam/EventManager)
+# EventManager [![Build Status](https://travis-ci.org/EventManagerTeam/EventManager.svg?branch=master)](https://travis-ci.org/EventManagerTeam/EventManager) [![Requirements Status](https://requires.io/github/EventManagerTeam/EventManager/requirements.svg?branch=master)](https://requires.io/github/EventManagerTeam/EventManager/requirements/?branch=master) [![HitCount](http://hits.dwyl.io/EventManagerTeam/EventManager.svg)](http://hits.dwyl.io/EventManagerTeam/EventManager) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 
-# What is EventManager?
+# What is EventManager?  [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 EventManager is the newest social network. Combining event attendees and creators's needs, EventManager gives everyone the possiblity to be part of a better event experience. 
 
 # Installation
