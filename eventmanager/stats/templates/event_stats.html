@@ -12,13 +12,20 @@
 {% endblock %}
 
 {% block content %}
-	<h1 class="title"> Event Stats </h1>
+	<br>
+	<h1 class="h1 animated fadeInLeftBig title"> Stats: </h1>
 
 	{% if comments_chart %}
-		<div style="width:600;height:500">
+		<div style="width:600;height:500" class="animated fadeInUp slow">
 		{{ comments_chart|safe }}
 		</div>
 	{% endif %}
-
+	<br>
+	{% if invites_chart %}
+		<div style="width:600;height:500" class="animated fadeInUp slow delay-1s">
+		{{ invites_chart|safe }}
+		</div>
+	{% endif %}
+	<br> <br>
 {% endblock %}
 
