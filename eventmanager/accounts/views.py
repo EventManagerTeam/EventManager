@@ -68,36 +68,43 @@ def login(request):
 
 @login_required
 def delete(request):
-    logged_in_user = request.user.username
-    user = None
-
-    if request.POST:
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        try:
-            UserSocialAuth.objects.filter(user=request.user).delete()
-            signout(request)
-            context = {'success_message': "deleted account."}
-            return render(request, 'CRUDops/successfully.html', context)
-        except BaseException:
-            pass
-
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            details = AccountDetails.objects.get(user=user)
-            details.delete()
-            user.delete()
-            signout(request)
-            context = {'success_message': "deleted account."}
-            return render(request, 'CRUDops/successfully.html', context)
-        else:
-            context = {'wrong_credentials': True}
-            return render(request, 'accounts/delete_profile.html', context)
-
+    if request.user.social_auth.exists():
+        # is logged in with GitHub
+        mssg = "You are logged in with GitHub and can't change your password."
+        context = {
+            'error_message': mssg}
+        return render(request, 'CRUDops/error.html', context)
     else:
-        context = {}
-        return render(request, 'accounts/delete_profile.html', context)
+        logged_in_user = request.user.username
+        user = None
+
+        if request.POST:
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            try:
+                UserSocialAuth.objects.filter(user=request.user).delete()
+                signout(request)
+                context = {'success_message': "deleted account."}
+                return render(request, 'CRUDops/successfully.html', context)
+            except BaseException:
+                pass
+
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                details = AccountDetails.objects.get(user=user)
+                details.delete()
+                user.delete()
+                signout(request)
+                context = {'success_message': "deleted account."}
+                return render(request, 'CRUDops/successfully.html', context)
+            else:
+                context = {'wrong_credentials': True}
+                return render(request, 'accounts/delete_profile.html', context)
+
+        else:
+            context = {}
+            return render(request, 'accounts/delete_profile.html', context)
 
 
 @login_required(login_url='/login')
@@ -139,44 +146,60 @@ def signup(request):
 
 @login_required
 def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)
-
-            success_message = 'Your password was successfully updated!'
-            messages.success(request, success_message)
-
-            return redirect('change_password')
-        else:
-            messages.error(request, 'Please correct the error below.')
-    else:
-        form = PasswordChangeForm(request.user)
-
-    return render(
-        request,
-        'accounts/change_password.html',
-        {
-            'form': form
+    if request.user.social_auth.exists():
+        # is logged in with GitHub
+        mssg = "You are logged in with GitHub so can't change your password"
+        context = {
+            'error_message': mssg
         }
-    )
+        return render(request, 'CRUDops/error.html', context)
+    else:
+        if request.method == 'POST':
+            form = PasswordChangeForm(request.user, request.POST)
+            if form.is_valid():
+                user = form.save()
+                update_session_auth_hash(request, user)
+
+                success_message = 'Your password was successfully updated!'
+                messages.success(request, success_message)
+
+                return redirect('change_password')
+            else:
+                messages.error(request, 'Please correct the error below.')
+        else:
+            form = PasswordChangeForm(request.user)
+
+        return render(
+            request,
+            'accounts/change_password.html',
+            {
+                'form': form
+            }
+        )
 
 
 @login_required
 def change_email(request):
-    form = ChangeEmailForm(request.POST or None)
+    if request.user.social_auth.exists():
+        # is logged in with GitHub
+        mssg = "You are logged in with GitHub so can't change your email"
+        context = {
+            'error_message': mssg
+        }
+        return render(request, 'CRUDops/error.html', context)
+    else:
+        form = ChangeEmailForm(request.POST or None)
 
-    if request.method == 'POST':
-        if form.is_valid():
-            User.objects.filter(
-                email=form.cleaned_data.get('original_email')
-            ).update(email=form.cleaned_data.get('new_email'))
-            success_message = 'Your email was successfully updated!'
-            messages.success(request, success_message)
-        else:
-            messages.error(request, 'Please correct the errors below.')
-    return render(request, 'accounts/change_email.html', {'form': form})
+        if request.method == 'POST':
+            if form.is_valid():
+                User.objects.filter(
+                    email=form.cleaned_data.get('original_email')
+                ).update(email=form.cleaned_data.get('new_email'))
+                success_message = 'Your email was successfully updated!'
+                messages.success(request, success_message)
+            else:
+                messages.error(request, 'Please correct the errors below.')
+        return render(request, 'accounts/change_email.html', {'form': form})
 
 
 def has_already_added_account_info(username):
