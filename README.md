@@ -1,6 +1,8 @@
-# EventManager [![Build Status](https://travis-ci.org/EventManagerTeam/EventManager.svg?branch=master)](https://travis-ci.org/EventManagerTeam/EventManager) [![Requirements Status](https://requires.io/github/EventManagerTeam/EventManager/requirements.svg?branch=master)](https://requires.io/github/EventManagerTeam/EventManager/requirements/?branch=master) [![HitCount](http://hits.dwyl.io/EventManagerTeam/EventManager.svg)](http://hits.dwyl.io/EventManagerTeam/EventManager)
+# EventManager [![Build Status](https://travis-ci.org/EventManagerTeam/EventManager.svg?branch=master)](https://travis-ci.org/EventManagerTeam/EventManager) [![Requirements Status](https://requires.io/github/EventManagerTeam/EventManager/requirements.svg?branch=master)](https://requires.io/github/EventManagerTeam/EventManager/requirements/?branch=master) [![HitCount](http://hits.dwyl.io/EventManagerTeam/EventManager.svg)](http://hits.dwyl.io/EventManagerTeam/EventManager) ![Maintenance](https://img.shields.io/maintenance/yes/2019.svg) <img src="https://img.shields.io/github/repo-size/EventManagerTeam/EventManager.svg">
 
-# What is EventManager?
+<img src="https://img.shields.io/github/forks/EventManagerTeam/EventManager.svg?style=social"><img src="https://img.shields.io/github/stars/EventManagerTeam/EventManager.svg?style=social"> <img src="https://img.shields.io/github/license/EventManagerTeam/EventManager.svg?style=social"> <img src="https://img.shields.io/github/commit-activity/m/EventManagerTeam/EventManager.svg?style=social">
+
+# What is EventManager?  [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 EventManager is the newest social network. Combining event attendees and creators's needs, EventManager gives everyone the possiblity to be part of a better event experience. 
 
 # Installation
