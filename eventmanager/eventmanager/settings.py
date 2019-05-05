@@ -188,6 +188,10 @@ SOCIAL_AUTH_GITHUB_SECRET = ''
 # determines if the library will use database transactions on data import
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+)
+
 try:
     from eventmanager.local_settings import *
 except ImportError:

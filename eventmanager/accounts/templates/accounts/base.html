@@ -1,4 +1,5 @@
 {% load static %}
+{% load tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +84,15 @@
                     {% if request.user.is_authenticated %}
                     <li class="nav-item active">
                         <a class="nav-link" href="/events/invites/">
-                            <h3> Invites </h3>
+                            <h3>
+                            	Invites
+                            	{% has_invites user as invites_condition %}
+                            	{% if invites_condition %}
+                            	<span class="badge badge-light">
+                            		{% number_of_invites user %}
+                            	</span>
+                            	{% endif %}
+                            </h3>
                         </a>
                     </li>
                     <li class="nav-item active">
