@@ -15,12 +15,12 @@
 <div class="bg-pan-left">
 	<h1 class="h1" style="font-size: xx-large;text-align: center;color: white;text-shadow: 3px 3px 3px black;">  {{ title }} </h1>
 	{% for row in users%}
-	<div class="card-columns">
+	<div class="card-deck">
 		{% for user in row%}
 			<div class="card-body">
 				<div class="card">
 					{% include "friends/partials/profile_picture.html" with picture=user.details.profile_picture %}
-					<h1> {{name}} </h1>
+					<h2> {{name}} </h1>
 					<h3> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h3>
 					{% if user.details.birth_date %}
 					<h3> <i class="fa fa-birthday-cake" aria-hidden="true"></i> Born on: {{user.details.birth_date}}  </h3>

@@ -1,6 +1,9 @@
 from django.contrib import admin
 from .models import Task
 
-admin.site.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ['event', 'title','status', 'is_active', 'created_at', 'added_by', 'assignee', 'updated_at']
+    list_filter = ('status', 'is_active', 'created_at', 'updated_at', 'event')
 
-# Register your models here.
+
+admin.site.register(Task, TaskAdmin)
