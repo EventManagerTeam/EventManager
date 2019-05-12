@@ -6,7 +6,7 @@ from .models import FriendRequest
 
 
 class AccountDetailsAdmin(admin.ModelAdmin):
-    list_display = ['slug', 'get_friends','birth_date','description']
+    list_display = ['slug', 'get_friends', 'birth_date', 'description']
 
     def get_friends(self, obj):
         return ",\n".join([p.username for p in obj.friends.all()])
@@ -17,10 +17,10 @@ class FriendRequestAdmin(admin.ModelAdmin):
     list_filter = ('sent_by', 'sent_to')
 
     def sender(self, obj):
-       return str(obj.sent_by)
+        return str(obj.sent_by)
 
     def receiver(self, obj):
-       return str(obj.sent_to)
+        return str(obj.sent_to)
 
 
 admin.site.register(AccountDetails, AccountDetailsAdmin)
