@@ -26,3 +26,89 @@
 	width: 90%;
 	margin-left:5%;
 }
+
+.event-card{
+	box-shadow: 20px 20px 10px grey;
+}
+
+.card-header{
+	background-color: rgba(  156, 204, 101 ,0.321);
+}
+
+#none-message{
+	padding-top: 20px;
+	padding-left: 30px;
+}
+
+.pagination{
+	margin-top: 80px;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+
+svg {
+    display: block;
+    font: 8em 'Montserrat';
+    width: 960px;
+    height: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+  svg {
+      display: block;
+      font: 4em 'Montserrat';
+      width: 960px;
+      height: 200px;
+  }
+}
+
+.text-copy {
+    fill: none;
+    stroke: white;
+    stroke-dasharray: 6% 29%;
+    stroke-width: 5px;
+    stroke-dashoffset: 0%;
+    animation: stroke-offset 5.5s infinite linear;
+}
+
+.text-copy:nth-child(1){
+	stroke: #4D163D;
+	animation-delay: -1;
+}
+
+.text-copy:nth-child(2){
+	stroke: #840037;
+	animation-delay: -2s;
+}
+
+.text-copy:nth-child(3){
+	stroke: #BD0034;
+	animation-delay: -3s;
+}
+
+.text-copy:nth-child(4){
+	stroke: #BD0034;
+	animation-delay: -4s;
+}
+
+.text-copy:nth-child(5){
+	stroke: #FDB731;
+	animation-delay: -5s;
+}
+
+@keyframes stroke-offset{
+	100% {stroke-dashoffset: -35%;}
+}
+
+.event{
+	box-shadow: 20px 20px 10px grey;
+}
+
+.card-header{
+	background-color: rgba(  156, 204, 101 ,0.321);
+}
+
+.error_mssg{
+	padding-top: 100px;
+}

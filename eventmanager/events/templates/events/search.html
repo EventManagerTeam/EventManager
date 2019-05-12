@@ -5,32 +5,11 @@
 {% load crispy_forms_tags %}
 
 {% block head %}
-<style type="text/css">
-	.custom-select{
-		max-width: 200px !important;
-	}
-
-	@media only screen and (min-device-width: 500px){
-		.custom-select{
-			min-width: 400px !important;
-		}
-	}
-
-	.input-group {
-		padding-left: 10%;
-		padding-right: 10%;
-	}
-
-	.card{
-		margin: 3%;
-		margin-top: 0% !important;
-	}
-
-</style>
+<link href="{% static 'events/search.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-<div class="input-group input-group-lg" style="padding-top: 5%;">
+<div class="input-group input-group-lg">
 	<div class="input-group-prepend">
 		<span class="input-group-text">Category</span>
 	</div>
@@ -43,11 +22,10 @@
 	<input type="text" class="form-control" id="search_string" placeholder="Search here...">
 </div>
 
-<div class="search_progress" style="text-align: center;">
-
+<div class="search_progress">
 </div>
 
-<div class="events centered" style="padding-top: 5%;margin-left:auto;margin-right:auto;display: none;">
+<div class="events centered">
 </div>
 
 <br>
@@ -55,4 +33,3 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="{% static 'scripts/search/search.js' %}"> </script>
 {% endblock %}
-

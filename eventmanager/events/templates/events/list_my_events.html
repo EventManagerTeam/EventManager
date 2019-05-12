@@ -7,67 +7,9 @@
 
 {% block head %}
 <link href="{% static 'events/list_event.css' %}" rel="stylesheet">
-<style type="text/css">
-	@import url(https://fonts.googleapis.com/css?family=Montserrat);
-
-
-	svg {
-	    display: block;
-	    font: 8em 'Montserrat';
-	    width: 960px;
-	    height: 200px;
-	}
-
-	@media only screen and (max-width: 600px) {
-	  svg {
-	      display: block;
-	      font: 4em 'Montserrat';
-	      width: 960px;
-	      height: 200px;
-	  }
-	}
-
-	.text-copy {
-	    fill: none;
-	    stroke: white;
-	    stroke-dasharray: 6% 29%;
-	    stroke-width: 5px;
-	    stroke-dashoffset: 0%;
-	    animation: stroke-offset 5.5s infinite linear;
-	}
-
-	.text-copy:nth-child(1){
-		stroke: #4D163D;
-		animation-delay: -1;
-	}
-
-	.text-copy:nth-child(2){
-		stroke: #840037;
-		animation-delay: -2s;
-	}
-
-	.text-copy:nth-child(3){
-		stroke: #BD0034;
-		animation-delay: -3s;
-	}
-
-	.text-copy:nth-child(4){
-		stroke: #BD0034;
-		animation-delay: -4s;
-	}
-
-	.text-copy:nth-child(5){
-		stroke: #FDB731;
-		animation-delay: -5s;
-	}
-
-	@keyframes stroke-offset{
-		100% {stroke-dashoffset: -35%;}
-	}
-</style>
 {% endblock %}
+
 {% block content %}
-<br>
 {% if events > 0 %}
 <div class="row">
 <svg>
@@ -88,8 +30,8 @@
 <div class="row">
 	{% if events|length > 0 %}
 	    {% for event in events%}
-	    <div class="card event col-lg-5" style="box-shadow: 20px 20px 10px grey;" >
-	        <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
+	    <div class="card event col-lg-5">
+	        <div class="card-header">
 	            <h6 class="text-center">  Added {{ event.created_at|naturaltime  }} </h6>
 	        </div>
 	        <div class="card-body">
@@ -105,7 +47,7 @@
 	    </div>
 	    {% endfor %}
     {% else %}
-    	<div class="col-12 text-center" style="padding-top: 100px;">
+    	<div class="col-12 text-center" id="error_mssg">
     	    <h1> You are not hosting any events yet. </h1>
     	    <br>
     	    <div style="text-align:center;">
@@ -118,15 +60,12 @@
     	    	</a>
     	    </div>
     	</div>
-
-
-
     {% endif %}
 </div>
 
 <br> <br><br> <br> <br> <br>
 {% if events.has_other_pages %}
-<ul class="pagination text-center justify-content-center" style="margin-top: 80px;">
+<ul class="pagination text-center justify-content-center">
     {% if events.has_previous %}
         <li class="page-item">
         	<span class="page-link">
@@ -173,4 +112,3 @@
 {% endif %}
 <br> <br> <br> <br>
 {% endblock %}
-

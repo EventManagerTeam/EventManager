@@ -1,9 +1,11 @@
 {% extends 'accounts/base.html' %}
+
 {% load static %}
+
 {% block title %} Tasks {% endblock %}
+
 {% block head %}
 <link href="{% static 'events/event.css' %}" rel="stylesheet">
-
 {% endblock %}
 
 {% block content %}
@@ -15,12 +17,12 @@
 		<h2 class="heading text-center "> TO DO: </h2>
 		<br>
 		{% for task in todo_tickets %}
-		<div class="card" style="color: black;width: 100%;">
+		<div class="card tickets">
 			<div class="card-body">
 				<h2 class="card-title"> {{task.title}}</h2>
 				<h3 class="card-subtitle mb-2 text-muted"> event: {{task.event}} </h3>
 				<h4 class="card-text">{{task.description}}</h4>
-				<a href="/events/{{task.event.slug}}/board" class="card-link" style="font-size: x-large;"> Go to event board </a>
+				<a href="/events/{{task.event.slug}}/board" class="card-link"> Go to event board </a>
 			</div>
 		</div>
 		<br>
@@ -31,12 +33,12 @@
 		<h2 class="heading text-center"> DOING:  </h2>
 		<br>
 		{% for task in doing_tickets %}
-		<div class="card" style="color: black;width: 100%;">
+		<div class="card">
 			<div class="card-body">
 				<h2 class="card-title"> {{task.title}}</h2>
 				<h3 class="card-subtitle mb-2 text-muted"> event: {{task.event}} </h3>
 				<h4 class="card-text">{{task.description}}</h4>
-				<a href="/events/{{task.event.slug}}/board" class="card-link" style="font-size: x-large;"> Go to event board </a>
+				<a href="/events/{{task.event.slug}}/board" class="card-link"> Go to event board </a>
 			</div>
 		</div>
 		<br>
@@ -45,4 +47,3 @@
 </div>
 <br> <br> <br> <br>
 {% endblock %}
-

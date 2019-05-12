@@ -1,27 +1,18 @@
-
 {% extends 'accounts/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-
-{% block head %}
-<title> Edit comment </title>
-{% endblock %}
+{% block title %} Edit comment {% endblock %}
 
 {% block content %}
 <br>
 <h1 class="h1" style="text-align: center;"> Edit comment: </h1>
-<form class="well" method="post" style="margin-left:5%;margin-right:5%;">
+<form class="well margin-5" method="post">
     {% csrf_token %}
-    <h2> {{ form|crispy }} </h2>
+    <h3> {{ form|crispy }} </h3>
     <script type="text/javascript" src="{% static 'scripts/comment_countdown.js' %}"></script>
-    <h2> <span id="remainingCount1">  500 chars left  </span>  </h2>
+    <h3> <span id="remainingCount1">  500 chars left  </span>  </h3>
 
-    <h2> <input type="submit" class="btn btn-success btn-block" value="Submit" style="font-size: x-large; width: 100% !important;"> </h2>
+    <h3> <input type="submit" class="btn btn-success btn-block large-form-button" value="Submit"> </h3>
 </form>
 <br> <br>
 {% endblock %}
-
-
-
-
-

@@ -1,40 +1,25 @@
 {% extends 'accounts/base.html' %}
 {% load static %}
-
-{% block title %} {{event.title}} settings {% endblock %}
 {% load crispy_forms_tags %}
 
-{% block head %}
-<style type="text/css">
-    hr {
-      height: 5px;
-    }
-    .hr-success{
-      background-image: -webkit-linear-gradient(left, rgba(15,157,88,.8), rgba(15, 157, 88,.6), rgba(0,0,0,0));
-    }
-    option{
-        font-size: x-large;
+{% block title %} {{event.title}} settings {% endblock %}
 
-    }/*
-    select{
-        height: 8% !important;
-    }
-    optgroup { font-size:14px; }*/
-</style>
+{% block head %}
+<link href="{% static 'events/visibility.css' %}" rel="stylesheet">
 {% endblock %}
+
 {% block content %}
-<br> 
-<h2 class="h2" style="text-align: center;"> {{event}} settings </h2>
-<br> 
-<span class="h3" style="padding-left: 3%">Visibility settings</span>
+<br>
+<h2 class="h2"> {{event}} settings </h2>
+<br>
+<h3 class="h3">Visibility settings</h3>
 <hr class="hr-success">
 
 <form method="post">
     {% csrf_token %}
-    <h4 style="padding-left: 8%;padding-right: 8%;"> {{ visibility_settings_form|crispy }} </h4>
-    <button class="btn btn-primary" style="margin-left: 8%;" type="submit">
+    <h4> {{ visibility_settings_form|crispy }} </h4>
+    <button class="btn btn-primary" type="submit">
        <h6> Save Changes </h6>
     </button>
 </form>
 {% endblock %}
-

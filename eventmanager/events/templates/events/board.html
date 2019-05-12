@@ -1,16 +1,12 @@
 {% extends 'accounts/base.html' %}
 
 {% load crispy_forms_tags %}
-
 {% load static %}
 
 {% block title %} Event Board {% endblock %}
 {% block head %}
-
 <link href="{% static 'events/event.css' %}" rel="stylesheet">
 <link href="{% static 'events/board.css' %}" rel="stylesheet">
-
-
 {% endblock %}
 
 {% block content %}
@@ -43,4 +39,3 @@
   </div>
 
 {% endblock %}
-

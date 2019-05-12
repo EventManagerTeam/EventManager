@@ -88,3 +88,16 @@ form{
 .row{
     margin: 0px;
 }
+
+.start-indent{
+	text-indent: 50px;
+}
+
+.user-details{
+	padding: 5%;
+}
+
+.tickets{
+	color: black;
+	width: 100%;
+}

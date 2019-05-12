@@ -9,6 +9,7 @@
 <link href="{% static 'events/list_event.css' %}" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
 {% endblock %}
+
 {% block content %}
 <div class="row">
     {% if request.user.is_authenticated %}
@@ -39,8 +40,8 @@
     <div class="row col-md-10">
     	{% if events %}
 	        {% for event in events%}
-	        <div class="card event col-md-5" style="box-shadow: 20px 20px 10px grey;" >
-	            <div class="card-header" style="background-color: rgba(  156, 204, 101 ,0.321);">
+	        <div class="card event col-md-5 event-card">
+	            <div class="card-header">
 	                <h3 class="text-center">  Added {{ event.created_at|naturaltime  }} </h3>
 	            </div>
 	            <div class="card-body">
@@ -56,7 +57,7 @@
 	        </div>
 	        {% endfor %}
         {% else %}
-    		<h2 class="col-md-10 text-center justify-content-center" style="padding-top: 20px;padding-left: 30px;">
+    		<h2 class="col-md-10 text-center justify-content-center" id="none-message">
     			No events from this category have been added yet.
     		</h2>
         {% endif %}
@@ -65,7 +66,7 @@
 
 
 {% if events.has_other_pages %}
-<ul class="pagination text-center justify-content-center" style="margin-top: 80px;">
+<ul class="pagination text-center justify-content-center ">
     {% if events.has_previous %}
         <li class="page-item">
         	<span class="page-link">

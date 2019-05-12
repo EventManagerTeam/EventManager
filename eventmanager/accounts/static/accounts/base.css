@@ -103,3 +103,17 @@ h3 {
 .navbar {
     z-index: 9999;
 }
+
+.margin-5{
+	margin-left:5%;
+	margin-right:5%;
+}
+
+.large-form-button{
+	font-size: x-large;
+	width: 100% !important;
+}
+
+.start-indent{
+	text-indent: 50px;
+}

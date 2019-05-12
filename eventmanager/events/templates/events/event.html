@@ -11,7 +11,6 @@
 {% block head %}
 	<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5bffb3800624ce0011ee8698&product=inline-share-buttons' async='async'></script>
 	<link href="{% static 'events/event.css' %}" rel="stylesheet">
-
 	<link rel="stylesheet" href="{% static 'flags/sprite-hq.css' %}">
 	<style type="text/css">
 		.bg {
@@ -43,48 +42,45 @@
 			<div class="col-xs-6 col-md-2" >
 				{% if request.user == event.added_by or is_team_member %}
 					<div class="dropdown">
-						<button class="btn dropdown-toggle custom-btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false" style="font-size: xx-large;"  >
+						<button class="btn dropdown-toggle custom-btn large-form-button" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">
 						Edit
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							<a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/delete'" > delete event</a>
 							<a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/edit'" > edit event</a>
 							<a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/add_teammate'" > add team </a>
-							<a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/settings'"> change visibility of event </a>
+							<a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/settings'"> visibility settings </a>
 							<a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/board'"> event board </a>
 							<a class="dropdown-item btn-primary large-text" onclick="location.href=window.location.href  + '/statistics'"> statistics </a>
 						</div>
 					</div>
 				{% endif %}
-
 			</div>
 		</div>
 	</div>
 
 	{% if request.user.is_authenticated %}
 		{% if has_joined %}
-			<button class="custom-btn btn-danger btn-primary btn-block   text-uppercase" onclick="location.href=window.location.href  + '/cancel_join'" type="button" style="margin-bottom: 0;">
+			<button class="custom-btn btn-danger btn-primary btn-block   text-uppercase" onclick="location.href=window.location.href  + '/cancel_join'" type="button">
 				cancel attendance
 			</button>
 		{% else %}
-			<button class="custom-btn btn-success btn-primary btn-block   text-uppercase" onclick="location.href=window.location.href  + '/join'" type="button"  style="margin-bottom: 0;">
+			<button class="custom-btn btn-success btn-primary btn-block   text-uppercase" onclick="location.href=window.location.href  + '/join'" type="button">
 				join
 			</button>
 			{% include "accounts/partials/messages_partial.html" with messages=messages %}
 		{% endif %}
 	{% endif %}
 
-	<div class="col-xs-12" style="padding: 1%;">
-	   <div class="row">
-		  <div class="col"><div class="sharethis-inline-share-buttons"></div></div>
-	   </div>
-	</div>
+   <div class="row">
+	  <div class="col-12"><div class="sharethis-inline-share-buttons"></div></div>
+   </div>
 
 
 	<div class="jumbotron jumbotron-fluid">
 	  <div class="container">
 		<h1> Event Description:</h1>
-		<p class="lead h4 simple" style="text-indent: 50px;">{{event.description|safe}}</p>
+		<p class="lead h4 simple start-indent">{{event.description|safe}}</p>
 	  </div>
 	</div>
 
@@ -100,7 +96,6 @@
 				Invite to event
 			</a>
 		{% endif %}
-
 	</div>
 
 	<div class="modal hide" id="inviteModal">
@@ -117,7 +112,7 @@
 				   <div class="card-columns">
 					{% for user in users%}
 						<div class="card-body">
-							<div class="card" style="text-align: center; padding: 5%;">
+							<div class="card center-text user-details">
 								{% include "friends/partials/profile_picture.html" with picture=user.details.profile_picture %}
 								<h3> {{name}} </h3>
 								<h4> <i class="fa fa-user-circle" aria-hidden="true"></i> {{user.username}} </h4>
@@ -128,7 +123,8 @@
 									</h4>
 								{% endif %}
 								<h4> {{user.details.description}} </h4>
-								<button class="btn btn-success btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/users/{{user.details.slug}}/{{event.slug}}/invite'" type="button" style="font-size: x-large;"> Invite
+								<button class="btn btn-success btn-lg btn-block"  onclick="location.href=window.location.origin + '/events/users/{{user.details.slug}}/{{event.slug}}/invite'" type="button">
+										Invite
 								</button>
 							</div>
 						</div>
@@ -139,9 +135,6 @@
 		</form>
 	</div>
 	{% include "events/partials/add_comment_modal.html" with form=form %}
-
-
 	{% include "events/partials/comments.html" with comments=comments %}
 	<br> <br> <br> <br>
 {% endblock %}
-
