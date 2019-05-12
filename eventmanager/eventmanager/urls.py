@@ -33,6 +33,8 @@ from rest_framework_swagger.views import get_swagger_view
 schema_view = get_swagger_view(title='EventManager API')
 
 urlpatterns = [
+    url(r'^jet/', include('jet.urls', 'jet')),
+    url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('admin/', admin.site.urls),
     path('', include('accounts.urls')),
     path('events/', include('stats.urls')),

@@ -7,12 +7,12 @@ from .models import SuggestedCategory
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug', 'is_active', 'description']
-    list_filter = ('is_active',)
+    list_filter = ('is_active', 'name',)
 
 
 class SuggestedCategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'description', 'added_by']
-    list_filter = ('added_by',)
+    list_filter = ('added_by', 'name',)
 
 
 admin.site.register(SuggestedCategory, SuggestedCategoryAdmin)
