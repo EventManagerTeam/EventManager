@@ -107,12 +107,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'eventmanager',
-        'USER': 'eventmanager',
-        'PASSWORD': 'eventmanager',
-        'HOST': 'db',
-        'TEST': {
-            'NAME': 'mytestdatabase',
-        },
+                'USER': 'eventmanager',
+                'PASSWORD': 'eventmanager',
+                'HOST': 'db',
+                'TEST': {
+                        'NAME': 'mytestdatabase',
+                },
     }
 }
 

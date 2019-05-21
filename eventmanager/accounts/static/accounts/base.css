@@ -76,7 +76,6 @@ h3 {
   }
 }
 
-
 .nav-link h3,  dropdown-toggle,.login{
 	padding-right: 1vw;
 	color: white;
@@ -114,6 +113,4 @@ h3 {
 	width: 100% !important;
 }
 
-.start-indent{
-	text-indent: 50px;
-}
+

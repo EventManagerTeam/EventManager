@@ -469,3 +469,9 @@ class EventsUrlsTestClass(TestCase):
         )
         response = self.client.get(reverse("events.show_random_event"))
         self.assertEqual(response.status_code, 302)
+
+    def test_search_json(self):
+        response = self.client.get(reverse("events.search_json", kwargs={
+                    'category_id': 1,
+                    'slug': "test"}))
+        self.assertEqual(response.status_code, 200)
