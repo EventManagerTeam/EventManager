@@ -1,0 +1,20 @@
+@media only screen and (max-width: 600px) {
+	.card {
+		margin: 1%;
+		margin-right: 10%;
+		margin-left: 10%;
+	}
+}
+.card {
+	padding: 1%;
+	margin: 1%;
+	margin-left: 5%;
+}
+
+.card-title{
+	font-size: x-large;
+}
+
+.right{
+	float: right;
+}

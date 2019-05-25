@@ -9,33 +9,12 @@
 {% block head %}
 <link href="{% static 'categories/all.css' %}" rel="stylesheet">
 <link href="{% static 'accounts/show_account_details.css' %}" rel="stylesheet">
-<style type="text/css">
-    @media only screen and (max-width: 600px) {
-        .card {
-            margin: 1%;
-            margin-right: 10%;
-            margin-left: 10%;
-        }
-    }
-    .card {
-        padding: 1%;
-        margin: 1%;
-        margin-left: 5%;
-    }
-
-    .card-title{
-    	font-size: x-large;
-    }
-
-    .right{
-    	float: right;
-    }
-</style>
+<link href="{% static 'friends/list_requests.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 <br>
-<h1 class="h1 centered"> Friend requests by: </h1>
+<h1 class="h1 centered_text"> Friend requests by: </h1>
     <div class="row">
 	    {% for request in requests %}
 	    <div class="card comments-card col-sm-3">

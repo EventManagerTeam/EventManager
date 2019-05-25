@@ -22,6 +22,7 @@ from tasks.models import Task
 from rest_framework import filters
 from rest_framework import viewsets
 from rest_framework.response import Response
+from rest_framework import generics
 
 
 class EventViewSet(viewsets.ModelViewSet):
@@ -57,11 +58,13 @@ class InvitationsViewSet(viewsets.ModelViewSet):
 
 
 class AccountDetailsViewSet(viewsets.ModelViewSet):
-    """
-    A ModelViewSet for listing or retrieving account details.
-    """
-    queryset = AccountDetails.objects.all()
     serializer_class = AccountDetailsSerializer
+    queryset = AccountDetails.objects.all()
+
+    def get_queryset(self):
+        queryset = self.queryset
+        query_set = queryset.filter(user=self.request.user)
+        return query_set
 
 
 class TasksViewSet(viewsets.ModelViewSet):

@@ -9,11 +9,11 @@ from api.views import TasksViewSet
 
 
 router = SimpleRouter()
-router.register("events", EventViewSet)
-router.register("comments", CommentsViewSet)
-router.register("categories", CategoriesViewSet)
-router.register("invitations", InvitationsViewSet)
-router.register("details", AccountDetailsViewSet)
-router.register("tasks", TasksViewSet)
+router.register("events", EventViewSet, base_name='events')
+router.register("comments", CommentsViewSet, base_name='comments')
+router.register("categories", CategoriesViewSet, base_name='categories')
+router.register("invitations", InvitationsViewSet, base_name='invitations')
+router.register("details", AccountDetailsViewSet, base_name='details')
+router.register("tasks", TasksViewSet, base_name='tasks')
 
 urlpatterns = router.urls

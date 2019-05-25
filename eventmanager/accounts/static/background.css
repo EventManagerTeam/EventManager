@@ -6,3 +6,7 @@ body{
    linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
    background-size: 13px, 29px, 37px, 53px;
 }
+
+#hint_id_new_password1{
+	display: none;
+}
