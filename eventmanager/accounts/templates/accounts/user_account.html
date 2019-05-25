@@ -11,10 +11,15 @@
 <div class="col-md-4 md-offset-4 centered class-div">
     {% include "accounts/partials/account_partial.html" with name=name username=username email=email details=details %}
     {% if not friends %}
-    <button class="btn btn-success btn-lg btn-block" onclick="location.href=window.location.href  + '/friend'" type="button" style="font-size: x-large;"> Friend </button>
+    	<button class="btn btn-success btn-lg btn-block large_font" onclick="location.href=window.location.href + '/friend'" type="button">
+    		Friend
+    	</button>
     {% endif %}
+
     {% if friends%}
-    <button class="btn btn-danger btn-lg btn-block" onclick="location.href=window.location.href  + '/unfriend'" type="button" style="font-size: x-large;"> Unfriend </button>
+    <button class="btn btn-danger btn-lg btn-block large_font" onclick="location.href=window.location.href + '/unfriend'" type="button">
+    	Unfriend
+    </button>
     {% endif %}
 </div>
 <br> <br><br> <br>

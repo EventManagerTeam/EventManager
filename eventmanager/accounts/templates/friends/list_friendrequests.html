@@ -17,30 +17,42 @@
             margin-left: 10%;
         }
     }
+    .card {
+        padding: 1%;
+        margin: 1%;
+        margin-left: 5%;
+    }
+
+    .card-title{
+    	font-size: x-large;
+    }
+
+    .right{
+    	float: right;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 <br>
-<h1 class="h1" style="text-align: center;"> Friend requests by: </h1>
+<h1 class="h1 centered"> Friend requests by: </h1>
     <div class="row">
-
-    {% for request in requests %}
-    <div class="card comments-card col-sm-3" style="padding: 1%;margin: 1%;margin-left: 5%;">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-sm">
-                  <a href="/users/{{request.slug}}"  <h3 class="card-title" style="font-size: x-large;">{{request.sent_by}} </h3>
-                </div>
-                <div class="col-sm" style="float: right">
-                    <a href = "/users/{{request.slug}}/accept" class="btn-lg btn btn-success"> Accept <i class="favicon fa fa-plus"> </i> </a>
-                    <a href = "/users/{{request.slug}}/decline" class="btn-lg btn btn-danger"> Decline <i class="favicon fa fa-minus"> </i> </a>
-                </div>
-
-            </div>
-        </div>
-    </div>  <br> <br> <br>
-    {% endfor %}
-</div>
+	    {% for request in requests %}
+	    <div class="card comments-card col-sm-3">
+	        <div class="card-body">
+	            <div class="row">
+	                <div class="col-sm">
+	                  <a href="/users/{{request.slug}}">  <h3 class="card-title" style="">{{request.sent_by}} </h3>  </a>
+	                </div>
+	                <div class="col-sm right">
+	                    <a href = "/users/{{request.slug}}/accept" class="btn-lg btn btn-success"> Accept <i class="favicon fa fa-plus"> </i> </a>
+	                    <a href = "/users/{{request.slug}}/decline" class="btn-lg btn btn-danger"> Decline <i class="favicon fa fa-minus"> </i> </a>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    <br> <br> <br>
+	    {% endfor %}
+	</div>
 {% endblock %}
 

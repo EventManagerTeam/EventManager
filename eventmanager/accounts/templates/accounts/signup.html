@@ -7,24 +7,22 @@
 {% block head %}
 <link href="{% static 'accounts/login.css' %}" rel="stylesheet">
 <style>
-	input{
-		width: 100% !important;
-	}
+
 </style>
 {% endblock %}
 
 {% block content %}
 <br> <br>
 <div class="col-md"> </div>
-<div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2" style="background-color: white;padding: 3%;border: 4px solid black; border-radius: 25px;">
+<div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 signup">
    <form method="post">
         {% csrf_token %}
         {% if wrong_credentials == True %}
-            <div class="alert alert-danger alert-dismissible" style="margin-bottom: 10%;">
+            <div class="alert alert-danger alert-dismissible">
                 <h3> You entered wrong credentials. </h3>
             </div>
         {% endif%}
-
+        <br>
         <div class="group form-group">
             <input type="text" class="form-field" required id="id_username" name="username">
             <span class="highlight"></span>
@@ -105,9 +103,9 @@
         <button class="btn btn-primary btn-lg btn-block"  type="submit">
             <h3> Sign up </h3>
         </button>
+        <br>
    </form>
 </div>
 <div class="col-md"> </div>
-<br> <br><br> <br>
-
+<br> <br> <br> <br>
 {% endblock %}
