@@ -23,7 +23,7 @@
 <br>
 <h1 class="text-center">
     {% if editing %}
-        Edit {{ starts }}
+        Edit {{ starts }}{{selected_categories}}
     {% else %}
         Create
     {% endif%}  event:
@@ -115,5 +115,16 @@
 <script type="text/javascript" src="{% static 'scripts/preview_image.js'%}"></script>
 <script type="text/javascript" src="{% static 'scripts/validate_event_date.js'%}"></script>
 <script type="text/javascript" src="http://weareoutman.github.io/clockpicker/distjquery-clockpicker.min.js"></script>
+<script type="text/javascript">
+	function selectElement(category) {
+		category = '"' + category + '"'
+		if(category.length > 2){
+			console.log("selecting" + category)
+			$('#category option[value=' + category + ']').attr('selected', true);
+		}
+	}
 
+	var categories = "{{selected_categories}}".split(";");
+	categories.forEach(selectElement);
+</script>
 {% endblock %}

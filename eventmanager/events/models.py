@@ -182,6 +182,20 @@ class Event(models.Model):
                 filtered_attendees.append(user)
         return attendees
 
+    def get_categories(event_slug):
+        categories = Event.objects.all().get(slug=event_slug).category.all()
+        filtered_category = []
+        for name in categories:
+            filtered_category.append(Category.objects.get(name=name))
+        return filtered_category
+
+    def get_category_names(event_slug):
+        categories = Event.objects.all().get(slug=event_slug).category.all()
+        filtered_category = ""
+        for name in categories:
+            filtered_category += Category.objects.get(name=name).name + ";"
+        return filtered_category
+
     def can_view_event(event_slug, user):
         event_visibility = Event.objects.all().get(slug=event_slug).visibility
         event = Event.objects.all().get(slug=event_slug)

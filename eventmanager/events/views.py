@@ -126,42 +126,47 @@ def create_event(request):
 
 
 def edit_event(request, slug):
-    instance = Event.objects.all().get(slug=slug)
+    instance = Event.objects.get(slug=slug)
+    selected_categories = Event.get_category_names(instance)
+    print(selected_categories, "selected_categories")
     form = EventForm(
         request.POST or None,
         request.FILES or None,
         instance=instance)
     if request.method == 'POST':
         if form.is_valid():
-            post = form.save(commit=False)
-            post.added_by = request.user
+            event = form.save(commit=False)
+            event.added_by = request.user
             default_time = "00:00:00"
 
             starts_at = request.POST.get('starts_at_time') or default_time
             ends_at = request.POST.get('ends_at_time') or default_time
 
             if request.POST.get('starts_at'):
-                post.starts_at = get_datetime(
+                event.starts_at = get_datetime(
                     request.POST.get('starts_at'),
                     starts_at
                 )
 
             if request.POST.get('ends_at'):
-                post.ends_at = get_datetime(
+                event.ends_at = get_datetime(
                     request.POST.get('ends_at'),
                     ends_at
                 )
 
             if request.FILES.get('cover_image'):
-                post.cover_image = request.FILES.get('cover_image')
-            post.save()
+                event.cover_image = request.FILES.get('cover_image')
+            event.save()
 
-            category = Category.objects.filter(
-                name=request.POST["category_select"]
-            )
-            post.category.add(*list(category))
-
-            post.save()
+            categories = request.POST.getlist("category_select")
+            if len(categories) != 0:
+                event.category.clear()
+            for current_category in categories:
+                category = Category.objects.filter(
+                    name=current_category
+                )
+                event.category.add(*list(category))
+            event.save()
             context = {
                 'success_message': "edited event"
             }
@@ -188,7 +193,8 @@ def edit_event(request, slug):
         'starts_date': starts_date,
         'ends_date': ends_date,
         'starts_time': starts_time,
-        'ends_time': ends_time
+        'ends_time': ends_time,
+        'selected_categories': selected_categories
     }
     return render(
         request,
@@ -429,8 +435,8 @@ def event_team_add(request, user, slug):
         if user not in Event.objects.get(slug=slug).attendees.all():
             event.attendees.add(user)
 
-    context = {'success_message': "added new team member " +
-               str(user) + " for event " + event.title}
+    mssg = "added new team member " + str(user) + " for event " + event.title
+    context = {'success_message': mssg}
     return render(request, 'CRUDops/successfully.html', context)
 
 

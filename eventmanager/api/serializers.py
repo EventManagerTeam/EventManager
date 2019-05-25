@@ -75,14 +75,30 @@ class SuggestedCategorySerializer(serializers.ModelSerializer):
 class CommentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ("id", "title", "author", "content", "event",)
+        fields = (
+            "id",
+            "title",
+            "author",
+            "content",
+            "event",
+        )
 
 
 class InvitationsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invite
-        fields = ("id", "invited_user", "invited_by", "event", "is_accepted",)
-        read_only_fields = ("invited_by", "is_accepted")
+        fields = (
+            "id",
+            "invited_user",
+            "invited_by",
+            "event",
+            "is_accepted",
+
+        )
+        read_only_fields = (
+            "invited_by",
+            "is_accepted"
+        )
 
 
 class AccountDetailsSerializer(serializers.ModelSerializer):
