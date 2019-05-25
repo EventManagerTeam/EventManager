@@ -6,12 +6,17 @@ from api.views import CommentsViewSet
 from api.views import EventViewSet
 from api.views import InvitationsViewSet
 from api.views import TasksViewSet
+from api.views import SuggestedCategoriesViewSet
 
 
 router = SimpleRouter()
 router.register("events", EventViewSet, base_name='events')
 router.register("comments", CommentsViewSet, base_name='comments')
 router.register("categories", CategoriesViewSet, base_name='categories')
+router.register(
+    "suggested_categories",
+    SuggestedCategoriesViewSet,
+    base_name='suggested_categories')
 router.register("invitations", InvitationsViewSet, base_name='invitations')
 router.register("details", AccountDetailsViewSet, base_name='details')
 router.register("tasks", TasksViewSet, base_name='tasks')

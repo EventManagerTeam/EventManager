@@ -1,6 +1,7 @@
 from accounts.models import AccountDetails
 
 from categories.models import Category
+from categories.models import SuggestedCategory
 
 from events.models import Comment
 from events.models import Event
@@ -28,6 +29,17 @@ class EventSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at"
         )
+        read_only_fields = (
+            "pk",
+            "attendees",
+            "team_members",
+            "added_by",
+            "starts_at",
+            "ends_at",
+            "is_active",
+            "created_at",
+            "updated_at"
+        )
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -41,6 +53,24 @@ class CategorySerializer(serializers.ModelSerializer):
             "updated_at"
         )
 
+        read_only_fields = (
+            "name",
+            "description",
+            "is_active",
+            "created_at",
+            "updated_at"
+        )
+
+
+class SuggestedCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SuggestedCategory
+        fields = (
+            "name",
+            "description",
+            'added_by',
+        )
+
 
 class CommentsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -52,6 +82,7 @@ class InvitationsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invite
         fields = ("id", "invited_user", "invited_by", "event", "is_accepted",)
+        read_only_fields = ("invited_by", "is_accepted")
 
 
 class AccountDetailsSerializer(serializers.ModelSerializer):
@@ -63,6 +94,9 @@ class AccountDetailsSerializer(serializers.ModelSerializer):
             "friends",
             "birth_date",
             "description",
+        )
+        read_only_fields = (
+            "friends",
         )
 
 
@@ -81,4 +115,11 @@ class TasksSerializer(serializers.ModelSerializer):
             'added_by',
             'assignee',
             'event'
+        )
+        read_only_fields = (
+            "id",
+            "is_active",
+            "created_at",
+            "updated_at",
+            'added_by',
         )

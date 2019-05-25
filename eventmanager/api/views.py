@@ -4,6 +4,7 @@ from api.serializers import CommentsSerializer
 from api.serializers import EventSerializer
 from api.serializers import InvitationsSerializer
 from api.serializers import TasksSerializer
+from api.serializers import SuggestedCategorySerializer
 
 from django.core.serializers import serialize
 
@@ -12,6 +13,7 @@ from django.shortcuts import render
 from accounts.models import AccountDetails
 
 from categories.models import Category
+from categories.models import SuggestedCategory
 
 from events.models import Comment
 from events.models import Event
@@ -21,8 +23,9 @@ from tasks.models import Task
 
 from rest_framework import filters
 from rest_framework import viewsets
-from rest_framework.response import Response
 from rest_framework import generics
+from rest_framework import mixins
+from rest_framework.response import Response
 
 
 class EventViewSet(viewsets.ModelViewSet):
@@ -37,8 +40,17 @@ class CategoriesViewSet(viewsets.ModelViewSet):
     """
     A ModelViewSet for listing or retrieving categories.
     """
+    http_method_names = ['get']
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+
+class SuggestedCategoriesViewSet(viewsets.ModelViewSet):
+    """
+    A ModelViewSet for listing or retrieving categories.
+    """
+    queryset = SuggestedCategory.objects.all()
+    serializer_class = SuggestedCategorySerializer
 
 
 class CommentsViewSet(viewsets.ModelViewSet):

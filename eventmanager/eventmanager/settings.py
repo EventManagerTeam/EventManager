@@ -181,7 +181,7 @@ EVENTS_IN_FEED = 20
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # login url for socail-auth
-LOGOUT_URL = 'signout'
+LOGOUT_URL = 'accounts.signout'
 LOGIN_REDIRECT_URL = 'accounts.home'
 
 SOCIAL_AUTH_GITHUB_KEY = ''
@@ -196,7 +196,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 JET_THEMES = [
     {
-        'theme': 'default',  # theme folder name
+        'theme': 'default',
         'color': '#222',
         'title': 'Light Gray'
     },
