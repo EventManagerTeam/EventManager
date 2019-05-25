@@ -56,15 +56,26 @@ class InvitationsViewSet(viewsets.ModelViewSet):
     queryset = Invite.objects.all()
     serializer_class = InvitationsSerializer
 
+    def get_queryset(self):
+        try:
+            queryset = self.queryset
+            query_set = queryset.filter(invited_user=self.request.user)
+            return query_set
+        except BaseException:
+            return
+
 
 class AccountDetailsViewSet(viewsets.ModelViewSet):
     serializer_class = AccountDetailsSerializer
     queryset = AccountDetails.objects.all()
 
     def get_queryset(self):
-        queryset = self.queryset
-        query_set = queryset.filter(user=self.request.user)
-        return query_set
+        try:
+            queryset = self.queryset
+            query_set = queryset.filter(user=self.request.user)
+            return query_set
+        except BaseException:
+            return
 
 
 class TasksViewSet(viewsets.ModelViewSet):
