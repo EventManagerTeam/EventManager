@@ -2,9 +2,7 @@
 name: fix
 about: fix
 title: ''
-labels: bug, lighthouse
+labels: bug
 assignees: ''
 
 ---
-
-fix
