@@ -112,3 +112,10 @@ class TasksViewSet(viewsets.ModelViewSet):
     """
     queryset = Task.objects.all()
     serializer_class = TasksSerializer
+    added_by = serializers.PrimaryKeyRelatedField(
+        read_only=True,
+    )
+
+    def perform_create(self, serializer):
+        user = self.request.user or NULL
+        serializer.save(added_by=user)
