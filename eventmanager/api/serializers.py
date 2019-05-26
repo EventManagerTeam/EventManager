@@ -70,6 +70,9 @@ class SuggestedCategorySerializer(serializers.ModelSerializer):
             "description",
             'added_by',
         )
+        read_only_fields = (
+            "added_by",
+        )
 
 
 class CommentsSerializer(serializers.ModelSerializer):

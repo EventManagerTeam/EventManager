@@ -50,8 +50,16 @@ class SuggestedCategoriesViewSet(viewsets.ModelViewSet):
     """
     A ModelViewSet for listing or retrieving categories.
     """
+    added_by = serializers.PrimaryKeyRelatedField(
+        read_only=True,
+    )
+
     queryset = SuggestedCategory.objects.all()
     serializer_class = SuggestedCategorySerializer
+
+    def perform_create(self, serializer):
+        user = self.request.user or NULL
+        serializer.save(added_by=user)
 
 
 class CommentsViewSet(viewsets.ModelViewSet):
