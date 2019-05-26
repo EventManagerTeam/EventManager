@@ -83,6 +83,13 @@ class InvitationsViewSet(viewsets.ModelViewSet):
     """
     queryset = Invite.objects.all()
     serializer_class = InvitationsSerializer
+    invited_by = serializers.PrimaryKeyRelatedField(
+        read_only=True,
+    )
+
+    def perform_create(self, serializer):
+        user = self.request.user or NULL
+        serializer.save(invited_by=user)
 
     def get_queryset(self):
         try:

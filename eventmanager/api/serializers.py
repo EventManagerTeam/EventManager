@@ -104,7 +104,7 @@ class InvitationsSerializer(serializers.ModelSerializer):
         )
         read_only_fields = (
             "invited_by",
-            "is_accepted"
+            "is_accepted",
         )
 
 
