@@ -26,6 +26,7 @@ from rest_framework import viewsets
 from rest_framework import generics
 from rest_framework import mixins
 from rest_framework.response import Response
+from rest_framework import serializers
 
 
 class EventViewSet(viewsets.ModelViewSet):
@@ -59,6 +60,13 @@ class CommentsViewSet(viewsets.ModelViewSet):
     """
     queryset = Comment.objects.all()
     serializer_class = CommentsSerializer
+    author = serializers.PrimaryKeyRelatedField(
+        read_only=True,
+    )
+
+    def perform_create(self, serializer):
+        user = self.request.user or NULL
+        serializer.save(author=user)
 
 
 class InvitationsViewSet(viewsets.ModelViewSet):

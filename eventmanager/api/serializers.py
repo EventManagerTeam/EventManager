@@ -83,6 +83,10 @@ class CommentsSerializer(serializers.ModelSerializer):
             "event",
         )
 
+        read_only_fields = (
+            "author",
+        )
+
 
 class InvitationsSerializer(serializers.ModelSerializer):
     class Meta:
