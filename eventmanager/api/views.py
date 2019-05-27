@@ -25,21 +25,23 @@ from rest_framework import filters
 from rest_framework import viewsets
 from rest_framework import generics
 from rest_framework import mixins
-from rest_framework.response import Response
 from rest_framework import serializers
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 
 class EventViewSet(viewsets.ModelViewSet):
     """
-    A ModelViewSet for listing or retrieving events.
+    A ModelViewSet for events, logged in users only.
     """
+    permission_classes = (IsAuthenticated,)
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
 
 class CategoriesViewSet(viewsets.ModelViewSet):
     """
-    A ModelViewSet for listing or retrieving categories.
+    A ModelViewSet for getting categories.
     """
     http_method_names = ['get']
     queryset = Category.objects.all()
@@ -48,7 +50,7 @@ class CategoriesViewSet(viewsets.ModelViewSet):
 
 class SuggestedCategoriesViewSet(viewsets.ModelViewSet):
     """
-    A ModelViewSet for listing or retrieving categories.
+    A ModelViewSet for suggested categories.
     """
     added_by = serializers.PrimaryKeyRelatedField(
         read_only=True,
@@ -64,7 +66,7 @@ class SuggestedCategoriesViewSet(viewsets.ModelViewSet):
 
 class CommentsViewSet(viewsets.ModelViewSet):
     """
-    A ModelViewSet for listing or retrieving comments.
+    A ModelViewSet for comments.
     """
     queryset = Comment.objects.all()
     serializer_class = CommentsSerializer
@@ -79,7 +81,7 @@ class CommentsViewSet(viewsets.ModelViewSet):
 
 class InvitationsViewSet(viewsets.ModelViewSet):
     """
-    A ModelViewSet for listing or retrieving invitations.
+    A ModelViewSet for invitations.
     """
     queryset = Invite.objects.all()
     serializer_class = InvitationsSerializer
@@ -101,8 +103,18 @@ class InvitationsViewSet(viewsets.ModelViewSet):
 
 
 class AccountDetailsViewSet(viewsets.ModelViewSet):
+    """
+    A ModelViewSet for account details.
+    """
     serializer_class = AccountDetailsSerializer
     queryset = AccountDetails.objects.all()
+    user = serializers.PrimaryKeyRelatedField(
+        read_only=True,
+    )
+
+    def perform_create(self, serializer):
+        user = self.request.user or NULL
+        serializer.save(user=user)
 
     def get_queryset(self):
         try:
@@ -115,7 +127,7 @@ class AccountDetailsViewSet(viewsets.ModelViewSet):
 
 class TasksViewSet(viewsets.ModelViewSet):
     """
-    A ModelViewSet for listing or retrieving tasks.
+    A ModelViewSet for tasks.
     """
     queryset = Task.objects.all()
     serializer_class = TasksSerializer

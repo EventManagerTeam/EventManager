@@ -120,6 +120,7 @@ class AccountDetailsSerializer(serializers.ModelSerializer):
         )
         read_only_fields = (
             "friends",
+            "user",
         )
 
 
