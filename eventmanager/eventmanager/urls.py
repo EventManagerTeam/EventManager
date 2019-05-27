@@ -49,6 +49,7 @@ urlpatterns = [
                 namespace='notifications')
     ),
     url(r'^api/', include('api.urls')),
+    url(r'^api/rest-auth/', include('rest_auth.urls')),
     url(r'^swagger/', schema_view),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^tinymce/', include('tinymce.urls')),

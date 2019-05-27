@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'notifications',
     'rest_framework',
     'rest_framework_swagger',
+    'rest_framework.authtoken',
+    'rest_auth',
     'social_django',
     'import_export',
     'tinymce',
