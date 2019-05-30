@@ -10,6 +10,11 @@
 
 {% block content %}
 <br> <h1 class="text-center animated fadeInUp slow"> My tasks: </h1> <br>
+{% if is_empty%}
+	<h2 class="text-center animated fadeInUp slow">
+		You have no assigned tasks yet.
+	</h2>
+{% else %}
 <div class="row">
 	<div class="col-sm-2"> </div>
 	<div class="col-sm-4 bg-warning animated slideInUp">
@@ -45,5 +50,6 @@
 		{% endfor%}
 	</div>
 </div>
+{% endif %}
 <br> <br> <br> <br>
 {% endblock %}

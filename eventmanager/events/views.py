@@ -343,10 +343,21 @@ def invites(request):
 @login_required(login_url='/login')
 def tasks(request):
     user = request.user
-    todo_tickets = Task.objects.filter(assignee=user).filter(status='TODO')
-    doing_tickets = Task.objects.filter(assignee=user).filter(status='DOING')
-    context = {'todo_tickets': todo_tickets, 'doing_tickets': doing_tickets}
-    return render(request, 'events/my_tasks.html', context)
+    my_tasks = Task.objects.filter(assignee=user)
+    todo_tickets = my_tasks.filter(status='TODO')
+    doing_tickets = my_tasks.filter(status='DOING')
+    if todo_tickets.count() != 0 and doing_tickets.count() != 0:
+        context = {
+            'todo_tickets': todo_tickets,
+            'doing_tickets': doing_tickets,
+            'is_empty': False}
+        return render(request, 'events/my_tasks.html', context)
+    else:
+        context = {
+            'todo_tickets': todo_tickets,
+            'doing_tickets': doing_tickets,
+            'is_empty': True}
+        return render(request, 'events/my_tasks.html', context)
 
 
 @login_required(login_url='/login')
