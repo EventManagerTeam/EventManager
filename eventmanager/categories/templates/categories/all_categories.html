@@ -23,7 +23,12 @@
 				<div class="bg-cover" style="{% if category.category_image %} background-image: url({{category.category_image.url}});{%endif%}" ></div>
 				<div class="content" >
 					<a href= "{{category.slug}}">
-						<h2 class="category_name">{{category.name}}</h2>
+						<h2 class="category_name">
+							{{category.name}}
+							<span class="badge badge-pill badge-secondary">
+								{{category.number_of_events_in_category}}
+							</span>
+						</h2>
 					</a>
 					<div class="description">
 						<h2> {{category.description}} </h2>

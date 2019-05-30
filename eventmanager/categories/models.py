@@ -74,6 +74,11 @@ class Category(models.Model):
             unique_slugify(self, self.name)
         super(Category, self).save(*args, **kwargs)
 
+    def number_of_events_in_category(self):
+        from events.models import Event
+        count = Event.objects.filter(category=self).count()
+        return str(count) + " " + ('events' if count != 1 else 'event')
+
     class Meta(object):
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
