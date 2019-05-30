@@ -127,7 +127,7 @@ def create_event(request):
 
 def edit_event(request, slug):
     instance = Event.objects.get(slug=slug)
-    selected_categories = Event.get_category_names(instance)
+    selected_categories = Event.get_category_names(instance.slug)
     print(selected_categories, "selected_categories")
     form = EventForm(
         request.POST or None,
