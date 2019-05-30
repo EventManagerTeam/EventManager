@@ -17,4 +17,5 @@ Then do the following:
 
 And you have EventManager up and running :)
 
+Also, you can check the demo for the project at [socialeventmanager](http://socialeventmanager.com:8081)
 ### The following project was developer as diploma work by Karina Kozarova (@karinakozarova), student at ELSYS, Bulgaria.
