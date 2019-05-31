@@ -5,14 +5,14 @@ services:
     image: mysql:5.7
     command: 'mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci'
     container_name: event-manager.db
-    env_file: ${MYSQL_ENV_TESTS:-docker/startup/envs/.env.mysql}
+    env_file: ${MYSQL_ENV_TESTS}
     volumes:
       - ./mysql_data:/var/lib/mysql
   web:
     build: .
     image: event-manager
     container_name: event-manager.container
-    env_file: ${SETTINGS_ENV_TESTS:-docker/startup/envs/.env}
+    env_file: ${SETTINGS_ENV_TESTS}
     volumes:
       - .:/code
     ports:
