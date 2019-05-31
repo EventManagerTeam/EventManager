@@ -346,7 +346,7 @@ def tasks(request):
     my_tasks = Task.objects.filter(assignee=user)
     todo_tickets = my_tasks.filter(status='TODO')
     doing_tickets = my_tasks.filter(status='DOING')
-    if todo_tickets.count() != 0 and doing_tickets.count() != 0:
+    if todo_tickets.count() != 0 or doing_tickets.count() != 0:
         context = {
             'todo_tickets': todo_tickets,
             'doing_tickets': doing_tickets,
