@@ -476,11 +476,10 @@ def event_board(request, slug):
     members = Event.objects.get(slug=slug).team_members.all()
 
     event = Event.objects.get(slug=slug)
-    todo_tickets = Task.objects.filter(status='TODO').filter(event_id=event.pk)
-    doing_tickets = Task.objects.filter(
-        status='DOING').filter(
-        event_id=event.pk)
-    done_tickets = Task.objects.filter(status='DONE').filter(event_id=event.pk)
+    event_tickets = Task.objects.filter(event_id=event.pk)
+    todo_tickets = event_tickets.filter(status='TODO')
+    doing_tickets = event_tickets.filter(status='DOING')
+    done_tickets = event_tickets.filter(status='DONE')
 
     if request.user in members:
         form = TaskForm(request.POST or None)
