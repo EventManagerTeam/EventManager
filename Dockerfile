@@ -1,5 +1,6 @@
 FROM python:alpine3.7
 
+COPY . /code
 WORKDIR /code
 
 # for Pillow
@@ -11,6 +12,3 @@ RUN apk update \
     g++ bash \
     && pip3 install wheel -r requirements.txt \
     && rm -rf /var/cache/apk/*
-
-COPY . /code
-WORKDIR /code
