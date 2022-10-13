@@ -6,7 +6,7 @@ Pillow==6.2.3
 django-crispy-forms==1.7.2
 django-notifications-hq==1.5.0
 django-cleanup==3.2.0
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 markdown==3.1.1
 django-filter==2.1.0
 django-rest-swagger==2.2.0
